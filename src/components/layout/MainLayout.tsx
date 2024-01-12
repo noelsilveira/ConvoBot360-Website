@@ -9,14 +9,14 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { navigation } from '@/constants/navigation';
 import { cn } from '@/lib/utils';
 
-type MainLayoutProps = {
-  className?: string | string[];
-  children: React.ReactNode;
-};
+type MainLayoutProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLElement>,
+  HTMLElement
+>;
 
 const inter = Inter({ subsets: ['latin'] });
 
-const MainLayout = ({ children, className }: MainLayoutProps) => {
+const MainLayout = ({ children, className, ...rest }: MainLayoutProps) => {
   return (
     <div className='bg-white'>
       {/* Mobile menu */}
@@ -24,7 +24,9 @@ const MainLayout = ({ children, className }: MainLayoutProps) => {
 
       {/* Top navigation */}
       <Header />
-      <main className={twMerge(`${inter} ${className}`)}>{children}</main>
+      <main className={twMerge(`${inter} ${className}`)} {...rest}>
+        {children}
+      </main>
       <Footer />
     </div>
   );
