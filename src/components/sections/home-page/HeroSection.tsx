@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const HeroSection = () => {
@@ -83,12 +84,12 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <a
-                href='#'
-                className='inline-block rounded-md border border-transparent bg-flush-orange-500 px-8 py-3 text-center font-medium text-white hover:bg-flush-orange-600'
+              <Link
+                href='/products-listing'
+                className='inline-block rounded-md border border-transparent bg-brand-500 px-8 py-3 text-center font-medium text-white duration-300 hover:bg-brand-600'
               >
                 Shop Collection
-              </a>
+              </Link>
             </div>
           </div>
         </div>

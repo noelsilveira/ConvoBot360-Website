@@ -14,7 +14,7 @@ const FavoritesSection = () => {
           </h2>
           <a
             href='#'
-            className='hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block'
+            className='hidden text-sm font-semibold text-brand-600 hover:text-brand-500 sm:block'
           >
             Browse all favorites
             <span aria-hidden='true'> &rarr;</span>
@@ -45,7 +45,7 @@ const FavoritesSection = () => {
         <div className='mt-6 sm:hidden'>
           <a
             href='#'
-            className='block text-sm font-semibold text-indigo-600 hover:text-indigo-500'
+            className='block text-sm font-semibold text-brand-600 hover:text-brand-500'
           >
             Browse all favorites
             <span aria-hidden='true'> &rarr;</span>

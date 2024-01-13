@@ -21,6 +21,26 @@ export const navigation = {
             'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
       ],
+      categories: [
+        { name: 'Basic Tees', href: '#' },
+        { name: 'Artwork Tees', href: '#' },
+        { name: 'Bottoms', href: '#' },
+        { name: 'Underwear', href: '#' },
+        { name: 'Accessories', href: '#' },
+      ],
+      collection: [
+        { name: 'Everything', href: '#' },
+        { name: 'Core', href: '#' },
+        { name: 'New Arrivals', href: '#' },
+        { name: 'Sale', href: '#' },
+      ],
+      brands: [
+        { name: 'Full Nelson', href: '#' },
+        { name: 'My Way', href: '#' },
+        { name: 'Re-Arranged', href: '#' },
+        { name: 'Counterfeit', href: '#' },
+        { name: 'Significant Other', href: '#' },
+      ],
       sections: [
         {
           id: 'clothing',
@@ -82,6 +102,26 @@ export const navigation = {
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
         },
+      ],
+      categories: [
+        { name: 'Artwork Tees', href: '#' },
+        { name: 'Pants', href: '#' },
+        { name: 'Accessories', href: '#' },
+        { name: 'Boxers', href: '#' },
+        { name: 'Basic Tees', href: '#' },
+      ],
+      collection: [
+        { name: 'Everything', href: '#' },
+        { name: 'Core', href: '#' },
+        { name: 'New Arrivals', href: '#' },
+        { name: 'Sale', href: '#' },
+      ],
+      brands: [
+        { name: 'Significant Other', href: '#' },
+        { name: 'My Way', href: '#' },
+        { name: 'Counterfeit', href: '#' },
+        { name: 'Re-Arranged', href: '#' },
+        { name: 'Full Nelson', href: '#' },
       ],
       sections: [
         {

@@ -4,7 +4,7 @@ const CTASection = () => {
   return (
     <section aria-labelledby='sale-heading'>
       <div className='overflow-hidden pt-32 sm:pt-14'>
-        <div className='bg-gray-800'>
+        <div className='bg-masala-950'>
           <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
             <div className='relative pb-16 pt-48 sm:pb-24'>
               <div>

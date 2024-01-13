@@ -1,0 +1,67 @@
+import { HomeIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import React, { ReactNode } from 'react';
+import { TbHome } from 'react-icons/tb';
+
+export type CrumbItem = {
+  label: string;
+  path: string;
+};
+
+export type BreadcrumbsProps = {
+  items: CrumbItem[];
+};
+
+const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
+  return (
+    <nav
+      className='mx-auto flex max-w-7xl px-4 sm:px-6 lg:px-8'
+      aria-label='Breadcrumb'
+    >
+      <ol role='list' className='flex items-center space-x-4'>
+        <li>
+          <div className='flex items-center gap-4'>
+            <Link href='/' className='text-gray-800 hover:text-gray-700'>
+              <TbHome className='h-5 w-5 flex-shrink-0' aria-hidden='true' />
+              <span className='sr-only'>Home</span>
+            </Link>
+            <span className='text-gray-300'> / </span>
+          </div>
+        </li>
+        {items.map((crumb, i) => {
+          const isLastItem = i === items.length - 1;
+          if (!isLastItem) {
+            return (
+              <li key={'breadcrum-item-' + i + crumb.label}>
+                <div className='flex items-center'>
+                  {/* separator */}
+
+                  <Link
+                    href={crumb.path}
+                    className='mr-4 text-sm font-medium text-gray-800 hover:text-gray-700 hover:underline'
+                  >
+                    {crumb.label}
+                  </Link>
+                  <span className='text-gray-300'> / </span>
+                </div>
+              </li>
+            );
+          } else {
+            return (
+              <li aria-current='page' key={'product-in-view' + crumb.label}>
+                <Link
+                  href={crumb.path}
+                  className='text-sm font-medium text-gray-400 hover:text-gray-600'
+                >
+                  {crumb.label}
+                </Link>
+              </li>
+            );
+          }
+        })}
+      </ol>
+    </nav>
+  );
+};
+
+export default Breadcrumbs;

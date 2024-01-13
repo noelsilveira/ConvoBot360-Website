@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Chica Gogo";
-  src: url("../../public/fonts/Chiga-Gogo-NF.woff2") format("woff2");
+  font-family: 'Chica Gogo';
+  src: url('../../public/fonts/Chiga-Gogo-NF.woff2') format('woff2');
 }
 
 @layer base {
-  :root {
+  /* :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -38,9 +38,9 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-  }
+  } */
 
-  .dark {
+  /* .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -68,7 +68,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-  }
+  } */
 
   /* html {
     font-family:

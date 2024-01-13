@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+
+  // Configure the images domain for caching, image optimization and other useful caveats for SEO and faster page loads
   images: {
     remotePatterns: [
       {

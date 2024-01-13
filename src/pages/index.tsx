@@ -3,16 +3,13 @@ import CategorySection from '@/components/sections/home-page/CategorySection';
 import FeaturedSection from '@/components/sections/home-page/FeaturedSection';
 import FavoritesSection from '@/components/sections/home-page/FavoritesSection';
 import CTASection from '@/components/sections/home-page/CTASection';
-import HeroSection from '@/components/sections/home-page/HeroSection';
+import CategorySideBySideSection from '@/components/sections/home-page/CategorySideBySideSection';
 
 export default function Home() {
   return (
     <MainLayout>
-      {/* Hero section */}
-      <HeroSection />
-
       {/* Category section */}
-      <CategorySection />
+      <CategorySideBySideSection />
 
       {/* Featured section */}
       <FeaturedSection />
