@@ -1,16 +1,15 @@
-'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StarIcon } from '@heroicons/react/20/solid';
 import { RadioGroup } from '@headlessui/react';
-import { policies, product } from '@/constants/products';
+import { policies } from '@/constants/products';
 import { cn } from '@/lib/utils';
 import Reviews from '@/components/product/Reviews';
 import MainLayout from '@/components/layout/MainLayout';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
 import Perks from '@/components/product/Perks';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
+import { randomProducts } from '@/constants/random-products';
 
 const breadcrumbs = [
   {
@@ -24,11 +23,25 @@ const breadcrumbs = [
   },
 ];
 
-const ProductDetailPage = () => {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+const ProductDetailPage = ({ productId }: { productId: string }) => {
   const router = useRouter();
+  // const { productId } = router.query;
+  const [currentProduct, setCurrentProduct] = useState(
+    randomProducts.find((p) => p.id === productId)
+  );
+
+  const [product, setProduct] = useState(currentProduct!);
+  const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
+  const [selectedSize, setSelectedSize] = useState(product?.sizes[2]);
   const { addCartItem } = useCartStore();
+
+  useEffect(() => {
+    const pUpdated = randomProducts.find((p) => p.id === productId);
+    setCurrentProduct(pUpdated);
+    setProduct(pUpdated!);
+    setSelectedColor(pUpdated!.colors[0]);
+    setSelectedSize(pUpdated!.sizes[2]);
+  }, [productId, router]);
 
   return (
     <MainLayout title={`Buy ${product.name} | CB360 - Ultimate shopping`}>
@@ -98,9 +111,9 @@ const ProductDetailPage = () => {
                       alt={image.imageAlt}
                       className={cn(
                         image.primary
-                          ? 'lg:col-span-2 lg:row-span-2'
-                          : 'hidden lg:block',
-                        'rounded-lg'
+                          ? 'h-full max-h-[70vh] w-full lg:col-span-2 lg:row-span-2'
+                          : 'hidden h-full lg:block',
+                        'rounded-lg object-cover'
                       )}
                     />
                   ))}
@@ -281,3 +294,15 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
+
+export async function getServerSideProps(ctx: {
+  query: { productId: string };
+}) {
+  const { productId } = ctx.query;
+
+  return {
+    props: {
+      productId,
+    },
+  };
+}

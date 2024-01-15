@@ -1,29 +1,16 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 function LogoLoading() {
   const router = useRouter();
-
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    let startTime: ReturnType<Date['getMilliseconds']>;
-    let finishTime: ReturnType<Date['getMilliseconds']>;
-
-    const handleStart = (url: string) => {
+    const handleStart = (url: Router['pathname']) =>
       url !== router.asPath && setLoading(true);
-      startTime = new Date().getMilliseconds();
-    };
-
-    const handleComplete = (url: string) => {
-      finishTime = new Date().getMilliseconds();
-      let timeDiff = finishTime - startTime;
-      if (timeDiff == 0 || timeDiff <= 700) {
-        setTimeout(() => url === router.asPath && setLoading(false), 500);
-      }
+    const handleComplete = (url: Router['pathname']) =>
       url === router.asPath && setLoading(false);
-    };
 
     router.events.on('routeChangeStart', handleStart);
     router.events.on('routeChangeComplete', handleComplete);
@@ -38,7 +25,7 @@ function LogoLoading() {
 
   return (
     loading && (
-      <div className='relative z-[999] min-h-screen overflow-hidden overscroll-contain bg-white/50 backdrop-blur-md'>
+      <div className='relative z-50 min-h-screen overflow-hidden overscroll-contain bg-white/30'>
         <div className='absolute flex h-full w-full items-center justify-center'>
           <Image
             src='/cb360-logo.svg'

@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { useNavigationStore } from '@/store/navigationStore';
 import { Dialog, Tab, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 import { Fragment } from 'react';
 
 const MobileMenu = () => {
@@ -151,12 +152,12 @@ const MobileMenu = () => {
 
               <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
                 <div className='flow-root'>
-                  <a
-                    href='#'
+                  <Link
+                    href='/login'
                     className='-m-2 block p-2 font-medium text-gray-900'
                   >
                     Sign in
-                  </a>
+                  </Link>
                 </div>
                 <div className='flow-root'>
                   <a

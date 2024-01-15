@@ -7,46 +7,49 @@ import {
 } from '@heroicons/react/20/solid';
 import MainLayout from '@/components/layout/MainLayout';
 import Link from 'next/link';
+import { useCartStore } from '@/store/cartStore';
 
-const products = [
-  {
-    id: 1,
-    name: 'Basic Tee',
-    href: '#',
-    price: '$32.00',
-    color: 'Sienna',
-    inStock: true,
-    size: 'Large',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg',
-    imageAlt: "Front of men's Basic Tee in sienna.",
-  },
-  {
-    id: 2,
-    name: 'Basic Tee',
-    href: '#',
-    price: '$32.00',
-    color: 'Black',
-    inStock: false,
-    leadTime: '3–4 weeks',
-    size: 'Large',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-02.jpg',
-    imageAlt: "Front of men's Basic Tee in black.",
-  },
-  {
-    id: 3,
-    name: 'Nomad Tumbler',
-    href: '#',
-    price: '$35.00',
-    color: 'White',
-    inStock: true,
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-03.jpg',
-    imageAlt: 'Insulated bottle with white base and black snap lid.',
-  },
-];
+// const products = [
+//   {
+//     id: 1,
+//     name: 'Basic Tee',
+//     href: '#',
+//     price: '$32.00',
+//     color: 'Sienna',
+//     inStock: true,
+//     size: 'Large',
+//     imageSrc:
+//       'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg',
+//     imageAlt: "Front of men's Basic Tee in sienna.",
+//   },
+//   {
+//     id: 2,
+//     name: 'Basic Tee',
+//     href: '#',
+//     price: '$32.00',
+//     color: 'Black',
+//     inStock: false,
+//     leadTime: '3–4 weeks',
+//     size: 'Large',
+//     imageSrc:
+//       'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-02.jpg',
+//     imageAlt: "Front of men's Basic Tee in black.",
+//   },
+//   {
+//     id: 3,
+//     name: 'Nomad Tumbler',
+//     href: '#',
+//     price: '$35.00',
+//     color: 'White',
+//     inStock: true,
+//     imageSrc:
+//       'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-03.jpg',
+//     imageAlt: 'Insulated bottle with white base and black snap lid.',
+//   },
+// ];
 const CartPage = () => {
+  const { cart } = useCartStore();
+
   return (
     <MainLayout title={`Shopping Cart | CB360 - Ultimate shopping`}>
       <div className='bg-white'>
@@ -64,12 +67,12 @@ const CartPage = () => {
                 role='list'
                 className='divide-y divide-gray-200 border-b border-t border-gray-200'
               >
-                {products.map((product, productIdx) => (
+                {cart.map((product, productIdx) => (
                   <li key={product.id} className='flex py-6 sm:py-10'>
                     <div className='flex-shrink-0'>
                       <img
-                        src={product.imageSrc}
-                        alt={product.imageAlt}
+                        src={product.images[0].imageSrc}
+                        alt={product.images[0].imageAlt}
                         className='h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48'
                       />
                     </div>
@@ -88,10 +91,12 @@ const CartPage = () => {
                             </h3>
                           </div>
                           <div className='mt-1 flex text-sm'>
-                            <p className='text-gray-500'>{product.color}</p>
-                            {product.size ? (
+                            <p className='text-gray-500'>
+                              {product.colors[0].name}
+                            </p>
+                            {product.sizes[0].name ? (
                               <p className='ml-4 border-l border-gray-200 pl-4 text-gray-500'>
-                                {product.size}
+                                {product.sizes[0].name}
                               </p>
                             ) : null}
                           </div>
@@ -110,6 +115,7 @@ const CartPage = () => {
                           <select
                             id={`quantity-${productIdx}`}
                             name={`quantity-${productIdx}`}
+                            defaultValue={product.count}
                             className='max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 sm:text-sm'
                           >
                             <option value={1}>1</option>
@@ -138,7 +144,7 @@ const CartPage = () => {
                       </div>
 
                       <p className='mt-4 flex space-x-2 text-sm text-gray-700'>
-                        {product.inStock ? (
+                        {product.sizes[0].inStock ? (
                           <CheckIcon
                             className='h-5 w-5 flex-shrink-0 text-green-500'
                             aria-hidden='true'
@@ -151,9 +157,9 @@ const CartPage = () => {
                         )}
 
                         <span>
-                          {product.inStock
+                          {product.sizes[0].inStock
                             ? 'In stock'
-                            : `Ships in ${product.leadTime}`}
+                            : `Ships in ${'3–4 weeks'}`}
                         </span>
                       </p>
                     </div>
@@ -163,6 +169,7 @@ const CartPage = () => {
             </section>
 
             {/* Order summary */}
+
             <section
               aria-labelledby='summary-heading'
               className='mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8'

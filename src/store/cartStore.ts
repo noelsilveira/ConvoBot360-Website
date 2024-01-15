@@ -10,7 +10,7 @@ type CartStore = {
   cart: CartItemProps[];
   countCart: () => number;
   addCartItem: (product: ProductDetailProps) => void;
-  removeCartItem: (product_id: number) => void;
+  removeCartItem: (product_id: ProductDetailProps['id']) => void;
   removeAllCartItems: () => void;
 };
 
@@ -32,7 +32,7 @@ export const useCartStore = create<CartStore>()(
         const updatedCart = updateCart(product, cart);
         set({ cart: updatedCart });
       },
-      removeCartItem: (product_id: number) => {
+      removeCartItem: (product_id: ProductDetailProps['id']) => {
         const { cart } = get();
         const updatedCart = removeCart(product_id, cart);
         set({ cart: updatedCart });
@@ -68,7 +68,7 @@ function updateCart(
 }
 
 function removeCart(
-  product_id: number,
+  product_id: string,
   cart: CartItemProps[]
 ): CartItemProps[] {
   return cart

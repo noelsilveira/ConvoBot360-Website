@@ -2,11 +2,10 @@ import {
   CurrencyDollarIcon,
   GlobeAmericasIcon,
 } from '@heroicons/react/24/outline';
-import { TupleUnion } from './navigation';
 
 export const products = [
   {
-    id: 1,
+    id: '969ae1f8-30d2-460f-a771-cbce5151a5ea',
     name: 'Organize Basic Set (Walnut)',
     price: '$149',
     rating: 5,
@@ -17,7 +16,7 @@ export const products = [
     href: '#',
   },
   {
-    id: 2,
+    id: '5081f400-09bb-4163-ac9a-b2f6307aca19',
     name: 'Organize Pen Holder',
     price: '$15',
     rating: 5,
@@ -28,7 +27,7 @@ export const products = [
     href: '#',
   },
   {
-    id: 3,
+    id: '6b7140a3-29e6-4918-8419-46cc5cae3ca5',
     name: 'Organize Sticky Note Holder',
     price: '$15',
     rating: 5,
@@ -39,7 +38,7 @@ export const products = [
     href: '#',
   },
   {
-    id: 4,
+    id: 'e7016bb2-875a-4d67-bff9-7d0c33bdfa9a',
     name: 'Organize Phone Holder',
     price: '$15',
     rating: 4,
@@ -53,7 +52,7 @@ export const products = [
 ];
 
 export const product = {
-  id: 15677,
+  id: '2797fe0d-85f2-4a70-a59e-3641cbe18a24',
   name: 'Basic Tee',
   price: '$35',
   rating: 3.9,

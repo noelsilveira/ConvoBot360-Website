@@ -85,4 +85,9 @@
       "Helvetica Neue",
       sans-serif;
   } */
+
+  input[type='password']:not(:placeholder-shown) {
+    font-family: Verdana;
+    letter-spacing: 0.125em;
+  }
 }

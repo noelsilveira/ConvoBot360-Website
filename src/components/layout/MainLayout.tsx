@@ -29,7 +29,7 @@ const MainLayout = ({
     const isHomepage = router.pathname === '/';
     isHomepage ? toggleHeader(true) : toggleHeader(false);
     isHomepage ? toggleOffersHero(true) : toggleOffersHero(false);
-  }, []);
+  }, [router]);
   return (
     <>
       <Head>

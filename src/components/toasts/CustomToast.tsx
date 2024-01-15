@@ -1,8 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { cva } from 'class-variance-authority';
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 import { toast, ToastIcon } from 'react-hot-toast';
 import { Toast } from 'react-hot-toast/headless';
 

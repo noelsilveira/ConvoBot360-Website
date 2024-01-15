@@ -1,0 +1,56 @@
+import React from 'react';
+const stats = [
+  { label: 'Transactions every 24 hours', value: '44 million' },
+  { label: 'Assets under holding', value: '$119 trillion' },
+  { label: 'New users annually', value: '46,000' },
+];
+
+const AboutMissionSection = () => {
+  return (
+    <div className='mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8'>
+      <div className='mx-auto max-w-2xl lg:mx-0 lg:max-w-none'>
+        <h2 className='max-w-2xl text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
+          We are on a mission to help businesses grow
+        </h2>
+        <div className='mt-10 flex flex-col gap-x-8 gap-y-20 lg:flex-row'>
+          <div className='lg:w-full lg:max-w-2xl lg:flex-auto'>
+            <p className='text-xl leading-8 text-gray-600'>
+              We help leading brands in 125 countries, from Dubai to Riyadh,
+              London or New York. Wherever you are, we’re here to help you
+              delight your customers and grow sustainably.
+            </p>
+            <div className='mt-10 max-w-xl text-base leading-7 text-gray-700'>
+              <p>
+                We believe in the power of conversations. Conversations are key
+                for building customer relationships, especially when converting
+                a prospect to sales.
+              </p>
+              <p className='mt-10'>
+                Sales is the oxygen for businesses. While enterprises have the
+                resources to build bespoke tools to interact and transact with
+                their customers, small and medium-sized businesses do not have
+                this expertise.
+              </p>
+            </div>
+          </div>
+          <div className='lg:flex lg:flex-auto lg:justify-center'>
+            <dl className='w-64 space-y-8 xl:w-80'>
+              {stats.map((stat) => (
+                <div key={stat.label} className='flex flex-col-reverse gap-y-4'>
+                  <dt className='text-base leading-7 text-gray-600'>
+                    {stat.label}
+                  </dt>
+                  <dd className='text-5xl font-semibold tracking-tight text-gray-900'>
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AboutMissionSection;

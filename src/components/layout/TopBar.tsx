@@ -1,5 +1,6 @@
 import { useCurrencyStore } from '@/store/currencyStore';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 const TopBar = () => {
   const { activeCurrency, currencies, changeCurrency } = useCurrencyStore();
@@ -48,12 +49,12 @@ const TopBar = () => {
             Create an account
           </a>
           <span className='h-6 w-px bg-gray-100' aria-hidden='true' />
-          <a
-            href='#'
+          <Link
+            href='/login'
             className='text-sm font-medium text-white hover:text-gray-100'
           >
             Sign in
-          </a>
+          </Link>
         </div>
       </div>
     </div>
