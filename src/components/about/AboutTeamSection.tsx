@@ -1,11 +1,31 @@
 import React from 'react';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { TbBrandXFilled } from 'react-icons/tb';
 
 const team = [
   {
     name: 'Michael Foster',
+    role: 'Co-Founder / CEO',
+    imageUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+    bio: [
+      'Hailing from France, Michael spent 7 years leading the Facebook’s EMEA Travel Industry, but that’s not all. He’s led divisions at Microsoft, L’Oreal, Quiksilver, and MakeMeReach.',
+      'At SB360, he brings the marketing know-how from the world’s biggest brands to local businesses, ensuring their sustainable growth and continued success.',
+    ],
+    xUrl: '#!',
+    linkedinUrl: '#!',
+  },
+  {
+    name: 'Leslie Alexander',
     role: 'Co-Founder / CTO',
     imageUrl:
-      'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+    bio: [
+      'Leslie has been building software products and leading technology teams for more than 15 years in different sectors including enterprises, government agencies, SMBs, and startups in Brazil, Ireland, and the Middle East.',
+      'At CB360, she is responsible for building and scaling Engineering teams that can deliver world class technology at scale for thousands of merchants, and millions of consumers.',
+    ],
+    xUrl: '#!',
+    linkedinUrl: '#!',
   },
   // More people...
 ];
@@ -24,42 +44,54 @@ const AboutTeamSection = () => {
           in class technology to succeed online.
         </p>
       </div>
-      <ul
-        role='list'
-        className='mx-auto mt-20 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-16 text-center sm:grid-cols-3 md:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-3'
-      >
+      <ul role='list' className='mt-6 space-y-12 divide-y divide-gray-200'>
         {team.map((person) => (
-          <>
-            <li key={person.name}>
-              <img
-                className='mx-auto h-[20rem] w-auto rounded-md object-cover'
-                src={person.imageUrl}
-                alt=''
-              />
-              {/* <h3 className='mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900'>
+          <li
+            key={person.name}
+            className='flex flex-col gap-10 pt-12 sm:flex-row'
+          >
+            <img
+              className='aspect-[4/5] w-64 flex-none rounded-2xl object-cover'
+              src={person.imageUrl}
+              alt={person.name}
+            />
+            <div className='max-w-xl flex-auto'>
+              <h3 className='text-lg font-semibold leading-8 tracking-tight text-gray-900'>
                 {person.name}
-              </h3> */}
-              {/* <p className='text-sm leading-6 text-gray-600'>{person.role}</p> */}
-            </li>
-            <li className='flex flex-col gap-y-1 text-left text-lg text-gray-600'>
-              <h4 className='font-semibold leading-7 tracking-tight text-gray-900'>
-                {person.name}
-              </h4>
-              <p className='text-sm leading-6 text-gray-600'>{person.role}</p>
-              <div className='mt-6 flex flex-col gap-6'>
-                <p>
-                  Hailing from France, Michael spent 7 years leading the
-                  Facebook’s EMEA Travel Industry, but that’s not all. He’s led
-                  divisions at Microsoft, L’Oreal, Quiksilver, and MakeMeReach.
-                </p>
-                <p>
-                  At CB360, he brings the marketing know-how from the world’s
-                  biggest brands to local businesses, ensuring their sustainable
-                  growth and continued success.
-                </p>
-              </div>
-            </li>
-          </>
+              </h3>
+              <p className='text-base leading-7 text-gray-600'>{person.role}</p>
+              <ul>
+                {person.bio.map((bio, idx) => (
+                  <li
+                    key={'bio-' + idx * 3.14}
+                    className='mt-6 text-base leading-7 text-gray-600'
+                  >
+                    {bio}
+                  </li>
+                ))}
+              </ul>
+              <ul role='list' className='mt-6 flex gap-x-6'>
+                <li>
+                  <a
+                    href={person.xUrl}
+                    className='text-gray-400 hover:text-gray-500'
+                  >
+                    <span className='sr-only'>X</span>
+                    <TbBrandXFilled className='h-5 w-5' />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={person.linkedinUrl}
+                    className='text-gray-400 hover:text-gray-500'
+                  >
+                    <span className='sr-only'>LinkedIn</span>
+                    <FaLinkedinIn className='h-5 w-5' />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
         ))}
       </ul>
     </div>

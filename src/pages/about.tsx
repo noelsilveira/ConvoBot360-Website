@@ -3,6 +3,7 @@ import AboutLogoCloud from '@/components/about/AboutLogoCloud';
 import AboutMissionSection from '@/components/about/AboutMissionSection';
 import AboutTeamSection from '@/components/about/AboutTeamSection';
 import AboutValuesSection from '@/components/about/AboutValuesSection';
+import GetNotified from '@/components/about/GetNotified';
 import MainLayout from '@/components/layout/MainLayout';
 import React from 'react';
 
@@ -33,6 +34,7 @@ const AboutPage = () => {
 
         {/* Team section */}
         <AboutTeamSection />
+        <GetNotified />
 
         {/* Blog section */}
       </main>
