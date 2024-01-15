@@ -163,7 +163,8 @@ export const navigation = {
     },
   ],
   pages: [
-    { name: 'Company', href: '#!' },
+    { name: 'Merchant', href: '/merchant/about' },
+    { name: 'Company', href: '/about' },
     { name: 'Stores', href: '#!' },
   ],
 };
@@ -216,12 +217,12 @@ export const footerNavigation = {
     { name: 'Accessories', href: '#!' },
   ],
   company: [
-    { name: 'Who we are', href: '#!' },
+    { name: 'Who we are', href: '/about' },
     { name: 'Sustainability', href: '#!' },
-    { name: 'Press', href: '#!' },
-    { name: 'Careers', href: '#!' },
-    { name: 'Terms & Conditions', href: '#!' },
-    { name: 'Privacy', href: '#!' },
+    { name: 'Team', href: '/about' },
+    { name: 'Careers', href: '/about' },
+    { name: 'Terms & Conditions', href: '/terms' },
+    { name: 'Privacy', href: '/privacy' },
   ],
   account: [
     { name: 'Manage Account', href: '#!' },

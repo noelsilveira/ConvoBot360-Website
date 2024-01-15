@@ -10,7 +10,7 @@ const topGradient =
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <LogoLoading />
+      {/* <LogoLoading /> */}
       <NextNProgress
         color={topGradient}
         height={3}
@@ -18,8 +18,9 @@ export default function App({ Component, pageProps }: AppProps) {
         startPosition={0.3}
         showOnShallow={true}
       />
-      {/* <Suspense fallback={<LogoLoading />}> */}
-      <Component {...pageProps} />;{/* </Suspense> */}
+      <Suspense fallback={<LogoLoading />}>
+        <Component {...pageProps} />;
+      </Suspense>
     </>
   );
 }

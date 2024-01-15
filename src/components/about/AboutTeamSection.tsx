@@ -48,7 +48,7 @@ const AboutTeamSection = () => {
         {team.map((person) => (
           <li
             key={person.name}
-            className='flex flex-col gap-10 pt-12 sm:flex-row'
+            className='flex flex-col gap-10 gap-y-8 pt-12 sm:flex-row'
           >
             <img
               className='aspect-[4/5] w-64 flex-none rounded-2xl object-cover'

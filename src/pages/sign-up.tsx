@@ -4,7 +4,7 @@ import React from 'react';
 
 const SignUpPage = () => {
   return (
-    <section className='bg-white'>
+    <section className=''>
       <div className='lg:grid lg:min-h-screen lg:grid-cols-12'>
         <aside className='relative block h-20 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6'>
           <Image
