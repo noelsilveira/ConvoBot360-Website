@@ -34,6 +34,20 @@ const MainLayout = ({
     <>
       <Head>
         <title>{title}</title>
+        <meta name='description' content='E-commerce for the future' />
+        <meta
+          property='og:title'
+          content='CB360 - Your dream e-commerce store is here'
+        />
+        <meta property='og:image' content='cb360-logomark.svg' />
+
+        <meta name='theme-color' content='#ff9c0a'></meta>
+        <link
+          rel='icon'
+          href='/cb360-logomark.svg'
+          type='image/svg'
+          sizes='16x16 32x32'
+        />
       </Head>
       <Toaster position='bottom-center' />
 
