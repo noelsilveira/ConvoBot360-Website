@@ -2,32 +2,31 @@ import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
-import Header from './Header';
-import Footer from './Footer';
-import MobileMenu from './MobileMenu';
+import Footer from '../Footer';
+import MobileMenu from '../MobileMenu';
 import { useHeroStore } from '@/store/heroStore';
 import { useRouter } from 'next/router';
 import { Toaster } from 'react-hot-toast';
+import MerchantHeader from './MerchantHeader';
 
-type MainLayoutProps = React.DetailedHTMLProps<
+type MerchantLayoutProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
   HTMLElement
 >;
 
 const inter = Inter({ subsets: ['latin'] });
 
-const MainLayout = ({
+const MerchantLayout = ({
   children,
   title,
   className,
   ...rest
-}: MainLayoutProps) => {
+}: MerchantLayoutProps) => {
   const { toggleHeader, toggleOffersHero } = useHeroStore();
   const router = useRouter();
 
   useEffect(() => {
-    // const isHomepage = router.pathname === '/';
-    const isHomepage = false;
+    const isHomepage = router.pathname === `/merchant/[merchantId]`;
     isHomepage ? toggleHeader(true) : toggleHeader(false);
     isHomepage ? toggleOffersHero(true) : toggleOffersHero(false);
   }, [router]);
@@ -57,7 +56,7 @@ const MainLayout = ({
         <MobileMenu />
 
         {/* Top navigation */}
-        <Header />
+        <MerchantHeader />
         <main className={twMerge(`${inter} ${className}`)} {...rest}>
           {children}
         </main>
@@ -67,4 +66,4 @@ const MainLayout = ({
   );
 };
 
-export default MainLayout;
+export default MerchantLayout;

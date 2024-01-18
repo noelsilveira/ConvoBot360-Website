@@ -4,21 +4,28 @@ import FeaturedSection from '@/components/sections/home-page/FeaturedSection';
 import FavoritesSection from '@/components/sections/home-page/FavoritesSection';
 import CTASection from '@/components/sections/home-page/CTASection';
 import CategorySideBySideSection from '@/components/sections/home-page/CategorySideBySideSection';
+import HomeHeroSection from '@/components/home/HomeHeroSection';
+import TrustedPartners from '@/components/merchant/TrustedPartners';
+import FeatureFullSection from '@/components/home/FeatureFullSection';
+import HomeStats from '@/components/home/HomeStats';
+import AboutLogoCloud from '@/components/about/AboutLogoCloud';
+import GetNotified from '@/components/about/GetNotified';
 
 export default function Home() {
   return (
-    <MainLayout>
+    <MainLayout title='Home - CB360'>
+      <HomeHeroSection />
       {/* Category section */}
-      <CategorySideBySideSection />
+      {/* <TrustedPartners /> */}
+      <AboutLogoCloud />
 
       {/* Featured section */}
-      <FeaturedSection />
+      <FeatureFullSection />
 
-      {/* Favorites section */}
-      <FavoritesSection />
+      <HomeStats />
 
       {/* CTA section */}
-      <CTASection />
+      <GetNotified />
     </MainLayout>
   );
 }
