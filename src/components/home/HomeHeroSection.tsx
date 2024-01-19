@@ -101,9 +101,9 @@ const HomeHeroSection = () => {
             quality={100}
             priority
             placeholder='blur'
-            blurDataURL='/assets/mockups/app-02.png'
+            blurDataURL='/assets/mockups/app-03.png'
             alt='app-screen'
-            src={'/assets/mockups/app-02.png'}
+            src={'/assets/mockups/app-03.png'}
             className='mx-auto w-[22.875rem] max-w-full drop-shadow-xl'
           />
           {/* <svg
