@@ -2,7 +2,7 @@ import React from 'react';
 
 const GetNotified = () => {
   return (
-    <div className='mx-auto mt-12 max-w-7xl sm:px-6 lg:mt-24 lg:px-8'>
+    <div className='mx-auto mt-12 max-w-7xl sm:px-6 lg:mb-12 lg:mt-32 lg:px-8'>
       <div className='relative isolate overflow-hidden bg-gray-950 px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32'>
         <h2 className='mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl'>
           Take your business digital today.

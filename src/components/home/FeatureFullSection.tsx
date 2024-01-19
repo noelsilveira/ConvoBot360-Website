@@ -10,36 +10,31 @@ import Image from 'next/image';
 
 const features = [
   {
-    name: 'Customer Service Module',
+    name: 'Seamless POS Integration',
     description:
-      'Manage all your WhatsApp and social media conversations from a centralized Inbox',
+      'Easily integrate with your point-of-sale system for a smooth and efficient business operation.',
     icon: CloudArrowUpIcon,
   },
   {
-    name: 'Advanced Marketing Tools',
+    name: 'Powerful Dashboard Insights',
     description:
-      'Drive repeat orders & reward customers with an integrated CRM',
+      'Stay updated with an excellent dashboard that provides real-time updates on payments, order management, and deliveries.',
     icon: LockClosedIcon,
   },
   {
-    name: 'Built-in Pre-ordering System',
+    name: 'Plug-and-Play Payment Plugins',
     description:
-      "Sell even when you're offline by enabling customers to order in advance",
+      'Access ready-to-use plugins for all payment gateways – simply plug and connect for quick, hassle-free transactions.',
     icon: ServerIcon,
   },
   {
-    name: 'Powerful Analytics',
+    name: 'Unlimited Operations, Direct Payments',
     description:
-      'Our visual dashboard empowers you to make data-driven decisions to grow your business',
-    icon: ChartBarIcon,
-  },
-  {
-    name: 'Dedicated Account Manager',
-    description:
-      'Our team is here to help your business succeed with dedicated account manager',
+      'Enjoy unlimited orders, deliveries, and payment options directly deposited into your bank account.',
     icon: UsersIcon,
   },
 ];
+
 const FeatureFullSection = () => {
   return (
     <div className='bg-white py-24'>
@@ -57,9 +52,8 @@ const FeatureFullSection = () => {
                 with our technology
               </h2>
               <p className='mt-6 text-lg leading-8 text-gray-700'>
-                Transcend beyond the realm of standard templates and leave a
-                lasting impression on your customers and prospects with the
-                power of AI-assisted personalization.
+                Don&apos;t wait! Choose your plan and directly verify your
+                WhatsApp Business account through Meta now.
               </p>
             </div>
             <Image
