@@ -90,6 +90,7 @@ const Footer = () => {
                 id='email-address'
                 type='text'
                 autoComplete='email'
+                placeholder='your email here'
                 required
                 className='w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 text-base text-brand-500 placeholder-gray-500 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500'
               />

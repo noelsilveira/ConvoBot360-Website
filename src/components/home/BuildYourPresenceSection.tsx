@@ -1,68 +1,67 @@
 import React from 'react';
-import {
-  ArrowPathIcon,
-  ChevronRightIcon,
-  CloudArrowUpIcon,
-  Cog6ToothIcon,
-  FingerPrintIcon,
-  LockClosedIcon,
-  ServerIcon,
-} from '@heroicons/react/20/solid';
 import Image from 'next/image';
+import {
+  TbAutomaticGearbox,
+  TbBusinessplan,
+  TbMessage2Bolt,
+  TbReportMoney,
+  TbTruckDelivery,
+  TbUserBolt,
+} from 'react-icons/tb';
 
 const secondaryFeatures = [
   {
     name: 'Instant WhatsApp Business Store Launch.',
     description:
       'Launch your store in minutes, instantly broadcasting catalogs and menus directly to customers.',
-    icon: CloudArrowUpIcon,
-  },
-  {
-    name: 'All-in-One Delivery Solution.',
-    description:
-      'Provide your customer with the ultimate conversional ordering experience with an All-in-One solution for seamless deliveries and pickup orders – no app required, simply WhatsApp Chat ‘Hi”',
-    icon: LockClosedIcon,
+    icon: TbMessage2Bolt,
   },
   {
     name: 'AI-Powered Automation.',
     description:
-      'Fully automate order management, deliveries, and payments through WhatsApp with cutting-edge AI technology.',
-    icon: ArrowPathIcon,
+      'Provide your customers with the ultimate conversational ordering experience, fully automate order management, deliveries, and payments through WhatsApp with cutting-edge AI technology.',
+    icon: TbAutomaticGearbox,
+  },
+  {
+    name: 'All-in-One Delivery Solution.',
+    description:
+      'With seamless 3rd party deliveries and stores order pick-ups – no app required, simply WhatsApp Chat with “Hi”',
+    icon: TbTruckDelivery,
   },
   {
     name: 'Direct Customer Targeting.',
     description:
       'Skip 3rd party apps, directly engage customers for repeat orders, enhancing efficiency and customer relationships.',
-    icon: FingerPrintIcon,
+    icon: TbUserBolt,
   },
   {
     name: 'No More Extra Fees.',
     description:
       "CB360's WhatsApp ordering eliminates unnecessary fees and commissions, offering a cost-effective monthly subscription with rich features.",
-    icon: Cog6ToothIcon,
+    icon: TbReportMoney,
   },
   {
     name: 'Effortless Business Growth.',
     description:
-      'Boost business income effortlessly while establishing direct connections with customers for a hassle-free experience.',
-    icon: ServerIcon,
+      'Boost business income effortlessly while establishing direct connections with customers for a hassle-free experience. Enjoy unlimited orders, deliveries, and payment options directly deposited into your bank account.',
+    icon: TbBusinessplan,
   },
 ];
 
 const BuildYourPresenceSection = () => {
   return (
-    <div className='mt-12 sm:mt-20'>
+    <div id='fullServicesSection' className='mt-12 sm:mt-20'>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-2xl sm:text-center'>
-          <h2 className='text-base font-semibold leading-7 text-brand-600'>
-            Everything you need
+          <h2 className='mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
+            More than just an Ordering System &{' '}
+            <span className='text-brand-500'>Payment Solution</span>
           </h2>
-          <p className='mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
-            Build your digital brand
-          </p>
           <p className='mt-6 text-lg leading-8 text-gray-600'>
-            From the moment you sign up, our team is here to help your business
-            succeed with dedicated account managers and 24/7 chat support.
+            Streamline your business with seamless online sales, inventory
+            management, and efficient customer handling—all in one powerful
+            solution. Experience effortless mastery of every aspect, from
+            transactions to shipping.
           </p>
         </div>
       </div>

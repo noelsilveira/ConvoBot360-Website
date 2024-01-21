@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
-const stats = [
+export const stats = [
   { id: 1, name: 'Merchants on the platform', value: '3,300+' },
   { id: 2, name: 'Flat platform fee', value: '0%' },
   { id: 3, name: 'Uptime guarantee', value: '99.9%' },
-  { id: 4, name: 'Paid out to merchants', value: '$7M' },
+  { id: 4, name: 'Conversational Chats Order', value: '$1.5M' },
 ];
 
 const HomeStats = () => {
@@ -13,7 +13,7 @@ const HomeStats = () => {
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='text-center'>
           <h2 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
-            Trusted by merchants worldwide
+            Trusted by merchants in the Kingdom of Bahrain
           </h2>
           <p className='mt-4 text-lg leading-8 text-gray-600'>
             The all-in-one solution that helps you master every aspect of your

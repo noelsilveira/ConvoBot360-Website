@@ -6,10 +6,11 @@ import {
   BackgroundGradient,
   SVGBackgroundPattern,
 } from '../about/AboutHeroSection';
+import Link from 'next/link';
 
 const HomeHeroSection = () => {
   return (
-    <div className='relative isolate pt-8'>
+    <div className='relative isolate'>
       <SVGBackgroundPattern />
       <BackgroundGradient />
       {/* <svg
@@ -41,7 +42,7 @@ const HomeHeroSection = () => {
           fill='url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)'
         />
       </svg> */}
-      <div className='mx-auto max-w-7xl px-6 py-4 pb-8 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-36'>
+      <div className='mx-auto max-w-7xl px-6 py-4 pb-8 sm:py-8 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-10'>
         <div className='mx-auto max-w-2xl lg:mx-0 lg:flex-auto'>
           <Image
             src={'/assets/brand/meta-partner.svg'}
@@ -67,31 +68,31 @@ const HomeHeroSection = () => {
               </a>
             </div>
           </div>
-          <h1 className='mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
-            Powerful{' '}
+          <h1 className='mt-10 max-w-lg text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
+            Revolutionize Your{' '}
             <span className='font-serif font-semibold italic text-brand-500'>
-              tools
+              Growth:
             </span>{' '}
-            to help you grow your{' '}
-            <span className='text-emerald-500'>business</span>
+            Our powerful tools ensures reduced OpEx and doubles your{' '}
+            <span className='text-emerald-500'>business success</span>
           </h1>
           <p className='mt-6 text-lg leading-8 text-gray-600'>
             We’re passionate about building the technology to give you the best
             tools to operate your business.
           </p>
           <div className='mt-10 flex items-center gap-x-6'>
-            <a
-              href='#!'
+            <Link
+              href='/contact-us'
               className='rounded-full bg-brand-500 px-5 py-3 text-base font-semibold text-white shadow-sm hover:bg-brand-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600'
             >
               Get started
-            </a>
-            <a
-              href='#!'
+            </Link>
+            <Link
+              href='/about'
               className='text-sm font-semibold leading-6 text-gray-900'
             >
               Learn more <span aria-hidden='true'>→</span>
-            </a>
+            </Link>
           </div>
         </div>
         <div className='mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow'>

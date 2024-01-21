@@ -163,9 +163,13 @@ export const navigation = {
     },
   ],
   pages: [
-    { name: 'Merchant', href: '/merchant/about' },
-    { name: 'Company', href: '/about' },
-    { name: 'Stores', href: '#!' },
+    { name: 'Home', href: '/' },
+    { name: 'Merchant', href: '/merchant/67868' },
+    { name: 'Services', href: '/#fullServicesSection' },
+    { name: 'Team', href: '/about#teamSection' },
+    { name: 'About', href: '/about' },
+    // { name: 'Nearby', href: '#!' },
+    { name: 'Contact', href: '/contact-us' },
   ],
 };
 

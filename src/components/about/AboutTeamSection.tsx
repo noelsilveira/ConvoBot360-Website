@@ -4,25 +4,37 @@ import { TbBrandXFilled } from 'react-icons/tb';
 
 const team = [
   {
-    name: 'Michael Foster',
-    role: 'Co-Founder / CEO',
+    name: 'Noel Silveira',
+    role: 'Founder / CEO',
     imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBlb3BsZSUyMG1hbiUyMGZvdW5kZXJ8ZW58MHx8MHx8fDA%3D',
     bio: [
-      'Hailing from France, Michael spent 7 years leading the Facebook’s EMEA Travel Industry, but that’s not all. He’s led divisions at Microsoft, L’Oreal, Quiksilver, and MakeMeReach.',
-      'At SB360, he brings the marketing know-how from the world’s biggest brands to local businesses, ensuring their sustainable growth and continued success.',
+      'Noel is a seasoned Strategist with a proven track record in the Telecommunications, Banking, Payment Aggregators and FinTech startup sectors. Having held senior positions as Head of Sales and Business Development in prestigious companies, Noel consistently transforms profiles into compelling success stories.',
+      ' At CB360, he brings the marketing know-how from the world’s biggest brands to local businesses, ensuring their sustainable growth and continued success.',
     ],
     xUrl: '#!',
     linkedinUrl: '#!',
   },
   {
-    name: 'Leslie Alexander',
+    name: 'Siddhesh Ajarekar',
     role: 'Co-Founder / CTO',
     imageUrl:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+      'https://images.unsplash.com/photo-1557862921-37829c790f19?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHRlY2glMjBtYW4lMjBmb3VuZGVyfGVufDB8fDB8fHww',
     bio: [
-      'Leslie has been building software products and leading technology teams for more than 15 years in different sectors including enterprises, government agencies, SMBs, and startups in Brazil, Ireland, and the Middle East.',
-      'At CB360, she is responsible for building and scaling Engineering teams that can deliver world class technology at scale for thousands of merchants, and millions of consumers.',
+      'Siddesh is an IT professional with a robust background in IT architecture, automation, IT security, Cloud computing. His experience spans various industries, showcasing a successful track record of overseeing and implementing innovative IT solutions.',
+      'Siddesh’s  expertise in digital transformation makes the tech cutting edge services which nobody can offer instantly',
+    ],
+    xUrl: '#!',
+    linkedinUrl: '#!',
+  },
+  {
+    name: 'Hussein Obeed',
+    role: 'Partner',
+    imageUrl:
+      'https://images.unsplash.com/photo-1613181013804-1dcba09e6a9d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8fHww',
+    bio: [
+      'Hussein is a highly accomplished businessman with a solid foundation in Information Technology. As a seasoned entrepreneur, he has achieved remarkable success by leveraging his IT expertise to navigate the business landscape effectively.',
+      "Hussein's strategic vision and business acumen have propelled him to success in various ventures, establishing him as a prominent figure in the business community in Saudi Arabia",
     ],
     xUrl: '#!',
     linkedinUrl: '#!',
@@ -32,7 +44,10 @@ const team = [
 
 const AboutTeamSection = () => {
   return (
-    <div className='mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8'>
+    <div
+      id='teamSection'
+      className='mx-auto mt-32 max-w-7xl px-6 sm:mt-48 lg:px-8'
+    >
       <div className='mx-auto max-w-2xl lg:mx-0'>
         <h2 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
           Meet the founders

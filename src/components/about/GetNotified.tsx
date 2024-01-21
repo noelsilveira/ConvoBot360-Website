@@ -1,3 +1,9 @@
+import {
+  infoEmail,
+  infoEmailBody,
+  infoEmailSubject,
+} from '@/constants/company';
+import Link from 'next/link';
 import React from 'react';
 
 const GetNotified = () => {
@@ -8,29 +14,16 @@ const GetNotified = () => {
           Take your business digital today.
         </h2>
         <p className='mx-auto mt-2 max-w-xl text-center text-lg leading-8 text-gray-300'>
-          Although we’re spread across 9 time zones, and have vastly different
-          backgrounds, one belief unites us all: we believe that leading local
-          brands should be empowered to grow sustainably.
+          Despite diverse backgrounds, our shared belief is in empowering local
+          brands for sustainable growth.
         </p>
-        <form className='mx-auto mt-10 flex max-w-md gap-x-4'>
-          <label htmlFor='email-address' className='sr-only'>
-            Email address
-          </label>
-          <input
-            id='email-address'
-            name='email'
-            type='email'
-            autoComplete='email'
-            required
-            className='min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-white sm:text-sm sm:leading-6'
-            placeholder='Enter your email'
-          />
-          <button
-            type='submit'
-            className='flex-none rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
+        <form className='mx-auto mt-10 flex max-w-md justify-center gap-x-4'>
+          <Link
+            href={`mailto:${infoEmail + infoEmailSubject + infoEmailBody}`}
+            className='flex-none rounded-md bg-white px-6 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
           >
-            Try now
-          </button>
+            Try out CB360
+          </Link>
         </form>
         <svg
           viewBox='0 0 1024 1024'

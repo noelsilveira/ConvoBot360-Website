@@ -7,6 +7,7 @@ import GetNotified from '@/components/about/GetNotified';
 import BuildYourPresenceSection from '@/components/home/BuildYourPresenceSection';
 import WhatsAppIntegration from '@/components/home/WhatsAppIntegration';
 import SingleTestimonialSection from '@/components/home/SingleTestimonialSection';
+import SimpleFeatureSection from '@/components/home/SimpleFeatureSection';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       {/* Category section */}
       {/* <TrustedPartners /> */}
       <AboutLogoCloud />
+      <SimpleFeatureSection />
 
       {/* Featured section */}
       <FeatureFullSection />

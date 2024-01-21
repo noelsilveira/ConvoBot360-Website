@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function Document() {
   return (
-    <Html lang='en'>
+    <Html lang='en' className='scroll-smooth'>
       <Head />
       <body className='antialiased'>
         <Main />
