@@ -5,6 +5,7 @@ import {
   TbAnalyze,
   TbBolt,
   TbFileCheck,
+  TbReportAnalytics,
   TbUserShield,
   TbVersions,
 } from 'react-icons/tb';
@@ -29,7 +30,7 @@ const features = [
     description:
       'Gain a 360-degree view of your business with our intuitive tools & integrated features to make informed decisions, and optimize efficiency.',
     href: '/about',
-    icon: TbAnalyze,
+    icon: TbReportAnalytics,
   },
 ];
 
@@ -57,9 +58,9 @@ const SimpleFeatureSection = () => {
                 key={feature.name}
                 className='flex flex-col rounded-2xl bg-gallery-50 px-6 py-8'
               >
-                <dt className='flex items-center gap-x-3 text-3xl font-bold leading-7 text-gallery-950'>
+                <dt className='flex items-start justify-start gap-x-3 text-3xl font-bold leading-[1.65rem] text-gallery-950'>
                   <feature.icon
-                    className='h-10 w-10 flex-none text-brand-600'
+                    className='-mt-1 h-12 w-12 flex-none text-brand-600'
                     aria-hidden='true'
                   />
                   {feature.name}
