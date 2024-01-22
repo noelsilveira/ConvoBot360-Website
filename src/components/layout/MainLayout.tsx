@@ -42,10 +42,10 @@ const MainLayout = ({
         />
         <meta property='og:image' content='cb360-logomark.svg' />
 
-        <meta name='theme-color' content='#ff9c0a'></meta>
+        <meta name='theme-color' content='#fd9c0a'></meta>
         <link
           rel='icon'
-          href='/cb360-logomark.svg'
+          href='/logomark.svg'
           type='image/svg'
           sizes='16x16 32x32'
         />

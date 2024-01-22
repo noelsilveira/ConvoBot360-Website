@@ -27,7 +27,7 @@ const SingleTestimonialSection = () => {
             className='h-12 w-12 rounded-full bg-gray-50 object-cover object-top'
             width={40}
             height={40}
-            src={'/assets/clients/DDK/DDK-owner.jpeg'}
+            src={'/assets/clients/DDK-owner.jpeg'}
             alt='DDK Owner'
           />
           <div className='text-sm leading-6'>

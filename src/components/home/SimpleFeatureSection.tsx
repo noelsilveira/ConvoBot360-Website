@@ -1,28 +1,35 @@
 import Link from 'next/link';
 import React from 'react';
-import { TbFileCheck, TbUserShield, TbVersions } from 'react-icons/tb';
+import { RiWhatsappLine } from 'react-icons/ri';
+import {
+  TbAnalyze,
+  TbBolt,
+  TbFileCheck,
+  TbUserShield,
+  TbVersions,
+} from 'react-icons/tb';
 
 const features = [
   {
-    name: 'Get your instant online store',
+    name: 'Get your instant WhatsApp Business store',
     description:
-      'Easy store set up with a hassle-free onboarding process, helping you run a smooth e-commerce business in no time.',
+      'Easy store set up with a hassle-free onboarding process, helping you run an automated smooth conversational e-commerce business in no time.',
     href: '/about',
-    icon: TbFileCheck,
+    icon: TbBolt,
   },
   {
     name: 'Get to know your customer',
     description:
-      'Understand customer behaviours to deliver personalized experiences. With our customized dashboards, you can access all your customer data.',
+      'Understand customer behaviors to deliver personalized experiences. With our customized dashboards, you can access all your customer data.',
     href: '/about',
     icon: TbUserShield,
   },
   {
-    name: 'Simple queues',
+    name: 'Powerful Analytics',
     description:
       'Gain a 360-degree view of your business with our intuitive tools & integrated features to make informed decisions, and optimize efficiency.',
     href: '/about',
-    icon: TbVersions,
+    icon: TbAnalyze,
   },
 ];
 

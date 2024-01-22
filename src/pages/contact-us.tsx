@@ -1,17 +1,18 @@
 import React from 'react';
-import {
-  BuildingOffice2Icon,
-  EnvelopeIcon,
-  PhoneIcon,
-} from '@heroicons/react/24/outline';
 import MainLayout from '@/components/layout/MainLayout';
 import {
+  contactDetails,
   infoEmail,
   infoEmailBody,
   infoEmailSubject,
 } from '@/constants/company';
 import Link from 'next/link';
-import { TbBuildingStore, TbMail, TbMailFilled, TbPhone } from 'react-icons/tb';
+import {
+  TbBuildingSkyscraper,
+  TbBuildingStore,
+  TbMail,
+  TbPhone,
+} from 'react-icons/tb';
 import GetNotified from '@/components/about/GetNotified';
 
 const ContactPage = () => {
@@ -69,17 +70,23 @@ const ContactPage = () => {
               <dl className='mt-10 space-y-4 text-base leading-7 text-gray-600'>
                 <div className='flex gap-x-4'>
                   <dt className='flex-none'>
+                    <span className='sr-only'>Company</span>
+                    <TbBuildingSkyscraper
+                      className='h-7 w-6 text-brand-400'
+                      aria-hidden='true'
+                    />
+                  </dt>
+                  <dd>{contactDetails.company}</dd>
+                </div>
+                <div className='flex max-w-sm gap-x-4'>
+                  <dt className='flex-none'>
                     <span className='sr-only'>Address</span>
                     <TbBuildingStore
                       className='h-7 w-6 text-brand-400'
                       aria-hidden='true'
                     />
                   </dt>
-                  <dd>
-                    999, Sheikh Abdulla Road,
-                    <br />
-                    Al-Manamah 317, Bahrain
-                  </dd>
+                  <dd>{contactDetails.address}</dd>
                 </div>
                 <div className='flex gap-x-4'>
                   <dt className='flex-none'>
@@ -92,9 +99,9 @@ const ContactPage = () => {
                   <dd>
                     <a
                       className='hover:text-gray-900'
-                      href='tel: (+973) 523 401 '
+                      href={`tel: ${contactDetails.phone}`}
                     >
-                      (+973) 523 401
+                      {contactDetails.phone}
                     </a>
                   </dd>
                 </div>

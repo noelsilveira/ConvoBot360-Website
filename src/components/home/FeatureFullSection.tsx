@@ -37,7 +37,7 @@ const features = [
 
 const FeatureFullSection = () => {
   return (
-    <div className='bg-white py-24'>
+    <div className='bg-white py-12'>
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
         <div className='relative isolate overflow-hidden bg-brand-100 px-6 py-20 sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-24'>
           <div className='mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0'>
@@ -53,19 +53,19 @@ const FeatureFullSection = () => {
                 </span>{' '}
                 leading POS, Delivery Payment Partners
               </h2>
-              <p className='mt-6 text-lg leading-8 text-gray-700'>
+              <p className='mt-6 text-xl font-medium leading-8 text-gray-900'>
                 Don&apos;t wait! Choose your plan and directly verify your
                 WhatsApp Business account through Meta now.
               </p>
             </div>
             <Image
-              src={'/assets/mockups/your-brand.png'}
-              blurDataURL={'/assets/mockups/your-brand.png'}
+              src={'/assets/animations/yellow-bot-02.gif'}
+              blurDataURL={'/assets/animations/yellow-bot-02.gif'}
               placeholder='blur'
               alt='Product screenshot'
-              className='relative -z-20 min-w-full max-w-xl rounded-3xl shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[64rem] lg:max-w-none'
-              width={2432}
-              height={1442}
+              className='relative -z-20 w-[20rem] min-w-full max-w-xl rounded-3xl object-cover shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[40rem] lg:max-w-none'
+              width={1432}
+              height={1042}
               quality={95}
             />
             <div className='max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:border-t lg:border-white/10 lg:pt-10'>

@@ -21,10 +21,10 @@ export default function Home() {
       {/* Featured section */}
       <FeatureFullSection />
 
-      <HomeStats />
       <BuildYourPresenceSection />
       <WhatsAppIntegration />
       <SingleTestimonialSection />
+      <HomeStats />
       <GetNotified />
     </MainLayout>
   );
