@@ -233,7 +233,7 @@ export const footerNavigation = {
     { name: 'Who we are', href: '/about' },
     { name: 'Services', href: '/about' },
     { name: 'Team', href: '/about#teamSection' },
-    { name: 'Careers', href: '/about' },
+    { name: 'Careers', href: '/careers' },
     { name: 'Terms & Conditions', href: '/terms' },
     { name: 'Privacy', href: '/privacy' },
   ],
