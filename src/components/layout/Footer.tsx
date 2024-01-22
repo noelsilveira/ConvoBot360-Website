@@ -1,114 +1,146 @@
 import { footerNavigation } from '@/constants/navigation';
+import Image from 'next/image';
 import React from 'react';
 
 const Footer = () => {
   return (
-    <footer aria-labelledby='footer-heading' className='bg-white'>
+    <footer className='bg-white' aria-labelledby='footer-heading'>
       <h2 id='footer-heading' className='sr-only'>
         Footer
       </h2>
-      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-        <div className='py-20 xl:grid xl:grid-cols-3 xl:gap-8'>
-          <div className='grid grid-cols-2 gap-8 xl:col-span-2'>
-            <div className='space-y-16 md:grid md:grid-cols-2 md:gap-8 md:space-y-0'>
-              <div>
-                <h3 className='text-sm font-medium text-gray-900'>Shop</h3>
-                <ul role='list' className='mt-6 space-y-6'>
-                  {footerNavigation.shop.map((item) => (
-                    <li key={item.name} className='text-sm'>
-                      <a
-                        href={item.href}
-                        className='text-gray-500 hover:text-gray-600'
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className='text-sm font-medium text-gray-900'>Company</h3>
-                <ul role='list' className='mt-6 space-y-6'>
-                  {footerNavigation.company.map((item) => (
-                    <li key={item.name} className='text-sm'>
-                      <a
-                        href={item.href}
-                        className='text-gray-500 hover:text-gray-600'
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className='space-y-16 md:grid md:grid-cols-2 md:gap-8 md:space-y-0'>
-              <div>
-                <h3 className='text-sm font-medium text-gray-900'>Account</h3>
-                <ul role='list' className='mt-6 space-y-6'>
-                  {footerNavigation.account.map((item) => (
-                    <li key={item.name} className='text-sm'>
-                      <a
-                        href={item.href}
-                        className='text-gray-500 hover:text-gray-600'
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className='text-sm font-medium text-gray-900'>Connect</h3>
-                <ul role='list' className='mt-6 space-y-6'>
-                  {footerNavigation.connect.map((item) => (
-                    <li key={item.name} className='text-sm'>
-                      <a
-                        href={item.href}
-                        className='text-gray-500 hover:text-gray-600'
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      <div className='mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32'>
+        <div className='xl:grid xl:grid-cols-3 xl:gap-8'>
+          <div className='space-y-8'>
+            <Image
+              className='h-12 object-contain object-left'
+              height={60}
+              width={200}
+              src={'/cb360-logo.svg'}
+              alt='CB360 logo'
+            />
+            <p className='text-sm leading-6 text-gray-600'>
+              Revolutionize Your Growth: Our powerful tools ensures reduced OpEx
+              and doubles your business success
+            </p>
+            <div className='flex space-x-6'>
+              {footerNavigation.connect.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className='text-gray-400 hover:text-gray-500'
+                >
+                  <span className='sr-only'>{item.name}</span>
+                  <item.icon className='h-6 w-6' aria-hidden='true' />
+                </a>
+              ))}
             </div>
           </div>
-          <div className='mt-16 md:mt-16 xl:mt-0'>
-            <h3 className='text-sm font-medium text-gray-900'>
-              Sign up for our newsletter
+          <div className='mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0'>
+            <div className='md:grid md:grid-cols-2 md:gap-8'>
+              <div>
+                <h3 className='text-sm font-semibold leading-6 text-gray-900'>
+                  Company
+                </h3>
+                <ul role='list' className='mt-6 space-y-4'>
+                  {footerNavigation.company.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className='text-sm leading-6 text-gray-600 hover:text-gray-900'
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className='mt-10 md:mt-0'>
+                <h3 className='text-sm font-semibold leading-6 text-gray-900'>
+                  Account
+                </h3>
+                <ul role='list' className='mt-6 space-y-4'>
+                  {footerNavigation.account.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className='text-sm leading-6 text-gray-600 hover:text-gray-900'
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className='md:grid md:grid-cols-2 md:gap-8'>
+              <div>
+                <h3 className='text-sm font-semibold leading-6 text-gray-900'>
+                  Support
+                </h3>
+                <ul role='list' className='mt-6 space-y-4'>
+                  {footerNavigation.support.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className='text-sm leading-6 text-gray-600 hover:text-gray-900'
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* <div className="mt-10 md:mt-0">
+              <h3 className="text-sm font-semibold leading-6 text-gray-900">Legal</h3>
+              <ul role="list" className="mt-6 space-y-4">
+                {footerNavigation.legal.map((item) => (
+                  <li key={item.name}>
+                    <a href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div> */}
+            </div>
+          </div>
+          <div className='mt-10 xl:mt-0'>
+            <h3 className='text-sm font-semibold leading-6 text-gray-900'>
+              Subscribe to our newsletter
             </h3>
-            <p className='mt-6 text-sm text-gray-500'>
-              The latest deals and savings, sent to your inbox weekly.
+            <p className='mt-2 text-sm leading-6 text-gray-600'>
+              The latest news, articles, and resources, sent to your inbox
+              weekly.
             </p>
-            <form className='mt-2 flex sm:max-w-md'>
+            <form className='mt-6 sm:flex sm:max-w-md'>
               <label htmlFor='email-address' className='sr-only'>
                 Email address
               </label>
               <input
+                type='email'
+                name='email-address'
                 id='email-address'
-                type='text'
                 autoComplete='email'
-                placeholder='your email here'
                 required
-                className='w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 text-base text-brand-500 placeholder-gray-500 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500'
+                className='w-full min-w-0 appearance-none rounded-md border-0 bg-white px-3 py-1.5 text-base text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:w-64 sm:text-sm sm:leading-6 xl:w-full'
+                placeholder='Enter your email'
               />
-              <div className='ml-4 flex-shrink-0'>
+              <div className='mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0'>
                 <button
                   type='submit'
-                  className='flex w-full items-center justify-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2'
+                  className='flex w-full items-center justify-center rounded-md bg-brand-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600'
                 >
-                  Sign up
+                  Subscribe
                 </button>
               </div>
             </form>
           </div>
         </div>
-
-        <div className='border-t border-gray-200 py-10'>
-          <p className='text-sm text-gray-500'>
-            Copyright &copy; {new Date().getFullYear()} CB360 Inc.
+        <div className='mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24'>
+          <p className='text-xs leading-5 text-gray-500'>
+            &copy; {new Date().getFullYear()} • Convobot360 • CB360. All rights
+            reserved.
           </p>
         </div>
       </div>

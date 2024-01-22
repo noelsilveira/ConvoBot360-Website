@@ -1,3 +1,12 @@
+import {
+  TbBrandFacebook,
+  TbBrandFacebookFilled,
+  TbBrandInstagram,
+  TbBrandLinkedin,
+  TbBrandX,
+  TbMailBolt,
+} from 'react-icons/tb';
+
 export const navigation = {
   categories: [
     {
@@ -213,30 +222,41 @@ export type TupleUnion<U extends string, R extends any[] = []> = {
 
 // Footer navigation
 export const footerNavigation = {
-  shop: [
-    { name: 'Bags', href: '#!' },
-    { name: 'Tees', href: '#!' },
-    { name: 'Objects', href: '#!' },
-    { name: 'Home Goods', href: '#!' },
-    { name: 'Accessories', href: '#!' },
-  ],
+  // shop: [
+  //   { name: 'Bags', href: '#!' },
+  //   { name: 'Tees', href: '#!' },
+  //   { name: 'Objects', href: '#!' },
+  //   { name: 'Home Goods', href: '#!' },
+  //   { name: 'Accessories', href: '#!' },
+  // ],
   company: [
     { name: 'Who we are', href: '/about' },
-    { name: 'Sustainability', href: '#!' },
-    { name: 'Team', href: '/about' },
+    { name: 'Services', href: '/about' },
+    { name: 'Team', href: '/about#teamSection' },
     { name: 'Careers', href: '/about' },
     { name: 'Terms & Conditions', href: '/terms' },
     { name: 'Privacy', href: '/privacy' },
   ],
   account: [
-    { name: 'Manage Account', href: '#!' },
-    { name: 'Returns & Exchanges', href: '#!' },
-    { name: 'Redeem a Gift Card', href: '#!' },
+    { name: 'Manage Account', href: '/merchant/about' },
+    { name: 'Merchant Login', href: '/merchant/17525751' },
+    { name: 'Partner with us', href: '/sign-up' },
+    { name: 'Join us', href: '/sign-up' },
+    // { name: 'Returns & Exchanges', href: '#!' },
+    // { name: 'Redeem a Gift Card', href: '#!' },
+  ],
+  support: [
+    { name: 'Report issue', href: '/contact-us' },
+    { name: 'Need help', href: '/contact-us' },
+    { name: 'Contact us', href: '/contact-us' },
+    // { name: 'Returns & Exchanges', href: '#!' },
+    // { name: 'Redeem a Gift Card', href: '#!' },
   ],
   connect: [
-    { name: 'Contact Us', href: '#!' },
-    { name: 'Twitter', href: '#!' },
-    { name: 'Instagram', href: '#!' },
-    { name: 'Pinterest', href: '#!' },
+    { name: 'Contact Us', href: '#!', icon: TbMailBolt },
+    { name: 'Twitter', href: '#!', icon: TbBrandX },
+    { name: 'Instagram', href: '#!', icon: TbBrandInstagram },
+    { name: 'Facebook', href: '#!', icon: TbBrandFacebook },
+    { name: 'LinkedIn', href: '#!', icon: TbBrandLinkedin },
   ],
 } as const;
