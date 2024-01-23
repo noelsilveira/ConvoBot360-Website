@@ -72,7 +72,7 @@ const BuildYourPresenceSection = () => {
             <Image
               src={'/assets/animations/screen-video-02.gif'}
               alt='App screenshot'
-              className='rounded-3xl shadow-2xl ring-1 ring-gray-900/10'
+              className='rounded-3xl'
               width={2432}
               height={1442}
             />
