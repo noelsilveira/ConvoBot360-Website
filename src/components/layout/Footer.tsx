@@ -35,75 +35,62 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div className='mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0'>
-            <div className='md:grid md:grid-cols-2 md:gap-8'>
-              <div>
-                <h3 className='text-sm font-semibold leading-6 text-gray-900'>
-                  Company
-                </h3>
-                <ul role='list' className='mt-6 space-y-4'>
-                  {footerNavigation.company.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className='text-sm leading-6 text-gray-600 hover:text-gray-900'
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className='mt-10 md:mt-0'>
-                <h3 className='text-sm font-semibold leading-6 text-gray-900'>
-                  Account
-                </h3>
-                <ul role='list' className='mt-6 space-y-4'>
-                  {footerNavigation.account.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className='text-sm leading-6 text-gray-600 hover:text-gray-900'
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className='md:grid md:grid-cols-2 md:gap-8'>
-              <div>
-                <h3 className='text-sm font-semibold leading-6 text-gray-900'>
-                  Support
-                </h3>
-                <ul role='list' className='mt-6 space-y-4'>
-                  {footerNavigation.support.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className='text-sm leading-6 text-gray-600 hover:text-gray-900'
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* <div className="mt-10 md:mt-0">
-              <h3 className="text-sm font-semibold leading-6 text-gray-900">Legal</h3>
-              <ul role="list" className="mt-6 space-y-4">
-                {footerNavigation.legal.map((item) => (
+          <div className='mt-16 grid grid-cols-2 gap-8 gap-y-12 lg:grid-cols-3 xl:col-span-3 xl:mt-0'>
+            {/* <div className='bg-blue-50 md:grid md:grid-cols-2 md:gap-8'> */}
+            <div>
+              <h3 className='text-sm font-semibold leading-6 text-gray-900'>
+                Company
+              </h3>
+              <ul role='list' className='mt-6 space-y-4'>
+                {footerNavigation.company.map((item) => (
                   <li key={item.name}>
-                    <a href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900">
+                    <a
+                      href={item.href}
+                      className='text-sm leading-6 text-gray-600 hover:text-gray-900'
+                    >
                       {item.name}
                     </a>
                   </li>
                 ))}
               </ul>
-            </div> */}
             </div>
+            <div>
+              <h3 className='text-sm font-semibold leading-6 text-gray-900'>
+                Account
+              </h3>
+              <ul role='list' className='mt-6 space-y-4'>
+                {footerNavigation.account.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className='text-sm leading-6 text-gray-600 hover:text-gray-900'
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* </div> */}
+            {/* <div className='md:grid md:grid-cols-2 md:gap-8'> */}
+            <div>
+              <h3 className='text-sm font-semibold leading-6 text-gray-900'>
+                Support
+              </h3>
+              <ul role='list' className='mt-6 space-y-4'>
+                {footerNavigation.support.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className='text-sm leading-6 text-gray-600 hover:text-gray-900'
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* </div> */}
           </div>
           <div className='mt-10 xl:mt-0'>
             <h3 className='text-sm font-semibold leading-6 text-gray-900'>

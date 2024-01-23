@@ -137,8 +137,8 @@ const WhatsAppIntegration = () => {
           <Image
             height={300}
             width={300}
-            src={'/assets/brand/whatsapp-chatbot-04.jpg'}
-            alt='whatsapp-convobot'
+            src={'/assets/animations/hypermarket.gif'}
+            alt='whatsapp-convobot-hypermarket'
             className='mt-16 aspect-[6/5] w-full rounded-2xl bg-gray-50 object-cover lg:aspect-auto lg:h-[34.5rem]'
           />
         </div>
@@ -199,7 +199,7 @@ const WhatsAppIntegration = () => {
             </div>
           ))}
         </dl>
-        <div className='mt-12 w-full lg:mt-24 lg:max-w-xl lg:flex-auto'>
+        <div className='order-first mt-12 w-full lg:order-last lg:mt-24 lg:max-w-xl lg:flex-auto'>
           <h2 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl'>
             Integrate your
             <span className='font-serif italic text-emerald-500'>
@@ -215,8 +215,8 @@ const WhatsAppIntegration = () => {
           <Image
             height={300}
             width={300}
-            src={'/assets/brand/whatsapp-chatbot-03.jpg'}
-            alt='whatsapp-convobot'
+            src={'/assets/animations/hospital.gif'}
+            alt='whatsapp-convobot-payments'
             className='mt-16 aspect-[6/5] w-full rounded-2xl bg-gray-50 object-cover lg:aspect-auto lg:h-[34.5rem]'
           />
         </div>

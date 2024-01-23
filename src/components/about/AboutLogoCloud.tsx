@@ -1,6 +1,21 @@
 import Image from 'next/image';
 import React from 'react';
 
+const clientsLogo = [
+  {
+    name: 'Invo',
+    image: '/assets/clients/invo.svg',
+  },
+  {
+    name: 'Casheer',
+    image: '/assets/clients/casheer.svg',
+  },
+  {
+    name: 'AFS',
+    image: '/assets/clients/afs.svg',
+  },
+];
+
 const AboutLogoCloud = () => {
   return (
     <div className='relative isolate -z-10 mt-16 sm:mt-24'>
@@ -37,11 +52,22 @@ const AboutLogoCloud = () => {
         </svg>
       </div>
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-        <h2 className='text-center text-2xl font-semibold leading-8 text-gray-900'>
-          Trusted partners of our business marketplace
+        <h2 className='text-center text-3xl font-bold leading-8 tracking-tight text-gray-900'>
+          Trusted partners of our business
         </h2>
-        <div className='mx-auto mt-16 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5'>
-          <Image
+        {/* <div className='mx-auto mt-16 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5'> */}
+        <div className='mx-auto mt-16 flex max-w-lg flex-wrap items-center justify-center gap-x-10 gap-y-10 sm:max-w-xl sm:gap-x-16 lg:max-w-7xl'>
+          {clientsLogo.map((client, index) => (
+            <Image
+              key={`client-logo-${client.name + index}`}
+              className='h-12 min-w-fit object-contain'
+              src={client.image}
+              alt={client.name + '-logo'}
+              width={158}
+              height={48}
+            />
+          ))}
+          {/* <Image
             className='col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1'
             src={'/assets/clients/ddk.svg'}
             alt='DDk Partner logo'
@@ -76,7 +102,7 @@ const AboutLogoCloud = () => {
             alt='AFS Client logo'
             width={158}
             height={48}
-          />
+          /> */}
         </div>
       </div>
     </div>

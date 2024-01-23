@@ -1,31 +1,28 @@
 import React from 'react';
-import {
-  ChartBarIcon,
-  CloudArrowUpIcon,
-  LockClosedIcon,
-  ServerIcon,
-  UsersIcon,
-} from '@heroicons/react/20/solid';
 import Image from 'next/image';
+import { DarkGradientSVG } from '@/components/about/GetNotified';
 
 const features = [
   {
     name: 'Seamless POS Integration',
     description:
       'Easily integrate with your point-of-sale system for a smooth and efficient business operation.',
-    icon: CloudArrowUpIcon,
+    // icon: CloudArrowUpIcon,
+    icon: '/assets/animations/icons/1-Seamless.gif',
   },
   {
     name: 'Powerful Dashboard Insights',
     description:
       'Our visual dashboard empowers you to make data-driven decisions to grow your business and Stay updated with real-time updates on payments, order management, and deliveries.',
-    icon: LockClosedIcon,
+    // icon: LockClosedIcon,
+    icon: '/assets/animations/icons/2-Powerful.gif',
   },
   {
     name: 'Plug-and-Play Payment Plugins',
     description:
       'Access ready-to-use plugins for all payment gateways – simply plug and connect for quick, hassle-free transactions.',
-    icon: ServerIcon,
+    // icon: ServerIcon,
+    icon: '/assets/animations/icons/3-Plug-and-Play.gif',
   },
   // {
   //   name: 'Unlimited Operations, Direct Payments',
@@ -37,66 +34,59 @@ const features = [
 
 const FeatureFullSection = () => {
   return (
-    <div className='bg-white py-12'>
-      <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
-        <div className='relative isolate overflow-hidden bg-brand-100 px-6 py-20 sm:rounded-3xl sm:px-10 sm:py-24 lg:py-24 xl:px-24'>
-          <div className='mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-center lg:gap-y-0'>
-            <div className='lg:row-start-2 lg:max-w-md'>
-              <h2 className='text-3xl font-bold tracking-tight text-black sm:text-5xl'>
-                Cutting Edge{' '}
-                <span className='font-serif italic text-brand-500'>
-                  Technology
-                </span>{' '}
-                is Seamlessly{' '}
-                <span className='font-serif italic text-emerald-500'>
-                  Integrated with
-                </span>{' '}
-                leading POS, Delivery Payment Partners
-              </h2>
-              <p className='mt-6 text-xl font-medium leading-8 text-gray-900'>
-                Don&apos;t wait! Choose your plan and directly verify your
-                WhatsApp Business account through Meta now.
-              </p>
-            </div>
-            <Image
-              src={'/assets/animations/yellow-bot-02.gif'}
-              blurDataURL={'/assets/animations/yellow-bot-02.gif'}
-              placeholder='blur'
-              alt='Product screenshot'
-              className='relative -z-20 w-[20rem] min-w-full max-w-xl rounded-3xl object-cover shadow-xl ring-1 ring-white/10 lg:row-span-4 lg:w-[40rem] lg:max-w-none'
-              width={1432}
-              height={1042}
-              quality={95}
-            />
-            <div className='max-w-xl lg:row-start-3 lg:mt-10 lg:max-w-md lg:border-t lg:border-white/10 lg:pt-10'>
-              <dl className='max-w-xl space-y-8 text-base leading-7 text-gray-700 lg:max-w-none'>
+    <div className='px-0 py-12 lg:px-8 lg:py-24'>
+      {/* FIXME */}
+      <div className='mx-auto max-w-7xl rounded-3xl lg:py-16'>
+        <div className='relative isolate overflow-hidden bg-gray-950 px-6 py-8 shadow-2xl lg:rounded-3xl lg:px-10 lg:py-16'>
+          <div className=''>
+            <div className='mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2'>
+              <div className='lg:my-auto lg:max-w-lg lg:py-2'>
+                <Image
+                  src={'/cb360-logo.svg'}
+                  alt='cb360-logo'
+                  width={200}
+                  height={60}
+                  className='h-12 object-contain object-left brightness-200 saturate-0'
+                />
+                <h2 className='mt-8 text-pretty text-left text-2xl font-bold tracking-tight text-gray-100 lg:text-5xl'>
+                  Cutting Edge{' '}
+                  <span className='font-serif italic text-brand-500'>
+                    Technology
+                  </span>{' '}
+                  is Seamlessly Integrated with{' '}
+                  <span className='font-serif italic text-emerald-500'>
+                    leading POS
+                  </span>
+                  , Delivery Payment Partners
+                </h2>
+                <p className='mt-8 text-lg font-medium text-gallery-100 lg:text-2xl'>
+                  Don&apos;t wait! Choose your plan and directly verify your
+                  WhatsApp Business account through Meta now.
+                </p>
+              </div>
+              <dl className='max-w-xl divide-y divide-dashed divide-brand-300/30 text-base leading-7 text-gray-300 lg:max-w-none'>
                 {features.map((feature) => (
-                  <div key={feature.name} className='relative'>
-                    <dt className='ml-9 inline-block font-semibold text-black'>
-                      <feature.icon
-                        className='absolute left-1 top-1 h-5 w-5 text-brand-600'
-                        aria-hidden='true'
+                  <div
+                    key={feature.name}
+                    className='group relative py-6 lg:py-8'
+                  >
+                    <dt className='inline text-2xl font-semibold text-gray-100'>
+                      <Image
+                        src={feature.icon}
+                        alt='feature-icon'
+                        height={20}
+                        width={20}
+                        className='h-20 w-20 object-contain object-left duration-300 sm:group-hover:-translate-y-2 sm:group-hover:-rotate-12 sm:group-hover:scale-150'
                       />
-                      {feature.name}
-                    </dt>{' '}
+                      <p className='mt-2'>{feature.name}</p>
+                    </dt>
                     <dd className='inline'>{feature.description}</dd>
                   </div>
                 ))}
               </dl>
             </div>
           </div>
-          <div
-            className='pointer-events-none absolute left-12 top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-3xl lg:bottom-[-12rem] lg:top-auto lg:translate-y-0 lg:transform-gpu'
-            aria-hidden='true'
-          >
-            <div
-              className='aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ffdb80] to-[#ff3e61] opacity-25'
-              style={{
-                clipPath:
-                  'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-              }}
-            />
-          </div>
+          <DarkGradientSVG />
         </div>
       </div>
     </div>
