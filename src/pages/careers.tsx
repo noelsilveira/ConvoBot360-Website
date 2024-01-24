@@ -1,19 +1,41 @@
 import GetNotified from '@/components/about/GetNotified';
 import MainLayout from '@/components/layout/MainLayout';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { TbArrowUpRight, TbChevronRight } from 'react-icons/tb';
-const people = [
+import { TbArrowUpRight } from 'react-icons/tb';
+const jobs = [
   {
     name: 'Sales Manager',
-    email: 'Direct Sales Executive',
-    role: 'Co-Founder / CEO',
+    role: 'Direct Sales Executive',
+    // role: 'Co-Founder / CEO',
     imageUrl:
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    href: '#',
-    lastSeen: '3h ago',
-    lastSeenDateTime: '2023-01-23T13:23Z',
+    href: '/contact-us',
+    lastUploaded: '3h ago',
+    lastUploadedDateTime: '2023-01-23T13:23Z',
+    tags: ['On site', 'Full time'],
+  },
+  {
+    name: 'Finance Manager',
+    role: 'Finance Systems Expert',
+    // role: 'Co-Founder / CEO',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    href: '/contact-us',
+    lastUploaded: '3h ago',
+    lastUploadedDateTime: '2023-01-23T13:23Z',
+    tags: ['On site', 'Full time', 'Long-term role'],
+  },
+  {
+    name: 'Head of Marketing',
+    role: 'Digital Product Marketing',
+    // role: 'Co-Founder / CEO',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    href: '/contact-us',
+    lastUploaded: '3h ago',
+    lastUploadedDateTime: '2023-01-23T13:23Z',
+    tags: ['On site', 'Full time', 'Long-term role'],
   },
 ];
 
@@ -29,51 +51,55 @@ const CareersPage = () => {
           role='list'
           className='divide-y divide-gray-100 border-t border-gray-300'
         >
-          {people.map((person) => (
-            <li key={person.email} className='relative py-6 lg:py-8'>
-              <div className=''>
-                <div className='mx-auto flex justify-between gap-x-6'>
-                  <div className='flex min-w-0 gap-x-4'>
-                    {/* <img
+          {jobs.map((job) => (
+            <li key={job.role} className='relative py-6 lg:py-8'>
+              <div className='mx-auto flex justify-between gap-x-6'>
+                <div className='flex min-w-0 gap-x-4'>
+                  {/* <img
                       className='h-12 w-12 flex-none rounded-full bg-gray-50'
-                      src={person.imageUrl}
+                      src={job.imageUrl}
                       alt=''
                     /> */}
-                    <div className='min-w-0 flex-auto'>
-                      <p className='text-2xl font-semibold leading-6 text-gray-900'>
-                        <a href={person.href} className='underline'>
-                          <span className='absolute inset-x-0 -top-px bottom-0' />
-                          {person.name}
-                        </a>
-                      </p>
-                      <p className='mt-2 flex text-lg text-gray-500'>
-                        <a
-                          href={`mailto:${person.email}`}
-                          className='relative truncate hover:underline'
+                  <div className='min-w-0 flex-auto'>
+                    <p className='text-2xl font-semibold leading-6 text-gray-900'>
+                      <a href={job.href} className='underline'>
+                        <span className='absolute inset-x-0 -top-px bottom-0' />
+                        {job.name}
+                      </a>
+                    </p>
+                    <p className='mt-2 flex text-lg text-gray-500'>
+                      <a
+                        href={`mailto:${job.role}`}
+                        className='relative truncate hover:underline'
+                      >
+                        {job.role}
+                      </a>
+                    </p>
+                    <div className='mt-2 inline-flex flex-wrap items-center justify-start gap-2 text-sm font-medium tracking-tight'>
+                      {job.tags.map((tag, i) => (
+                        <span
+                          key={'job-tag-' + tag + i}
+                          className='rounded-full border border-gallery-700/50 bg-gallery-50 px-3 py-1.5'
                         >
-                          {person.email}
-                        </a>
-                      </p>
-                      <div className='mt-2 inline-flex flex-wrap items-center justify-start gap-2 text-sm font-medium tracking-tight'>
-                        <span className='rounded-full border border-emerald-700/50 bg-emerald-50 px-3 py-1.5'>
-                          On site
+                          {tag}
                         </span>
-                        <span className='rounded-full border border-brand-700/50 bg-brand-50 px-3 py-1.5'>
+                      ))}
+
+                      {/* <span className='rounded-full border border-brand-700/50 bg-brand-50 px-3 py-1.5'>
                           Full time
-                        </span>
-                      </div>
+                        </span> */}
                     </div>
                   </div>
-                  <div className='flex shrink-0 items-start gap-x-4'>
-                    <div className='hidden sm:flex sm:flex-col sm:items-end'>
-                      <Link
-                        href={'/contact-us'}
-                        className='inline-flex items-center gap-1 text-lg font-medium leading-6 text-gray-900 underline duration-300 hover:text-gallery-800'
-                      >
-                        {/* {person.role} */}
-                        Apply now <TbArrowUpRight />
-                      </Link>
-                    </div>
+                </div>
+                <div className='flex shrink-0 items-start gap-x-4'>
+                  <div className='hidden sm:flex sm:flex-col sm:items-end'>
+                    <Link
+                      href={'/contact-us'}
+                      className='inline-flex items-center gap-1 text-lg font-medium leading-6 text-gray-900 underline duration-300 hover:text-gallery-800'
+                    >
+                      {/* {job.role} */}
+                      Apply now <TbArrowUpRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -114,7 +140,8 @@ const CareersHeroSection = () => {
               </a>
             </div>
           </div>
-          <div className='flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents'>
+          {/* TODO */}
+          {/* <div className='flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents'>
             <div className='w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end'>
               <Image
                 height={500}
@@ -153,7 +180,7 @@ const CareersHeroSection = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ const features = [
     description:
       'Access ready-to-use plugins for all payment gateways – simply plug and connect for quick, hassle-free transactions.',
     // icon: ServerIcon,
-    icon: '/assets/animations/icons/3-Plug-and-Play.gif',
+    icon: '/assets/animations/icons/3-Plug-and-Play-v2.gif',
   },
   // {
   //   name: 'Unlimited Operations, Direct Payments',
@@ -34,9 +34,9 @@ const features = [
 
 const FeatureFullSection = () => {
   return (
-    <div className='px-0 py-12 lg:px-8 lg:py-24'>
+    <div className='px-0 py-6 lg:px-8 lg:py-12'>
       {/* FIXME */}
-      <div className='mx-auto max-w-7xl rounded-3xl lg:py-16'>
+      <div className='mx-auto max-w-7xl rounded-3xl lg:py-6'>
         <div className='relative isolate overflow-hidden bg-gray-950 px-6 py-8 shadow-2xl lg:rounded-3xl lg:px-10 lg:py-16'>
           <div className=''>
             <div className='mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2'>

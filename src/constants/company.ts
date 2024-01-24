@@ -1,5 +1,5 @@
 export const infoEmail = 'info@convobot360.com';
-export const mapLocation = 'https://maps.app.goo.gl/1EP4NQ5Nw4GbRL2z9';
+export const mapLocation = 'https://maps.app.goo.gl/6oJjM4oqqGLF3P7cA';
 export const infoEmailSubject =
   '?subject=Exploring%20Strategic%20Partnership%20Opportunities%20and%20Collaboration%20Possibilities';
 export const infoEmailBody =
@@ -7,6 +7,6 @@ export const infoEmailBody =
 
 export const contactDetails = {
   company: 'CB360 | Convobot360',
-  address: 'Seef Mall, HQ Business Center Seef district, Kingdom of Bahrain.',
+  address: 'Seef Mall, HQ Business Center Seef district, Kingdom of Bahrain',
   phone: '+973 66907907',
 };

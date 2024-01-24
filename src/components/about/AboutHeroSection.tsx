@@ -30,7 +30,7 @@ const AboutHeroSection = () => {
                   <Image
                     width={200}
                     height={400}
-                    src={'/assets/about/about-hero-01.jpg'}
+                    src={'/assets/about/about-hero-10.jpg'}
                     alt='About-hero-1'
                     className='aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg'
                   />
@@ -52,7 +52,7 @@ const AboutHeroSection = () => {
                   <Image
                     width={200}
                     height={400}
-                    src={'/assets/about/about-hero-09.jpg'}
+                    src={'/assets/about/about-hero-12.jpeg'}
                     alt='About-hero-3'
                     className='aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg'
                   />

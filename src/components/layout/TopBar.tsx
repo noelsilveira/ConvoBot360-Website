@@ -110,9 +110,9 @@ const TopBar = () => {
             </div>
           </div>
         </form>
-        <p className='flex-1 text-center text-sm font-medium text-white lg:flex-none'>
+        {/* <p className='flex-1 text-center text-sm font-medium text-white lg:flex-none'>
           Get free delivery on orders over $100
-        </p>
+        </p> */}
 
         <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
           <Link

@@ -5,6 +5,7 @@ import {
   infoEmail,
   infoEmailBody,
   infoEmailSubject,
+  mapLocation,
 } from '@/constants/company';
 import Link from 'next/link';
 import {
@@ -78,7 +79,13 @@ const ContactPage = () => {
                   </dt>
                   <dd>{contactDetails.company}</dd>
                 </div>
-                <div className='flex max-w-sm gap-x-4'>
+                <Link
+                  href={mapLocation}
+                  target='_blank'
+                  rel='noopener'
+                  referrerPolicy='no-referrer'
+                  className='flex max-w-sm gap-x-4 hover:text-gray-900'
+                >
                   <dt className='flex-none'>
                     <span className='sr-only'>Address</span>
                     <TbBuildingStore
@@ -87,7 +94,7 @@ const ContactPage = () => {
                     />
                   </dt>
                   <dd>{contactDetails.address}</dd>
-                </div>
+                </Link>
                 <div className='flex gap-x-4'>
                   <dt className='flex-none'>
                     <span className='sr-only'>Telephone</span>

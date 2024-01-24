@@ -173,10 +173,11 @@ export const navigation = {
   ],
   pages: [
     { name: 'Home', href: '/' },
-    { name: 'Merchant', href: '/merchant/67868' },
+    // { name: 'Merchant', href: '/merchant/67868' },
     { name: 'Services', href: '/#fullServicesSection' },
     { name: 'Team', href: '/about#teamSection' },
-    { name: 'About', href: '/about' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'About us', href: '/about' },
     // { name: 'Nearby', href: '#!' },
     { name: 'Contact', href: '/contact-us' },
   ],
