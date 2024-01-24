@@ -52,7 +52,7 @@ const PrivacyPage = () => {
           </p>
           {/* How we use your information */}
           <h2>How we use your information </h2>
-          <p>
+          <div>
             We use the information we collect in various ways, including to:
             <ul>
               <li>Provide, operate, and maintain our website</li>
@@ -70,7 +70,7 @@ const PrivacyPage = () => {
               <li>Send you emails</li>
               <li>Find and prevent fraud</li>
             </ul>
-          </p>
+          </div>
           {/* Log Files */}
           <h3>Log Files </h3>
           <p>
@@ -213,7 +213,7 @@ const PrivacyPage = () => {
 
           {/* Advertising Partners Privacy Policies */}
           <h2>Advertising Partners Privacy Policies </h2>
-          <p>
+          <div>
             You may consult this list to find the Privacy Policy for each of the
             advertising partners of cb360.com.
             <ul>
@@ -236,7 +236,7 @@ const PrivacyPage = () => {
                 cookies that are used by third-party advertisers.
               </li>
             </ul>
-          </p>
+          </div>
 
           {/* Third Party Privacy Policies */}
           <h2>Third Party Privacy Policies</h2>
@@ -434,12 +434,10 @@ const PrivacyPage = () => {
           {/* CB 360 Data Controller */}
           <h2>CB 360 Data Controller</h2>
           <div>
-            <p>
-              <address>
-                CB 360 - Part of Remote Dev (Arab company registration number:
-                71882901)
-              </address>
-            </p>
+            <address>
+              CB 360 - Part of Remote Dev (Arab company registration number:
+              71882901)
+            </address>
             <p>
               <a href='mailto:support@cb360.com'>support@cb360.com</a>
             </p>
