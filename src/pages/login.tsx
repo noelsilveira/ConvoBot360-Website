@@ -1,15 +1,17 @@
-import CustomToaster from '@/components/toasts/CustomToast';
-import { hashedPassword } from '@/lib/auth';
-import { error } from 'console';
-import { sha256 } from 'js-sha256';
-import Image from 'next/image';
-import Link from 'next/link';
+import { HiEnvelope, HiEye, HiKey } from 'react-icons/hi2';
 import React, { ElementRef, useRef, useState } from 'react';
-import toast from 'react-hot-toast';
+
+import CustomToaster from '@/components/toasts/CustomToast';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { HiEyeOff } from 'react-icons/hi';
-import { HiEnvelope, HiEye, HiKey } from 'react-icons/hi2';
+import Image from 'next/image';
+import Link from 'next/link';
+import axios from 'axios';
+import { error } from 'console';
+import { hashedPassword } from '@/lib/auth';
+import { sha256 } from 'js-sha256';
+import toast from 'react-hot-toast';
 
 type FormElements = {
   email: HTMLInputElement;
@@ -21,17 +23,37 @@ type UserFormElement = {
 } & HTMLFormElement;
 
 const LoginPage = () => {
+  const [loading, setLoading] = useState(false);
+
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   // const formData = useRef<ElementRef<'form'>>(null);
 
-  // function handleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-  //   const { email, password } = event.currentTarget;
-  //   console.log({
-  //     email: email.value,
-  //     password: sha256.hmac(`some-key-here ${email.value}`, password.value!),
-  //   });
-  // }
+  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // const { email, password } = event.currentTarget;
+
+    const data = {
+      username: username,
+      password: password,
+    };
+
+    try {
+      const response = await axios.post('/api/signin', data);
+      toast.success('Successfully Login');
+      // router.push('/organiser/home');
+      setLoading(false);
+    } catch (e: any) {
+      console.log(e);
+      toast.error('Cannot Login');
+      setLoading(false);
+    }
+    // console.log({
+    //   email: email.value,
+    //   password: sha256.hmac(`some-key-here ${email.value}`, password.value!),
+    // });
+  }
 
   return (
     <section className='bg-white'>
@@ -67,13 +89,13 @@ const LoginPage = () => {
               Let us take care of all your shopping needs!
             </p>
 
-            <form className='mt-6 grid grid-cols-6 gap-6'>
+            <form onSubmit={handleSubmit} className='mt-6 grid grid-cols-6 gap-6'>
               <div className='col-span-6'>
                 <label
-                  htmlFor='email'
+                  htmlFor='username'
                   className='block text-sm font-medium leading-6 text-gray-900'
                 >
-                  Email
+                  Username
                 </label>
                 <div className='relative mt-2 rounded-md shadow-sm'>
                   <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
@@ -83,9 +105,10 @@ const LoginPage = () => {
                     />
                   </div>
                   <input
-                    type='email'
-                    name='email'
-                    id='email'
+                    onChange={(e) => setUsername(e.target.value)}
+                    type='username'
+                    name='username'
+                    id='username'
                     required
                     className='block w-full rounded-md border-0 py-2 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6'
                     placeholder='you@example.com'
@@ -107,6 +130,7 @@ const LoginPage = () => {
                     />
                   </div>
                   <input
+                    onChange={(e) => setPassword(e.target.value)}
                     type={!showPassword ? 'password' : 'text'}
                     name='password'
                     id='password'
