@@ -1,14 +1,17 @@
-import React, { Fragment } from 'react';
+'use client'
+
+import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import {
   FunnelIcon,
   MinusIcon,
   Squares2X2Icon,
 } from '@heroicons/react/24/outline';
-import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid';
-import { cn } from '@/lib/utils';
-import MobileFilterMenu from './MobileFilterMenu';
+import React, { Fragment } from 'react';
 import { filters, sortOptions, subCategories } from '@/constants/filters';
+
+import MobileFilterMenu from './MobileFilterMenu';
+import { cn } from '@/lib/utils';
 
 const ProductsListLayout = ({
   children,
@@ -88,7 +91,7 @@ const ProductsListLayout = ({
             <button
               type='button'
               className='-m-2 ml-4 inline-flex items-center justify-center gap-1 p-2 text-sm font-medium text-gray-700 hover:text-gray-900 sm:ml-6 lg:hidden'
-              // onClick={() => setMobileFiltersOpen(true)}
+            // onClick={() => setMobileFiltersOpen(true)}
             >
               <span>Filterssss</span>
               <FunnelIcon

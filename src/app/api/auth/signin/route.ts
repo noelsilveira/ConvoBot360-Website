@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { serialize } from 'cookie';
-import { TOKEN_NAME } from '@/constants/urls';
 
-async function signIn(req: NextApiRequest, res: NextApiResponse) {
+import { TOKEN_NAME } from '@/constants/urls';
+import { serialize } from 'cookie';
+
+export async function POST(req: NextApiRequest, res: NextApiResponse ) {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -29,10 +30,10 @@ async function signIn(req: NextApiRequest, res: NextApiResponse) {
   console.log('response: ', data);
 
   res.setHeader('Set-Cookie', [
-    serialize(TOKEN_NAME, `Bearer ${data.access_token}`, {
+    serialize(TOKEN_NAME, `${data.access_token}`, {
       httpOnly: true,
       secure: process.env.NODE_ENV !== 'development',
-      maxAge: 3600,
+      maxAge: 300,
       sameSite: 'strict',
       path: '/',
     }),
@@ -40,4 +41,3 @@ async function signIn(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({ message: 'Cookie set successful!', success: true });
 }
 
-export default signIn;

@@ -1,19 +1,17 @@
-'use client';
-
+import { API_BASE_URL, TOKEN_NAME } from '@/constants/urls';
 import { HiEnvelope, HiEye, HiKey } from 'react-icons/hi2';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import React, { ElementRef, useRef, useState } from 'react';
 
+import Cookies from 'cookies';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { HiEyeOff } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
+import LoginForm from './login-form';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import type { NextApiRequest, NextApiResponse } from 'next';
-
-import Cookies from 'cookies';
-import { API_BASE_URL, TOKEN_NAME } from '@/constants/urls';
 
 type FormElements = {
   email: HTMLInputElement;
@@ -25,37 +23,6 @@ type UserFormElement = {
 } & HTMLFormElement;
 
 const LoginPage = () => {
-  const [loading, setLoading] = useState(false);
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  // const formData = useRef<ElementRef<'form'>>(null);
-
-  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // const { email, password } = event.currentTarget;
-
-    const data = {
-      username: username,
-      password: password,
-    };
-
-    try {
-      const response = await axios.post('/api/signin', data);
-      toast.success('Successfully Login');
-      // router.push('/organiser/home');
-      setLoading(false);
-    } catch (e: any) {
-      console.log(e);
-      toast.error('Cannot Login');
-      setLoading(false);
-    }
-    // console.log({
-    //   email: email.value,
-    //   password: sha256.hmac(`some-key-here ${email.value}`, password.value!),
-    // });
-  };
 
   return (
     <section className='bg-white'>
@@ -90,120 +57,8 @@ const LoginPage = () => {
             <p className='mt-4 max-w-md leading-relaxed text-gray-500'>
               Let us take care of all your shopping needs!
             </p>
-
-            <form
-              onSubmit={handleSubmit}
-              className='mt-6 grid grid-cols-6 gap-6'
-            >
-              <div className='col-span-6'>
-                <label
-                  htmlFor='username'
-                  className='block text-sm font-medium leading-6 text-gray-900'
-                >
-                  Username
-                </label>
-                <div className='relative mt-2 rounded-md shadow-sm'>
-                  <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
-                    <HiEnvelope
-                      className='h-5 w-5 text-gray-300'
-                      aria-hidden='true'
-                    />
-                  </div>
-                  <input
-                    onChange={(e) => setUsername(e.target.value)}
-                    type='username'
-                    name='username'
-                    id='username'
-                    required
-                    className='block w-full rounded-md border-0 py-2 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6'
-                    placeholder='you@example.com'
-                  />
-                </div>
-              </div>
-              <div className='col-span-6'>
-                <label
-                  htmlFor='password'
-                  className='block text-sm font-medium leading-6 text-gray-900'
-                >
-                  Password
-                </label>
-                <div className='relative mt-2 rounded-md shadow-sm'>
-                  <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
-                    <HiKey
-                      className='h-5 w-5 text-gray-300'
-                      aria-hidden='true'
-                    />
-                  </div>
-                  <input
-                    onChange={(e) => setPassword(e.target.value)}
-                    type={!showPassword ? 'password' : 'text'}
-                    name='password'
-                    id='password'
-                    required
-                    className='block w-full rounded-md border-0 px-10 py-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6'
-                    placeholder='Minimum 8 characters'
-                  />
-                  <button
-                    type='button'
-                    className='absolute inset-y-0 right-0 flex items-center px-3'
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {!showPassword ? (
-                      <HiEye
-                        className='h-5 w-5 text-gray-300'
-                        aria-hidden='true'
-                      />
-                    ) : (
-                      <HiEyeOff
-                        className='h-5 w-5 text-gray-300'
-                        aria-hidden='true'
-                      />
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              <div className='col-span-6'>
-                <div className='flex items-center justify-between'>
-                  <label htmlFor='MarketingAccept' className='flex gap-4'>
-                    <input
-                      type='checkbox'
-                      id='rememberBox'
-                      name='remember_accept'
-                      className='h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm'
-                    />
-
-                    <span className='text-sm text-gray-700'>Remember me</span>
-                  </label>
-                  <div className='text-sm leading-6'>
-                    <a
-                      href='#'
-                      className='font-semibold text-brand-600 hover:text-brand-500'
-                    >
-                      Forgot password?
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className='col-span-6 sm:flex sm:items-center sm:gap-4'>
-                <button
-                  type='submit'
-                  className='inline-block w-max min-w-56 shrink-0 rounded-md border border-brand-500 bg-brand-500 px-12 py-3 text-sm font-semibold text-brand-50 transition hover:bg-brand-600 hover:text-white focus:outline-none focus:ring active:text-brand-600'
-                >
-                  Sign in
-                </button>
-
-                <p className='mt-4 text-sm text-gray-500 sm:mt-0'>
-                  New here?
-                  <Link
-                    href='/auth/sign-up'
-                    className='ml-2 text-brand-600 underline'
-                  >
-                    Sign up instead
-                  </Link>
-                </p>
-              </div>
-            </form>
+            {/* Login form client side */}
+            <LoginForm />
             <SocialLogin />
           </div>
         </main>
@@ -227,7 +82,7 @@ const SocialLogin = () => {
       <div className='mt-6 grid grid-cols-2 gap-4'>
         <button
           //   href='#'
-          onClick={() => toast.success('Success')}
+          // onClick={() => toast.success('Success')} 
           className='flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent'
         >
           <FcGoogle className='h-5 w-5' />
@@ -248,22 +103,3 @@ const SocialLogin = () => {
 
 export default LoginPage;
 
-// export const getServerSideProps = async ({
-//   req,
-//   res,
-// }: {
-//   req: NextApiRequest;
-//   res: NextApiResponse;
-// }) => {
-//   // Fetch data from external API
-//   const cookies = new Cookies(req, res);
-//   const token = cookies.get(TOKEN_NAME);
-//   if (!token || token === 'undefined' || token === undefined || token === ' ')
-//     return { props: { token: null } };
-
-//   console.log('Bearer Token:', token);
-
-//   // console.log('data: ', details);
-//   // Pass data to the page via props
-//   return { props: { token } };
-// };

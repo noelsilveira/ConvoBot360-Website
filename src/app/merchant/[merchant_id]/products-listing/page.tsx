@@ -1,15 +1,15 @@
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
-import MainLayout from '@/components/layout/MainLayout';
-import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
-import Pagination from '@/components/product/Pagination';
-import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
-import { products } from '@/constants/products';
-import { randomProducts } from '@/constants/random-products';
-import { cn } from '@/lib/utils';
-import { StarIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import Link from 'next/link';
+import MainLayout from '@/components/layout/MainLayout';
+import Pagination from '@/components/product/Pagination';
+import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
 import React from 'react';
+import { StarIcon } from '@heroicons/react/20/solid';
+import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
+import { cn } from '@/lib/utils';
+import { products } from '@/constants/products';
+import { randomProducts } from '@/constants/random-products';
 
 const breadcrumbs = [
   {

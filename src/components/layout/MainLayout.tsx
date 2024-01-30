@@ -1,11 +1,19 @@
-import { Inter } from 'next/font/google';
-import Head from 'next/head';
-import React, { useEffect } from 'react';
-import { twMerge } from 'tailwind-merge';
-import Header from './Header';
+// import React, { useEffect } from 'react';
+
 import Footer from './Footer';
+import Header from './Header';
+import { Inter } from 'next/font/google';
 import MobileMenu from './MobileMenu';
-import { Toaster } from 'react-hot-toast';
+import { cn } from '@/lib/utils';
+import { twMerge } from 'tailwind-merge';
+
+// import Head from 'next/head';
+
+
+
+// import { Toaster } from 'react-hot-toast';
+
+
 
 type MainLayoutProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
@@ -47,7 +55,7 @@ const MainLayout = ({
 
         {/* Top navigation */}
         <Header />
-        <main className={twMerge(`${inter} ${className}`)} {...rest}>
+        <main className={cn(`${inter} ${className}`)} {...rest}>
           {children}
         </main>
         <Footer />
