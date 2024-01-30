@@ -97,7 +97,7 @@ const ProductsListLayout = ({
             <button
               type='button'
               className='-m-2 ml-4 inline-flex items-center justify-center gap-1 p-2 text-sm font-medium text-gray-700 hover:text-gray-900 sm:ml-6 lg:hidden'
-            // onClick={() => setMobileFiltersOpen(true)}
+              // onClick={() => setMobileFiltersOpen(true)}
             >
               <span>Filters</span>
               <FunnelIcon

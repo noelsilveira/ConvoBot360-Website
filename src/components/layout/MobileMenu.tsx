@@ -1,20 +1,38 @@
 'use server';
+'use server';
 import { mapLocation } from '@/constants/company';
 import { navigation } from '@/constants/navigation';
+import { useNavigationStore } from '@/store/navigationStore';
+import { Dialog, Tab, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { TbLocationFilled, TbLogout, TbLogout2 } from 'react-icons/tb';
 import MobileMenuWrapper from './MobileMenuWrapper';
 import { accessTokenChecker, handleLogout } from '@/app/actions/auth';
 import MobileMerchantRelatedMenu from './MobileMerchantRelatedMenu';
-import { MobileLogoutButton } from './LogoutButton';
 
 const MobileMenu = async () => {
   const access_token = await accessTokenChecker();
+  console.log('Ac: ', access_token);
 
   return (
     <MobileMenuWrapper>
       {/* Links */}
 
+      <ul className='space-y-6 px-4 py-6'>
+        {/* Merchant related pages here */}
+        <MobileMerchantRelatedMenu />
+        {navigation.pages.map((page) => (
+          <div key={page.name} className='flow-root'>
+            <Link
+              href={page.href}
+              className='-m-2 block p-2 font-medium text-gray-900'
+            >
+              {page.name}
+            </Link>
+          </div>
+        ))}
+      </ul>
       <ul className='space-y-6 px-4 py-6'>
         {/* Merchant related pages here */}
         <MobileMerchantRelatedMenu />
@@ -60,8 +78,14 @@ const MobileMenu = async () => {
                 View profile
               </Link>
             </div>
-            {/* Mobile Logout button */}
-            <MobileLogoutButton />
+            <form action={handleLogout}>
+              <button
+                type='submit'
+                className='-m-2 inline-flex items-center gap-2 p-2 font-medium text-rose-500'
+              >
+                Logout <TbLogout />
+              </button>
+            </form>
           </>
         )}
       </div>

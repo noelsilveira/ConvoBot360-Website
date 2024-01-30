@@ -5,7 +5,6 @@ import { cookies } from 'next/headers';
 
 // import { Checking } from '@/components/layout/TopBar';
 
-
 export type TokenType = {
   access_token: string;
   expiry: number;
@@ -76,9 +75,7 @@ export async function accessTokenChecker() {
     return false;
   }
   return true;
-}
-
-function addSeconds(date: Date, seconds: number) {
-  date.setSeconds(date.getSeconds() + seconds);
-  return date;
+  // const now = 100;
+  // const expiry = cookies().get('expiry');
+  // return expiry ? now < Number(expiry.value) : true;
 }
