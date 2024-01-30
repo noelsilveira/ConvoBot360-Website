@@ -7,7 +7,6 @@ import {
   QuestionMarkCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/20/solid';
-import MainLayout from '@/components/layout/MainLayout';
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
 
@@ -15,7 +14,8 @@ const CartPage = () => {
   const { cart } = useCartStore();
 
   return (
-    <MainLayout title={`Shopping Cart | CB360 - Ultimate shopping`}>
+    <>
+      {/* <MainLayout title={`Shopping Cart | CB360 - Ultimate shopping`}> */}
       <div className='bg-white'>
         <div className='mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8'>
           <h1 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
@@ -209,7 +209,7 @@ const CartPage = () => {
           </form>
         </div>
       </div>
-    </MainLayout>
+    </>
   );
 };
 
