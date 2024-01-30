@@ -2,49 +2,54 @@ import { API_BASE_URL } from '@/constants/urls';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
-import MainLayout from '@/components/layout/MainLayout';
 import Pagination from '@/components/product/Pagination';
 import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
 import { ProductsType } from '@/types/products';
 import React from 'react';
-import { StarIcon } from '@heroicons/react/20/solid';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
-import { cn } from '@/lib/utils';
-import { products } from '@/constants/products';
-import { randomProducts } from '@/constants/random-products';
 
-const breadcrumbs = [
-  {
-    label: 'Products Listing',
-    path: '/products-listing',
-  },
-];
-
-const ProductsListingPage = async ({ params }: { params: { merchant_id: string } }) => {
-
+const ProductsListingPage = async ({
+  params,
+}: {
+  params: { merchant_id: string };
+}) => {
   var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append('Content-Type', 'application/json');
   let raw = JSON.stringify({
-    "filters": {
-      "title": "",
-      "group_id": []
+    filters: {
+      title: '',
+      group_id: [],
     },
-    "sort": {
-      "price": "asc | desc",
-      "title": "asc | desc"
-    }
+    sort: {
+      price: 'asc | desc',
+      title: 'asc | desc',
+    },
   });
 
-  const res = await fetch(API_BASE_URL + `/estore/catalog/${params.merchant_id}`, {
-    method: 'POST',
-    redirect: 'follow',
-    body: raw,
-    headers: myHeaders,
-    next: {
-      revalidate: 5, //cache data for 5 second
+  const res = await fetch(
+    API_BASE_URL + `/estore/catalog/${params.merchant_id}`,
+    {
+      method: 'POST',
+      redirect: 'follow',
+      body: raw,
+      headers: myHeaders,
+      next: {
+        revalidate: 5, //cache data for 5 second
+      },
     }
-  });
+  );
   const products: ProductsType[] = await res.json();
+  const baseMerchantPath = `/merchant/${params.merchant_id}`;
+  const breadcrumbs = [
+    {
+      label: 'Merchant',
+      path: baseMerchantPath,
+    },
+    {
+      label: 'Products Listing',
+      path: `${baseMerchantPath}/products-listing`,
+    },
+  ];
   return (
     <>
       <div className='bg-white'>

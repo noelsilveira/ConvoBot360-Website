@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect } from 'react';
 import { useHeroStore } from '@/store/heroStore';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname, useSearchParams } from 'next/navigation';
 
 const offers = [
   {
@@ -26,10 +26,11 @@ const OffersHero = () => {
     useHeroStore();
   // const router = useRouter();
   const pathname = usePathname();
+  const { merchant_id } = useParams();
 
   useEffect(() => {
-    // const isHomepage = pathname === '/';
-    const isHomepage = false;
+    const isHomepage = pathname === `/merchant/${merchant_id}`;
+    // const isHomepage = false;
     isHomepage ? toggleHeader(true) : toggleHeader(false);
     isHomepage ? toggleOffersHero(true) : toggleOffersHero(false);
   }, [pathname]);

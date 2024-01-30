@@ -15,6 +15,7 @@ export type ProductsType = {
   translation: null;
   google_product_category: GoogleProductCategory;
   fb_product_category: FbProductCategory;
+  custom_label_0: string;
   options: [];
   is_active: boolean;
 };

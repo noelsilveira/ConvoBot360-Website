@@ -171,6 +171,13 @@ export const navigation = {
       ],
     },
   ],
+  // TODO
+  merchant_related: [
+    {
+      name: 'Products',
+      base_href: '/merchant',
+    },
+  ],
   pages: [
     { name: 'Home', href: '/' },
     // { name: 'Merchant', href: '/merchant/67868' },
@@ -239,8 +246,8 @@ export const footerNavigation = {
     { name: 'Privacy', href: 'legal//privacy' },
   ],
   account: [
-    { name: 'Manage Account', href: '/merchant/17525751/about' },
-    { name: 'Merchant Login', href: '/merchant/17525751/about' },
+    { name: 'Manage Account', href: '/merchant/36049357/about' },
+    { name: 'Merchant Login', href: '/merchant/36049357/about' },
     { name: 'Partner with us', href: '/auth/sign-up' },
     { name: 'Join us', href: '/auth/sign-up' },
     // { name: 'Returns & Exchanges', href: '#!' },

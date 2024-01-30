@@ -1,64 +1,73 @@
-import React, { useEffect, useState } from 'react';
-
+import React from 'react';
 import { API_BASE_URL } from '@/constants/urls';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
-import MainLayout from '@/components/layout/MainLayout';
 import Perks from '@/components/product/Perks';
 import { ProductsType } from '@/types/products';
-import { RadioGroup } from '@headlessui/react';
 import Reviews from '@/components/product/Reviews';
-import { StarIcon } from '@heroicons/react/20/solid';
 import { cn } from '@/lib/utils';
 import { policies } from '@/constants/products';
-import { randomProducts } from '@/constants/random-products';
-import { toBHDCurrency } from '@/lib/format';
+import Image from 'next/image';
+import Link from 'next/link';
 
-// import { useRouter } from 'next/router';
-// import { useCartStore } from '@/store/cartStore';
-
-
-
-
-const breadcrumbs = [
-  {
-    label: 'Products Listing',
-    path: '/products-listing',
-  },
-  {
-    label: 'Basic Tee',
-    path: '/product-detail/12',
-    slug: '/product-detail/product-id-or-name',
-  },
-];
-
-const ProductDetailPage = async ({ params }: { params: { product_id: string } }) => {
-
-  const res = await fetch(`${API_BASE_URL}/estore/product-details/${params.product_id}`, {
-    method: 'POST',
-    redirect: 'follow',
-    // body: raw,
-    // headers: myHeaders,
-    next: {
-      revalidate: 5, //cache data for 5 second
+const ProductDetailPage = async ({
+  params,
+}: {
+  params: { product_id: string; merchant_id: string };
+}) => {
+  const res = await fetch(
+    `${API_BASE_URL}/estore/product-details/${params.product_id}`,
+    {
+      method: 'POST',
+      redirect: 'follow',
+      // body: raw,
+      // headers: myHeaders,
+      next: {
+        revalidate: 5, //cache data for 5 second
+      },
     }
-  });
+  );
   const product: ProductsType = await res.json();
+  const baseMerchantPath = `/merchant/${params.merchant_id}`;
+
+  const breadcrumbs = [
+    {
+      label: 'Merchant',
+      path: baseMerchantPath,
+    },
+    {
+      label: 'Products Listing',
+      path: `${baseMerchantPath}/products-listing`,
+    },
+    {
+      label: `${product.title}`,
+      path: `${baseMerchantPath}/product/product-detail/${product.id}`,
+      slug: '/product-detail/product-id-or-name',
+    },
+  ];
 
   return (
     <>
       {/* <MainLayout title={`Buy ${product.name} | CB360 - Ultimate shopping`}> */}
       <div className='bg-white'>
-        <div className='pb-16 pt-6 sm:pb-24'>
+        <div className='pb-8 pt-6 sm:pb-6'>
           <Breadcrumbs items={breadcrumbs} />
           <div className='mx-auto mt-8 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8'>
             <div className='lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8'>
               <div className='lg:col-span-5 lg:col-start-8'>
                 <div className='flex justify-between'>
-                  <h1 className='text-xl font-medium text-gray-900'>
-                    {product.title}
-                  </h1>
+                  <div className='flex flex-col justify-start gap-2'>
+                    <h1 className='text-2xl font-medium text-gray-900'>
+                      {product.title}
+                    </h1>
+                    <p className='text-sm text-neutral-400'>
+                      {product.google_product_category}
+                    </p>
+                    <span className='w-fit rounded bg-neutral-200 px-2 py-1 text-xs'>
+                      {product.custom_label_0}
+                    </span>
+                  </div>
                   <p className='text-xl font-medium text-gray-900'>
-                    {toBHDCurrency(product.price)}
+                    {`${product.currency}${' '}${product.price}`}
                   </p>
                 </div>
                 {/* Reviews */}
@@ -107,13 +116,15 @@ const ProductDetailPage = async ({ params }: { params: { product_id: string } })
 
                 <div className='grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8'>
                   {/* {product.images.map((image) => ( */}
-                  <img
+                  <Image
+                    height={800}
+                    width={800}
                     // key={image.id}
                     src={product.image_link}
                     alt={product.title}
                     className={cn(
                       product.image_link
-                        ? 'h-full max-h-[70vh] w-full lg:col-span-2 lg:row-span-2'
+                        ? 'h-full max-h-[60vh] w-full lg:col-span-2 lg:row-span-2'
                         : 'hidden h-full lg:block',
                       'rounded-lg object-cover'
                     )}
@@ -122,7 +133,7 @@ const ProductDetailPage = async ({ params }: { params: { product_id: string } })
                 </div>
               </div>
 
-              <div className='mt-8 lg:col-span-5'>
+              <div className='mt-0 lg:col-span-5'>
                 <form>
                   {/* Color picker */}
                   {/* <div>
@@ -167,17 +178,20 @@ const ProductDetailPage = async ({ params }: { params: { product_id: string } })
                   </div> */}
 
                   {/* Size picker */}
-                  <div className='mt-8'>
+                  <div className='mt-6'>
                     <div className='flex items-center justify-between'>
                       <h2 className='text-sm font-medium text-gray-900'>
-                        Size
+                        Availability:
+                        <span className='ml-1 text-sm font-medium capitalize text-brand-600 hover:text-brand-500'>
+                          {product.availability}
+                        </span>
                       </h2>
-                      <a
+                      {/* <a
                         href='#'
-                        className='text-sm font-medium text-brand-600 hover:text-brand-500'
+                        className='text-sm font-medium capitalize text-brand-600 hover:text-brand-500'
                       >
-                        See sizing chart
-                      </a>
+                        {product.availability}
+                      </a> */}
                     </div>
 
                     {/* <RadioGroup
@@ -224,14 +238,14 @@ const ProductDetailPage = async ({ params }: { params: { product_id: string } })
                     // onClick={() => {
                     //   addCartItem(product);
                     // }}
-                    className='mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-brand-500 px-8 py-3 text-base font-medium text-white hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2'
+                    className='mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-brand-500 px-8 py-3 text-base font-medium text-white duration-200 ease-out hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2'
                   >
                     Add to cart
                   </button>
                 </form>
 
                 {/* Product details */}
-                <div className='mt-10'>
+                <div className='mt-8'>
                   <h2 className='text-sm font-medium text-gray-900'>
                     Description
                   </h2>
@@ -240,10 +254,26 @@ const ProductDetailPage = async ({ params }: { params: { product_id: string } })
                     className='prose prose-sm mt-4 text-gray-500'
                     dangerouslySetInnerHTML={{ __html: product.description }}
                   />
+                  <div className='mt-6 flex flex-col justify-start gap-2 border-t border-gray-200 pt-6'>
+                    <p className='text-sm capitalize text-gray-500'>
+                      Condition: {product.condition}
+                    </p>
+                    <p className='text-sm capitalize text-gray-500'>
+                      Brand: {product.brand}
+                    </p>
+                    <Link
+                      href={product.link}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-sm text-blue-500'
+                    >
+                      See more: {product.link}
+                    </Link>
+                  </div>
                 </div>
 
                 <div className='mt-8 border-t border-gray-200 pt-8'>
-                  <h2 className='text-sm font-medium text-gray-900'>
+                  <h2 className='text-sm font-medium capitalize text-gray-900'>
                     {product.fb_product_category}
                   </h2>
 
@@ -296,15 +326,3 @@ const ProductDetailPage = async ({ params }: { params: { product_id: string } })
 };
 
 export default ProductDetailPage;
-
-// export async function getServerSideProps(ctx: {
-//   query: { productId: string };
-// }) {
-//   const { productId } = ctx.query;
-
-//   return {
-//     props: {
-//       productId,
-//     },
-//   };
-// }

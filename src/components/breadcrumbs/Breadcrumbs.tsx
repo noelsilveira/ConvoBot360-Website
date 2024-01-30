@@ -21,15 +21,22 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
       <ol role='list' className='flex items-center space-x-4'>
         <li>
           <div className='flex items-center gap-4'>
-            <Link href='/' className='text-gray-800 hover:text-gray-700'>
-              <TbHome className='h-5 w-5 flex-shrink-0' aria-hidden='true' />
-              <span className='sr-only'>Home</span>
-            </Link>
+            {items.slice(0, 1).map((crumb, i) => (
+              <Link
+                href={crumb.path}
+                key={'home-breadcrum-item-' + crumb.label + i}
+                className='text-gray-800 hover:text-gray-700'
+              >
+                <TbHome className='h-5 w-5 flex-shrink-0' aria-hidden='true' />
+                <span className='sr-only'>Merchant Home</span>
+              </Link>
+            ))}
+
             <span className='text-gray-300'> / </span>
           </div>
         </li>
-        {items.map((crumb, i) => {
-          const isLastItem = i === items.length - 1;
+        {items.slice(1, items.length).map((crumb, i) => {
+          const isLastItem = i === items.length - 2;
           if (!isLastItem) {
             return (
               <li key={'breadcrum-item-' + i + crumb.label}>
@@ -38,7 +45,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
 
                   <Link
                     href={crumb.path}
-                    className='mr-4 text-sm font-medium text-gray-800 hover:text-gray-700 hover:underline'
+                    className='mr-4 text-sm font-medium text-gray-800 duration-200 ease-out hover:text-gray-700 hover:underline'
                   >
                     {crumb.label}
                   </Link>
@@ -51,7 +58,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
               <li aria-current='page' key={'product-in-view' + crumb.label}>
                 <Link
                   href={crumb.path}
-                  className='text-sm font-medium text-gray-400 hover:text-gray-600'
+                  className='text-sm font-medium text-gray-400 duration-200 ease-out hover:text-gray-600'
                 >
                   {crumb.label}
                 </Link>

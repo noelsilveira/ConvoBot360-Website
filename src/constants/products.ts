@@ -120,11 +120,11 @@ export const policies = [
   {
     name: 'International delivery',
     icon: GlobeAmericasIcon,
-    description: 'Get your order in 2 years',
+    description: 'Get your order in 2 days',
   },
   {
     name: 'Loyalty rewards',
     icon: CurrencyDollarIcon,
-    description: "Don't look at other tees",
+    description: 'Get rewards for orders above BHD 50',
   },
 ];

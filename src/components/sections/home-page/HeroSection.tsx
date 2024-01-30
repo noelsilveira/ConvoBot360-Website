@@ -1,7 +1,7 @@
 'use client';
 import { useHeroStore } from '@/store/heroStore';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import React, { useEffect } from 'react';
 
 const HeroSection = () => {
@@ -9,13 +9,16 @@ const HeroSection = () => {
     useHeroStore();
   // const router = useRouter();
   const pathname = usePathname();
+  const { merchant_id } = useParams();
 
   useEffect(() => {
+    const isHomepage = pathname === `/merchant/${merchant_id}`;
     // const isHomepage = pathname === '/';
-    const isHomepage = false;
+    // const isHomepage = false;
     isHomepage ? toggleHeader(true) : toggleHeader(false);
     isHomepage ? toggleOffersHero(true) : toggleOffersHero(false);
   }, [pathname]);
+
   return showHero ? (
     <section className='relative overflow-hidden'>
       <div className='pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40'>
