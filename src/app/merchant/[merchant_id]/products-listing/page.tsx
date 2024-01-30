@@ -61,7 +61,7 @@ const ProductsListingPage = async ({ params }: { params: { merchant_id: string }
                 {products.map((product) => (
                   // Single product item view
                   <Link
-                    href={`/product-detail/${product.id}`}
+                    href={`/merchant/${params.merchant_id}/product/product-detail/${product.id}`}
                     key={product.id}
                     className='group relative border-b border-r border-gray-200 p-4 sm:p-4'
                   >

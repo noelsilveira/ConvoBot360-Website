@@ -1,13 +1,13 @@
-import React from 'react';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import Image from 'next/image';
 import Link from 'next/link';
-import toast from 'react-hot-toast';
 import LoginForm from './login-form';
-import { cookies } from 'next/headers';
+import React from 'react';
 import { TOKEN_NAME } from '@/constants/urls';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 type FormElements = {
   email: HTMLInputElement;
@@ -84,7 +84,7 @@ const SocialLogin = () => {
       <div className='mt-6 grid grid-cols-2 gap-4'>
         <button
           //   href='#'
-          onClick={() => toast.success('Success')}
+          // onClick={() => toast.success('Success')}
           className='flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent'
         >
           <FcGoogle className='h-5 w-5' />

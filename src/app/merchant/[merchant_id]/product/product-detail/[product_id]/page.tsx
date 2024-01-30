@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { StarIcon } from '@heroicons/react/20/solid';
-import { RadioGroup } from '@headlessui/react';
-import { policies } from '@/constants/products';
-import { cn } from '@/lib/utils';
-import Reviews from '@/components/product/Reviews';
-import MainLayout from '@/components/layout/MainLayout';
+
+import { API_BASE_URL } from '@/constants/urls';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
+import MainLayout from '@/components/layout/MainLayout';
 import Perks from '@/components/product/Perks';
-import { useRouter } from 'next/router';
-import { useCartStore } from '@/store/cartStore';
+import { ProductsType } from '@/types/products';
+import { RadioGroup } from '@headlessui/react';
+import Reviews from '@/components/product/Reviews';
+import { StarIcon } from '@heroicons/react/20/solid';
+import { cn } from '@/lib/utils';
+import { policies } from '@/constants/products';
 import { randomProducts } from '@/constants/random-products';
+
+// import { useRouter } from 'next/router';
+// import { useCartStore } from '@/store/cartStore';
+
+
+
 
 const breadcrumbs = [
   {
@@ -23,25 +30,18 @@ const breadcrumbs = [
   },
 ];
 
-const ProductDetailPage = ({ productId }: { productId: string }) => {
-  const router = useRouter();
-  // const { productId } = router.query;
-  const [currentProduct, setCurrentProduct] = useState(
-    randomProducts.find((p) => p.id === productId)
-  );
+const ProductDetailPage = async ({ params }: { params: { product_id: string } }) => {
 
-  const [product, setProduct] = useState(currentProduct!);
-  const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product?.sizes[2]);
-  const { addCartItem } = useCartStore();
-
-  useEffect(() => {
-    const pUpdated = randomProducts.find((p) => p.id === productId);
-    setCurrentProduct(pUpdated);
-    setProduct(pUpdated!);
-    setSelectedColor(pUpdated!.colors[0]);
-    setSelectedSize(pUpdated!.sizes[2]);
-  }, [productId, router]);
+  const res = await fetch(`${API_BASE_URL}/estore/product-details/${params.product_id}`, {
+    method: 'POST',
+    redirect: 'follow',
+    // body: raw,
+    // headers: myHeaders,
+    next: {
+      revalidate: 5, //cache data for 5 second
+    }
+  });
+  const product: ProductsType = await res.json();
 
   return (
     <>
@@ -54,14 +54,14 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
               <div className='lg:col-span-5 lg:col-start-8'>
                 <div className='flex justify-between'>
                   <h1 className='text-xl font-medium text-gray-900'>
-                    {product.name}
+                    {product.title}
                   </h1>
                   <p className='text-xl font-medium text-gray-900'>
                     {product.price}
                   </p>
                 </div>
                 {/* Reviews */}
-                <div className='mt-4'>
+                {/* <div className='mt-4'>
                   <h2 className='sr-only'>Reviews</h2>
                   <div className='flex items-center'>
                     <p className='text-sm text-gray-700'>
@@ -97,7 +97,7 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
                       </a>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               {/* Image gallery */}
@@ -105,26 +105,26 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
                 <h2 className='sr-only'>Images</h2>
 
                 <div className='grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8'>
-                  {product.images.map((image) => (
-                    <img
-                      key={image.id}
-                      src={image.imageSrc}
-                      alt={image.imageAlt}
-                      className={cn(
-                        image.primary
-                          ? 'h-full max-h-[70vh] w-full lg:col-span-2 lg:row-span-2'
-                          : 'hidden h-full lg:block',
-                        'rounded-lg object-cover'
-                      )}
-                    />
-                  ))}
+                  {/* {product.images.map((image) => ( */}
+                  <img
+                    // key={image.id}
+                    src={product.image_link}
+                    alt={product.title}
+                    className={cn(
+                      product.image_link
+                        ? 'h-full max-h-[70vh] w-full lg:col-span-2 lg:row-span-2'
+                        : 'hidden h-full lg:block',
+                      'rounded-lg object-cover'
+                    )}
+                  />
+                  {/* ))} */}
                 </div>
               </div>
 
               <div className='mt-8 lg:col-span-5'>
                 <form>
                   {/* Color picker */}
-                  <div>
+                  {/* <div>
                     <h2 className='text-sm font-medium text-gray-900'>Color</h2>
 
                     <RadioGroup
@@ -163,7 +163,7 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
                         ))}
                       </div>
                     </RadioGroup>
-                  </div>
+                  </div> */}
 
                   {/* Size picker */}
                   <div className='mt-8'>
@@ -179,7 +179,7 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
                       </a>
                     </div>
 
-                    <RadioGroup
+                    {/* <RadioGroup
                       value={selectedSize}
                       onChange={setSelectedSize}
                       className='mt-2'
@@ -214,15 +214,15 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
                           </RadioGroup.Option>
                         ))}
                       </div>
-                    </RadioGroup>
+                    </RadioGroup> */}
                   </div>
 
                   <button
                     // type='submit'
                     // href={`/checkout/cart`}
-                    onClick={() => {
-                      addCartItem(product);
-                    }}
+                    // onClick={() => {
+                    //   addCartItem(product);
+                    // }}
                     className='mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-brand-500 px-8 py-3 text-base font-medium text-white hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2'
                   >
                     Add to cart
@@ -246,13 +246,13 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
                     Fabric &amp; Care
                   </h2>
 
-                  <div className='prose prose-sm mt-4 text-gray-500'>
+                  {/* <div className='prose prose-sm mt-4 text-gray-500'>
                     <ul role='list'>
                       {product.details.map((item) => (
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Policies */}
