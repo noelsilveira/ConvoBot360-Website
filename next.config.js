@@ -7,6 +7,17 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'ddkrestaurant.com',
+        pathname: '**',
+      },
+      
+      {
+        protocol: 'https',
+        hostname: 'sendbip.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
         hostname: 'tailwindui.com',
         pathname: '**',
       },

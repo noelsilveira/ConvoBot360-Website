@@ -1,9 +1,11 @@
+import { API_BASE_URL } from '@/constants/urls';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
 import MainLayout from '@/components/layout/MainLayout';
 import Pagination from '@/components/product/Pagination';
 import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
+import { ProductsType } from '@/types/products';
 import React from 'react';
 import { StarIcon } from '@heroicons/react/20/solid';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
@@ -18,7 +20,31 @@ const breadcrumbs = [
   },
 ];
 
-const ProductsListingPage = () => {
+const ProductsListingPage = async ({ params }: { params: { merchant_id: string } }) => {
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  let raw = JSON.stringify({
+    "filters": {
+      "title": "",
+      "group_id": []
+    },
+    "sort": {
+      "price": "asc | desc",
+      "title": "asc | desc"
+    }
+  });
+
+  const res = await fetch(API_BASE_URL + `/estore/catalog/${params.merchant_id}`, {
+    method: 'POST',
+    redirect: 'follow',
+    body: raw,
+    headers: myHeaders,
+    next: {
+      revalidate: 5, //cache data for 5 second
+    }
+  });
+  const products: ProductsType[] = await res.json();
   return (
     <MainLayout>
       <div className='bg-white'>
@@ -32,7 +58,7 @@ const ProductsListingPage = () => {
               description='Checkout out the latest release of Tees, new and improved with four openings!'
             >
               <div className='-mx-px grid grid-cols-2 border-l border-t border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4'>
-                {randomProducts.map((product) => (
+                {products.map((product) => (
                   // Single product item view
                   <Link
                     href={`/product-detail/${product.id}`}
@@ -41,8 +67,8 @@ const ProductsListingPage = () => {
                   >
                     <div className='aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75'>
                       <Image
-                        src={product.images[0].imageSrc}
-                        alt={product.images[0].imageAlt}
+                        src={product.image_link}
+                        alt={product.title}
                         height={500}
                         width={250}
                         className='h-40 w-full object-cover object-center sm:h-48'
@@ -55,13 +81,13 @@ const ProductsListingPage = () => {
                             aria-hidden='true'
                             className='absolute inset-0'
                           />
-                          {product.name}
+                          {product.title}
                         </span>
                       </h3>
                       <p className='line-clamp-1 text-xs text-gray-500'>
                         {product.description}
                       </p>
-                      <div className='mt-2 flex flex-col items-start justify-center'>
+                      {/* <div className='mt-2 flex flex-col items-start justify-center'>
                         <p className='sr-only'>
                           {product.rating} out of 5 stars
                         </p>
@@ -82,7 +108,7 @@ const ProductsListingPage = () => {
                         <p className='mt-1 text-xs text-gray-500'>
                           {product.reviewCount} reviews
                         </p>
-                      </div>
+                      </div> */}
                       <p className='mt-2 text-sm font-semibold text-gray-900'>
                         {product.price}
                       </p>
