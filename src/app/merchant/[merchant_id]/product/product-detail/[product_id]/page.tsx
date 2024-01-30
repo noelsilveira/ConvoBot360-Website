@@ -11,6 +11,7 @@ import { StarIcon } from '@heroicons/react/20/solid';
 import { cn } from '@/lib/utils';
 import { policies } from '@/constants/products';
 import { randomProducts } from '@/constants/random-products';
+import { toBHDCurrency } from '@/lib/format';
 
 // import { useRouter } from 'next/router';
 // import { useCartStore } from '@/store/cartStore';
@@ -57,7 +58,7 @@ const ProductDetailPage = async ({ params }: { params: { product_id: string } })
                     {product.title}
                   </h1>
                   <p className='text-xl font-medium text-gray-900'>
-                    {product.price}
+                    {toBHDCurrency(product.price)}
                   </p>
                 </div>
                 {/* Reviews */}
@@ -243,7 +244,7 @@ const ProductDetailPage = async ({ params }: { params: { product_id: string } })
 
                 <div className='mt-8 border-t border-gray-200 pt-8'>
                   <h2 className='text-sm font-medium text-gray-900'>
-                    Fabric &amp; Care
+                    {product.fb_product_category}
                   </h2>
 
                   {/* <div className='prose prose-sm mt-4 text-gray-500'>
