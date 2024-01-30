@@ -1,3 +1,4 @@
+'use client';
 import { navigation } from '@/constants/navigation';
 import { cn } from '@/lib/utils';
 import { useNavigationStore } from '@/store/navigationStore';
@@ -5,8 +6,6 @@ import { Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment, useEffect } from 'react';
-import CartIconButton from '../checkout/CartIconButton';
 import toast from 'react-hot-toast';
 import CustomToaster from '../toasts/CustomToast';
 import { useRouter, usePathname } from 'next/navigation';

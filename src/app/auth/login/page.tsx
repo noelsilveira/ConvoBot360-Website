@@ -7,7 +7,6 @@ import React from 'react';
 import { TOKEN_NAME } from '@/constants/urls';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import toast from 'react-hot-toast';
 
 type FormElements = {
   email: HTMLInputElement;

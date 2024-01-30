@@ -1,4 +1,7 @@
-import React from 'react';
+'use client';
+import React, { useEffect } from 'react';
+import { useHeroStore } from '@/store/heroStore';
+import { usePathname } from 'next/navigation';
 
 const offers = [
   {
@@ -19,7 +22,19 @@ const offers = [
 ];
 
 const OffersHero = () => {
-  return (
+  const { showHero, showOffersHero, toggleHeader, toggleOffersHero } =
+    useHeroStore();
+  // const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // const isHomepage = pathname === '/';
+    const isHomepage = false;
+    isHomepage ? toggleHeader(true) : toggleHeader(false);
+    isHomepage ? toggleOffersHero(true) : toggleOffersHero(false);
+  }, [pathname]);
+
+  return showOffersHero ? (
     <div className='hidden border-b border-gray-200 lg:flex lg:flex-col'>
       <nav aria-label='Offers' className='order-last lg:order-first'>
         <div className='mx-auto max-w-7xl lg:px-8'>
@@ -44,6 +59,8 @@ const OffersHero = () => {
         </div>
       </nav>
     </div>
+  ) : (
+    <></>
   );
 };
 

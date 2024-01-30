@@ -43,3 +43,24 @@ export async function handleSignInForm(formData: FormData) {
     path: '/',
   });
 }
+
+export async function handleLogout() {
+  cookies().delete(TOKEN_NAME);
+  cookies().delete('expiry');
+  cookies().delete('token_type');
+}
+
+export async function accessTokenChecker() {
+  const access_token = cookies().get(TOKEN_NAME);
+  if (
+    !access_token ||
+    access_token === undefined ||
+    access_token.toString() === '`' ||
+    access_token.toString() === 'undefined'
+  ) {
+    return false;
+  }
+  const now = 100;
+  const expiry = cookies().get('expiry');
+  return expiry ? now < Number(expiry.value) : false;
+}
