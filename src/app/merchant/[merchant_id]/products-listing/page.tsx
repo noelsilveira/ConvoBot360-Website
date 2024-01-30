@@ -46,7 +46,7 @@ const ProductsListingPage = async ({ params }: { params: { merchant_id: string }
   });
   const products: ProductsType[] = await res.json();
   return (
-    <MainLayout>
+    <>
       <div className='bg-white'>
         <div className='pb-8 pt-6 sm:pb-16'>
           <Breadcrumbs items={breadcrumbs} />
@@ -122,7 +122,7 @@ const ProductsListingPage = async ({ params }: { params: { merchant_id: string }
         </div>
         <TrendingProducts />
       </div>
-    </MainLayout>
+    </>
   );
 };
 

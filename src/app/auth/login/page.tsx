@@ -1,17 +1,13 @@
-import { API_BASE_URL, TOKEN_NAME } from '@/constants/urls';
-import { HiEnvelope, HiEye, HiKey } from 'react-icons/hi2';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import React, { ElementRef, useRef, useState } from 'react';
-
-import Cookies from 'cookies';
+import React from 'react';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { HiEyeOff } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
-import LoginForm from './login-form';
-import axios from 'axios';
 import toast from 'react-hot-toast';
+import LoginForm from './login-form';
+import { cookies } from 'next/headers';
+import { TOKEN_NAME } from '@/constants/urls';
+import { redirect } from 'next/navigation';
 
 type FormElements = {
   email: HTMLInputElement;
@@ -23,14 +19,19 @@ type UserFormElement = {
 } & HTMLFormElement;
 
 const LoginPage = () => {
+  const cookieStore = cookies();
+  const access_token = cookieStore.get(TOKEN_NAME);
+  if (access_token) {
+    redirect(`/`);
+  }
 
   return (
     <section className='bg-white'>
       <div className='lg:grid lg:min-h-screen lg:grid-cols-12'>
         <aside className='relative block h-20 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6'>
           <Image
-            height={2000}
-            width={2000}
+            height={1000}
+            width={1000}
             alt='Pattern'
             src='https://images.unsplash.com/photo-1541471943749-e5976783f6c3?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
             className='absolute inset-0 h-full w-full object-cover'
@@ -57,7 +58,8 @@ const LoginPage = () => {
             <p className='mt-4 max-w-md leading-relaxed text-gray-500'>
               Let us take care of all your shopping needs!
             </p>
-            {/* Login form client side */}
+
+            {/* Login form component */}
             <LoginForm />
             <SocialLogin />
           </div>
@@ -82,7 +84,7 @@ const SocialLogin = () => {
       <div className='mt-6 grid grid-cols-2 gap-4'>
         <button
           //   href='#'
-          // onClick={() => toast.success('Success')} 
+          onClick={() => toast.success('Success')}
           className='flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent'
         >
           <FcGoogle className='h-5 w-5' />
@@ -103,3 +105,22 @@ const SocialLogin = () => {
 
 export default LoginPage;
 
+// export const getServerSideProps = async ({
+//   req,
+//   res,
+// }: {
+//   req: NextApiRequest;
+//   res: NextApiResponse;
+// }) => {
+//   // Fetch data from external API
+//   const cookies = new Cookies(req, res);
+//   const token = cookies.get(TOKEN_NAME);
+//   if (!token || token === 'undefined' || token === undefined || token === ' ')
+//     return { props: { token: null } };
+
+//   console.log('Bearer Token:', token);
+
+//   // console.log('data: ', details);
+//   // Pass data to the page via props
+//   return { props: { token } };
+// };
