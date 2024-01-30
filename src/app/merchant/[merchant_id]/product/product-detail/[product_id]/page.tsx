@@ -35,7 +35,7 @@ const ProductDetailPage = async ({
       path: baseMerchantPath,
     },
     {
-      label: 'Products Listing',
+      label: 'Products',
       path: `${baseMerchantPath}/products-listing`,
     },
     {
@@ -114,7 +114,7 @@ const ProductDetailPage = async ({
               <div className='mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0'>
                 <h2 className='sr-only'>Images</h2>
 
-                <div className='grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-3 lg:gap-8'>
+                <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-8'>
                   {/* {product.images.map((image) => ( */}
                   <Image
                     height={800}
@@ -123,10 +123,7 @@ const ProductDetailPage = async ({
                     src={product.image_link}
                     alt={product.title}
                     className={cn(
-                      product.image_link
-                        ? 'h-full max-h-[60vh] w-full lg:col-span-2 lg:row-span-2'
-                        : 'hidden h-full lg:block',
-                      'rounded-lg object-cover'
+                      'h-full max-h-[60vh] w-full rounded-lg object-cover lg:col-span-2 lg:row-span-2 lg:block'
                     )}
                   />
                   {/* ))} */}
@@ -272,22 +269,14 @@ const ProductDetailPage = async ({
                   </div>
                 </div>
 
-                <div className='mt-8 border-t border-gray-200 pt-8'>
+                <div className='mt-6 border-t border-gray-200 pt-6'>
                   <h2 className='text-sm font-medium capitalize text-gray-900'>
                     {product.fb_product_category}
                   </h2>
-
-                  {/* <div className='prose prose-sm mt-4 text-gray-500'>
-                    <ul role='list'>
-                      {product.details.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div> */}
                 </div>
 
                 {/* Policies */}
-                <section aria-labelledby='policies-heading' className='mt-10'>
+                <section aria-labelledby='policies-heading' className='mt-6'>
                   <h2 id='policies-heading' className='sr-only'>
                     Our Policies
                   </h2>

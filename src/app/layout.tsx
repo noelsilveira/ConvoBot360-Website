@@ -16,6 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className='scroll-smooth'>
+      <head>
+        <meta name='theme-color' content='#fd9c0a'></meta>
+      </head>
       <body className='antialiased'>{children}</body>
     </html>
   );

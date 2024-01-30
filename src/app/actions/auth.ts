@@ -28,7 +28,7 @@ export async function handleSignInForm(formData: FormData) {
   const d = new Date(date);
   const expire_date = addSeconds(d, data.expiry).toString();
 
-  const expiry_time = new Date(expire_date).getTime()
+  const expiry_time = new Date(expire_date).getTime();
 
   cookies().set({
     name: TOKEN_NAME,
@@ -65,18 +65,16 @@ export async function accessTokenChecker() {
   if (
     !access_token ||
     access_token === undefined ||
-    access_token.toString() === '`' ||
+    access_token.toString() === '' ||
     access_token.toString() === 'undefined'
   ) {
     return false;
   }
-  return true
+  return true;
   // const now = 100;
   // const expiry = cookies().get('expiry');
   // return expiry ? now < Number(expiry.value) : false;
 }
-
-
 
 function addSeconds(date: Date, seconds: number) {
   date.setSeconds(date.getSeconds() + seconds);

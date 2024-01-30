@@ -11,7 +11,7 @@ const TopBar = async () => {
     <div className='bg-gradient-to-r from-brand-500 to-brand-500'>
       <div className='mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>
         {/* Geolocation #TODO #FIXME */}
-        <form className='hidden lg:block lg:flex-1'>
+        <form className='block lg:block lg:flex-1'>
           <div className='flex'>
             <label htmlFor='desktop-geolocation' className='sr-only'>
               Geolocation
