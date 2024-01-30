@@ -1,17 +1,17 @@
 import { HiEnvelope, HiEye, HiKey } from 'react-icons/hi2';
 import React, { ElementRef, useRef, useState } from 'react';
 
-import CustomToaster from '@/components/toasts/CustomToast';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { HiEyeOff } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 import axios from 'axios';
-import { error } from 'console';
-import { hashedPassword } from '@/lib/auth';
-import { sha256 } from 'js-sha256';
 import toast from 'react-hot-toast';
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+import Cookies from 'cookies';
+import { API_BASE_URL, TOKEN_NAME } from '@/constants/urls';
 
 type FormElements = {
   email: HTMLInputElement;
@@ -53,7 +53,7 @@ const LoginPage = () => {
     //   email: email.value,
     //   password: sha256.hmac(`some-key-here ${email.value}`, password.value!),
     // });
-  }
+  };
 
   return (
     <section className='bg-white'>
@@ -89,7 +89,10 @@ const LoginPage = () => {
               Let us take care of all your shopping needs!
             </p>
 
-            <form onSubmit={handleSubmit} className='mt-6 grid grid-cols-6 gap-6'>
+            <form
+              onSubmit={handleSubmit}
+              className='mt-6 grid grid-cols-6 gap-6'
+            >
               <div className='col-span-6'>
                 <label
                   htmlFor='username'
@@ -242,3 +245,23 @@ const SocialLogin = () => {
 };
 
 export default LoginPage;
+
+export const getServerSideProps = async ({
+  req,
+  res,
+}: {
+  req: NextApiRequest;
+  res: NextApiResponse;
+}) => {
+  // Fetch data from external API
+  const cookies = new Cookies(req, res);
+  const token = cookies.get(TOKEN_NAME);
+  if (!token || token === 'undefined' || token === undefined || token === ' ')
+    return { props: { token: null } };
+
+  console.log('Bearer Token:', token);
+
+  // console.log('data: ', details);
+  // Pass data to the page via props
+  return { props: { token } };
+};

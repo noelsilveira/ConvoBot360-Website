@@ -1,8 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { serialize } from 'cookie';
+import { TOKEN_NAME } from '@/constants/urls';
 
-import { serialize } from "cookie";
-
-export default async function (req: NextApiRequest, res: NextApiResponse) {
+async function signIn(req: NextApiRequest, res: NextApiResponse) {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -11,27 +11,33 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     password,
   };
 
-  var formdata = new FormData();
-formdata.append("username", username);
-formdata.append("password",password);
+  var formData = new FormData();
+  formData.append('username', username);
+  formData.append('password', password);
 
-  const response = await fetch("https://api-uat-ap-south-1-eks.sendbip.com/v1/estore/token", {
-    method: "POST",
-    // credential,
-    body: formdata,
-    redirect: 'follow',
-  });
+  const response = await fetch(
+    'https://api-uat-ap-south-1-eks.sendbip.com/v1/estore/token',
+    {
+      method: 'POST',
+      // credential,
+      body: formData,
+      redirect: 'follow',
+    }
+  );
 
   const data = await response.json();
   console.log('response: ', data);
 
-  res.setHeader("Set-Cookie", [
-    serialize("headers",  `Bearer ${data.access_token}`, {
+  res.setHeader('Set-Cookie', [
+    serialize(TOKEN_NAME, `Bearer ${data.access_token}`, {
       httpOnly: true,
-      // secure: true,
-      path: "/",
+      secure: process.env.NODE_ENV !== 'development',
+      maxAge: 3600,
+      sameSite: 'strict',
+      path: '/',
     }),
-   
   ]);
-  res.status(200).json({ message: "Successfully set cookie" });
+  res.status(200).json({ message: 'Cookie set successful!', success: true });
 }
+
+export default signIn;
