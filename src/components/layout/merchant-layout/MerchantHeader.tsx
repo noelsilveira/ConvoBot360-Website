@@ -19,7 +19,7 @@ const MerchantHeader = () => {
   const { merchant_id } = useParams();
 
   useEffect(() => {
-    const isHomepage = pathname.startsWith(`/merchant/${merchant_id}`);
+    const isHomepage = pathname === `/merchant/${merchant_id}`;
     console.log(pathname, isHomepage);
     isHomepage ? toggleHeader(true) : toggleHeader(false);
     isHomepage ? toggleOffersHero(true) : toggleOffersHero(false);

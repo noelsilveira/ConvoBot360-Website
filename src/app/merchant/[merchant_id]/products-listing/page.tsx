@@ -20,7 +20,7 @@ const breadcrumbs = [
 
 const ProductsListingPage = () => {
   return (
-    <MainLayout>
+    <>
       <div className='bg-white'>
         <div className='pb-8 pt-6 sm:pb-16'>
           <Breadcrumbs items={breadcrumbs} />
@@ -96,7 +96,7 @@ const ProductsListingPage = () => {
         </div>
         <TrendingProducts />
       </div>
-    </MainLayout>
+    </>
   );
 };
 
