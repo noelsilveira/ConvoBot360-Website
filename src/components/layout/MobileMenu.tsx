@@ -1,20 +1,14 @@
-'use server';
-'use server';
+'use client';
 import { mapLocation } from '@/constants/company';
 import { navigation } from '@/constants/navigation';
-import { useNavigationStore } from '@/store/navigationStore';
-import { Dialog, Tab, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { TbLocationFilled, TbLogout, TbLogout2 } from 'react-icons/tb';
 import MobileMenuWrapper from './MobileMenuWrapper';
 import { accessTokenChecker, handleLogout } from '@/app/actions/auth';
 import MobileMerchantRelatedMenu from './MobileMerchantRelatedMenu';
-import { MobileLogoutButton } from './LogoutButton';
 
-const MobileMenu = async () => {
-  const access_token = await accessTokenChecker();
-
+const MobileMenu = () => {
+  const { openMenu, toggleMenu } = useNavigationStore();
   return (
     <MobileMenuWrapper>
       {/* Links */}
@@ -78,8 +72,14 @@ const MobileMenu = async () => {
                 View profile
               </Link>
             </div>
-            {/* Mobile Logout button */}
-            <MobileLogoutButton />
+            <form action={handleLogout}>
+              <button
+                type='submit'
+                className='-m-2 inline-flex items-center gap-2 p-2 font-medium text-rose-500'
+              >
+                Logout <TbLogout />
+              </button>
+            </form>
           </>
         )}
       </div>
