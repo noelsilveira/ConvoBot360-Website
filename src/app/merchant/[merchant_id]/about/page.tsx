@@ -9,7 +9,7 @@ import React from 'react';
 
 const MerchantAboutPage = () => {
   return (
-    <MainLayout title='Merchant About | CB360'>
+    <>
       {/* Merchant hero section */}
       <MerchantHero />
       {/* Trusted partners */}
@@ -20,7 +20,7 @@ const MerchantAboutPage = () => {
       <MerchantStats />
       <MerchantTestimonials />
       <MerchantCTA />
-    </MainLayout>
+    </>
   );
 };
 

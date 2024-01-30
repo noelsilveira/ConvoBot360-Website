@@ -14,39 +14,32 @@ export type Merchant = {
   details: string;
 };
 
-const MerchantPage = ({
-  details,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const MerchantPage = () => {
   return (
-    <MerchantLayout>
-      <p>{details.details}</p>
-      {/* Category section */}
+    <>
       <CategorySideBySideSection />
-
       {/* Featured section */}
       <FeaturedSection />
-
       {/* Favorites section */}
       <FavoritesSection />
-
       {/* CTA section */}
       <CTASection />
-    </MerchantLayout>
+    </>
   );
 };
 
 export default MerchantPage;
 
-export const getServerSideProps = (async ({ params, query }) => {
-  // Fetch data from external API
-  const merchant_id = params;
-  const token = nextCookie(query);
-  console.log('Bearer Token:', token);
+// export const getServerSideProps = (async ({ params, query }) => {
+//   // Fetch data from external API
+//   const merchant_id = params;
+//   const token = nextCookie(query);
+//   console.log('Bearer Token:', token);
 
-  const res = await fetch(`${API_BASE_URL}/estore/home/${merchant_id}`);
-  const details: Merchant = await res.json();
-  console.log('merchant ID: ', merchant_id);
-  // console.log('data: ', details);
-  // Pass data to the page via props
-  return { props: { details } };
-}) satisfies GetServerSideProps<{ details: Merchant }>;
+//   const res = await fetch(`${API_BASE_URL}/estore/home/${merchant_id}`);
+//   const details: Merchant = await res.json();
+//   console.log('merchant ID: ', merchant_id);
+//   // console.log('data: ', details);
+//   // Pass data to the page via props
+//   return { props: { details } };
+// }) satisfies GetServerSideProps<{ details: Merchant }>;

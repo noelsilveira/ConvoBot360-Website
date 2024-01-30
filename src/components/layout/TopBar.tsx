@@ -116,14 +116,14 @@ const TopBar = () => {
 
         <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
           <Link
-            href='/sign-up'
+            href='/auth/sign-up'
             className='text-sm font-medium text-white hover:text-gray-100'
           >
             Create an account
           </Link>
           <span className='h-6 w-px bg-gray-100' aria-hidden='true' />
           <Link
-            href='/login'
+            href='/auth/login'
             className='text-sm font-medium text-white hover:text-gray-100'
           >
             Sign in

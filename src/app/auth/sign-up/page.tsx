@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -167,7 +169,10 @@ const SignUpPage = () => {
 
                 <p className='mt-4 text-sm text-gray-500 sm:mt-0'>
                   Already have an account?
-                  <Link href='/login' className='ml-2 text-brand-600 underline'>
+                  <Link
+                    href='/auth/login'
+                    className='ml-2 text-brand-600 underline'
+                  >
                     Log in
                   </Link>
                   .

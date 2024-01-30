@@ -22,17 +22,9 @@ const MerchantLayout = ({
   className,
   ...rest
 }: MerchantLayoutProps) => {
-  const { toggleHeader, toggleOffersHero } = useHeroStore();
-  const router = useRouter();
-
-  useEffect(() => {
-    const isHomepage = router.pathname === `/merchant/[merchantId]`;
-    isHomepage ? toggleHeader(true) : toggleHeader(false);
-    isHomepage ? toggleOffersHero(true) : toggleOffersHero(false);
-  }, [router]);
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>{title}</title>
         <meta name='description' content='E-commerce for the future' />
         <meta
@@ -49,7 +41,7 @@ const MerchantLayout = ({
           sizes='16x16 32x32'
         />
       </Head>
-      <Toaster position='bottom-center' />
+      <Toaster position='bottom-center' /> */}
 
       <div>
         {/* Mobile menu */}

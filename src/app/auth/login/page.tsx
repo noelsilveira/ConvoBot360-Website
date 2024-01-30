@@ -1,3 +1,5 @@
+'use client';
+
 import { HiEnvelope, HiEye, HiKey } from 'react-icons/hi2';
 import React, { ElementRef, useRef, useState } from 'react';
 
@@ -194,7 +196,7 @@ const LoginPage = () => {
                 <p className='mt-4 text-sm text-gray-500 sm:mt-0'>
                   New here?
                   <Link
-                    href='/sign-up'
+                    href='/auth/sign-up'
                     className='ml-2 text-brand-600 underline'
                   >
                     Sign up instead
@@ -246,22 +248,22 @@ const SocialLogin = () => {
 
 export default LoginPage;
 
-export const getServerSideProps = async ({
-  req,
-  res,
-}: {
-  req: NextApiRequest;
-  res: NextApiResponse;
-}) => {
-  // Fetch data from external API
-  const cookies = new Cookies(req, res);
-  const token = cookies.get(TOKEN_NAME);
-  if (!token || token === 'undefined' || token === undefined || token === ' ')
-    return { props: { token: null } };
+// export const getServerSideProps = async ({
+//   req,
+//   res,
+// }: {
+//   req: NextApiRequest;
+//   res: NextApiResponse;
+// }) => {
+//   // Fetch data from external API
+//   const cookies = new Cookies(req, res);
+//   const token = cookies.get(TOKEN_NAME);
+//   if (!token || token === 'undefined' || token === undefined || token === ' ')
+//     return { props: { token: null } };
 
-  console.log('Bearer Token:', token);
+//   console.log('Bearer Token:', token);
 
-  // console.log('data: ', details);
-  // Pass data to the page via props
-  return { props: { token } };
-};
+//   // console.log('data: ', details);
+//   // Pass data to the page via props
+//   return { props: { token } };
+// };

@@ -44,7 +44,8 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
   }, [productId, router]);
 
   return (
-    <MainLayout title={`Buy ${product.name} | CB360 - Ultimate shopping`}>
+    <>
+      {/* <MainLayout title={`Buy ${product.name} | CB360 - Ultimate shopping`}> */}
       <div className='bg-white'>
         <div className='pb-16 pt-6 sm:pb-24'>
           <Breadcrumbs items={breadcrumbs} />
@@ -289,20 +290,20 @@ const ProductDetailPage = ({ productId }: { productId: string }) => {
         <Perks />
         <Reviews />
       </div>
-    </MainLayout>
+    </>
   );
 };
 
 export default ProductDetailPage;
 
-export async function getServerSideProps(ctx: {
-  query: { productId: string };
-}) {
-  const { productId } = ctx.query;
+// export async function getServerSideProps(ctx: {
+//   query: { productId: string };
+// }) {
+//   const { productId } = ctx.query;
 
-  return {
-    props: {
-      productId,
-    },
-  };
-}
+//   return {
+//     props: {
+//       productId,
+//     },
+//   };
+// }
