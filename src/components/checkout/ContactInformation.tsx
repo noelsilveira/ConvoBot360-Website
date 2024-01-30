@@ -1,3 +1,4 @@
+'use client';
 import { cn } from '@/lib/utils';
 import { RadioGroup } from '@headlessui/react';
 import { CheckCircleIcon } from '@heroicons/react/20/solid';
