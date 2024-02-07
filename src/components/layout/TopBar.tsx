@@ -3,12 +3,12 @@
 import Link from 'next/link';
 import { LogoutButton } from './LogoutButton';
 import { TbLocationFilled } from 'react-icons/tb';
-import { accessTokenChecker } from '@/app/actions/auth';
+import { accessTokenChecker, handleLogout } from '@/app/actions/auth';
 import { mapLocation } from '@/constants/company';
+import { LogoutButton } from './LogoutButton';
 
 const TopBar = async () => {
   const access_token = await accessTokenChecker();
-
 
   return (
     <div className='bg-gradient-to-r from-brand-500 to-brand-500'>
