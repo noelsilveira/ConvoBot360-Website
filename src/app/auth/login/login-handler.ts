@@ -33,4 +33,17 @@ export const handleSigIn = async (
   //   email: email.value,
   //   password: sha256.hmac(`some-key-here ${email.value}`, password.value!),
   // });
+  try {
+    const response = await axios.post(
+      'https://api-uat-ap-south-1-eks.sendbip.com/v1/estore/token',
+      formData
+    );
+    console.log('response: ', response.data);
+  } catch (e: any) {
+    console.log(e);
+  }
+  // console.log({
+  //   email: email.value,
+  //   password: sha256.hmac(`some-key-here ${email.value}`, password.value!),
+  // });
 };

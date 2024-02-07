@@ -31,12 +31,12 @@ const MerchantPage = async ({
     }
   );
   const merchant_detail: MerchantDetailsType = await res.json();
-  // console.log('res_status: ', res.status);
+  console.log('res_status: ', res.status);
   // if (merchant_detail.status_code != 200) {
   //   redirect('/')
   // }
 
-  // console.log('M_D: ', merchant_detail);
+  console.log('M_D: ', merchant_detail);
 
   return (
     <>
