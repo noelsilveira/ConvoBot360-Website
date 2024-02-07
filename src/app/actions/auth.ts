@@ -1,9 +1,8 @@
 'use server';
 
 import { API_BASE_URL, TOKEN_NAME } from '@/constants/urls';
-import { cookies } from 'next/headers';
 
-// import { Checking } from '@/components/layout/TopBar';
+import { cookies } from 'next/headers';
 
 export type TokenType = {
   access_token: string;
@@ -75,6 +74,9 @@ export async function accessTokenChecker() {
     return false;
   }
   return true;
+  // const now = 100;
+  // const expiry = cookies().get('expiry');
+  // return expiry ? now < Number(expiry.value) : false;
 }
 
 function addSeconds(date: Date, seconds: number) {
