@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-export const handleSigIn = async (
+export const handleSigin = async (
   event: React.SyntheticEvent<HTMLFormElement>,
   { username, password }: { username: string; password: string }
 ) => {

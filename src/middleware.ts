@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { TOKEN_NAME } from '@/constants/urls';
 
 export function middleware(request: NextRequest) {
-  //    console.log('A_T: ',request.cookies.has(TOKEN_NAME));
+  console.log('A_T: ', request.cookies.has(TOKEN_NAME));
   let res;
   if (!request.cookies.has(TOKEN_NAME)) {
     res = deleteToken();
@@ -18,9 +18,9 @@ export function middleware(request: NextRequest) {
     res = deleteToken();
   }
 
-  // console.log(current_date,' ',expiry_date);
+  console.log(current_date, ' ', expiry_date);
 
-  //  console.log(current_date>expiry_date);
+  console.log(current_date > expiry_date);
 
   return res;
 }
