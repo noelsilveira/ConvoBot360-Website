@@ -20,7 +20,6 @@ const MerchantPage = async ({
 }: {
   params: { merchant_id: string };
 }) => {
-
   const res = await fetch(
     `${API_BASE_URL}/estore/merchant-details/${params.merchant_id}`,
     {
