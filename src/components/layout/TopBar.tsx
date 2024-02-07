@@ -2,7 +2,8 @@
 import { mapLocation } from '@/constants/company';
 import Link from 'next/link';
 import { TbLocationFilled } from 'react-icons/tb';
-import { accessTokenChecker, handleLogout } from '@/app/actions/auth';
+import { accessTokenChecker } from '@/app/actions/auth';
+import { LogoutButton } from './LogoutButton';
 
 const TopBar = async () => {
   const access_token = await accessTokenChecker();
@@ -60,14 +61,8 @@ const TopBar = async () => {
                 View profile
               </Link>
               <span className='h-6 w-px bg-gray-100' aria-hidden='true' />
-              <form action={handleLogout}>
-                <button
-                  type='submit'
-                  className='text-sm font-medium text-white hover:text-gray-100'
-                >
-                  Logout
-                </button>
-              </form>
+              {/* Logout Button */}
+              <LogoutButton />
             </>
           )}
         </div>

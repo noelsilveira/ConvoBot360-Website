@@ -1,7 +1,6 @@
 'use server';
 
 import { API_BASE_URL, TOKEN_NAME } from '@/constants/urls';
-
 import { cookies } from 'next/headers';
 
 export type TokenType = {
@@ -16,6 +15,7 @@ export async function handleSignInForm(formData: FormData) {
     // credential,
     body: formData,
     redirect: 'follow',
+    next: { tags: ['token'] },
   });
 
   const data: TokenType = await response.json();
@@ -58,6 +58,8 @@ export async function handleLogout() {
   cookies().delete(TOKEN_NAME);
   cookies().delete('expiry');
   cookies().delete('token_type');
+  const logoutStatus = await accessTokenChecker();
+  return !logoutStatus;
 }
 
 export async function accessTokenChecker() {
@@ -71,9 +73,6 @@ export async function accessTokenChecker() {
     return false;
   }
   return true;
-  // const now = 100;
-  // const expiry = cookies().get('expiry');
-  // return expiry ? now < Number(expiry.value) : false;
 }
 
 function addSeconds(date: Date, seconds: number) {

@@ -6,10 +6,10 @@ import React, { useState } from 'react';
 import { HiEyeOff } from 'react-icons/hi';
 import Link from 'next/link';
 import { handleSignInForm } from '@/app/actions/auth';
+import { useFormStatus } from 'react-dom';
+import { cn } from '@/lib/utils';
 
 const LoginForm = () => {
-  const [loading, setLoading] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -91,12 +91,8 @@ const LoginForm = () => {
         </div>
       </div>
       <div className='col-span-6 sm:flex sm:items-center sm:gap-4'>
-        <button
-          type='submit'
-          className='inline-block w-max min-w-56 shrink-0 rounded-md border border-brand-500 bg-brand-500 px-12 py-3 text-sm font-semibold text-brand-50 transition hover:bg-brand-600 hover:text-white focus:outline-none focus:ring active:text-brand-600'
-        >
-          Sign in
-        </button>
+        {/* Sign in Button */}
+        <SignInButton />
 
         <p className='mt-4 text-sm text-gray-500 sm:mt-0'>
           New here?
@@ -110,3 +106,20 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+const SignInButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type='submit'
+      disabled={pending}
+      className={cn(
+        'inline-block w-max min-w-56 shrink-0 rounded-md border border-brand-500 bg-brand-500 px-12 py-3 text-sm font-semibold text-brand-50 transition hover:bg-brand-600 hover:text-white focus:outline-none focus:ring active:text-brand-600',
+        pending ? 'animate-pulse opacity-75' : ''
+      )}
+    >
+      {pending ? <span>Signing in...</span> : <span>Sign in</span>}
+    </button>
+  );
+};
