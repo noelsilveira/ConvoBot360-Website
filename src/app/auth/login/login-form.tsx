@@ -2,6 +2,7 @@
 
 import { HiEnvelope, HiEye, HiKey } from 'react-icons/hi2';
 import React, { useState } from 'react';
+
 import { HiEyeOff } from 'react-icons/hi';
 import Link from 'next/link';
 import { handleSignInForm } from '@/app/actions/auth';
@@ -10,8 +11,6 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
   return (
     <form action={handleSignInForm} className='mt-6 grid grid-cols-6 gap-6'>
@@ -27,7 +26,6 @@ const LoginForm = () => {
             <HiEnvelope className='h-5 w-5 text-gray-300' aria-hidden='true' />
           </div>
           <input
-            onChange={(e) => setUsername(e.target.value)}
             type='username'
             name='username'
             id='username'
@@ -49,7 +47,6 @@ const LoginForm = () => {
             <HiKey className='h-5 w-5 text-gray-300' aria-hidden='true' />
           </div>
           <input
-            onChange={(e) => setPassword(e.target.value)}
             type={!showPassword ? 'password' : 'text'}
             name='password'
             id='password'

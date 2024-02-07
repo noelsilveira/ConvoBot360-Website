@@ -1,6 +1,8 @@
 'use server';
-import { cookies } from 'next/headers';
+
 import { API_BASE_URL, TOKEN_NAME } from '@/constants/urls';
+
+import { cookies } from 'next/headers';
 
 export type TokenType = {
   access_token: string;
@@ -21,6 +23,13 @@ export async function handleSignInForm(formData: FormData) {
   if (!data) {
     return 'No data from backend';
   }
+
+  let date = new Date().toString();
+  const d = new Date(date);
+  const expire_date = addSeconds(d, data.expiry).toString();
+
+  const expiry_time = new Date(expire_date).getTime()
+
   cookies().set({
     name: TOKEN_NAME,
     value: data.access_token,
@@ -30,7 +39,8 @@ export async function handleSignInForm(formData: FormData) {
   });
   cookies().set({
     name: 'expiry',
-    value: data.expiry.toString(),
+    value: expiry_time.toString(),
+    // value: data.expiry.toString(),
     httpOnly: true,
     secure: true,
     path: '/',
@@ -60,7 +70,15 @@ export async function accessTokenChecker() {
   ) {
     return false;
   }
-  const now = 100;
-  const expiry = cookies().get('expiry');
-  return expiry ? now < Number(expiry.value) : false;
+  return true
+  // const now = 100;
+  // const expiry = cookies().get('expiry');
+  // return expiry ? now < Number(expiry.value) : false;
+}
+
+
+
+function addSeconds(date: Date, seconds: number) {
+  date.setSeconds(date.getSeconds() + seconds);
+  return date;
 }

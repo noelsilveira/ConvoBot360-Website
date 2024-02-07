@@ -18,28 +18,13 @@ export const handleSigin = async (event: React.SyntheticEvent<HTMLFormElement>, 
     formData.append('password', password);
 
     try {
-        const response = await axios.post('https://api-uat-ap-south-1-eks.sendbip.com/v1/estore/token', formData,
-            // { headers: { redirect: 'follow' } }
+        const response = await axios.post('https://api-uat-ap-south-1-eks.sendbip.com/v1/estore/token', formData
         );
-        // const response = await fetch(
-        //     'https://api-uat-ap-south-1-eks.sendbip.com/v1/estore/token',
-        //     {``
-        //       method: 'POST',
-        //       // credential,
-        //       body: data,
-        //       redirect: 'follow',
-        //     }
-        //   );
-
-        // const d = await response.json();
         console.log('response: ', response.data);
-        // toast.success('Successfully Login');
-        // router.push('/organiser/home');
-        // setLoading(false);
+        
     } catch (e: any) {
         console.log(e);
-        // toast.error('Cannot Login');
-        // setLoading(false);
+        
     }
     // console.log({
     //   email: email.value,
