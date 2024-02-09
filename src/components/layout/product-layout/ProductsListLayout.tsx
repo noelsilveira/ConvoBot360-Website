@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
@@ -91,9 +91,9 @@ const ProductsListLayout = ({
             <button
               type='button'
               className='-m-2 ml-4 inline-flex items-center justify-center gap-1 p-2 text-sm font-medium text-gray-700 hover:text-gray-900 sm:ml-6 lg:hidden'
-            // onClick={() => setMobileFiltersOpen(true)}
+              // onClick={() => setMobileFiltersOpen(true)}
             >
-              <span>Filterssss</span>
+              <span>Filters</span>
               <FunnelIcon
                 className='h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-gray-500'
                 aria-hidden='true'

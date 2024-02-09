@@ -1,24 +1,20 @@
 'use server';
 
-import { accessTokenChecker, handleLogout } from '@/app/actions/auth';
-
 import Link from 'next/link';
+import { LogoutButton } from './LogoutButton';
 import { TbLocationFilled } from 'react-icons/tb';
-import { headers } from 'next/headers';
+import { accessTokenChecker } from '@/app/actions/auth';
 import { mapLocation } from '@/constants/company';
 
 const TopBar = async () => {
   const access_token = await accessTokenChecker();
-  const headersList = headers()
-  const fullUrl = headersList.get('referer') || "";
 
-  console.log('f_l:', headersList);
 
   return (
     <div className='bg-gradient-to-r from-brand-500 to-brand-500'>
       <div className='mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>
         {/* Geolocation #TODO #FIXME */}
-        <form className='hidden lg:block lg:flex-1'>
+        <form className='block lg:block lg:flex-1'>
           <div className='flex'>
             <label htmlFor='desktop-geolocation' className='sr-only'>
               Geolocation
@@ -67,14 +63,8 @@ const TopBar = async () => {
                 View profile
               </Link>
               <span className='h-6 w-px bg-gray-100' aria-hidden='true' />
-              <form action={handleLogout}>
-                <button
-                  type='submit'
-                  className='text-sm font-medium text-white hover:text-gray-100'
-                >
-                  Logout
-                </button>
-              </form>
+              {/* Logout Button */}
+              <LogoutButton />
             </>
           )}
         </div>

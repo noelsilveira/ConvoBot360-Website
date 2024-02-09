@@ -12,7 +12,7 @@ import React from 'react';
 
 const HomePage = () => {
   return (
-    <MainLayout title='Home - CB360'>
+    <MainLayout>
       <HomeHeroSection />
       {/* Category section */}
       {/* <TrustedPartners /> */}
