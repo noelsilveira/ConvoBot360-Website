@@ -7,27 +7,30 @@ import ProductsListLayout from '@/components/layout/product-layout/ProductsListL
 import { ProductsType } from '@/types/products';
 import React from 'react';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
+import { cookies } from 'next/headers'
 
 const ProductsListingPage = async ({
   params,
 }: {
   params: { merchant_id: string };
 }) => {
+  const cookieStore = cookies()
+  const token = cookieStore.get('access_token')
+
   var myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
-  let raw = JSON.stringify({
-    filters: {
-      title: '',
-      group_id: [],
-    },
-    sort: {
-      price: 'asc | desc',
-      title: 'asc | desc',
-    },
+  myHeaders.append("Authorization", `Bearer ${token}`)
+  var raw = JSON.stringify({
+    "branch_id": "95afc684-7ddf-491b-ae9c-226bd5e8932f",
+    "filters": {},
+    "sort": {
+      "price": "asc",
+      "title": "desc"
+    }
   });
 
   const res = await fetch(
-    API_BASE_URL + `/estore/catalog/${params.merchant_id}`,
+    API_BASE_URL + `/estore/catalog/${1}/${20}`,
     {
       method: 'POST',
       redirect: 'follow',
@@ -38,7 +41,10 @@ const ProductsListingPage = async ({
       },
     }
   );
-  const products: ProductsType[] = await res.json();
+
+  const pro_obj = await res.json()
+  const products: ProductsType[] = pro_obj.detail
+  console.log('products: ', products);
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
   const breadcrumbs = [
     {
@@ -72,7 +78,7 @@ const ProductsListingPage = async ({
                   >
                     <div className='aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75'>
                       <Image
-                        src={product.image_link}
+                        src={product.image_link == null ? '' : product.image_link}
                         alt={product.title}
                         height={500}
                         width={250}

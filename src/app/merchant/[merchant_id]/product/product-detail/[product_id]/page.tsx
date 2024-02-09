@@ -1,13 +1,13 @@
-import React from 'react';
 import { API_BASE_URL } from '@/constants/urls';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
+import Image from 'next/image';
+import Link from 'next/link';
 import Perks from '@/components/product/Perks';
 import { ProductsType } from '@/types/products';
+import React from 'react';
 import Reviews from '@/components/product/Reviews';
 import { cn } from '@/lib/utils';
 import { policies } from '@/constants/products';
-import Image from 'next/image';
-import Link from 'next/link';
 
 const ProductDetailPage = async ({
   params,
@@ -62,9 +62,9 @@ const ProductDetailPage = async ({
                     <p className='text-sm text-neutral-400'>
                       {product.google_product_category}
                     </p>
-                    <span className='w-fit rounded bg-neutral-200 px-2 py-1 text-xs'>
+                    {/* <span className='w-fit rounded bg-neutral-200 px-2 py-1 text-xs'>
                       {product.custom_label_0}
-                    </span>
+                    </span> */}
                   </div>
                   <p className='text-xl font-medium text-gray-900'>
                     {`${product.currency}${' '}${product.price}`}
