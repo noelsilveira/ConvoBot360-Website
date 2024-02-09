@@ -4,6 +4,9 @@ import { API_BASE_URL, TOKEN_NAME } from '@/constants/urls';
 
 import { cookies } from 'next/headers';
 
+// import { Checking } from '@/components/layout/TopBar';
+
+
 export type TokenType = {
   access_token: string;
   expiry: number;
@@ -58,6 +61,7 @@ export async function handleLogout() {
   cookies().delete(TOKEN_NAME);
   cookies().delete('expiry');
   cookies().delete('token_type');
+  // const status = Checking()
 }
 
 export async function accessTokenChecker() {
