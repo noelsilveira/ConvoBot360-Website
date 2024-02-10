@@ -15,11 +15,11 @@ import { cn } from '@/lib/utils';
 
 const ProductsListLayout = ({
   children,
-  title = 'New Arrivals',
+  title,
   description,
 }: {
   children: React.ReactNode;
-  title: string;
+  title?: string;
   description?: string;
 }) => {
   return (
@@ -28,12 +28,14 @@ const ProductsListLayout = ({
       <MobileFilterMenu />
 
       <main className='mx-auto mt-8 max-w-7xl px-4 sm:px-6 lg:px-8'>
-        <div className='pb-2'>
-          <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
-            {title}
-          </h1>
-          <p className='mt-4 text-base text-gray-500'>{description}</p>
-        </div>
+        {title && (
+          <div className='pb-2'>
+            <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
+              {title}
+            </h1>
+            <p className='mt-4 text-base text-gray-500'>{description}</p>
+          </div>
+        )}
         <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-4'>
           <div className='flex items-center'>
             <Menu as='div' className='relative inline-block text-left'>

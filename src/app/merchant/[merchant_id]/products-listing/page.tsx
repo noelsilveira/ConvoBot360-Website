@@ -7,43 +7,42 @@ import ProductsListLayout from '@/components/layout/product-layout/ProductsListL
 import { ProductsType } from '@/types/products';
 import React from 'react';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
-import { cookies } from 'next/headers'
+import { cookies } from 'next/headers';
+import ProductListingImage from './ProductListingImage';
 
 const ProductsListingPage = async ({
   params,
 }: {
   params: { merchant_id: string };
 }) => {
-  const cookieStore = cookies()
-  const token = cookieStore.get('access_token')
+  const cookieStore = cookies();
+  const token = cookieStore.get('access_token');
 
   var myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append("Authorization", `Bearer ${token}`)
+  myHeaders.append('Authorization', `Bearer ${token}`);
   var raw = JSON.stringify({
-    "branch_id": "95afc684-7ddf-491b-ae9c-226bd5e8932f",
-    "filters": {},
-    "sort": {
-      "price": "asc",
-      "title": "desc"
-    }
+    branch_id: '95afc684-7ddf-491b-ae9c-226bd5e8932f',
+    filters: {},
+    sort: {
+      price: 'asc',
+      title: 'desc',
+    },
   });
 
-  const res = await fetch(
-    API_BASE_URL + `/estore/catalog/${1}/${20}`,
-    {
-      method: 'POST',
-      redirect: 'follow',
-      body: raw,
-      headers: myHeaders,
-      next: {
-        revalidate: 5, //cache data for 5 second
-      },
-    }
-  );
+  const res = await fetch(API_BASE_URL + `/estore/catalog/${1}/${20}`, {
+    method: 'POST',
+    redirect: 'follow',
+    body: raw,
+    headers: myHeaders,
+    next: {
+      tags: ['estore-catalog'],
+      revalidate: 40, //cache data for every 40 seconds
+    },
+  });
 
-  const pro_obj = await res.json()
-  const products: ProductsType[] = pro_obj.detail
+  const pro_obj = await res.json();
+  const products: ProductsType[] = pro_obj.detail;
   console.log('products: ', products);
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
   const breadcrumbs = [
@@ -64,10 +63,7 @@ const ProductsListingPage = async ({
           <div>
             <h2 className='sr-only'>Products</h2>
 
-            <ProductsListLayout
-              title='New Arrivals🔥'
-              description='Checkout out the latest release of Tees, new and improved with four openings!'
-            >
+            <ProductsListLayout>
               <div className='-mx-px grid grid-cols-2 border-l border-t border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4'>
                 {products.map((product) => (
                   // Single product item view
@@ -77,13 +73,8 @@ const ProductsListingPage = async ({
                     className='group relative border-b border-r border-gray-200 p-4 sm:p-4'
                   >
                     <div className='aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75'>
-                      <Image
-                        src={product.image_link == null ? '' : product.image_link}
-                        alt={product.title}
-                        height={500}
-                        width={250}
-                        className='h-40 w-full object-cover object-center sm:h-48'
-                      />
+                      {/* Product image extracted to client component  */}
+                      <ProductListingImage />
                     </div>
                     <div className='pb-0 pt-4 text-start sm:pb-2'>
                       <h3 className='line-clamp-2 text-sm font-medium text-gray-900'>
@@ -121,7 +112,7 @@ const ProductsListingPage = async ({
                         </p>
                       </div> */}
                       <p className='mt-2 text-sm font-semibold text-gray-900'>
-                        {product.price}
+                        {product.price} {product.currency}
                       </p>
                     </div>
                   </Link>
