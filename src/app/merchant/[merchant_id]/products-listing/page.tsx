@@ -3,48 +3,27 @@ import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
 import Pagination from '@/components/product/Pagination';
+import ProductsList from './ProductsList';
 import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
 import { ProductsType } from '@/types/products';
 import React from 'react';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
 import { cookies } from 'next/headers'
+import { getProducts } from './fetcher';
+import { setHeaders } from '@/app/auth/set-headers';
 
 const ProductsListingPage = async ({
   params,
+  // searchParams
 }: {
   params: { merchant_id: string };
+  // searchParams: { [key: string]: string | string[] | undefined }
 }) => {
-  const cookieStore = cookies()
-  const token = cookieStore.get('access_token')
 
-  var myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append("Authorization", `Bearer ${token}`)
-  var raw = JSON.stringify({
-    "branch_id": "95afc684-7ddf-491b-ae9c-226bd5e8932f",
-    "filters": {},
-    "sort": {
-      "price": "asc",
-      "title": "desc"
-    }
-  });
+  // const products: ProductsType[] = await getProducts({ searchParams })
 
-  const res = await fetch(
-    API_BASE_URL + `/estore/catalog/${1}/${20}`,
-    {
-      method: 'POST',
-      redirect: 'follow',
-      body: raw,
-      headers: myHeaders,
-      next: {
-        revalidate: 5, //cache data for 5 second
-      },
-    }
-  );
 
-  const pro_obj = await res.json()
-  const products: ProductsType[] = pro_obj.detail
-  console.log('products: ', products);
+  // console.log('products: ', products);
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
   const breadcrumbs = [
     {
@@ -65,68 +44,9 @@ const ProductsListingPage = async ({
             <h2 className='sr-only'>Products</h2>
 
             <ProductsListLayout
-              title='New Arrivals🔥'
-              description='Checkout out the latest release of Tees, new and improved with four openings!'
             >
-              <div className='-mx-px grid grid-cols-2 border-l border-t border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4'>
-                {products.map((product) => (
-                  // Single product item view
-                  <Link
-                    href={`/merchant/${params.merchant_id}/product/product-detail/${product.id}`}
-                    key={product.id}
-                    className='group relative border-b border-r border-gray-200 p-4 sm:p-4'
-                  >
-                    <div className='aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75'>
-                      <Image
-                        src={product.image_link == null ? '' : product.image_link}
-                        alt={product.title}
-                        height={500}
-                        width={250}
-                        className='h-40 w-full object-cover object-center sm:h-48'
-                      />
-                    </div>
-                    <div className='pb-0 pt-4 text-start sm:pb-2'>
-                      <h3 className='line-clamp-2 text-sm font-medium text-gray-900'>
-                        <span>
-                          <span
-                            aria-hidden='true'
-                            className='absolute inset-0'
-                          />
-                          {product.title}
-                        </span>
-                      </h3>
-                      <p className='line-clamp-1 text-xs text-gray-500'>
-                        {product.description}
-                      </p>
-                      {/* <div className='mt-2 flex flex-col items-start justify-center'>
-                        <p className='sr-only'>
-                          {product.rating} out of 5 stars
-                        </p>
-                        <div className='flex items-center'>
-                          {[0, 1, 2, 3, 4].map((rating) => (
-                            <StarIcon
-                              key={rating}
-                              className={cn(
-                                product.rating > rating
-                                  ? 'text-yellow-400'
-                                  : 'text-gray-200',
-                                'h-4 w-4 flex-shrink-0'
-                              )}
-                              aria-hidden='true'
-                            />
-                          ))}
-                        </div>
-                        <p className='mt-1 text-xs text-gray-500'>
-                          {product.reviewCount} reviews
-                        </p>
-                      </div> */}
-                      <p className='mt-2 text-sm font-semibold text-gray-900'>
-                        {product.price}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              {/* Products lists */}
+              <ProductsList />
               <Pagination />
             </ProductsListLayout>
           </div>

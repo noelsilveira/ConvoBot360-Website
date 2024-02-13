@@ -1,4 +1,5 @@
 import { API_BASE_URL } from '@/constants/urls';
+import AddToCart from './AddToCart';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,14 +20,13 @@ const ProductDetailPage = async ({
     {
       method: 'POST',
       redirect: 'follow',
-      // body: raw,
-      // headers: myHeaders,
       next: {
         revalidate: 5, //cache data for 5 second
       },
     }
   );
   const product: ProductsType = await res.json();
+  console.log('detail: ', product);
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
 
   const breadcrumbs = [
@@ -120,7 +120,7 @@ const ProductDetailPage = async ({
                     height={800}
                     width={800}
                     // key={image.id}
-                    src={product.image_link}
+                    src={product.image_link == null ? '' : product.image_link}
                     alt={product.title}
                     className={cn(
                       'h-full max-h-[60vh] w-full rounded-lg object-cover lg:col-span-2 lg:row-span-2 lg:block'
@@ -229,16 +229,7 @@ const ProductDetailPage = async ({
                     </RadioGroup> */}
                   </div>
 
-                  <button
-                    // type='submit'
-                    // href={`/checkout/cart`}
-                    // onClick={() => {
-                    //   addCartItem(product);
-                    // }}
-                    className='mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-brand-500 px-8 py-3 text-base font-medium text-white duration-200 ease-out hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2'
-                  >
-                    Add to cart
-                  </button>
+                  <AddToCart/>
                 </form>
 
                 {/* Product details */}

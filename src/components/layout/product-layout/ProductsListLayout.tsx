@@ -7,33 +7,39 @@ import {
   MinusIcon,
   Squares2X2Icon,
 } from '@heroicons/react/24/outline';
-import React, { Fragment } from 'react';
+import React, { FormEvent, Fragment } from 'react';
 import { filters, sortOptions, subCategories } from '@/constants/filters';
+import { getCategories, getProducts } from '@/app/merchant/[merchant_id]/products-listing/fetcher';
 
+import { CategoryType } from '@/types/products';
 import MobileFilterMenu from './MobileFilterMenu';
 import { cn } from '@/lib/utils';
+import { productFilterUpdate } from '@/app/actions/product';
+import useSwr from 'swr'
 
 const ProductsListLayout = ({
   children,
-  title = 'New Arrivals',
-  description,
+
 }: {
   children: React.ReactNode;
-  title: string;
-  description?: string;
 }) => {
+
+  const { data, isLoading, error } = useSwr('categories', () => getCategories())
+  const categories: CategoryType[] = data
+
+  // console.log('cat: ', data);
   return (
     <div>
       {/* Mobile filter dialog */}
       <MobileFilterMenu />
 
       <main className='mx-auto mt-8 max-w-7xl px-4 sm:px-6 lg:px-8'>
-        <div className='pb-2'>
+        {/* <div className='pb-2'>
           <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
             {title}
           </h1>
           <p className='mt-4 text-base text-gray-500'>{description}</p>
-        </div>
+        </div> */}
         <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-4'>
           <div className='flex items-center'>
             <Menu as='div' className='relative inline-block text-left'>
@@ -91,7 +97,7 @@ const ProductsListLayout = ({
             <button
               type='button'
               className='-m-2 ml-4 inline-flex items-center justify-center gap-1 p-2 text-sm font-medium text-gray-700 hover:text-gray-900 sm:ml-6 lg:hidden'
-              // onClick={() => setMobileFiltersOpen(true)}
+            // onClick={() => setMobileFiltersOpen(true)}
             >
               <span>Filters</span>
               <FunnelIcon
@@ -115,12 +121,19 @@ const ProductsListLayout = ({
                 <ul
                   role='list'
                   className='space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900'
-                >
-                  {subCategories.map((category) => (
-                    <li key={category.name}>
-                      <a href={category.href}>{category.name}</a>
-                    </li>
-                  ))}
+                >{isLoading ? <p>Loading categories...</p> :
+                  categories && categories.map((category) => (
+                    <form key={category.title} onSubmit={(e: FormEvent) => {
+                      e.preventDefault();
+                      productFilterUpdate({ filter: category.title })
+                    }}>
+                      <input hidden name='filter' value={category.title} />
+                      <button type='submit'>{category.title}</button>
+                      {/* <p className='text-xs text-gray-500'>{category.description}</p> */}
+
+                    </form>
+                  ))
+                  }
                 </ul>
 
                 {filters.map((section) => (
