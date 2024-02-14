@@ -10,7 +10,14 @@ import { ProductsType } from '@/types/products'
 import { getProducts } from './fetcher'
 
 const ProductsList = async (
-  { filter, params, productList }: { filter: string | null, params: { merchant_id: string }, productList: ProductsType[] }
+  {
+    // filter, 
+    params,
+    productList }: {
+      // filter: string | null, 
+      params: { merchant_id: string },
+      productList: ProductsType[]
+    }
 ) => {
   const { products, setProducts } = ProductStore()
 

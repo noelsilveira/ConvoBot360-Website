@@ -3,15 +3,12 @@ import React, { Suspense } from 'react';
 import { getCategories, getProducts } from './fetcher';
 
 import Pagination from '@/components/product/Pagination';
+import { ProductListingParamsType } from '../test-products-listing/page';
 import ProductsList from './ProductsList';
 import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
-import { ProductsType } from '@/types/products';
-import React from 'react';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
 import { cookies } from 'next/headers';
-import { getProducts } from './fetcher';
 import { setHeaders } from '@/app/auth/set-headers';
-import { ProductListingParamsType } from '../test-products-listing/page';
 
 const ProductsListingPage = async ({
   params,
@@ -41,9 +38,9 @@ const ProductsListingPage = async ({
           <div>
             <h2 className='sr-only'>Products</h2>
 
-            <ProductsListLayout params={params}>
+            <ProductsListLayout categories={categories} params={params}>
               {/* Products lists */}
-              <ProductsList />
+              <ProductsList params={params} productList={products} />
               <Pagination />
             </ProductsListLayout>
           </div>

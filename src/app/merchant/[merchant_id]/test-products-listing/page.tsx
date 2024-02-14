@@ -1,13 +1,14 @@
-import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
-import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
-import React from 'react';
-import ProductsList from '../products-listing/ProductsList';
-import Pagination from '@/components/product/Pagination';
-import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
 import { API_BASE_URL } from '@/constants/urls';
+import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
+import Pagination from '@/components/product/Pagination';
+import ProductsList from '../products-listing/ProductsList';
+import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
 import { ProductsType } from '@/types/products';
+import React from 'react';
 import RefinementList from '@/components/product/RefinementList';
 import { SortOptions } from '@/components/product/SortProducts';
+import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
+import { products } from '@/constants/products';
 
 export type ProductListingParamsType = {
   params: {
@@ -34,7 +35,8 @@ const getProducts = async ({ params }: ProductListingParamsType) => {
 };
 
 const TestProductListingPage = async ({ params }: ProductListingParamsType) => {
-  const product: ProductsType = await getProducts({ params });
+  const products: ProductsType = await getProducts({ params });
+
   // console.log('detail: ', product);
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
   const breadcrumbs = [
@@ -61,7 +63,7 @@ const TestProductListingPage = async ({ params }: ProductListingParamsType) => {
             <h2 className='sr-only'>Products</h2>
             <ProductsListLayout params={params}>
               {/* Products lists */}
-              <ProductsList />
+              <ProductsList params={params} productList={products} />
               <Pagination />
             </ProductsListLayout>
           </div>
