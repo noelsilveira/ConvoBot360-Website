@@ -3,9 +3,8 @@
 import Link from 'next/link';
 import { LogoutButton } from './LogoutButton';
 import { TbLocationFilled } from 'react-icons/tb';
-import { accessTokenChecker, handleLogout } from '@/app/actions/auth';
+import { accessTokenChecker } from '@/app/actions/auth';
 import { mapLocation } from '@/constants/company';
-import { LogoutButton } from './LogoutButton';
 
 const TopBar = async () => {
   const access_token = await accessTokenChecker();
