@@ -8,20 +8,16 @@ import ProductsListLayout from '@/components/layout/product-layout/ProductsListL
 import { ProductsType } from '@/types/products';
 import React from 'react';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
-import { cookies } from 'next/headers'
+import { cookies } from 'next/headers';
 import { getProducts } from './fetcher';
 import { setHeaders } from '@/app/auth/set-headers';
+import { ProductListingParamsType } from '../test-products-listing/page';
 
 const ProductsListingPage = async ({
   params,
   // searchParams
-}: {
-  params: { merchant_id: string };
-  // searchParams: { [key: string]: string | string[] | undefined }
-}) => {
-
+}: ProductListingParamsType) => {
   // const products: ProductsType[] = await getProducts({ searchParams })
-
 
   // console.log('products: ', products);
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
@@ -43,8 +39,7 @@ const ProductsListingPage = async ({
           <div>
             <h2 className='sr-only'>Products</h2>
 
-            <ProductsListLayout
-            >
+            <ProductsListLayout params={params}>
               {/* Products lists */}
               <ProductsList />
               <Pagination />

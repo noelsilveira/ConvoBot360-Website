@@ -56,7 +56,7 @@ const ProductDetailPage = async ({
               <div className='lg:col-span-5 lg:col-start-8'>
                 <div className='flex justify-between'>
                   <div className='flex flex-col justify-start gap-2'>
-                    <h1 className='text-2xl font-medium text-gray-900'>
+                    <h1 className='text-2xl font-medium capitalize text-gray-900'>
                       {product.title}
                     </h1>
                     <p className='text-sm text-neutral-400'>
@@ -229,7 +229,7 @@ const ProductDetailPage = async ({
                     </RadioGroup> */}
                   </div>
 
-                  <AddToCart/>
+                  <AddToCart />
                 </form>
 
                 {/* Product details */}

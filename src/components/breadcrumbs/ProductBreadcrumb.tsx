@@ -54,7 +54,7 @@ const ProductBreadcrumb = ({
                 <Link
                   href={href}
                   className={cn(
-                    'mr-4 text-sm font-medium text-gray-900',
+                    'mr-4 text-sm font-medium capitalize text-gray-900',
                     pathnames.length - 1 !== index &&
                       'text-gray-500 hover:text-gray-600'
                   )}

@@ -9,83 +9,38 @@ import {
 } from '@heroicons/react/24/outline';
 import React, { FormEvent, Fragment } from 'react';
 import { filters, sortOptions, subCategories } from '@/constants/filters';
-import { getCategories, getProducts } from '@/app/merchant/[merchant_id]/products-listing/fetcher';
+import {
+  getCategories,
+  getProducts,
+} from '@/app/merchant/[merchant_id]/products-listing/fetcher';
 
 import { CategoryType } from '@/types/products';
 import MobileFilterMenu from './MobileFilterMenu';
 import { cn } from '@/lib/utils';
 import { productFilterUpdate } from '@/app/actions/product';
-import useSwr from 'swr'
+import useSwr from 'swr';
+import SortFilterMenu from './SortFilterMenu';
+import { ProductListingParamsType } from '@/app/merchant/[merchant_id]/test-products-listing/page';
 
 const ProductsListLayout = ({
   children,
+  params,
+}: ProductListingParamsType & { children: React.ReactNode }) => {
+  const { data, isLoading, error } = useSwr('categories', () =>
+    getCategories()
+  );
+  const categories: CategoryType[] = data;
 
-}: {
-  children: React.ReactNode;
-}) => {
-
-  const { data, isLoading, error } = useSwr('categories', () => getCategories())
-  const categories: CategoryType[] = data
-
-  // console.log('cat: ', data);
   return (
     <div>
       {/* Mobile filter dialog */}
       <MobileFilterMenu />
 
       <main className='mx-auto mt-8 max-w-7xl px-4 sm:px-6 lg:px-8'>
-        {/* <div className='pb-2'>
-          <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
-            {title}
-          </h1>
-          <p className='mt-4 text-base text-gray-500'>{description}</p>
-        </div> */}
         <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-4'>
           <div className='flex items-center'>
-            <Menu as='div' className='relative inline-block text-left'>
-              <div>
-                <Menu.Button className='group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900'>
-                  Sort
-                  <ChevronDownIcon
-                    className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500'
-                    aria-hidden='true'
-                  />
-                </Menu.Button>
-              </div>
-
-              <Transition
-                as={Fragment}
-                enter='transition ease-out duration-100'
-                enterFrom='transform opacity-0 scale-95'
-                enterTo='transform opacity-100 scale-100'
-                leave='transition ease-in duration-75'
-                leaveFrom='transform opacity-100 scale-100'
-                leaveTo='transform opacity-0 scale-95'
-              >
-                <Menu.Items className='absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                  <div className='py-1'>
-                    {sortOptions.map((option) => (
-                      <Menu.Item key={option.name}>
-                        {({ active }) => (
-                          <a
-                            href={option.href}
-                            className={cn(
-                              option.current
-                                ? 'font-medium text-gray-900'
-                                : 'text-gray-500',
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm'
-                            )}
-                          >
-                            {option.name}
-                          </a>
-                        )}
-                      </Menu.Item>
-                    ))}
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+            {/* Sort filter menu */}
+            <SortFilterMenu sortBy={params.sortBy || 'price-asc'} />
 
             <button
               type='button'
@@ -121,19 +76,25 @@ const ProductsListLayout = ({
                 <ul
                   role='list'
                   className='space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900'
-                >{isLoading ? <p>Loading categories...</p> :
-                  categories && categories.map((category) => (
-                    <form key={category.title} onSubmit={(e: FormEvent) => {
-                      e.preventDefault();
-                      productFilterUpdate({ filter: category.title })
-                    }}>
-                      <input hidden name='filter' value={category.title} />
-                      <button type='submit'>{category.title}</button>
-                      {/* <p className='text-xs text-gray-500'>{category.description}</p> */}
-
-                    </form>
-                  ))
-                  }
+                >
+                  {isLoading ? (
+                    <p>Loading categories...</p>
+                  ) : (
+                    categories &&
+                    categories.map((category) => (
+                      <form
+                        key={category.title}
+                        onSubmit={(e: FormEvent) => {
+                          e.preventDefault();
+                          productFilterUpdate({ filter: category.title });
+                        }}
+                      >
+                        <input hidden name='filter' value={category.title} />
+                        <button type='submit'>{category.title}</button>
+                        {/* <p className='text-xs text-gray-500'>{category.description}</p> */}
+                      </form>
+                    ))
+                  )}
                 </ul>
 
                 {filters.map((section) => (

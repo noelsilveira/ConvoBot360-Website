@@ -15,12 +15,12 @@ export type Merchant = {
   details: string;
 };
 
-const MerchantPage = async ({
-  params,
-}: {
+export type MerchantParams = {
   params: { merchant_id: string };
-}) => {
-  const res = await fetch(
+};
+
+const getMerchantDetails = async ({ params }: MerchantParams) => {
+  const response = await fetch(
     `${API_BASE_URL}/estore/merchant-details/${params.merchant_id}`,
     {
       method: 'POST',
@@ -30,7 +30,14 @@ const MerchantPage = async ({
       },
     }
   );
-  const merchant_detail: MerchantDetailsType = await res.json();
+  const data = await response.json();
+  return data;
+};
+
+const MerchantPage = async ({ params }: MerchantParams) => {
+  const merchant_detail: MerchantDetailsType = await getMerchantDetails({
+    params,
+  });
   // console.log('res_status: ', res.status);
   // if (merchant_detail.status_code != 200) {
   //   redirect('/')
