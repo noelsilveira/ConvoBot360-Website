@@ -5,6 +5,12 @@ const nextConfig = {
   // Configure the images domain for caching, image optimization and other useful caveats for SEO and faster page loads
   images: {
     remotePatterns: [
+      
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        pathname: '**',
+      },
       {
         protocol: 'http',
         hostname: '10.2.2.155',

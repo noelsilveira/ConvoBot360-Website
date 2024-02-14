@@ -1,28 +1,23 @@
-import { API_BASE_URL } from '@/constants/urls';
-import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
-import Image from 'next/image';
-import Link from 'next/link';
+import { CategoryType, ProductsType } from '@/types/products';
+import React, { Suspense } from 'react';
+import { getCategories, getProducts } from './fetcher';
+
 import Pagination from '@/components/product/Pagination';
 import ProductsList from './ProductsList';
 import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
-import { ProductsType } from '@/types/products';
-import React from 'react';
-import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
-import { cookies } from 'next/headers'
-import { getProducts } from './fetcher';
-import { setHeaders } from '@/app/auth/set-headers';
 
 const ProductsListingPage = async ({
   params,
-  // searchParams
+  searchParams
 }: {
   params: { merchant_id: string };
-  // searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: { [key: string]: string | null }
 }) => {
 
   // const products: ProductsType[] = await getProducts({ searchParams })
 
-
+  const products: ProductsType[] = await getProducts({ filterParam: {} })
+  const categories: CategoryType[] = await getCategories()
   // console.log('products: ', products);
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
   const breadcrumbs = [
@@ -39,20 +34,22 @@ const ProductsListingPage = async ({
     <>
       <div className='bg-white'>
         <div className='pb-8 pt-6 sm:pb-16'>
-          <Breadcrumbs items={breadcrumbs} />
+          {/* <Breadcrumbs items={breadcrumbs} /> */}
           <div>
-            <h2 className='sr-only'>Products</h2>
-
-            <ProductsListLayout
-            >
-              {/* Products lists */}
-              <ProductsList />
-              <Pagination />
-            </ProductsListLayout>
+            {/* Products lists */}
+            <Suspense fallback={<p>Loading feed...</p>}>
+              <ProductsListLayout categories={categories}>
+                <ProductsList filter={searchParams.filter} params={params} productList={products} />
+                <Pagination />
+              </ProductsListLayout>
+            </Suspense>
           </div>
         </div>
-        <TrendingProducts />
       </div>
+
+
+      {/* <TrendingProducts /> */}
+
     </>
   );
 };
