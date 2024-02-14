@@ -5,15 +5,18 @@ import { getCategories, getProducts } from './fetcher';
 import Pagination from '@/components/product/Pagination';
 import ProductsList from './ProductsList';
 import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
+import { ProductsType } from '@/types/products';
+import React from 'react';
+import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
+import { cookies } from 'next/headers';
+import { getProducts } from './fetcher';
+import { setHeaders } from '@/app/auth/set-headers';
+import { ProductListingParamsType } from '../test-products-listing/page';
 
 const ProductsListingPage = async ({
   params,
-  searchParams
-}: {
-  params: { merchant_id: string };
-  searchParams: { [key: string]: string | null }
-}) => {
-
+  // searchParams
+}: ProductListingParamsType) => {
   // const products: ProductsType[] = await getProducts({ searchParams })
 
   const products: ProductsType[] = await getProducts({ filterParam: {} })
@@ -36,13 +39,13 @@ const ProductsListingPage = async ({
         <div className='pb-8 pt-6 sm:pb-16'>
           {/* <Breadcrumbs items={breadcrumbs} /> */}
           <div>
-            {/* Products lists */}
-            <Suspense fallback={<p>Loading feed...</p>}>
-              <ProductsListLayout categories={categories}>
-                <ProductsList filter={searchParams.filter} params={params} productList={products} />
-                <Pagination />
-              </ProductsListLayout>
-            </Suspense>
+            <h2 className='sr-only'>Products</h2>
+
+            <ProductsListLayout params={params}>
+              {/* Products lists */}
+              <ProductsList />
+              <Pagination />
+            </ProductsListLayout>
           </div>
         </div>
       </div>

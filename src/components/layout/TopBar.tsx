@@ -9,7 +9,6 @@ import { mapLocation } from '@/constants/company';
 const TopBar = async () => {
   const access_token = await accessTokenChecker();
 
-
   return (
     <div className='bg-gradient-to-r from-brand-500 to-brand-500'>
       <div className='mx-auto flex h-10 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8'>

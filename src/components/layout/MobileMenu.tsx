@@ -1,6 +1,10 @@
 'use server';
+'use server';
 import { mapLocation } from '@/constants/company';
 import { navigation } from '@/constants/navigation';
+import { useNavigationStore } from '@/store/navigationStore';
+import { Dialog, Tab, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { TbLocationFilled, TbLogout, TbLogout2 } from 'react-icons/tb';
 import MobileMenuWrapper from './MobileMenuWrapper';
@@ -15,6 +19,20 @@ const MobileMenu = async () => {
     <MobileMenuWrapper>
       {/* Links */}
 
+      <ul className='space-y-6 px-4 py-6'>
+        {/* Merchant related pages here */}
+        <MobileMerchantRelatedMenu />
+        {navigation.pages.map((page) => (
+          <div key={page.name} className='flow-root'>
+            <Link
+              href={page.href}
+              className='-m-2 block p-2 font-medium text-gray-900'
+            >
+              {page.name}
+            </Link>
+          </div>
+        ))}
+      </ul>
       <ul className='space-y-6 px-4 py-6'>
         {/* Merchant related pages here */}
         <MobileMerchantRelatedMenu />

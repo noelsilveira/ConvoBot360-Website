@@ -48,7 +48,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
 
                   <Link
                     href={crumb.path}
-                    className='mr-2 text-xs font-medium text-gray-800 duration-200 ease-out hover:text-gray-700 hover:underline sm:mr-4 sm:text-sm'
+                    className='mr-2 text-xs font-medium capitalize text-gray-800 duration-200 ease-out hover:text-gray-700 hover:underline sm:mr-4 sm:text-sm'
                   >
                     {crumb.label}
                   </Link>
@@ -65,7 +65,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
               >
                 <Link
                   href={crumb.path}
-                  className='text-xs font-medium text-gray-400 duration-200 ease-out hover:text-gray-600 sm:text-sm'
+                  className='text-xs font-medium capitalize text-gray-400 duration-200 ease-out hover:text-gray-600 sm:text-sm'
                 >
                   {crumb.label}
                 </Link>
