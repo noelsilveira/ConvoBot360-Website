@@ -1,41 +1,23 @@
-'use client';
-
-import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid';
+import React, { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import {
   FunnelIcon,
   MinusIcon,
   Squares2X2Icon,
 } from '@heroicons/react/24/outline';
-import React, { Fragment } from 'react';
-import { filters, sortOptions, subCategories } from '@/constants/filters';
-
-import MobileFilterMenu from './MobileFilterMenu';
-import SortFilterMenu, { SortOptions } from './SortFilterMenu';
+import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid';
 import { cn } from '@/lib/utils';
-import { productFilterUpdate } from '@/app/actions/product';
-import useSwr from 'swr';
-import { CategoryType } from '@/types/products';
-
-export type ProductListingParamsType = {
-  params: {
-    product_id: string;
-    merchant_id: string;
-    sortBy?: SortOptions;
-    searchParams?: { [key: string]: string | string[] | undefined };
-  };
-};
+import MobileFilterMenu from './MobileFilterMenu';
+import { filters, sortOptions, subCategories } from '@/constants/filters';
 
 const ProductsListLayout = ({
   children,
   title = 'New Arrivals',
   description,
-  params,
-}: ProductListingParamsType & {
-  title?: string;
-  description?: string;
+}: {
   children: React.ReactNode;
-  categories: CategoryType[];
+  title: string;
+  description?: string;
 }) => {
   return (
     <div>
@@ -108,7 +90,7 @@ const ProductsListLayout = ({
               className='-m-2 ml-4 inline-flex items-center justify-center gap-1 p-2 text-sm font-medium text-gray-700 hover:text-gray-900 sm:ml-6 lg:hidden'
               // onClick={() => setMobileFiltersOpen(true)}
             >
-              <span>Filters</span>
+              <span>Filterssss</span>
               <FunnelIcon
                 className='h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-gray-500'
                 aria-hidden='true'
@@ -208,39 +190,3 @@ const ProductsListLayout = ({
 };
 
 export default ProductsListLayout;
-
-const FilterListWrapper = ({
-  children,
-  title,
-}: {
-  children: React.ReactNode;
-  title: string;
-}) => {
-  return (
-    <Disclosure
-      as='div'
-      defaultOpen={true}
-      className='border-b border-gray-200 py-6'
-    >
-      {({ open }) => (
-        <>
-          <h3 className='-my-3 flow-root'>
-            <Disclosure.Button className='flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500'>
-              <span className='font-medium text-gray-900'>{title}</span>
-              <span className='ml-6 flex items-center'>
-                {open ? (
-                  <MinusIcon className='h-5 w-5' aria-hidden='true' />
-                ) : (
-                  <PlusIcon className='h-5 w-5' aria-hidden='true' />
-                )}
-              </span>
-            </Disclosure.Button>
-          </h3>
-          <Disclosure.Panel className='pt-6'>
-            <div className='space-y-4'>{children}</div>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
-  );
-};

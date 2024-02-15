@@ -1,4 +1,3 @@
-'use client';
 import CartIconButton from '@/components/checkout/CartIconButton';
 import CustomToaster from '@/components/toasts/CustomToast';
 import { navigation } from '@/constants/navigation';
@@ -8,14 +7,12 @@ import { Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
 import { Fragment } from 'react';
 
 import toast from 'react-hot-toast';
 
 const MerchantNavbar = () => {
   const { toggleMenu } = useNavigationStore();
-  const { merchant_id } = useParams();
 
   const handleButtonClick = () => {
     toast.custom((t) => (
@@ -164,25 +161,15 @@ const MerchantNavbar = () => {
                     )}
                   </Popover>
                 ))}
-                {/* merchant specific pages */}
-                {navigation.merchant_related.map((page) => (
-                  <Link
-                    href={`${page.base_href}/${merchant_id}/products-listing`}
-                    key={'merchant-specific-page-' + page.name}
-                    className='flex items-center text-sm font-medium text-gray-700 hover:text-gray-800'
-                  >
-                    {page.name}
-                  </Link>
-                ))}
-                {/* other common pages #FIXME to be updated later */}
+
                 {navigation.pages.map((page) => (
-                  <Link
+                  <a
                     key={page.name}
                     href={page.href}
                     className='flex items-center text-sm font-medium text-gray-700 hover:text-gray-800'
                   >
                     {page.name}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </Popover.Group>
