@@ -1,19 +1,16 @@
 'use server';
 
-import { accessTokenChecker, handleLogout } from '@/app/actions/auth';
-
 import Link from 'next/link';
 import { LogoutButton } from './LogoutButton';
 import { TbLocationFilled } from 'react-icons/tb';
-import { headers } from 'next/headers';
+import { accessTokenChecker, handleLogout } from '@/app/actions/auth';
 import { mapLocation } from '@/constants/company';
+import { headers } from 'next/headers';
 
 const TopBar = async () => {
   const access_token = await accessTokenChecker();
   const headersList = headers();
   const fullUrl = headersList.get('referer') || '';
-
-  console.log('f_l:', headersList);
 
   return (
     <div className='bg-gradient-to-r from-brand-500 to-brand-500'>

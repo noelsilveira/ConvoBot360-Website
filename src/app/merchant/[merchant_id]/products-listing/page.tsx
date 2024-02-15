@@ -3,9 +3,10 @@ import React, { Suspense } from 'react';
 import { getCategories, getProducts } from './fetcher';
 
 import Pagination from '@/components/product/Pagination';
-import { ProductListingParamsType } from '../test-products-listing/page';
 import ProductsList from './ProductsList';
-import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
+import ProductsListLayout, {
+  ProductListingParamsType,
+} from '@/components/layout/product-layout/ProductsListLayout';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
 import { cookies } from 'next/headers';
 import { setHeaders } from '@/app/auth/set-headers';
@@ -16,8 +17,8 @@ const ProductsListingPage = async ({
 }: ProductListingParamsType) => {
   // const products: ProductsType[] = await getProducts({ searchParams })
 
-  const products: ProductsType[] = await getProducts({ filterParam: {} })
-  const categories: CategoryType[] = await getCategories()
+  const products: ProductsType[] = await getProducts({ filterParam: {} });
+  const categories: CategoryType[] = await getCategories();
   // console.log('products: ', products);
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
   const breadcrumbs = [
@@ -47,9 +48,7 @@ const ProductsListingPage = async ({
         </div>
       </div>
 
-
       {/* <TrendingProducts /> */}
-
     </>
   );
 };

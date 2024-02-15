@@ -1,4 +1,4 @@
-'use client';
+'use server';
 import { mapLocation } from '@/constants/company';
 import { navigation } from '@/constants/navigation';
 import Link from 'next/link';
@@ -6,9 +6,11 @@ import { TbLocationFilled, TbLogout, TbLogout2 } from 'react-icons/tb';
 import MobileMenuWrapper from './MobileMenuWrapper';
 import { accessTokenChecker, handleLogout } from '@/app/actions/auth';
 import MobileMerchantRelatedMenu from './MobileMerchantRelatedMenu';
+import { MobileLogoutButton } from './LogoutButton';
 
-const MobileMenu = () => {
-  const { openMenu, toggleMenu } = useNavigationStore();
+const MobileMenu = async () => {
+  const access_token = await accessTokenChecker();
+
   return (
     <MobileMenuWrapper>
       {/* Links */}
@@ -72,14 +74,8 @@ const MobileMenu = () => {
                 View profile
               </Link>
             </div>
-            <form action={handleLogout}>
-              <button
-                type='submit'
-                className='-m-2 inline-flex items-center gap-2 p-2 font-medium text-rose-500'
-              >
-                Logout <TbLogout />
-              </button>
-            </form>
+            {/* Mobile Logout button */}
+            <MobileLogoutButton />
           </>
         )}
       </div>

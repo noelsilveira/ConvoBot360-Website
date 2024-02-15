@@ -17,18 +17,27 @@ import {
 import { CategoryType } from '@/types/products';
 import FilterButton from './FilterButton';
 import MobileFilterMenu from './MobileFilterMenu';
-import { ProductListingParamsType } from '@/app/merchant/[merchant_id]/test-products-listing/page';
-import SortFilterMenu from './SortFilterMenu';
+import SortFilterMenu, { SortOptions } from './SortFilterMenu';
 import { cn } from '@/lib/utils';
 import { productFilterUpdate } from '@/app/actions/product';
 import useSwr from 'swr';
+
+export type ProductListingParamsType = {
+  params: {
+    product_id: string;
+    merchant_id: string;
+    sortBy?: SortOptions;
+    searchParams?: { [key: string]: string | string[] | undefined };
+  };
+};
 
 const ProductsListLayout = ({
   children,
   categories,
   params,
 }: ProductListingParamsType & {
-  children: React.ReactNode; categories: CategoryType[]
+  children: React.ReactNode;
+  categories: CategoryType[];
 }) => {
   // const { data, isLoading, error } = useSwr('categories', () =>
   // getCategories()
@@ -76,21 +85,17 @@ const ProductsListLayout = ({
             {/* Filters */}
             <div className='hidden lg:block'>
               <div className='lg:sticky lg:top-16'>
-
-
-                <FilterListWrapper title="Categories" >
-
-                  {categories && categories.map((category, categoryIdx) => (
-
-                    <div
-                      key={category.title + categoryIdx}
-                      className='flex items-center'
-                    >
-                      {/* filter button with action */}
-                      <FilterButton category={category} />
-                    </div>
-
-                  ))}
+                <FilterListWrapper title='Categories'>
+                  {categories &&
+                    categories.map((category, categoryIdx) => (
+                      <div
+                        key={category.title + categoryIdx}
+                        className='flex items-center'
+                      >
+                        {/* filter button with action */}
+                        <FilterButton category={category} />
+                      </div>
+                    ))}
 
                   {/* <ProductCategories categories={categories} /> */}
                 </FilterListWrapper>
@@ -108,13 +113,12 @@ const ProductsListLayout = ({
 
 export default ProductsListLayout;
 
-
 const FilterListWrapper = ({
   children,
-  title
+  title,
 }: {
   children: React.ReactNode;
-  title: string
+  title: string;
 }) => {
   return (
     <Disclosure
@@ -126,31 +130,21 @@ const FilterListWrapper = ({
         <>
           <h3 className='-my-3 flow-root'>
             <Disclosure.Button className='flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500'>
-              <span className='font-medium text-gray-900'>
-                {title}
-              </span>
+              <span className='font-medium text-gray-900'>{title}</span>
               <span className='ml-6 flex items-center'>
                 {open ? (
-                  <MinusIcon
-                    className='h-5 w-5'
-                    aria-hidden='true'
-                  />
+                  <MinusIcon className='h-5 w-5' aria-hidden='true' />
                 ) : (
-                  <PlusIcon
-                    className='h-5 w-5'
-                    aria-hidden='true'
-                  />
+                  <PlusIcon className='h-5 w-5' aria-hidden='true' />
                 )}
               </span>
             </Disclosure.Button>
           </h3>
           <Disclosure.Panel className='pt-6'>
-            <div className='space-y-4'>
-              {children}
-            </div>
+            <div className='space-y-4'>{children}</div>
           </Disclosure.Panel>
         </>
       )}
     </Disclosure>
-  )
-}
+  );
+};
