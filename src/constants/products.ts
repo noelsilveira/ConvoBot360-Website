@@ -3,6 +3,8 @@ import {
   GlobeAmericasIcon,
 } from '@heroicons/react/24/outline';
 
+export const branch_id = '95afc684-7ddf-491b-ae9c-226bd5e8932f';
+
 export const products = [
   {
     id: '969ae1f8-30d2-460f-a771-cbce5151a5ea',
@@ -120,11 +122,11 @@ export const policies = [
   {
     name: 'International delivery',
     icon: GlobeAmericasIcon,
-    description: 'Get your order in 2 years',
+    description: 'Get your order in 2 days',
   },
   {
     name: 'Loyalty rewards',
     icon: CurrencyDollarIcon,
-    description: "Don't look at other tees",
+    description: 'Get rewards for orders above BHD 50',
   },
 ];

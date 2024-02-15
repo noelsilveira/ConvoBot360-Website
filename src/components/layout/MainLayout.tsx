@@ -1,13 +1,8 @@
-import { Inter } from 'next/font/google';
-import Head from 'next/head';
-import React, { useEffect } from 'react';
-import { twMerge } from 'tailwind-merge';
-import Header from './Header';
 import Footer from './Footer';
+import Header from './Header';
+import { Inter } from 'next/font/google';
 import MobileMenu from './MobileMenu';
-import { useHeroStore } from '@/store/heroStore';
-import { useRouter } from 'next/router';
-import { Toaster } from 'react-hot-toast';
+import { cn } from '@/lib/utils';
 
 type MainLayoutProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
@@ -22,18 +17,9 @@ const MainLayout = ({
   className,
   ...rest
 }: MainLayoutProps) => {
-  const { toggleHeader, toggleOffersHero } = useHeroStore();
-  const router = useRouter();
-
-  useEffect(() => {
-    // const isHomepage = router.pathname === '/';
-    const isHomepage = false;
-    isHomepage ? toggleHeader(true) : toggleHeader(false);
-    isHomepage ? toggleOffersHero(true) : toggleOffersHero(false);
-  }, [router]);
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>{title}</title>
         <meta name='description' content='E-commerce for the future' />
         <meta
@@ -49,8 +35,8 @@ const MainLayout = ({
           type='image/svg'
           sizes='16x16 32x32'
         />
-      </Head>
-      <Toaster position='bottom-center' />
+      </Head> */}
+      {/* <Toaster position='bottom-center' /> */}
 
       <div>
         {/* Mobile menu */}
@@ -58,7 +44,7 @@ const MainLayout = ({
 
         {/* Top navigation */}
         <Header />
-        <main className={twMerge(`${inter} ${className}`)} {...rest}>
+        <main className={cn(`${inter} ${className}`)} {...rest}>
           {children}
         </main>
         <Footer />

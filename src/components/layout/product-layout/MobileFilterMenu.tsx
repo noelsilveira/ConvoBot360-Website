@@ -1,7 +1,9 @@
-import { filters, subCategories } from '@/constants/filters';
+'use client';
+
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React, { Fragment, useState } from 'react';
+import { filters, subCategories } from '@/constants/filters';
 
 const MobileFilterMenu = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);

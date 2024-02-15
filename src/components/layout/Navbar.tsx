@@ -1,3 +1,4 @@
+'use client';
 import { navigation } from '@/constants/navigation';
 import { cn } from '@/lib/utils';
 import { useNavigationStore } from '@/store/navigationStore';
@@ -5,15 +6,14 @@ import { Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Fragment, useEffect } from 'react';
-import CartIconButton from '../checkout/CartIconButton';
 import toast from 'react-hot-toast';
 import CustomToaster from '../toasts/CustomToast';
-import { useRouter } from 'next/router';
+import { useRouter, usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const { toggleMenu } = useNavigationStore();
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleButtonClick = () => {
     toast.custom((t) => (
@@ -62,7 +62,7 @@ const Navbar = () => {
                     href={page.href}
                     className={cn(
                       `flex items-center text-sm font-medium`,
-                      router.pathname === page.href
+                      pathname === page.href
                         ? 'font-semibold text-brand-600 hover:text-brand-500'
                         : 'text-gray-700 hover:text-gray-800'
                     )}

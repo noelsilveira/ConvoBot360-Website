@@ -1,12 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import HeroSection from '../sections/home-page/HeroSection';
 import Navbar from './Navbar';
 import OffersHero from '../sections/home-page/OffersHero';
-import { useHeroStore } from '@/store/heroStore';
 import TopBar from './TopBar';
 
 const Header = () => {
-  const { showHero, showOffersHero } = useHeroStore();
   return (
     <header className='relative'>
       {/* Top navigation */}
@@ -15,8 +13,8 @@ const Header = () => {
       <Navbar />
 
       {/* Hero section */}
-      {showOffersHero && <OffersHero />}
-      {showHero && <HeroSection />}
+      {<OffersHero />}
+      {<HeroSection />}
     </header>
   );
 };

@@ -171,6 +171,13 @@ export const navigation = {
       ],
     },
   ],
+  // TODO
+  merchant_related: [
+    {
+      name: 'Products',
+      base_href: '/merchant',
+    },
+  ],
   pages: [
     { name: 'Home', href: '/' },
     // { name: 'Merchant', href: '/merchant/67868' },
@@ -235,14 +242,14 @@ export const footerNavigation = {
     { name: 'Services', href: '/about' },
     { name: 'Team', href: '/about#teamSection' },
     { name: 'Careers', href: '/careers' },
-    { name: 'Terms & Conditions', href: '/terms' },
-    { name: 'Privacy', href: '/privacy' },
+    { name: 'Terms & Conditions', href: '/legal/terms' },
+    { name: 'Privacy', href: 'legal//privacy' },
   ],
   account: [
-    { name: 'Manage Account', href: '/merchant/about' },
-    { name: 'Merchant Login', href: '/merchant/17525751' },
-    { name: 'Partner with us', href: '/sign-up' },
-    { name: 'Join us', href: '/sign-up' },
+    { name: 'Manage Account', href: '/merchant/36049357/about' },
+    { name: 'Merchant Login', href: '/merchant/36049357/about' },
+    { name: 'Partner with us', href: '/auth/sign-up' },
+    { name: 'Join us', href: '/auth/sign-up' },
     // { name: 'Returns & Exchanges', href: '#!' },
     // { name: 'Redeem a Gift Card', href: '#!' },
   ],

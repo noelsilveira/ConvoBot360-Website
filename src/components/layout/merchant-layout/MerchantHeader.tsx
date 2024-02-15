@@ -1,14 +1,11 @@
-import React, { Fragment } from 'react';
-
-import { useHeroStore } from '@/store/heroStore';
+'use server';
+import React from 'react';
 import TopBar from '../TopBar';
-import Navbar from '../Navbar';
 import OffersHero from '@/components/sections/home-page/OffersHero';
 import HeroSection from '@/components/sections/home-page/HeroSection';
 import MerchantNavbar from './MerchantNavbar';
 
 const MerchantHeader = () => {
-  const { showHero, showOffersHero } = useHeroStore();
   return (
     <header className='relative'>
       {/* Top navigation */}
@@ -17,8 +14,8 @@ const MerchantHeader = () => {
       <MerchantNavbar />
 
       {/* Hero section */}
-      {showOffersHero && <OffersHero />}
-      {showHero && <HeroSection />}
+      {<OffersHero />}
+      {<HeroSection />}
     </header>
   );
 };

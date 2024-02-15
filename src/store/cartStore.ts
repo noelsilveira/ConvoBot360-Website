@@ -1,6 +1,7 @@
-import { ProductProps, ProductDetailProps } from '@/constants/products';
-import { create } from 'zustand';
+import { ProductDetailProps, ProductProps } from '@/constants/products';
 import { createJSONStorage, persist } from 'zustand/middleware';
+
+import { create } from 'zustand';
 
 type CartItemProps = ProductDetailProps & {
   count: number;
