@@ -102,7 +102,7 @@ const HeroSection = () => {
               </div>
 
               <Link
-                href='/products-listing'
+                href='/estore-products'
                 className='inline-block rounded-md border border-transparent bg-brand-500 px-8 py-3 text-center font-medium text-white duration-300 hover:bg-brand-600'
               >
                 Shop Collection

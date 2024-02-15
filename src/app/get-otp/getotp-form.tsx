@@ -2,40 +2,73 @@
 
 import { useFormState, useFormStatus } from 'react-dom';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { getOtpHandler } from './fetch-action';
+import OTPInput from 'react-otp-input';
+import { cn } from '@/lib/utils';
+import toast, { Toaster } from 'react-hot-toast';
 
 const initialSate = {
   message: '',
 };
 const GetOtpForm = () => {
+  const { pending } = useFormStatus();
   const [state, formAction] = useFormState(getOtpHandler, initialSate);
-  return (
-    <form action={formAction} className='space-y-6'>
-      <div>
-        <label
-          htmlFor='phone_number'
-          className='block text-sm font-medium leading-6 text-gray-900'
-        >
-          Enter Phone number
-        </label>
-        <div className='mt-2'>
-          <input
-            id='phone_number'
-            name='phone_number'
-            type='text'
-            autoComplete='phone_number'
-            required
-            className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-          />
-        </div>
-      </div>
+  const [otp, setOtp] = useState<string>();
 
-      <div>
-        <SubmitButton />
-      </div>
-      <p>{state?.message}</p>
-    </form>
+  const handleChange = (code: string) => {
+    setOtp(code);
+  };
+  const clearOtp = async () => {
+    setOtp('');
+  };
+
+  const handlePaste: React.ClipboardEventHandler = (event) => {
+    const data = event.clipboardData.getData('text');
+  };
+
+  return (
+    <>
+      <form
+        action={async (formData) => {
+          await Promise.all([formAction(formData), clearOtp()]);
+        }}
+        className='space-y-6'
+      >
+        <div>
+          <div className='mx-auto flex w-full flex-row items-center'>
+            <div
+              className={cn(
+                'mx-auto',
+                pending ? 'animate-pulse opacity-50' : ''
+              )}
+              aria-disabled={pending}
+            >
+              <input type='hidden' name='otp' value={otp} />
+              <OTPInput
+                value={otp}
+                onChange={handleChange}
+                onPaste={handlePaste}
+                renderSeparator={<span className='p-1'></span>}
+                numInputs={6}
+                shouldAutoFocus
+                skipDefaultStyles
+                inputType='text'
+                inputStyle='flex h-16 w-16 flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-6 text-center text-lg font-semibold text-black outline-none ring-brand-500 focus:bg-gray-50 focus:ring-1'
+                renderInput={(props) => (
+                  <input onSubmit={() => setOtp('')} {...props} />
+                )}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className='mx-auto max-w-md'>
+          <SubmitButton />
+        </div>
+        {/* <p>{state?.message}</p> */}
+      </form>
+    </>
   );
 };
 
@@ -47,9 +80,12 @@ const SubmitButton = () => {
     <button
       type='submit'
       area-disabled={pending}
-      className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+      className={cn(
+        'flex w-full justify-center rounded-xl bg-brand-600 px-8 py-4 text-sm font-semibold leading-6 text-white shadow-sm duration-150 ease-out hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600',
+        pending ? 'cursor-not-allowed opacity-60' : 'animate-none'
+      )}
     >
-      Get OTP
+      {pending ? 'Submitting...' : 'Verify OTP'}
     </button>
   );
 };

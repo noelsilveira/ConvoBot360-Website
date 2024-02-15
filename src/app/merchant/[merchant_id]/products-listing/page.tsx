@@ -18,6 +18,7 @@ export type ProductListingParamsType = {
     product_id?: string;
     merchant_id?: string;
     sortBy?: SortOptions;
+    category?: string;
     searchParams?: { [key: string]: string | string[] | undefined };
   };
 };
@@ -34,7 +35,7 @@ const ProductsListingPage = async ({ params }: ProductListingParamsType) => {
     },
     {
       label: 'Products Listing',
-      path: `${baseMerchantPath}/products-listing`,
+      path: `${baseMerchantPath}/estore-products`,
     },
   ];
   return (

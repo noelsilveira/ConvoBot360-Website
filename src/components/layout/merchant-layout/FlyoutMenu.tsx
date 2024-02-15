@@ -57,7 +57,7 @@ const FlyoutMenu = ({ children }: { children: React.ReactNode }) => {
         {/* merchant specific pages */}
         {navigation.merchant_related.map((page) => (
           <Link
-            href={`${page.base_href}/${merchant_id}/products-listing`}
+            href={`${page.base_href}/${merchant_id}/estore-products`}
             key={'merchant-specific-page-' + page.name}
             className='flex items-center text-sm font-medium text-gray-700 hover:text-gray-800'
           >

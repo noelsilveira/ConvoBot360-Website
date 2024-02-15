@@ -41,9 +41,55 @@ export const stringToUrlParser = (link: string) => {
   return parsed_link;
 };
 
-export const urlToSTringParser = (url: string) => {
+export const urlToStringParser = (url: string) => {
   const decoded_url = decodeURIComponent(url);
   const breakpoint = /\-/;
   const parsed_string = decoded_url.split(breakpoint).join(` `);
   return parsed_string;
 };
+
+export const removeSingleQuotes = (url: string): string => {
+  // const decoded_url = JSON.stringify(url);
+  const breakpoint = /'/g;
+  const parsed_string = url.replace(/['\\]/g, '');
+  return parsed_string;
+};
+
+function decodeUrlParameter(urlParameter: string): string {
+  return decodeURIComponent(urlParameter);
+}
+
+function parseUrlParameter(urlParameter: string): {
+  sort: { [key: string]: string };
+} {
+  const keyValueRegex = /(\w+)%3A"(\w+)"/g;
+  const result: { [key: string]: string } = {};
+
+  let match: RegExpExecArray | null;
+  while ((match = keyValueRegex.exec(urlParameter)) !== null) {
+    const key = match[1];
+    const value = match[2];
+    result[key] = value;
+  }
+
+  return { sort: result };
+}
+export function parseUrlSortString(urlParameter: string): {
+  sort: { [key: string]: string };
+} {
+  console.log(urlParameter);
+  const decodedParameter = decodeUrlParameter(urlParameter);
+  const parsedObject = parseUrlParameter(decodedParameter);
+
+  return parsedObject;
+}
+
+export function convertToSortObject(input: string): { [key: string]: string } {
+  const keyValue = input.match(/"([^"]+)":"([^"]+)"/);
+  if (keyValue && keyValue.length === 3) {
+    const key = keyValue[1];
+    const value = keyValue[2];
+    return { [key]: value };
+  }
+  return {};
+}

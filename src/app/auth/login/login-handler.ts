@@ -14,7 +14,7 @@ export const handleSigIn = async (
     password: password,
   };
 
-  console.log(data);
+  // console.log(data);
 
   let formData = new FormData();
   formData.append('username', username);
@@ -25,7 +25,7 @@ export const handleSigIn = async (
       'https://api-uat-ap-south-1-eks.sendbip.com/v1/estore/token',
       formData
     );
-    console.log('response: ', response.data);
+    // console.log('response: ', response.data);
   } catch (e: any) {
     console.log(e);
   }

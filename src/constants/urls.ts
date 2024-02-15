@@ -6,3 +6,5 @@ export const API_BASE_URL = 'https://api-test.convobot360.com/v1';
 export const ESTORE_HOME = '/estore/home';
 
 export const TOKEN_NAME = 'access_token';
+
+export const static_merchant_id = '36049357';

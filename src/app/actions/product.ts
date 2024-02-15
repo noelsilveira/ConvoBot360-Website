@@ -9,7 +9,7 @@ export const productFilterUpdate = async ({
 }) => {
   // e.preventDefault()
   // const data = formData.get('filter')
-  console.log('filter_option: ', filter);
+  // console.log('filter_option: ', filter);
   const filters = { filter };
   // const rawFilter = JSON.stringify({
   //     "branch_id": branch_id,

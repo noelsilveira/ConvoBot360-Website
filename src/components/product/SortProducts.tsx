@@ -2,7 +2,12 @@
 
 import { ChangeEvent } from 'react';
 import FilterRadioGroup from '@/components/product/FilterRadioGroup';
-export type SortOptions = 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc';
+import { revalidateTag } from 'next/cache';
+export type SortOptions =
+  | `"price":"asc"`
+  | `"price":"desc"`
+  | `"title":"asc"`
+  | `"title":"desc"`;
 
 type SortProductsProps = {
   sortBy: SortOptions;
@@ -11,19 +16,19 @@ type SortProductsProps = {
 
 const sortOptions = [
   {
-    value: 'price-asc',
+    value: `"price":"asc"`,
     label: 'Price: Low to High',
   },
   {
-    value: 'price-desc',
+    value: `"price":"desc"`,
     label: 'Price: High to Low',
   },
   {
-    value: 'name-asc',
+    value: `"title":"asc"`,
     label: 'Name: A - Z',
   },
   {
-    value: 'name-desc',
+    value: `"title":"desc"`,
     label: 'Name: Z - A',
   },
 ];
@@ -32,6 +37,7 @@ const SortProducts = ({ sortBy, setQueryParams }: SortProductsProps) => {
   const handleChange = (e: ChangeEvent<HTMLButtonElement>) => {
     const newSortBy = e.target.value as SortOptions;
     setQueryParams('sortBy', newSortBy);
+    revalidateTag('estore-products');
   };
 
   return (

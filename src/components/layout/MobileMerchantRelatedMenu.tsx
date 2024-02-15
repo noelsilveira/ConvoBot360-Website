@@ -14,14 +14,14 @@ const MobileMerchantRelatedMenu = () => {
           merchant_id === 'undefined' ||
           merchant_id === undefined ? (
             <Link
-              href={`${page.base_href}/${temp_id}/products-listing`}
+              href={`${page.base_href}/${temp_id}/estore-products`}
               className='-m-2 block p-2 font-medium text-gray-900'
             >
               {page.name}
             </Link>
           ) : (
             <Link
-              href={`${page.base_href}/${merchant_id}/products-listing`}
+              href={`${page.base_href}/${merchant_id}/estore-products`}
               className='-m-2 block p-2 font-medium text-gray-900'
             >
               {page.name}

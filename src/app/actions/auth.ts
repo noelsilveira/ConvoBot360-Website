@@ -11,26 +11,12 @@ export type TokenType = {
   token_type: string;
 };
 
-export async function handleSignInForm(formData: FormData) {
-  const response = await fetch(`${API_BASE_URL}/estore/token`, {
-    method: 'POST',
-    // credential,
-    body: formData,
-    redirect: 'follow',
-    next: { tags: ['token'] },
-  });
-
-  const data: TokenType = await response.json();
-
-  if (!data) {
-    return 'No data from backend';
-  }
+export const setHeaderInCookie = async (data: TokenType) => {
+  const expiry_date = Number(data.expiry);
 
   let date = new Date().toString();
-  const d = new Date(date);
-  const expire_date = addSeconds(d, data.expiry).toString();
-
-  const expiry_time = new Date(expire_date).getTime();
+  const current_date = new Date(date).getTime();
+  const expiry_time = new Date(expiry_date + 30000);
 
   cookies().set({
     name: TOKEN_NAME,
@@ -54,6 +40,24 @@ export async function handleSignInForm(formData: FormData) {
     secure: true,
     path: '/',
   });
+};
+
+export async function handleSignInForm(formData: FormData) {
+  const response = await fetch(`${API_BASE_URL}/estore/token`, {
+    method: 'POST',
+    // credential,
+    body: formData,
+    redirect: 'follow',
+    next: { tags: ['token'] },
+  });
+
+  const data: TokenType = await response.json();
+
+  if (!data) {
+    return 'No data from backend';
+  }
+
+  await setHeaderInCookie(data);
 }
 
 export async function handleLogout() {
@@ -77,7 +81,7 @@ export async function accessTokenChecker() {
   return true;
 }
 
-function addSeconds(date: Date, seconds: number) {
+export async function addSeconds(date: Date, seconds: number) {
   date.setSeconds(date.getSeconds() + seconds);
   return date;
 }

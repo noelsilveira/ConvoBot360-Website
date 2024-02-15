@@ -2,12 +2,14 @@ import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
 import React from 'react';
 import EStoreProductsLayout from './EStoreProductsLayout';
 import { ProductListingParamsType } from '../products-listing/page';
+import { urlToStringParser } from '@/lib/format';
 
 const ProductsPageLayout = ({
   children,
   params,
 }: ProductListingParamsType & { children: React.ReactNode }) => {
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
+
   const breadcrumbs = [
     {
       label: 'Merchant',
@@ -15,7 +17,7 @@ const ProductsPageLayout = ({
     },
     {
       label: 'Products Listing',
-      path: `${baseMerchantPath}/products-listing`,
+      path: `${baseMerchantPath}/estore-products`,
     },
   ];
 

@@ -3,7 +3,7 @@ import {
   GlobeAmericasIcon,
 } from '@heroicons/react/24/outline';
 
-export const branch_id = '95afc684-7ddf-491b-ae9c-226bd5e8932f';
+export const branch_id = 'b3cac885-ba05-4d0c-8a61-ac77da18a84d';
 
 export const products = [
   {

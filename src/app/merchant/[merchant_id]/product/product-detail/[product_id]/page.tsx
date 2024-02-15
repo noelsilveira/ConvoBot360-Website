@@ -1,5 +1,7 @@
+import { branch_id, policies } from '@/constants/products';
+
 import { API_BASE_URL } from '@/constants/urls';
-import AddToCart from './AddToCart';
+import AddToCartForm from './AddToCart';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,7 +10,7 @@ import { ProductsType } from '@/types/products';
 import React from 'react';
 import Reviews from '@/components/product/Reviews';
 import { cn } from '@/lib/utils';
-import { policies } from '@/constants/products';
+import ProductDetailImage from './ProductDetailImage';
 
 const ProductDetailPage = async ({
   params,
@@ -26,7 +28,7 @@ const ProductDetailPage = async ({
     }
   );
   const product: ProductsType = await res.json();
-  console.log('detail: ', product);
+  // console.log('detail: ', product);
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
 
   const breadcrumbs = [
@@ -36,7 +38,7 @@ const ProductDetailPage = async ({
     },
     {
       label: 'Products',
-      path: `${baseMerchantPath}/products-listing`,
+      path: `${baseMerchantPath}/estore-products`,
     },
     {
       label: `${product.title}`,
@@ -70,44 +72,6 @@ const ProductDetailPage = async ({
                     {`${product.currency}${' '}${product.price}`}
                   </p>
                 </div>
-                {/* Reviews */}
-                {/* <div className='mt-4'>
-                  <h2 className='sr-only'>Reviews</h2>
-                  <div className='flex items-center'>
-                    <p className='text-sm text-gray-700'>
-                      {product.rating}
-                      <span className='sr-only'> out of 5 stars</span>
-                    </p>
-                    <div className='ml-1 flex items-center'>
-                      {[0, 1, 2, 3, 4].map((rating) => (
-                        <StarIcon
-                          key={rating}
-                          className={cn(
-                            product.rating > rating
-                              ? 'text-yellow-400'
-                              : 'text-gray-200',
-                            'h-5 w-5 flex-shrink-0'
-                          )}
-                          aria-hidden='true'
-                        />
-                      ))}
-                    </div>
-                    <div
-                      aria-hidden='true'
-                      className='ml-4 text-sm text-gray-300'
-                    >
-                      ·
-                    </div>
-                    <div className='ml-4 flex'>
-                      <a
-                        href='#'
-                        className='text-sm font-medium text-brand-600 hover:text-brand-500'
-                      >
-                        See all {product.reviewCount} reviews
-                      </a>
-                    </div>
-                  </div>
-                </div> */}
               </div>
 
               {/* Image gallery */}
@@ -115,122 +79,34 @@ const ProductDetailPage = async ({
                 <h2 className='sr-only'>Images</h2>
 
                 <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-8'>
-                  {/* {product.images.map((image) => ( */}
-                  <Image
-                    height={800}
-                    width={800}
-                    // key={image.id}
-                    src={product.image_link == null ? '' : product.image_link}
-                    alt={product.title}
-                    className={cn(
-                      'h-full max-h-[60vh] w-full rounded-lg object-cover lg:col-span-2 lg:row-span-2 lg:block'
-                    )}
-                  />
-                  {/* ))} */}
+                  {/* Image with backup view */}
+                  <ProductDetailImage product={product} />
                 </div>
               </div>
 
               <div className='mt-0 lg:col-span-5'>
-                <form>
-                  {/* Color picker */}
-                  {/* <div>
-                    <h2 className='text-sm font-medium text-gray-900'>Color</h2>
+                {/* Size picker */}
+                <div className='mt-6'>
+                  <div className='flex items-center justify-between'>
+                    <h2 className='text-sm font-medium text-gray-900'>
+                      Availability:
+                      <span className='ml-1 text-sm font-medium capitalize text-brand-600 hover:text-brand-500'>
+                        {product.availability}
+                      </span>
+                    </h2>
 
-                    <RadioGroup
-                      value={selectedColor}
-                      onChange={setSelectedColor}
-                      className='mt-2'
-                    >
-                      <RadioGroup.Label className='sr-only'>
-                        Choose a color
-                      </RadioGroup.Label>
-                      <div className='flex items-center space-x-3'>
-                        {product.colors.map((color) => (
-                          <RadioGroup.Option
-                            key={color.name}
-                            value={color}
-                            className={({ active, checked }) =>
-                              cn(
-                                color.selectedColor,
-                                active && checked ? 'ring ring-offset-1' : '',
-                                !active && checked ? 'ring-2' : '',
-                                'relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none'
-                              )
-                            }
-                          >
-                            <RadioGroup.Label as='span' className='sr-only'>
-                              {color.name}
-                            </RadioGroup.Label>
-                            <span
-                              aria-hidden='true'
-                              className={cn(
-                                color.bgColor,
-                                'h-8 w-8 rounded-full border border-black border-opacity-10'
-                              )}
-                            />
-                          </RadioGroup.Option>
-                        ))}
-                      </div>
-                    </RadioGroup>
-                  </div> */}
-
-                  {/* Size picker */}
-                  <div className='mt-6'>
-                    <div className='flex items-center justify-between'>
-                      <h2 className='text-sm font-medium text-gray-900'>
-                        Availability:
-                        <span className='ml-1 text-sm font-medium capitalize text-brand-600 hover:text-brand-500'>
-                          {product.availability}
-                        </span>
-                      </h2>
-                      {/* <a
+                    {/* <a
                         href='#'
                         className='text-sm font-medium capitalize text-brand-600 hover:text-brand-500'
                       >
                         {product.availability}
                       </a> */}
-                    </div>
-
-                    {/* <RadioGroup
-                      value={selectedSize}
-                      onChange={setSelectedSize}
-                      className='mt-2'
-                    >
-                      <RadioGroup.Label className='sr-only'>
-                        Choose a size
-                      </RadioGroup.Label>
-                      <div className='grid grid-cols-3 gap-3 sm:grid-cols-6'>
-                        {product.sizes.map((size) => (
-                          <RadioGroup.Option
-                            key={size.name}
-                            value={size}
-                            className={({ active, checked }) =>
-                              cn(
-                                size.inStock
-                                  ? 'cursor-pointer focus:outline-none'
-                                  : 'cursor-not-allowed opacity-25',
-                                active
-                                  ? 'ring-2 ring-brand-500 ring-offset-2'
-                                  : '',
-                                checked
-                                  ? 'border-transparent bg-brand-500 text-white hover:bg-brand-600'
-                                  : 'border-gray-200 bg-white text-gray-900 hover:bg-gray-50',
-                                'flex items-center justify-center rounded-md border px-3 py-3 text-sm font-medium uppercase sm:flex-1'
-                              )
-                            }
-                            disabled={!size.inStock}
-                          >
-                            <RadioGroup.Label as='span'>
-                              {size.name}
-                            </RadioGroup.Label>
-                          </RadioGroup.Option>
-                        ))}
-                      </div>
-                    </RadioGroup> */}
                   </div>
-
-                  <AddToCart />
-                </form>
+                </div>
+                <AddToCartForm
+                  branch_id={branch_id}
+                  product_id={params.product_id}
+                />
 
                 {/* Product details */}
                 <div className='mt-8'>

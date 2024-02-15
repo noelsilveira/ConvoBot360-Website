@@ -1,3 +1,5 @@
+import { SortOptions } from '@/components/product/SortProducts';
+
 export type ProductsType = {
   id: string;
   title: string;
@@ -38,4 +40,14 @@ export type Description = {
 export type CategoryType = {
   title: string;
   description: string;
+};
+
+export type ProductListingParamsType = {
+  params: {
+    product_id?: string;
+    merchant_id?: string;
+    sortBy?: SortOptions;
+    category?: string;
+    searchParams?: { [key: string]: string | string[] | undefined };
+  };
 };

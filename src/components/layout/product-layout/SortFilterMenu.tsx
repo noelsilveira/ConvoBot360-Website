@@ -3,6 +3,7 @@
 import { cn } from '@/lib/utils';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { revalidateTag } from 'next/cache';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { ChangeEvent, Fragment, useCallback, useState } from 'react';
 
@@ -11,7 +12,11 @@ type SortListProps = {
   search?: boolean;
 };
 
-export type SortOptions = 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc';
+export type SortOptions =
+  | `"price":"asc"`
+  | `"price":"desc"`
+  | `"title":"asc"`
+  | `"title":"desc"`;
 
 type SortProductsProps = {
   sortBy: SortOptions;
@@ -20,19 +25,19 @@ type SortProductsProps = {
 
 const sortOptions = [
   {
-    value: 'price-asc',
+    value: `"price":"asc"`,
     label: 'Price: Low to High',
   },
   {
-    value: 'price-desc',
+    value: `"price":"desc"`,
     label: 'Price: High to Low',
   },
   {
-    value: 'name-asc',
+    value: `"title":"asc"`,
     label: 'Name: A - Z',
   },
   {
-    value: 'name-desc',
+    value: `"title":"desc"`,
     label: 'Name: Z - A',
   },
 ];
@@ -64,6 +69,7 @@ const SortFilterMenu = ({ sortBy }: SortListProps) => {
   ) => {
     const newSortBy = e.target.value as SortOptions;
     setQueryParams('sortBy', newSortBy);
+    router.refresh();
     setActiveSortOption(newSortBy);
   };
 

@@ -1,31 +1,39 @@
 'use server';
 
-import { API_BASE_URL } from '@/constants/urls';
+import { API_BASE_URL, TOKEN_NAME, static_merchant_id } from '@/constants/urls';
 import { setOTPHeaders } from '../auth/set-headers';
+import { setHeaderInCookie } from '../actions/auth';
+import { redirect } from 'next/navigation';
 
-export const getOtpHandler = async (
-  prevState: {
-    message: string;
-  },
-  formData: FormData
-) => {
+export const getOtpHandler = async (state: any, formData: FormData) => {
   'use server';
   const headers = await setOTPHeaders();
-  console.log('p_n: ', formData.get('phone_number'));
 
-  const res = await fetch(
-    API_BASE_URL + `/estore/send-otp/${formData.get('phone_number')}`,
-    {
+  const username = '919820859667';
+  const password = formData.get('otp');
+
+  const newData = new FormData();
+  newData.append('username', username);
+  password && newData.append('password', password);
+
+  const phone_number = 919820859667;
+
+  try {
+    const response = await fetch(API_BASE_URL + `/estore/token`, {
       method: 'POST',
-      redirect: 'follow',
       headers,
-      cache: 'no-store',
+      body: newData,
+      redirect: 'follow',
+    });
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      return { message: `OTP verification failed` };
+    } else {
+      await setHeaderInCookie(responseData);
+      return { message: `OTP verification successful` };
     }
-  );
-  console.log(res.ok);
-  if (res.ok) {
-    return { message: `OTP sent seccessfull` };
-  } else {
-    return { message: `OTP sent Failed ` };
+  } catch (error) {
+    console.log('Server error!', error);
   }
 };

@@ -2,95 +2,30 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ProductsType } from '@/types/products';
-import { getEStoreProducts } from '../../products-listing/fetcher';
+import { getEStoreProductsListWithSort } from '../../products-listing/fetcher';
 import { ProductListingParamsType } from '../../products-listing/page';
-import { urlToSTringParser } from '@/lib/format';
+import { urlToStringParser } from '@/lib/format';
+import { SearchParamsType } from './page';
+import Products from '../Products';
 
 type CategoriesParams = ProductListingParamsType & {
   params: { category?: string };
 };
 
-const ECategoryProductList = async ({ params }: CategoriesParams) => {
+const ECategoryProductList = async ({
+  params,
+  searchParams,
+}: CategoriesParams & { searchParams: SearchParamsType }) => {
   const { category } = params;
-  const parsed_category = urlToSTringParser(category as string);
+  const parsed_category = urlToStringParser(category as string);
 
-  const products: ProductsType[] = await getEStoreProducts(parsed_category);
-  const noImage =
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+  const products: ProductsType[] = await getEStoreProductsListWithSort({
+    queryParams: { params },
+    categoryParams: parsed_category,
+    searchParams,
+  });
 
-  return (
-    <div className='bg-white'>
-      <div className='pb-8 pt-6 sm:pb-16'>
-        {/* <Breadcrumbs items={breadcrumbs} /> */}
-        <div>
-          <div className='-mx-px grid grid-cols-2 border-l border-t border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4'>
-            {/* {isLoading && <p>Loading products...</p>} */}
-            {products &&
-              products.map((product, index) => (
-                // Single product item view
-                <Link
-                  href={`/merchant/${params.merchant_id}/product/product-detail/${product.id}`}
-                  key={'product-id-' + product.id + index}
-                  className='group relative border-b border-r border-gray-200 p-4 sm:p-4'
-                >
-                  <div className='aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75'>
-                    <Image
-                      src={
-                        product.image_link == null
-                          ? noImage
-                          : product.image_link
-                      }
-                      loading='lazy'
-                      alt={product.title}
-                      height={500}
-                      width={250}
-                      className='h-40 w-full object-cover object-center sm:h-48'
-                    />
-                  </div>
-                  <div className='pb-0 pt-4 text-start sm:pb-2'>
-                    <h3 className='line-clamp-2 text-sm font-medium capitalize text-gray-900'>
-                      <span>
-                        <span aria-hidden='true' className='absolute inset-0' />
-                        {product.title}
-                      </span>
-                    </h3>
-                    {/* <p className='line-clamp-1 text-xs text-gray-500'>
-                              {product.description}
-                          </p> */}
-                    {/* <div className='mt-2 flex flex-col items-start justify-center'>
-                          <p className='sr-only'>
-                            {product.rating} out of 5 stars
-                          </p>
-                          <div className='flex items-center'>
-                            {[0, 1, 2, 3, 4].map((rating) => (
-                              <StarIcon
-                                key={rating}
-                                className={cn(
-                                  product.rating > rating
-                                    ? 'text-yellow-400'
-                                    : 'text-gray-200',
-                                  'h-4 w-4 flex-shrink-0'
-                                )}
-                                aria-hidden='true'
-                              />
-                            ))}
-                          </div>
-                          <p className='mt-1 text-xs text-gray-500'>
-                            {product.reviewCount} reviews
-                          </p>
-                        </div> */}
-                    <p className='mt-2 text-sm font-semibold text-gray-900'>
-                      {product.price}
-                    </p>
-                    <p>{product.category}</p>
-                  </div>
-                </Link>
-              ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <Products products={products} params={params} />;
 };
 
 export default ECategoryProductList;

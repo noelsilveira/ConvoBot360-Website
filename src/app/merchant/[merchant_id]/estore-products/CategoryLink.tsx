@@ -1,15 +1,15 @@
 'use client';
 
-import { stringToUrlParser, urlToSTringParser } from '@/lib/format';
+import { stringToUrlParser, urlToStringParser } from '@/lib/format';
 import { cn } from '@/lib/utils';
 import { CategoryType } from '@/types/products';
 import Link from 'next/link';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 const CategoryLink = ({ category }: { category: CategoryType }) => {
   const { category: activeCategory } = useParams();
   const category_link = stringToUrlParser(category.title);
-  const parsed_link = urlToSTringParser(activeCategory as string);
+  const parsed_link = urlToStringParser(activeCategory as string);
 
   return (
     <Link

@@ -1,14 +1,17 @@
 import React from 'react';
-import { ProductListingParamsType } from '../../products-listing/page';
-import ECategoryProductList from './ECategoryProductList';
 
-type CategoriesParams = ProductListingParamsType & {
-  params: { category?: string };
-};
-const CategorizedProductsPage = async ({ params }: CategoriesParams) => {
+import ECategoryProductList from './ECategoryProductList';
+import { ProductListingParamsType } from '@/types/products';
+
+export type SearchParamsType = { [key: string]: string | string[] | undefined };
+
+const CategorizedProductsPage = async ({
+  params,
+  searchParams,
+}: ProductListingParamsType & { searchParams: SearchParamsType }) => {
   return (
     <>
-      <ECategoryProductList params={params} />
+      <ECategoryProductList params={params} searchParams={searchParams} />
     </>
   );
 };
