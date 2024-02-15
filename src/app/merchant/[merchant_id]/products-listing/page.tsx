@@ -10,7 +10,7 @@ import React from 'react';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
 import { cookies } from 'next/headers';
 import { getProducts } from './fetcher';
-import { setHeaders } from '@/app/auth/set-headers';
+import { setOTPHeaders } from '@/app/auth/set-headers';
 import { SortOptions } from '@/components/product/SortProducts';
 
 export type ProductListingParamsType = {

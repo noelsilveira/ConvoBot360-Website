@@ -1,26 +1,17 @@
 'use client';
 
-import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { PlusIcon } from '@heroicons/react/20/solid';
+import { Disclosure } from '@headlessui/react';
 import {
   FunnelIcon,
   MinusIcon,
   Squares2X2Icon,
 } from '@heroicons/react/24/outline';
-import React, { Children, FormEvent, Fragment, Suspense } from 'react';
-import { filters, sortOptions, subCategories } from '@/constants/filters';
-import {
-  getCategories,
-  getProducts,
-} from '@/app/merchant/[merchant_id]/products-listing/fetcher';
-
+import React from 'react';
 import { CategoryType } from '@/types/products';
 import FilterButton from './FilterButton';
 import MobileFilterMenu from './MobileFilterMenu';
 import SortFilterMenu from './SortFilterMenu';
-import { cn } from '@/lib/utils';
-import { productFilterUpdate } from '@/app/actions/product';
-import useSwr from 'swr';
 import { ProductStore, categoryStore } from '@/store/productsStore';
 import { ProductListingParamsType } from '@/app/merchant/[merchant_id]/products-listing/page';
 

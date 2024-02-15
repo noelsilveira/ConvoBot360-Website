@@ -4,7 +4,7 @@ import { API_BASE_URL } from '@/constants/urls';
 import { branch_id } from '@/constants/products';
 import { headers } from 'next/headers';
 import { productFilterUpdate } from '@/app/actions/product';
-import { setHeaders } from '@/app/auth/set-headers';
+import { setOTPHeaders } from '@/app/auth/set-headers';
 
 export type FilterParamType = {
   keywords: string;
@@ -20,7 +20,7 @@ export const getProducts = async (
 
   // console.log("Filters : ", filters);
 
-  const my_headers = await setHeaders();
+  const my_headers = await setOTPHeaders();
   var raw = JSON.stringify({
     branch_id: branch_id,
     filters: filterParam,
@@ -47,7 +47,7 @@ export const getProducts = async (
 };
 
 export const getCategories = async () => {
-  const headers = await setHeaders();
+  const headers = await setOTPHeaders();
 
   const res = await fetch(API_BASE_URL + `/estore/categories/${branch_id}`, {
     method: 'POST',
@@ -69,7 +69,7 @@ export const getFilterProducts = async (
 ) => {
   'use client';
 
-  const my_headers = await setHeaders();
+  const my_headers = await setOTPHeaders();
   var raw = JSON.stringify({
     branch_id: branch_id,
     filters: filterParam,
@@ -100,7 +100,7 @@ export const getEStoreProducts = async (filter?: string) =>
 
     // console.log("Filters : ", filters);
 
-    const my_headers = await setHeaders();
+    const my_headers = await setOTPHeaders();
     var raw = JSON.stringify({
       branch_id: branch_id,
       filters: filterParam,

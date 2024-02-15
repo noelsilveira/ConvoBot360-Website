@@ -1,6 +1,6 @@
 import { cookies, headers } from 'next/headers';
 
-export const setHeaders = async () => {
+export const setOTPHeaders = async () => {
   'use server';
   const cookieStore = cookies();
   const token = cookieStore.get('access_token');
