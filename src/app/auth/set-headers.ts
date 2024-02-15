@@ -12,3 +12,16 @@ export const setHeaders = async () => {
      return myHeaders
 }
 
+
+export const setOTPHeaders = async () => {
+    'use server'
+    // const cookieStore = cookies()
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWRkaGVzaCIsImV4cCI6MTcwNzk5NzU2MH0.C7tR6bHqEVw4g-vnQEzy1a5z3vXHMq_QU8_viJ_3-AU'
+  
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append("Authorization", `Bearer ${token}`)
+    // console.log('headers: ',myHeaders);
+     return myHeaders
+}
+
