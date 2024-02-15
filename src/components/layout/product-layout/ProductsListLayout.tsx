@@ -15,6 +15,7 @@ import SortFilterMenu, { SortOptions } from './SortFilterMenu';
 import { cn } from '@/lib/utils';
 import { productFilterUpdate } from '@/app/actions/product';
 import useSwr from 'swr';
+import { CategoryType } from '@/types/products';
 
 export type ProductListingParamsType = {
   params: {
@@ -29,7 +30,10 @@ const ProductsListLayout = ({
   children,
   title = 'New Arrivals',
   description,
-}: {
+  params,
+}: ProductListingParamsType & {
+  title?: string;
+  description?: string;
   children: React.ReactNode;
   categories: CategoryType[];
 }) => {
