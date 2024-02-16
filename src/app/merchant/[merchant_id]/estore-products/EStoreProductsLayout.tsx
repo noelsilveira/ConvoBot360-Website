@@ -16,9 +16,9 @@ const EStoreProductsLayout = ({
       {/* Mobile filter dialog */}
       <MobileFilterMenu />
 
-      <main className='mx-auto mt-0 max-w-7xl px-4 sm:px-6 lg:px-8'>
+      <main className='mx-auto mt-0 max-w-7xl px-0 sm:px-6 lg:px-8'>
         <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-4'>
-          <div className='flex items-center'>
+          <div className='flex items-center px-4'>
             {/* Sort filter menu */}
             <SortFilterMenu sortBy={params.sortBy || `"price":"asc"`} />
 

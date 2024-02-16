@@ -1,8 +1,7 @@
 'use server';
 
 import { API_BASE_URL } from '@/constants/urls';
-import { cookies } from 'next/headers';
-import { setOTPHeaders } from '@/app/auth/set-headers';
+import { setSessionHeader } from '@/app/auth/set-headers';
 import { ProductListingParamsType } from '@/types/products';
 import { SearchParamsType } from '../estore-products/[category]/page';
 import { convertToSortObject } from '@/lib/format';
@@ -12,17 +11,12 @@ export type FilterParamType = {
   keywords: string;
   category: string;
 };
-export const getProducts = async (
-  { filterParam }: { filterParam: FilterParamType | {} }
-  // filter: string|null
-) => {
-  // const url = new URL(headers().get('filter'))
-  // const {filter} = searchParams
-  // const filters = await productFilterUpdate({filter})
-
-  // console.log("Filters : ", filters);
-
-  const my_headers = await setOTPHeaders();
+export const getProducts = async ({
+  filterParam,
+}: {
+  filterParam: FilterParamType | {};
+}) => {
+  const my_headers = await setSessionHeader();
   var raw = JSON.stringify({
     branch_id: branch_id,
     filters: filterParam,
@@ -49,7 +43,7 @@ export const getProducts = async (
 };
 
 export const getCategories = async () => {
-  const headers = await setOTPHeaders();
+  const headers = await setSessionHeader();
 
   const res = await fetch(API_BASE_URL + `/estore/categories/${branch_id}`, {
     method: 'POST',
@@ -71,7 +65,7 @@ export const getFilterProducts = async (
 ) => {
   'use client';
 
-  const my_headers = await setOTPHeaders();
+  const my_headers = await setSessionHeader();
   var raw = JSON.stringify({
     branch_id: branch_id,
     filters: filterParam,
@@ -99,7 +93,7 @@ export const getEStoreProducts = async (
 ) => {
   const filterParam = { category: filter };
 
-  const my_headers = await setOTPHeaders();
+  const my_headers = await setSessionHeader();
   let raw = JSON.stringify({
     branch_id: branch_id,
     filters: filterParam,
@@ -144,7 +138,7 @@ export const getEStoreProductsListWithSort = async ({
   const sortBy = searchParams?.sortBy;
   const sortObject = sortBy ? convertToSortObject(sortBy as string) : {};
 
-  const my_headers = await setOTPHeaders();
+  const my_headers = await setSessionHeader();
   const bid = 'b3cac885-ba05-4d0c-8a61-ac77da18a84d';
 
   let raw = JSON.stringify({

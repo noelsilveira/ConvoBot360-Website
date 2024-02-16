@@ -53,20 +53,10 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
               </div>
             </FlyoutMenu>
 
-            <div className='ml-auto flex items-center justify-end'>
+            <div className='ml-0 flex flex-1 items-center justify-end'>
               {/* Search */}
-              <div className='hidden flex-1 items-center sm:flex'>
+              <div className='flex flex-1 items-center justify-end'>
                 <SearchProduct />
-              </div>
-              <div className='flex lg:ml-6'>
-                <button
-                  type='button'
-                  // onClick={handleButtonClick}
-                  className='p-2 text-gray-400 hover:text-gray-500'
-                >
-                  <span className='sr-only'>Search</span>
-                  <MagnifyingGlassIcon className='h-6 w-6' aria-hidden='true' />
-                </button>
               </div>
 
               {/* Cart */}

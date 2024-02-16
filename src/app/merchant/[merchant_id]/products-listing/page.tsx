@@ -1,16 +1,11 @@
-import { API_BASE_URL } from '@/constants/urls';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
-import Image from 'next/image';
-import Link from 'next/link';
 import Pagination from '@/components/product/Pagination';
 import ProductsList from './ProductsList';
 import ProductsListLayout from '@/components/layout/product-layout/ProductsListLayout';
 import { ProductsType } from '@/types/products';
 import React from 'react';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
-import { cookies } from 'next/headers';
 import { getProducts } from './fetcher';
-import { setOTPHeaders } from '@/app/auth/set-headers';
 import { SortOptions } from '@/components/product/SortProducts';
 
 export type ProductListingParamsType = {

@@ -1,25 +1,36 @@
 'use server';
-import { branch_id } from '@/constants/products';
+import { static_access_token, static_otp_token } from '@/constants/auth';
 import { TOKEN_NAME } from '@/constants/urls';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
+const OTP_TOKEN_NAME = 'OTP_TOKEN';
 
 export const setOTPHeaders = async () => {
-  const static_branch_id = 'b3cac885-ba05-4d0c-8a61-ac77da18a84d';
-  const static_token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MTk4MjA4NTk2NjciLCJleHAiOjE3MDgwMzQyNzN9.BmGK0rCkGp4fkRvZBuWgE09H-VGDq7fqiz9E1zuOf3s';
+  let token = cookies().get(OTP_TOKEN_NAME);
+  if (!token) {
+    await setFixedTokenFromAPI(OTP_TOKEN_NAME, static_otp_token);
+    token = cookies().get(OTP_TOKEN_NAME);
+  }
 
+  const myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token?.value}`);
+
+  return myHeaders;
+};
+
+export const setSessionHeader = async () => {
   let token = cookies().get(TOKEN_NAME);
   if (!token) {
-    // await setFixedTokenFromAPI();
-    token = cookies().get(TOKEN_NAME);
-    console.log('Token header: ', token);
+    // await setFixedTokenFromAPI(TOKEN_NAME, static_access_token);
+    // token = cookies().get(TOKEN_NAME);
+    redirect('/');
   }
 
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
   myHeaders.append('Authorization', `Bearer ${token?.value}`);
-  // myHeaders.append('Authorization', `Bearer ${static_token}`);
-  // console.log('headers: ',myHeaders);
+
   return myHeaders;
 };
 
@@ -34,16 +45,16 @@ export const setOTPHeaders = async () => {
 //   });
 // };
 
-// export const setFixedTokenFromAPI = async () => {
-//   const static_token =
-//     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWRkaGVzaCIsImV4cCI6MTcwODAzMjYyMn0.doJum6vIYIc1NpXageClYSqNZ0-i0xTgdANAza0YZ7U';
-//   cookies().set({
-//     name: TOKEN_NAME,
-//     value: static_token,
-//     httpOnly: true,
-//     priority: 'high',
-//     secure: true,
-//     path: '/',
-//   });
-//   return static_token;
-// };
+export const setFixedTokenFromAPI = async (
+  token_name: string,
+  token_value: string
+) => {
+  cookies().set({
+    name: token_name,
+    value: token_value,
+    httpOnly: true,
+    priority: 'high',
+    secure: true,
+    path: '/',
+  });
+};

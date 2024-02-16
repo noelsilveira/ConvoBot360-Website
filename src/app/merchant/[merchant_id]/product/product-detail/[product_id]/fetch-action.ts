@@ -1,13 +1,13 @@
 'use server';
 
-import { setOTPHeaders } from '@/app/auth/set-headers';
+import { setSessionHeader } from '@/app/auth/set-headers';
 
 import { API_BASE_URL } from '@/constants/urls';
 import { OrderPayloadType } from '@/types/order';
 import { redirect } from 'next/navigation';
 
 export const addCartHandler = async (prevState: any, formData: FormData) => {
-  const headers = await setOTPHeaders();
+  const headers = await setSessionHeader();
   const payload = {
     branch_id: formData.get('branch_id'),
     products: [

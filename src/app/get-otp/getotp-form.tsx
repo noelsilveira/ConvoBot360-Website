@@ -36,7 +36,7 @@ const GetOtpForm = () => {
         className='space-y-6'
       >
         <div>
-          <div className='mx-auto flex w-full flex-row items-center'>
+          <div className='mx-auto flex flex-row items-center justify-start'>
             <div
               className={cn(
                 'mx-auto',
@@ -53,10 +53,14 @@ const GetOtpForm = () => {
                 numInputs={6}
                 shouldAutoFocus
                 skipDefaultStyles
-                inputType='text'
-                inputStyle='flex h-16 w-16 flex-col items-center justify-center rounded-xl border border-gray-200 bg-white px-6 text-center text-lg font-semibold text-black outline-none ring-brand-500 focus:bg-gray-50 focus:ring-1'
+                inputType='number'
+                inputStyle='flex h-12 w-12 md:h-16 md:w-16 flex-col items-center justify-center rounded-xl appearance-none border border-gray-200 bg-white px-4 text-center text-lg font-semibold text-black outline-none ring-brand-500 focus:bg-gray-50 focus:ring-1'
                 renderInput={(props) => (
-                  <input onSubmit={() => setOtp('')} {...props} />
+                  <input
+                    pattern='[0-9]*'
+                    onSubmit={() => setOtp('')}
+                    {...props}
+                  />
                 )}
               />
             </div>

@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation';
 
 export const getOtpHandler = async (state: any, formData: FormData) => {
   'use server';
-  const headers = await setOTPHeaders();
+  const myOTPheaders = await setOTPHeaders();
 
   const username = '919820859667';
   const password = formData.get('otp');
@@ -17,15 +17,23 @@ export const getOtpHandler = async (state: any, formData: FormData) => {
   password && newData.append('password', password);
 
   const phone_number = 919820859667;
+  const raw = {
+    method: 'POST',
+    headers: myOTPheaders,
+    body: newData,
+    redirect: 'follow',
+  };
+  console.log(raw);
 
   try {
     const response = await fetch(API_BASE_URL + `/estore/token`, {
       method: 'POST',
-      headers,
+      headers: myOTPheaders,
       body: newData,
       redirect: 'follow',
     });
     const responseData = await response.json();
+    console.log(responseData);
 
     if (!response.ok) {
       return { message: `OTP verification failed` };

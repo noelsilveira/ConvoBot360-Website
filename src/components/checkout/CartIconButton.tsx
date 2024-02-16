@@ -13,7 +13,7 @@ const CartIconButton = () => {
   }, []);
 
   return (
-    <div className='ml-4 flow-root lg:ml-6'>
+    <div className='ml-0 flow-root lg:ml-4'>
       <Link
         href='/checkout/cart'
         className='group relative -m-2 flex items-center p-2'

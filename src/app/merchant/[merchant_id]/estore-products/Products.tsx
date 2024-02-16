@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ProductListingParamsType, ProductsType } from '@/types/products';
 import ProductListImage from './ProductListImage';
 import { cn } from '@/lib/utils';
+import { TbShoppingBagPlus } from 'react-icons/tb';
 
 const Products = ({
   products,
@@ -21,7 +22,7 @@ const Products = ({
                 // Single product item view
                 <div
                   key={'product-id-' + product.id + index}
-                  className='relative border-b border-r border-gray-200 p-4 sm:p-3'
+                  className='relative border-b border-r border-gray-200 p-3'
                 >
                   <Link
                     href={`/merchant/${params.merchant_id}/product/product-detail/${product.id}`}
@@ -30,40 +31,39 @@ const Products = ({
                       {/* Image with broken url */}
                       <ProductListImage product={product} />
                     </div>
-                    <div className='pb-0 pt-4 text-start sm:pb-2'>
-                      <h3 className='line-clamp-2 text-sm font-medium capitalize text-gray-900'>
-                        <span>
-                          <span
-                            aria-hidden='true'
-                            className='absolute inset-0'
-                          />
-                          {product.title}
-                        </span>
+                    <div className='pb-0 pt-2 text-start sm:pb-2'>
+                      <h3 className='line-clamp-2 text-sm font-medium capitalize text-gray-950'>
+                        <span>{product.title}</span>
                       </h3>
 
-                      <p className='mt-2 text-sm font-semibold text-gray-900'>
+                      <p className='mt-1 text-sm font-bold text-gray-900'>
                         {product.price} {product.currency}
                       </p>
                       {product.category && (
-                        <p className='text-xs'>{product.category}</p>
+                        <p className='text-xs font-medium text-gallery-400'>
+                          {product.category}
+                        </p>
                       )}
                     </div>
                   </Link>
-                  <div className='flex w-full flex-col items-start justify-between gap-2 md:flex-row md:items-center'>
-                    <p className='h-fit rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium capitalize text-emerald-700'>
+                  <div className='absolute right-4 top-4 rounded-full bg-gallery-900 px-2 py-0.5 text-[0.65rem] font-semibold text-white'>
+                    <span className=''>{product.condition}</span>
+                  </div>
+                  <div className='absolute bottom-4 right-4'>
+                    {/* <p className='h-fit rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium capitalize text-emerald-700'>
                       {product?.availability}
-                    </p>
+                    </p> */}
                     <button
                       type='button'
                       disabled={!product.availability ? false : true}
                       className={cn(
-                        'rounded-lg border border-gray-300 bg-white px-4 py-2 text-xs font-medium duration-150 ease-out hover:border-gray-400 hover:bg-gray-100',
+                        'cursor-pointer rounded-full bg-gallery-100 p-2 text-lg text-gallery-900 duration-150 ease-out hover:bg-gallery-200',
                         product.availability
                           ? 'opacity-100'
                           : 'cursor-not-allowed opacity-40'
                       )}
                     >
-                      Add to cart
+                      <TbShoppingBagPlus className='h-5 w-5' />
                     </button>
                   </div>
                 </div>

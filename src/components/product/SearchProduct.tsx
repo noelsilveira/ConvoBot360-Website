@@ -30,8 +30,8 @@ const SearchProduct = () => {
   }
 
   return (
-    <div>
-      <div className='mx-auto max-w-sm px-4 sm:px-0'>
+    <div className='w-full max-w-md'>
+      <div className='px-4 sm:px-0'>
         <label
           htmlFor='search'
           className='sr-only block text-sm font-medium leading-6 text-gray-900'
@@ -47,7 +47,7 @@ const SearchProduct = () => {
               handleSearch(e.target.value);
             }}
             placeholder='Search keyword...'
-            className='block w-full rounded-xl border-0 px-4 py-2 pr-14 font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6'
+            className='block w-full rounded-xl border-0 px-4 py-2 pr-14 text-sm font-medium text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6'
           />
           <div className='absolute inset-y-0 right-0 flex items-center justify-center py-1.5 pr-3'>
             <TbSearch className='text-lg text-gray-400' />

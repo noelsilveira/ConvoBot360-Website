@@ -12,7 +12,7 @@ const ProductListImage = ({ product }: { product: ProductsType }) => {
     <Image
       onError={() => setBackupImage(noImage)}
       src={backupImage == null ? noImage : backupImage}
-      alt={product.title}
+      alt={product.title || 'product list image'}
       height={500}
       width={250}
       className='h-40 w-full object-cover object-center sm:h-48'
