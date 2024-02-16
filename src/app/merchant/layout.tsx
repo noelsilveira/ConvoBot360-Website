@@ -2,11 +2,15 @@ import Footer from '@/components/layout/Footer';
 import MobileMenu from '@/components/layout/MobileMenu';
 import MerchantHeader from '@/components/layout/merchant-layout/MerchantHeader';
 import { cn } from '@/lib/utils';
+import { ProductListingParamsType } from '@/types/products';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const MerchantLayout = ({ children }: { children: React.ReactNode }) => {
+const MerchantLayout = ({
+  children,
+  params,
+}: ProductListingParamsType & { children: React.ReactNode }) => {
   return (
     <>
       <div>
@@ -14,7 +18,7 @@ const MerchantLayout = ({ children }: { children: React.ReactNode }) => {
         <MobileMenu />
 
         {/* Top navigation */}
-        <MerchantHeader />
+        <MerchantHeader params={params} />
         <main className={cn(`${inter}`)}>{children}</main>
         <Footer />
       </div>

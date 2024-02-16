@@ -177,6 +177,9 @@ export const navigation = {
       name: 'Products',
       base_href: '/merchant',
     },
+    { name: 'About merchant', href: '/merchant/36049357/about' },
+    { name: 'Company', href: '/about' },
+    { name: 'Contact', href: '/contact-us' },
   ],
   pages: [
     { name: 'Home', href: '/' },

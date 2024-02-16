@@ -5,8 +5,10 @@ import Link from 'next/link';
 import CategoriesNavigation from './CatagoriesNavigation';
 import FlyoutMenu from './FlyoutMenu';
 import MenuButton from './MenuButton';
+import SearchProduct from '@/components/product/SearchProduct';
+import { ProductListingParamsType } from '@/types/products';
 
-const MerchantNavbar = () => {
+const MerchantNavbar = ({ params }: ProductListingParamsType) => {
   // const handleButtonClick = () => {
   //   toast.custom((t) => (
   //     <CustomToaster t={t}>Yayyy! Product added to bag</CustomToaster>
@@ -44,7 +46,7 @@ const MerchantNavbar = () => {
                   <div className='grid grid-cols-2 gap-x-8 gap-y-10 pb-16 pt-6'>
                     <div className='row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm'>
                       {/* Categories */}
-                      <CategoriesNavigation />
+                      <CategoriesNavigation params={params} />
                     </div>
                   </div>
                 </div>
@@ -53,6 +55,9 @@ const MerchantNavbar = () => {
 
             <div className='ml-auto flex items-center justify-end'>
               {/* Search */}
+              <div className='hidden flex-1 items-center sm:flex'>
+                <SearchProduct />
+              </div>
               <div className='flex lg:ml-6'>
                 <button
                   type='button'

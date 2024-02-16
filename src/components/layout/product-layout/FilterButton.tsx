@@ -1,18 +1,10 @@
 'use client';
 
-import {
-  getFilterProducts,
-  getProducts,
-} from '@/app/merchant/[merchant_id]/products-listing/fetcher';
+import { getProducts } from '@/app/merchant/[merchant_id]/products-listing/fetcher';
 
-import { API_BASE_URL } from '@/constants/urls';
 import { CategoryType } from '@/types/products';
 import { ProductStore, categoryStore } from '@/store/productsStore';
-import React, { useState } from 'react';
-import axios from 'axios';
-import { branch_id } from '@/constants/products';
-import { productFilterUpdate } from '@/app/actions/product';
-import useSWR from 'swr';
+import React from 'react';
 import { cn } from '@/lib/utils';
 
 const FilterButton = ({ category }: { category: CategoryType }) => {

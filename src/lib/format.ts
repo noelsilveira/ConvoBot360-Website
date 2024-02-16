@@ -23,10 +23,7 @@ export const partition = <T>(array: T[] | undefined, parts: number) => {
   );
 };
 
-export async function batchReduce<T>(
-  arr: T[],
-  batchSize: number
-): Promise<T[][]> {
+export function batchReduce<T>(arr: T[], batchSize: number): T[][] {
   if (typeof arr == undefined) return [];
   return arr.reduce((batches, curr, i) => {
     if (i % batchSize === 0) batches.push([]);

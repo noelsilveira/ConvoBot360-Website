@@ -3,6 +3,7 @@ import React from 'react';
 import EStoreProductsLayout from './EStoreProductsLayout';
 import { ProductListingParamsType } from '../products-listing/page';
 import { urlToStringParser } from '@/lib/format';
+import SearchProduct from '@/components/product/SearchProduct';
 
 const ProductsPageLayout = ({
   children,
@@ -24,7 +25,10 @@ const ProductsPageLayout = ({
   return (
     <>
       <div className='bg-white'>
-        <div className='pb-8 pt-6 sm:pb-16'>
+        <div className='pb-8 pt-2 sm:pb-16 sm:pt-6'>
+          <div className='block sm:hidden'>
+            <SearchProduct />
+          </div>
           <Breadcrumbs items={breadcrumbs} />
           <div>
             <h2 className='sr-only'>Products</h2>

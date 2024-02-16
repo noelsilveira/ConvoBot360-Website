@@ -20,9 +20,8 @@ const MobileFilterMenu = () => {
     data: categories,
     error,
     isLoading,
-  } = useSWR<CategoryType[]>('/api/user', getCategories);
+  } = useSWR<CategoryType[]>('/api/categories', getCategories);
 
-  console.log(categories);
   return (
     <Transition.Root show={mobileFiltersOpen} as={Fragment}>
       <Dialog
