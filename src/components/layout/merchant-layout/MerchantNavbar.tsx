@@ -55,9 +55,9 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
 
             <div className='ml-0 flex flex-1 items-center justify-end'>
               {/* Search */}
-              <div className='flex flex-1 items-center justify-end'>
+              {/* <div className='flex flex-1 items-center justify-end'>
                 <SearchProduct />
-              </div>
+              </div> */}
 
               {/* Cart */}
               <CartIconButton />

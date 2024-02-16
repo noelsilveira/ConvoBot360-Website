@@ -1,13 +1,16 @@
 'use server';
 
 import { API_BASE_URL } from '@/constants/urls';
-import { OrderPayloadType } from '@/types/order';
+import { OrderType } from '@/types/order';
+import {
+  getSessionHeaderWithNoJSON,
+  setSessionHeader,
+} from '@/app/auth/set-headers';
 import { redirect } from 'next/navigation';
-import { setSessionHeader } from '@/app/auth/set-headers';
 
-export const addCartHandler = async (prevState: any, formData: FormData) => {
+export const addCartHandler = async (formData: FormData) => {
   console.log('new: ', formData);
-  const headers = await setSessionHeader();
+  const myHeaders = await getSessionHeaderWithNoJSON();
   const payload = {
     branch_id: formData.get('branch_id'),
     products: [
@@ -19,57 +22,45 @@ export const addCartHandler = async (prevState: any, formData: FormData) => {
     ],
   };
   const return_value = await getOrderId(payload);
+  const order_id = return_value?.detail.order_id;
 
-  let value = 'failed';
-  if (return_value != 'failed') {
-    const link_res = await fetch(
-      `${API_BASE_URL}/estore/continue/${return_value}`,
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/estore/continue/${order_id}`,
       {
         method: 'POST',
-        headers: headers,
+        headers: myHeaders,
         redirect: 'follow',
       }
-    )
-      .then((response) => response.text())
-      .then((result) => {
-        const result_obj = JSON.parse(result);
-        value = result_obj.detail.toString();
-      })
-      .catch((error) => console.error(error));
-      console.log('f ', value);
-  
+    );
+    const response_with_whatsapp_link = await response.json();
 
-    redirect(`${value}`);
-    // return { message: value, link: value };
-  } else {
-    return { message: value, link: value };
+    if (response_with_whatsapp_link?.status_code === 200) {
+      const whatsapp_link = response_with_whatsapp_link.detail;
+      redirect(`/`);
+    } else {
+      throw new Error('Failed to create your order');
+    }
+  } catch (error) {
+    console.error(error);
   }
 };
 
 const getOrderId = async (payload: Object) => {
-
-
   const myHeaders = await setSessionHeader();
 
   const raw = JSON.stringify(payload);
-  let a = 'failed';
 
-  const res = await fetch(API_BASE_URL + `/estore/cart`, {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow',
-  })
-    .then((response) => response.text())
-    .then((result) => {
-     
-      const result_obj = JSON.parse(result);
-    
-      a = result_obj.detail;
-    })
-    .catch((error) => {
-      console.error('e', error);
+  try {
+    const res = await fetch(API_BASE_URL + `/estore/cart`, {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
     });
-  // console.log('a',a);
-  return a;
+    const resultObject: { detail: OrderType } = await res.json();
+    return resultObject;
+  } catch (error) {
+    console.error('e', error);
+  }
 };

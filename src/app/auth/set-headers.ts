@@ -1,5 +1,5 @@
 'use server';
-import { static_access_token, static_otp_token } from '@/constants/auth';
+import { static_otp_token } from '@/constants/auth';
 import { TOKEN_NAME } from '@/constants/urls';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -29,6 +29,18 @@ export const setSessionHeader = async () => {
 
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Authorization', `Bearer ${token?.value}`);
+
+  return myHeaders;
+};
+
+export const getSessionHeaderWithNoJSON = async () => {
+  let token = cookies().get(TOKEN_NAME);
+  if (!token) {
+    redirect('/');
+  }
+
+  const myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token?.value}`);
 
   return myHeaders;

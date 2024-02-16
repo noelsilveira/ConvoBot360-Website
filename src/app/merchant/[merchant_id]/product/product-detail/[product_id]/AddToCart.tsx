@@ -15,15 +15,10 @@ const AddToCartForm = ({
   product_id: string;
 }) => {
   const pathname = usePathname();
-  const initialSate = {
-    message: '',
-    link: pathname,
-  };
 
-  const [state, formAction] = useFormState(addCartHandler, initialSate);
   return (
     <>
-      <form action={formAction}>
+      <form action={addCartHandler}>
         <input type='hidden' value={branch_id} name='branch_id' />
         <input type='hidden' value={product_id} name='product_id' />
         <div className='mt-4 sm:mt-0 sm:pr-9'>
@@ -62,7 +57,6 @@ const AddToCartForm = ({
         </div>
 
         <AddToCartButton />
-        <p className='text-black'>whatsapp_link {state?.message}</p>
       </form>
     </>
   );

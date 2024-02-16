@@ -20,7 +20,7 @@ const MerchantLayout = ({
         {/* Top navigation */}
         <MerchantHeader params={params} />
         <main className={cn(`${inter}`)}>{children}</main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

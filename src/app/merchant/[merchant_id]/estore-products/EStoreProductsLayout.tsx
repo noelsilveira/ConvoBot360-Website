@@ -7,6 +7,7 @@ import MobileFilterMenu from '@/components/layout/product-layout/MobileFilterMen
 import { ProductListingParamsType } from '@/app/(deprecated)/products-listing/page';
 import SortFilterMenu from '@/components/layout/product-layout/SortFilterMenu';
 import { Squares2X2Icon } from '@heroicons/react/24/outline';
+import SearchProduct from '@/components/product/SearchProduct';
 
 const EStoreProductsLayout = ({
   children,
@@ -18,7 +19,11 @@ const EStoreProductsLayout = ({
       <MobileFilterMenu />
 
       <main className='mx-auto mt-0 max-w-7xl px-0 sm:px-6 lg:px-8'>
-        <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-4'>
+        <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-2'>
+          {/* Search */}
+          <div className='flex flex-1 items-center justify-end'>
+            <SearchProduct />
+          </div>
           <div className='flex items-center px-4'>
             {/* Sort filter menu */}
             <SortFilterMenu sortBy={params.sortBy || `"price":"asc"`} />
@@ -35,7 +40,7 @@ const EStoreProductsLayout = ({
           </div>
         </div>
 
-        <section aria-labelledby='products-heading' className='py-6 lg:pb-8'>
+        <section aria-labelledby='products-heading' className='py-4 lg:pb-8'>
           <h2 id='products-heading' className='sr-only'>
             Products
           </h2>

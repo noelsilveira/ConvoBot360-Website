@@ -19,7 +19,7 @@ const CartIconButton = () => {
         className='group relative -m-2 flex items-center p-2'
       >
         <MdOutlineShoppingCart
-          className='h-6 w-6 flex-shrink-0 text-blue-500 duration-300 ease-out group-hover:text-gray-500'
+          className='h-6 w-6 flex-shrink-0 text-gallery-500 duration-300 ease-out group-hover:text-gray-500'
           aria-hidden='true'
         />
         {/* <HiOutlineShoppingBag

@@ -44,7 +44,7 @@ const GetOtpForm = () => {
               )}
               aria-disabled={pending}
             >
-              <input type='hidden' name='otp' value={otp} />
+              <input type='hidden' id='otp' name='otp' value={otp} />
               <OTPInput
                 value={otp}
                 onChange={handleChange}
@@ -83,7 +83,7 @@ const SubmitButton = () => {
   return (
     <button
       type='submit'
-      area-disabled={pending}
+      aria-disabled={pending}
       className={cn(
         'flex w-full justify-center rounded-xl bg-brand-600 px-8 py-4 text-sm font-semibold leading-6 text-white shadow-sm duration-150 ease-out hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600',
         pending ? 'cursor-not-allowed opacity-60' : 'animate-none'

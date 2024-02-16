@@ -25,8 +25,8 @@ const ProductsPageLayout = ({
   return (
     <>
       <div className='bg-white'>
-        <div className='pb-8 pt-4 sm:pb-16 sm:pt-6'>
-          <Breadcrumbs items={breadcrumbs} />
+        <div className='py-2 sm:pb-16 sm:pt-6'>
+          {/* <Breadcrumbs items={breadcrumbs} /> */}
           <div>
             <h2 className='sr-only'>Products</h2>
 

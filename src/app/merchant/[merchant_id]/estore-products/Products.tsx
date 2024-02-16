@@ -3,7 +3,7 @@ import { ProductListingParamsType, ProductsType } from '@/types/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import ProductListImage from './ProductListImage';
-import ProductVariantModal from './ProductVariantModal';
+import ProductAddToCartButtonWithModal from './ProductAddToCartButtonWithModal';
 import React from 'react';
 import { TbShoppingBagPlus } from 'react-icons/tb';
 import { cn } from '@/lib/utils';
@@ -33,8 +33,11 @@ const Products = ({
                       {/* Image with broken url */}
                       <ProductListImage product={product} />
                     </div>
-                    <div className='pb-0 pt-2 text-start sm:pb-2'>
-                      <h3 className='line-clamp-2 text-sm font-medium capitalize text-gray-950'>
+                  </Link>
+
+                  <div className='flex items-start justify-between pb-0 pt-2 sm:pb-2'>
+                    <div className='flex w-full flex-col text-start'>
+                      <h3 className='line-clamp-1 text-sm font-medium capitalize text-gray-950'>
                         <span>{product.title}</span>
                       </h3>
 
@@ -47,12 +50,10 @@ const Products = ({
                         </p>
                       )}
                     </div>
-                  </Link>
-                  <div className='absolute right-4 top-4 hidden rounded-full bg-gallery-900 px-2 py-0.5 text-[0.65rem] font-semibold text-white'>
-                    <span className=''>{product.condition}</span>
-                  </div>
-                  <div className='absolute bottom-4 right-4'>
-                    <ProductVariantModal product={product} />
+
+                    <div className='flex flex-1 flex-col items-end justify-end'>
+                      <ProductAddToCartButtonWithModal product={product} />
+                    </div>
                   </div>
                 </div>
               ))}

@@ -1,21 +1,9 @@
 'use client';
 
-import { Combobox, Dialog, Transition } from '@headlessui/react';
-import { Fragment, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { TbSearch } from 'react-icons/tb';
-import { cn } from '@/lib/utils';
-
-const people = [
-  { id: 1, name: 'Leslie Alexander', url: '#!' },
-  { id: 2, name: 'John Alexander', url: '#!' },
-  { id: 3, name: 'Yuri Fa Nom', url: '#!' },
-  { id: 4, name: 'Denis Ivy', url: '#!' },
-  { id: 5, name: 'Jessica Sai', url: '#!' },
-  // More people...
-];
 
 const SearchProduct = () => {
   const [query, setQuery] = useState('');
@@ -24,16 +12,6 @@ const SearchProduct = () => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [activeOption, setActiveSortOption] = useState('');
-
-
-  const filteredPeople =
-    query === ''
-      ? []
-      : people.filter((person) => {
-        return person.name.toLowerCase().includes(query.toLowerCase());
-      });
-
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -76,9 +54,9 @@ const SearchProduct = () => {
               handleSearch(e.target.value);
             }}
             placeholder='Search keyword...'
-            className='block w-full rounded-xl border-0 px-4 py-2 pr-14 text-sm font-medium text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-brand-600 sm:text-sm sm:leading-6'
+            className='block w-full rounded-xl bg-gallery-100 px-4 py-2 pl-8 text-sm font-medium text-gray-900 placeholder:text-gallery-400 sm:text-sm sm:leading-6'
           />
-          <div className='absolute inset-y-0 right-0 flex items-center justify-center py-1.5 pr-3'>
+          <div className='absolute inset-y-0 left-0 flex items-center justify-center py-1.5 pl-2.5'>
             <TbSearch className='text-lg text-gray-400' />
           </div>
         </div>
