@@ -1,11 +1,12 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { revalidateTag } from 'next/cache';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { ChangeEvent, Fragment, useCallback, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { cn } from '@/lib/utils';
+import { revalidateTag } from 'next/cache';
 
 type SortListProps = {
   sortBy: SortOptions;
@@ -101,14 +102,14 @@ const SortFilterMenu = ({ sortBy }: SortListProps) => {
                 key={option.label}
                 as='div'
                 className='group inline-flex w-full'
-                onChange={(e) =>
+                onChange={(e: Event) =>
                   handleChange(
                     e as unknown as ChangeEvent<HTMLButtonElement>,
                     option.value
                   )
                 }
               >
-                {({ active }) => (
+                {({ active }: {active: boolean}) => (
                   <>
                     <input
                       type='radio'

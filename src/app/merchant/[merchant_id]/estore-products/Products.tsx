@@ -1,10 +1,12 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { ProductListingParamsType, ProductsType } from '@/types/products';
+
+import Image from 'next/image';
+import Link from 'next/link';
 import ProductListImage from './ProductListImage';
-import { cn } from '@/lib/utils';
+import ProductVariantModal from './ProductVariantModal';
+import React from 'react';
 import { TbShoppingBagPlus } from 'react-icons/tb';
+import { cn } from '@/lib/utils';
 
 const Products = ({
   products,
@@ -50,21 +52,9 @@ const Products = ({
                     <span className=''>{product.condition}</span>
                   </div>
                   <div className='absolute bottom-4 right-4'>
-                    {/* <p className='h-fit rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium capitalize text-emerald-700'>
-                      {product?.availability}
-                    </p> */}
-                    <button
-                      type='button'
-                      disabled={!product.availability ? false : true}
-                      className={cn(
-                        'cursor-pointer rounded-full bg-gallery-100 p-2 text-lg text-gallery-900 duration-150 ease-out hover:bg-gallery-200',
-                        product.availability
-                          ? 'opacity-100'
-                          : 'cursor-not-allowed opacity-40'
-                      )}
-                    >
-                      <TbShoppingBagPlus className='h-5 w-5' />
-                    </button>
+
+                    <ProductVariantModal product={product} />
+
                   </div>
                 </div>
               ))}

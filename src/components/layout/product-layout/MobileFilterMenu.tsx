@@ -4,13 +4,14 @@ import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React, { Fragment } from 'react';
 import { filters, subCategories } from '@/constants/filters';
-import { useFiltersNavigationStore } from '@/store/navigationStore';
-import { getCategories } from '@/app/merchant/[merchant_id]/products-listing/fetcher';
-import useSWR from 'swr';
+
+import CategoryLink from '@/app/merchant/[merchant_id]/estore-products/CategoryLink';
 import { CategoryType } from '@/types/products';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import CategoryLink from '@/app/merchant/[merchant_id]/estore-products/CategoryLink';
+import { getCategories } from '@/app/(deprecated)/products-listing/fetcher';
+import { useFiltersNavigationStore } from '@/store/navigationStore';
+import useSWR from 'swr';
 
 const MobileFilterMenu = () => {
   const { mobileFiltersOpen, setMobileFiltersOpen } =

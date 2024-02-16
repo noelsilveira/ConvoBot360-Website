@@ -1,13 +1,14 @@
 'use client';
 
 import { FunnelIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
-import React from 'react';
+
 import { CategoryType } from '@/types/products';
 import FilterButton from './FilterButton';
-import MobileFilterMenu from './MobileFilterMenu';
-import SortFilterMenu from './SortFilterMenu';
-import { ProductListingParamsType } from '@/app/merchant/[merchant_id]/products-listing/page';
 import FilterListWrapper from './FilterListWrapper';
+import MobileFilterMenu from './MobileFilterMenu';
+import { ProductListingParamsType } from '@/app/(deprecated)/products-listing/page';
+import React from 'react';
+import SortFilterMenu from './SortFilterMenu';
 import { useFiltersNavigationStore } from '@/store/navigationStore';
 
 const ProductsListLayout = ({

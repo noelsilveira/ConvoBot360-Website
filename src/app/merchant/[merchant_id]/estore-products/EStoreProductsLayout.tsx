@@ -1,11 +1,12 @@
-import { Squares2X2Icon } from '@heroicons/react/24/outline';
 import React, { Suspense } from 'react';
-import { ProductListingParamsType } from '@/app/merchant/[merchant_id]/products-listing/page';
-import MobileFilterMenu from '@/components/layout/product-layout/MobileFilterMenu';
-import SortFilterMenu from '@/components/layout/product-layout/SortFilterMenu';
+
 import CategoriesSidebar from './CategoriesSidebar';
-import FilterListWrapper from './FilterListWrapper';
 import FilterCategoriesButton from './FilterCategoriesButton';
+import FilterListWrapper from './FilterListWrapper';
+import MobileFilterMenu from '@/components/layout/product-layout/MobileFilterMenu';
+import { ProductListingParamsType } from '@/app/(deprecated)/products-listing/page';
+import SortFilterMenu from '@/components/layout/product-layout/SortFilterMenu';
+import { Squares2X2Icon } from '@heroicons/react/24/outline';
 
 const EStoreProductsLayout = ({
   children,

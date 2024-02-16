@@ -1,11 +1,11 @@
 'use client';
 
-import { getProducts } from '@/app/merchant/[merchant_id]/products-listing/fetcher';
+import { ProductStore, categoryStore } from '@/store/productsStore';
 
 import { CategoryType } from '@/types/products';
-import { ProductStore, categoryStore } from '@/store/productsStore';
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { getProducts } from '@/app/(deprecated)/products-listing/fetcher';
 
 const FilterButton = ({ category }: { category: CategoryType }) => {
   const { setProducts } = ProductStore();

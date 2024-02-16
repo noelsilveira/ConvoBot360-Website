@@ -1,12 +1,12 @@
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { ProductsType } from '@/types/products';
-import { getEStoreProductsListWithSort } from '../../products-listing/fetcher';
-import { ProductListingParamsType } from '../../products-listing/page';
-import { urlToStringParser } from '@/lib/format';
-import { SearchParamsType } from './page';
+import Link from 'next/link';
+import { ProductListingParamsType } from '../../../../(deprecated)/products-listing/page';
 import Products from '../Products';
+import { ProductsType } from '@/types/products';
+import React from 'react';
+import { SearchParamsType } from './page';
+import { getEStoreProductsListWithSort } from '../../../../(deprecated)/products-listing/fetcher';
+import { urlToStringParser } from '@/lib/format';
 
 type CategoriesParams = ProductListingParamsType & {
   params: { category?: string };

@@ -1,10 +1,10 @@
 'use server';
 
-import React from 'react';
-import { getCategories } from '../products-listing/fetcher';
-import { CategoryType } from '@/types/products';
-import { ProductListingParamsType } from '../products-listing/page';
 import CategoryLink from './CategoryLink';
+import { CategoryType } from '@/types/products';
+import { ProductListingParamsType } from '../../../(deprecated)/products-listing/page';
+import React from 'react';
+import { getCategories } from '../../../(deprecated)/products-listing/fetcher';
 
 type CategoriesParams = ProductListingParamsType & {
   params: { category?: string };

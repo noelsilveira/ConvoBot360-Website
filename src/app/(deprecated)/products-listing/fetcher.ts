@@ -1,11 +1,11 @@
 'use server';
 
 import { API_BASE_URL } from '@/constants/urls';
-import { setSessionHeader } from '@/app/auth/set-headers';
 import { ProductListingParamsType } from '@/types/products';
-import { SearchParamsType } from '../estore-products/[category]/page';
-import { convertToSortObject } from '@/lib/format';
+import { SearchParamsType } from '../../merchant/[merchant_id]/estore-products/[category]/page';
 import { branch_id } from '@/constants/products';
+import { convertToSortObject } from '@/lib/format';
+import { setSessionHeader } from '@/app/auth/set-headers';
 
 export type FilterParamType = {
   keywords: string;
