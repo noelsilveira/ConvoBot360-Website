@@ -1,10 +1,12 @@
 'use client';
 
-import { Fragment, useState } from 'react';
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Combobox, Dialog, Transition } from '@headlessui/react';
-import { cn } from '@/lib/utils';
+import { Fragment, useCallback, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { TbSearch } from 'react-icons/tb';
+import { cn } from '@/lib/utils';
 
 const people = [
   { id: 1, name: 'Leslie Alexander', url: '#!' },
@@ -19,14 +21,41 @@ const SearchProduct = () => {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(true);
 
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [activeOption, setActiveSortOption] = useState('');
+
+
   const filteredPeople =
     query === ''
       ? []
       : people.filter((person) => {
-          return person.name.toLowerCase().includes(query.toLowerCase());
-        });
+        return person.name.toLowerCase().includes(query.toLowerCase());
+      });
+
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const setQueryParams = (name: string, value: string) => {
+    const query = createQueryString(name, value);
+    router.push(`${pathname}?${query}`);
+  };
+  type HandleChangeType = (...args: any[]) => void;
+
   function handleSearch(term: string) {
-    console.log(term);
+    // const newSortBy = e.target.value as SortOptions;
+    setQueryParams('search', term);
+    router.refresh();
+    // setActiveSortOption(term);
   }
 
   return (

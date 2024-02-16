@@ -1,7 +1,6 @@
-import React from 'react';
-
 import ECategoryProductList from './ECategoryProductList';
 import { ProductListingParamsType } from '@/types/products';
+import React from 'react';
 
 export type SearchParamsType = { [key: string]: string | string[] | undefined };
 

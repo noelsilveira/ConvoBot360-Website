@@ -132,10 +132,14 @@ export const getEStoreProductsListWithSort = async ({
   limit?: number;
   categoryParams?: ProductListingParamsType['params']['category'];
   queryParams?: ProductListingParamsType;
-  searchParams?: SearchParamsType;
+  searchParams?: ProductListingParamsType['searchParams'];
 }) => {
-  const categoryParam = { category: categoryParams };
+  
+
+  const search = searchParams?.search;
+  const categoryParam = { category: categoryParams , keywords: search};
   const sortBy = searchParams?.sortBy;
+
   const sortObject = sortBy ? convertToSortObject(sortBy as string) : {};
 
   const my_headers = await setSessionHeader();
@@ -146,6 +150,8 @@ export const getEStoreProductsListWithSort = async ({
     filters: categoryParam,
     sort: sortObject,
   });
+
+  console.log(raw);
 
   try {
     const res = await fetch(

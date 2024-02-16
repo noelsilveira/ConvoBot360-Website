@@ -74,7 +74,7 @@ const MobileFilterMenu = () => {
                   defaultOpen={true}
                   className='border-t border-gray-200 px-4 py-6'
                 >
-                  {({ open }) => (
+                  {({ open }: { open: boolean }) => (
                     <>
                       <h3 className='-mx-2 -my-3 flow-root'>
                         <Disclosure.Button className='flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500'>

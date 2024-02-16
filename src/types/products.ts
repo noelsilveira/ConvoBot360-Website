@@ -1,3 +1,4 @@
+import { SearchParamsType } from '@/app/merchant/[merchant_id]/estore-products/[category]/page';
 import { SortOptions } from '@/components/product/SortProducts';
 
 export type ProductsType = {
@@ -48,6 +49,6 @@ export type ProductListingParamsType = {
     merchant_id?: string;
     sortBy?: SortOptions;
     category?: string;
-    searchParams?: { [key: string]: string | string[] | undefined };
   };
+  searchParams?: SearchParamsType
 };
