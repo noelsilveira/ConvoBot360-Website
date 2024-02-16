@@ -11,3 +11,18 @@ export const useNavigationStore = create<NavigationStore>((set) => ({
       openMenu: value,
     })),
 }));
+
+type FiltersNavigationStore = {
+  mobileFiltersOpen: boolean;
+  setMobileFiltersOpen: (value: boolean) => void;
+};
+
+export const useFiltersNavigationStore = create<FiltersNavigationStore>(
+  (set, get) => ({
+    mobileFiltersOpen: false,
+    setMobileFiltersOpen(value) {
+      console.log('From store: ', value);
+      set((state) => ({ mobileFiltersOpen: value }));
+    },
+  })
+);

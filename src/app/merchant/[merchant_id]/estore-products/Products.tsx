@@ -11,10 +11,10 @@ const Products = ({
 }: ProductListingParamsType & { products: ProductsType[] }) => {
   return (
     <div className='bg-white'>
-      <div className='pb-8 pt-6 sm:pb-16'>
+      <div>
         {/* <Breadcrumbs items={breadcrumbs} /> */}
         <div>
-          <div className='-mx-px grid grid-cols-2 border-l border-t border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4'>
+          <div className='mx-0 grid grid-cols-2 border-l border-t border-gray-200 md:-mx-px md:grid-cols-3 lg:grid-cols-4'>
             {/* {isLoading && <p>Loading products...</p>} */}
             {products &&
               products.map((product, index) => (
@@ -49,7 +49,7 @@ const Products = ({
                       )}
                     </div>
                   </Link>
-                  <div className='flex w-full items-center justify-between'>
+                  <div className='flex w-full flex-col items-start justify-between gap-2 md:flex-row md:items-center'>
                     <p className='h-fit rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium capitalize text-emerald-700'>
                       {product?.availability}
                     </p>
@@ -57,8 +57,8 @@ const Products = ({
                       type='button'
                       disabled={!product.availability ? false : true}
                       className={cn(
-                        'rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium duration-150 ease-out hover:border-gray-400 hover:bg-gray-100',
-                        !product.availability
+                        'rounded-lg border border-gray-300 bg-white px-4 py-2 text-xs font-medium duration-150 ease-out hover:border-gray-400 hover:bg-gray-100',
+                        product.availability
                           ? 'opacity-100'
                           : 'cursor-not-allowed opacity-40'
                       )}

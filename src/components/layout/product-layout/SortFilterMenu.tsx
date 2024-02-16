@@ -94,7 +94,7 @@ const SortFilterMenu = ({ sortBy }: SortListProps) => {
         leaveFrom='transform opacity-100 scale-100'
         leaveTo='transform opacity-0 scale-95'
       >
-        <Menu.Items className='absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none'>
+        <Menu.Items className='absolute right-0 z-10 mt-2 min-w-40 origin-top-right rounded-lg bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none'>
           <div className='py-1'>
             {sortOptions.map((option) => (
               <Menu.Item
@@ -120,7 +120,7 @@ const SortFilterMenu = ({ sortBy }: SortListProps) => {
                           ? 'font-medium text-gray-900'
                           : 'text-gray-500',
                         active ? 'bg-gray-100' : '',
-                        'block appearance-none text-sm'
+                        'block w-0 appearance-none md:text-sm'
                       )}
                     />
 

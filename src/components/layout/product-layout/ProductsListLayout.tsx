@@ -8,6 +8,7 @@ import MobileFilterMenu from './MobileFilterMenu';
 import SortFilterMenu from './SortFilterMenu';
 import { ProductListingParamsType } from '@/app/merchant/[merchant_id]/products-listing/page';
 import FilterListWrapper from './FilterListWrapper';
+import { useFiltersNavigationStore } from '@/store/navigationStore';
 
 const ProductsListLayout = ({
   children,
@@ -17,12 +18,15 @@ const ProductsListLayout = ({
   children: React.ReactNode;
   categories?: CategoryType[];
 }) => {
+  const { mobileFiltersOpen, setMobileFiltersOpen } =
+    useFiltersNavigationStore();
+
   return (
     <div>
       {/* Mobile filter dialog */}
       <MobileFilterMenu />
 
-      <main className='mx-auto mt-8 max-w-7xl px-4 sm:px-6 lg:px-8'>
+      <main className='mx-auto mt-8 max-w-7xl px-0 sm:px-6 lg:px-8'>
         <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-4'>
           <div className='flex items-center'>
             {/* Sort filter menu */}
@@ -38,7 +42,7 @@ const ProductsListLayout = ({
             <button
               type='button'
               className='-m-2 ml-4 inline-flex items-center justify-center gap-1 p-2 text-sm font-medium text-gray-700 hover:text-gray-900 sm:ml-6 lg:hidden'
-              // onClick={() => setMobileFiltersOpen(true)}
+              onClick={() => setMobileFiltersOpen(true)}
             >
               <span>Filters</span>
               <FunnelIcon

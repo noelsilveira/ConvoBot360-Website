@@ -10,7 +10,7 @@ export const setOTPHeaders = async () => {
 
   let token = cookies().get(TOKEN_NAME);
   if (!token) {
-    await setFixedTokenFromAPI();
+    // await setFixedTokenFromAPI();
     token = cookies().get(TOKEN_NAME);
     console.log('Token header: ', token);
   }
@@ -34,16 +34,16 @@ export const setOTPHeaders = async () => {
 //   });
 // };
 
-export const setFixedTokenFromAPI = async () => {
-  const static_token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWRkaGVzaCIsImV4cCI6MTcwODAzMjYyMn0.doJum6vIYIc1NpXageClYSqNZ0-i0xTgdANAza0YZ7U';
-  cookies().set({
-    name: TOKEN_NAME,
-    value: static_token,
-    httpOnly: true,
-    priority: 'high',
-    secure: true,
-    path: '/',
-  });
-  return static_token;
-};
+// export const setFixedTokenFromAPI = async () => {
+//   const static_token =
+//     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWRkaGVzaCIsImV4cCI6MTcwODAzMjYyMn0.doJum6vIYIc1NpXageClYSqNZ0-i0xTgdANAza0YZ7U';
+//   cookies().set({
+//     name: TOKEN_NAME,
+//     value: static_token,
+//     httpOnly: true,
+//     priority: 'high',
+//     secure: true,
+//     path: '/',
+//   });
+//   return static_token;
+// };
