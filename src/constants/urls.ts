@@ -8,3 +8,6 @@ export const ESTORE_HOME = '/estore/home';
 export const TOKEN_NAME = 'access_token';
 
 export const static_merchant_id = '36049357';
+
+export const LANDING_URL =
+  'https://estore.convobot360.com/wa/sendotp?c=919820859667&b=b3cac885-ba05-4d0c-8a61-ac77da18a84d&i=cb360-logo.png';

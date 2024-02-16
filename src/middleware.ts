@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { TOKEN_NAME } from '@/constants/urls';
+import { CryptoAPIRoute } from './app/api/crypto/route';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
+  CryptoAPIRoute(request);
+
   let res;
   if (!request.cookies.has(TOKEN_NAME)) {
     res = deleteToken();
