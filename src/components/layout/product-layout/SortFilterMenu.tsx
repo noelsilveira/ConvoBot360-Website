@@ -102,14 +102,14 @@ const SortFilterMenu = ({ sortBy }: SortListProps) => {
                 key={option.label}
                 as='div'
                 className='group inline-flex w-full'
-                onChange={(e: Event) =>
+                onChange={(e: any) =>
                   handleChange(
                     e as unknown as ChangeEvent<HTMLButtonElement>,
                     option.value
                   )
                 }
               >
-                {({ active }: {active: boolean}) => (
+                {({ active }: { active: boolean }) => (
                   <>
                     <input
                       type='radio'
