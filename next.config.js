@@ -22,6 +22,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'cdn.convobot360.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
         hostname: 'ddkrestaurant.com',
         pathname: '**',
       },

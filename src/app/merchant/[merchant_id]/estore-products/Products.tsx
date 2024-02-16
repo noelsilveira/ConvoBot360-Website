@@ -38,8 +38,8 @@ const Products = ({
                         <span>{product.title}</span>
                       </h3>
 
-                      <p className='mt-1 text-sm font-bold text-gray-900'>
-                        {product.price} {product.currency}
+                      <p className='mt-1 text-xs font-semibold text-gallery-500'>
+                        {product.currency} {product.price}
                       </p>
                       {product.category && (
                         <p className='text-xs font-medium text-gallery-400'>
@@ -48,13 +48,11 @@ const Products = ({
                       )}
                     </div>
                   </Link>
-                  <div className='absolute right-4 top-4 rounded-full bg-gallery-900 px-2 py-0.5 text-[0.65rem] font-semibold text-white'>
+                  <div className='absolute right-4 top-4 hidden rounded-full bg-gallery-900 px-2 py-0.5 text-[0.65rem] font-semibold text-white'>
                     <span className=''>{product.condition}</span>
                   </div>
                   <div className='absolute bottom-4 right-4'>
-
                     <ProductVariantModal product={product} />
-
                   </div>
                 </div>
               ))}

@@ -10,7 +10,7 @@ const MerchantHeader = ({ params }: ProductListingParamsType) => {
   return (
     <header className='relative'>
       {/* Top navigation */}
-      <TopBar />
+      {/* <TopBar /> */}
 
       <MerchantNavbar params={params} />
 

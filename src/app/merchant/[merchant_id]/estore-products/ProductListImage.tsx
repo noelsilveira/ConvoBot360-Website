@@ -6,8 +6,8 @@ import React, { useState } from 'react';
 const ProductListImage = ({ product }: { product: ProductsType }) => {
   const [backupImage, setBackupImage] = useState(product.image_link);
   const image = '/assets/product/package-icon.png';
-  const noImage =
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+  const noImage = 'https://cdn.convobot360.com/images/fallback.png';
+
   return (
     <Image
       onError={() => setBackupImage(noImage)}

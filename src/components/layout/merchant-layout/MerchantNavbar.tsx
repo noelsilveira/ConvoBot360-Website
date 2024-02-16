@@ -24,7 +24,7 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
         <div>
           <div className='flex h-16 items-center justify-start'>
             {/* Menu Button */}
-            <MenuButton />
+            {/* <MenuButton /> */}
             {/* Logo */}
             <div className='ml-4 flex lg:ml-0'>
               <Link href='/'>

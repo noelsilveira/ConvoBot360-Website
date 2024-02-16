@@ -2,7 +2,7 @@
 import { useCartStore } from '@/store/cartStore';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
-
+import { MdOutlineShoppingCart } from 'react-icons/md';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
 
 const CartIconButton = () => {
@@ -18,10 +18,14 @@ const CartIconButton = () => {
         href='/checkout/cart'
         className='group relative -m-2 flex items-center p-2'
       >
-        <HiOutlineShoppingBag
-          className='h-6 w-6 flex-shrink-0 text-gray-400 duration-300 ease-out group-hover:text-gray-500'
+        <MdOutlineShoppingCart
+          className='h-6 w-6 flex-shrink-0 text-blue-500 duration-300 ease-out group-hover:text-gray-500'
           aria-hidden='true'
         />
+        {/* <HiOutlineShoppingBag
+          className='h-6 w-6 flex-shrink-0 text-gray-400 duration-300 ease-out group-hover:text-gray-500'
+          aria-hidden='true'
+        /> */}
         <CartLabel item={countCart()} />
       </Link>
     </div>

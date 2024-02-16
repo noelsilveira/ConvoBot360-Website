@@ -5,7 +5,7 @@ import { Fragment, useRef, useState } from 'react';
 import { ProductListingParamsType, ProductsType } from '@/types/products';
 import { useParams, usePathname } from 'next/navigation';
 import { RadioGroup } from '@headlessui/react';
-import { TbShoppingBagPlus } from 'react-icons/tb';
+import { TbPlus, TbShoppingBagPlus } from 'react-icons/tb';
 import { addCartHandler } from '../product/product-detail/[product_id]/fetch-action';
 import { branch_id } from '@/constants/products';
 import { cn } from '@/lib/utils';
@@ -112,11 +112,12 @@ const Wrapper = ({
         type='button'
         // disabled={!product.availability ? false : true}
         className={cn(
-          'cursor-pointer rounded-full bg-gallery-100 p-2 text-lg text-gallery-900 duration-150 ease-out hover:bg-gallery-200',
+          'text-galley-900 cursor-pointer rounded-lg bg-gallery-100 p-2 text-lg duration-150 ease-out hover:bg-brand-400',
           product.availability ? 'opacity-100' : 'cursor-not-allowed opacity-40'
         )}
       >
-        <TbShoppingBagPlus className='h-5 w-5' />
+        <TbPlus className='h-5 w-5' />
+        {/* <TbShoppingBagPlus className='h-5 w-5' /> */}
       </button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog
