@@ -5,8 +5,6 @@ import Link from 'next/link';
 import ProductListImage from './ProductListImage';
 import ProductAddToCartButtonWithModal from './ProductAddToCartButtonWithModal';
 import React from 'react';
-import { TbShoppingBagPlus } from 'react-icons/tb';
-import { cn } from '@/lib/utils';
 
 const Products = ({
   products,

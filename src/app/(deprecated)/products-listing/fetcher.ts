@@ -6,6 +6,8 @@ import { SearchParamsType } from '../../merchant/[merchant_id]/estore-products/[
 import { branch_id } from '@/constants/products';
 import { convertToSortObject } from '@/lib/format';
 import { setSessionHeader } from '@/app/auth/set-headers';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export type FilterParamType = {
   keywords: string;
@@ -134,24 +136,20 @@ export const getEStoreProductsListWithSort = async ({
   queryParams?: ProductListingParamsType;
   searchParams?: ProductListingParamsType['searchParams'];
 }) => {
-  
-
   const search = searchParams?.search;
-  const categoryParam = { category: categoryParams , keywords: search};
+  const categoryParam = { category: categoryParams, keywords: search };
   const sortBy = searchParams?.sortBy;
 
   const sortObject = sortBy ? convertToSortObject(sortBy as string) : {};
 
   const my_headers = await setSessionHeader();
-  const bid = 'b3cac885-ba05-4d0c-8a61-ac77da18a84d';
+  const bid = cookies().get('branch_id');
 
   let raw = JSON.stringify({
-    branch_id: bid,
+    branch_id: bid?.value,
     filters: categoryParam,
     sort: sortObject,
   });
-
-  console.log(raw);
 
   try {
     const res = await fetch(
@@ -170,8 +168,9 @@ export const getEStoreProductsListWithSort = async ({
     );
 
     const productObject = await res.json();
+    console.log('Test product object: ', productObject);
     return productObject.detail;
   } catch (error) {
-    throw new Error('Server error!');
+    console.error(error);
   }
 };

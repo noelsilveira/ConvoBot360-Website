@@ -9,6 +9,7 @@ export async function middleware(request: NextRequest) {
   let res;
   if (!request.cookies.has(TOKEN_NAME)) {
     res = deleteToken();
+    NextResponse.redirect(new URL('/', request.url));
   }
   const expiry = request.cookies.get('expiry');
   const expiry_date = Number(expiry?.value); // in seconds
@@ -26,6 +27,7 @@ export async function middleware(request: NextRequest) {
 const deleteToken = async () => {
   const response = NextResponse.next();
   response.cookies.delete(TOKEN_NAME);
+  response.cookies.delete('OTP_TOKEN');
   response.cookies.delete('expiry');
   response.cookies.delete('token_type');
 

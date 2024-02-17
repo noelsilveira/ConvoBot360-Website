@@ -25,7 +25,7 @@ const EStoreLandingOTPPage = async ({
   return (
     <>
       <OTPSetClient {...searchParams} />
-      <TestEncrypt />
+      {/* <TestEncrypt /> */}
       <div className='flex min-h-svh flex-1 flex-col justify-start px-6 py-12 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
           <Image
@@ -52,16 +52,9 @@ const EStoreLandingOTPPage = async ({
               </div>
             </div>
           </div>
-          <GetOtpForm />
-          <p className='mt-10 text-center text-sm text-gray-500'>
-            Didn&apos;t receive code?{' '}
-            <a
-              href='#'
-              className='font-semibold leading-6 text-brand-600 hover:text-brand-500'
-            >
-              Resend code
-            </a>
-          </p>
+          <div className='animate-pulse text-center text-sm text-gray-400'>
+            <p>Verification in process...</p>
+          </div>
         </div>
       </div>
     </>

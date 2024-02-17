@@ -1,18 +1,9 @@
-'use client';
-
 import React from 'react';
-import {
-  CheckIcon,
-  ClockIcon,
-  QuestionMarkCircleIcon,
-  XMarkIcon,
-} from '@heroicons/react/20/solid';
+import { QuestionMarkCircleIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
-import { useCartStore } from '@/store/cartStore';
+import { ProductListingParamsType } from '@/types/products';
 
-const CartPage = () => {
-  const { cart } = useCartStore();
-
+const CartPage = ({ params, searchParams }: ProductListingParamsType) => {
   return (
     <>
       {/* <MainLayout title={`Shopping Cart | CB360 - Ultimate shopping`}> */}
@@ -31,7 +22,7 @@ const CartPage = () => {
                 role='list'
                 className='divide-y divide-gray-200 border-b border-t border-gray-200'
               >
-                {cart.map((product, productIdx) => (
+                {/* {cart.map((product, productIdx) => (
                   <li key={product.id} className='flex py-6 sm:py-10'>
                     <div className='flex-shrink-0'>
                       <img
@@ -128,7 +119,7 @@ const CartPage = () => {
                       </p>
                     </div>
                   </li>
-                ))}
+                ))} */}
               </ul>
             </section>
 

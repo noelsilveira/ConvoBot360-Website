@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-
+import debounce from 'lodash/debounce';
 import { TbSearch } from 'react-icons/tb';
 
 const SearchProduct = () => {
@@ -28,13 +28,24 @@ const SearchProduct = () => {
     router.push(`${pathname}?${query}`);
   };
   type HandleChangeType = (...args: any[]) => void;
+  let timeout = 500;
 
   function handleSearch(term: string) {
-    // const newSortBy = e.target.value as SortOptions;
-    setQueryParams('search', term);
+    if (term == '') {
+      setQueryParams('', term);
+      router.replace(`${pathname}`);
+    } else {
+      setQueryParams('search', term);
+    }
     router.refresh();
+
     // setActiveSortOption(term);
   }
+
+  const debouncedHandleSearch = useCallback(
+    debounce(handleSearch, timeout),
+    []
+  );
 
   return (
     <div className='w-full max-w-md'>
@@ -51,10 +62,10 @@ const SearchProduct = () => {
             name='search'
             id='search'
             onChange={(e) => {
-              handleSearch(e.target.value);
+              debouncedHandleSearch(e.target.value);
             }}
             placeholder='Search keyword...'
-            className='block w-full rounded-xl bg-gallery-100 px-4 py-2 pl-8 text-sm font-medium text-gray-900 placeholder:text-gallery-400 sm:text-sm sm:leading-6'
+            className='block w-full rounded-xl bg-gallery-100 px-4 py-2.5 pl-8 text-sm font-medium text-gray-900 accent-blue-600 placeholder:text-gallery-400 sm:text-sm sm:leading-6'
           />
           <div className='absolute inset-y-0 left-0 flex items-center justify-center py-1.5 pl-2.5'>
             <TbSearch className='text-lg text-gray-400' />

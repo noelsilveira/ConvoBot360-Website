@@ -8,9 +8,54 @@ import {
 } from '@/app/auth/set-headers';
 import { redirect } from 'next/navigation';
 
-export const addCartHandler = async (formData: FormData) => {
-  console.log('new: ', formData);
-  const myHeaders = await getSessionHeaderWithNoJSON();
+export type AddToCartObjectType = {
+  branch_id: FormDataEntryValue | null;
+  products: {
+    product_id: FormDataEntryValue | null;
+    quantity: FormDataEntryValue | null;
+    option_id: FormDataEntryValue | null;
+  }[];
+};
+export type AddToCartProductResponseType = {
+  product_retailer_id: string;
+  product_name: string;
+  quantity: number;
+  item_price: number;
+  option_id: string;
+  option_name: string;
+  option_price: number;
+  currency: string;
+  add: [
+    {
+      type: string;
+      description: string;
+      percent: number;
+      amount: number;
+    },
+  ];
+  deduct: null | number;
+};
+
+export type AddToCartResponseType = {
+  status_code: number;
+  detail: {
+    timestamp: string;
+    order_id: string;
+    products: AddToCartProductResponseType;
+  };
+  net_total: number;
+  taxes: number;
+  service_charges: number;
+  delivery_charges: number;
+  discounts: number;
+  gross_total: number;
+  currency: string;
+  delivery_location: null | string;
+  order_mode: string;
+  order_status: string;
+};
+
+export const generatePayload = async (formData: FormData) => {
   const payload = {
     branch_id: formData.get('branch_id'),
     products: [
@@ -21,8 +66,30 @@ export const addCartHandler = async (formData: FormData) => {
       },
     ],
   };
-  const return_value = await getOrderId(payload);
-  const order_id = return_value?.detail.order_id;
+  if (payload.branch_id === null) {
+    throw new Error('Error with Branch ID');
+  }
+  return payload;
+};
+
+export const addCartHandler = async (formData: FormData) => {
+  const payload = await generatePayload(formData);
+
+  try {
+    const cartResponse = await getCartResponse(payload);
+    // const return_value = await getOrderId(payload);
+    if (cartResponse?.status_code === 200) {
+      const cartDetails = cartResponse.detail;
+      console.log('Success CART: ', cartDetails);
+      return cartDetails;
+    }
+  } catch (error) {
+    throw new Error('Error getting cart response');
+  }
+};
+
+export const generateOrderIDLink = async (order_id: string) => {
+  const myHeaders = await getSessionHeaderWithNoJSON();
 
   try {
     const response = await fetch(
@@ -59,6 +126,25 @@ const getOrderId = async (payload: Object) => {
       redirect: 'follow',
     });
     const resultObject: { detail: OrderType } = await res.json();
+    return resultObject;
+  } catch (error) {
+    console.error('e', error);
+  }
+};
+
+export const getCartResponse = async (payload: AddToCartObjectType) => {
+  const myHeaders = await setSessionHeader();
+
+  const raw = JSON.stringify(payload);
+
+  try {
+    const res = await fetch(API_BASE_URL + `/estore/cart`, {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    });
+    const resultObject: AddToCartResponseType = await res.json();
     return resultObject;
   } catch (error) {
     console.error('e', error);

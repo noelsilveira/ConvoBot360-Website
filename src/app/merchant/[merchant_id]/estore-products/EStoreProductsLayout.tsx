@@ -19,9 +19,12 @@ const EStoreProductsLayout = ({
       <MobileFilterMenu />
 
       <main className='mx-auto mt-0 max-w-7xl px-0 sm:px-6 lg:px-8'>
+        <div className='mt-1 flex flex-1 items-center justify-end md:mt-0 md:hidden'>
+          <SearchProduct />
+        </div>
         <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-2'>
           {/* Search */}
-          <div className='flex flex-1 items-center justify-end'>
+          <div className='hidden flex-1 items-center justify-end md:flex'>
             <SearchProduct />
           </div>
           <div className='flex items-center px-4'>
@@ -30,10 +33,10 @@ const EStoreProductsLayout = ({
 
             <button
               type='button'
-              className='-m-2 ml-5 hidden p-2 text-gray-400 hover:text-gray-500 sm:ml-7'
+              className='-m-2 ml-3 hidden p-2 text-gray-400 hover:text-gray-500 sm:ml-5'
             >
               <span className='sr-only'>View grid</span>
-              <Squares2X2Icon className='h-5 w-5' aria-hidden='true' />
+              <Squares2X2Icon className='h-4 w-4' aria-hidden='true' />
             </button>
             {/* Filter categories mobile button */}
             <FilterCategoriesButton />

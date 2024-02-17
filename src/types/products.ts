@@ -19,7 +19,7 @@ export type ProductsType = {
   google_product_category: any;
   fb_product_category: any;
   category: any;
-  options: any[];
+  options: ProductOptionsType[];
   is_active: boolean;
 };
 
@@ -43,6 +43,29 @@ export type CategoryType = {
   description: string;
 };
 
+export type ProductOptionsType = {
+  id: string;
+  name: string;
+  price: number;
+  translation: {
+    name: {
+      ar: string;
+      en: string;
+    };
+  };
+};
+
+export type ProductSearchTooShortType = {
+  type: string;
+  msg: string;
+  input: string;
+  url: string;
+  ctx: {
+    min_length: number;
+  };
+  loc: Array<string>;
+};
+
 export type ProductListingParamsType = {
   params: {
     product_id?: string;
@@ -50,5 +73,5 @@ export type ProductListingParamsType = {
     sortBy?: SortOptions;
     category?: string;
   };
-  searchParams?: SearchParamsType
+  searchParams?: SearchParamsType;
 };

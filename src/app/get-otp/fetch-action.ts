@@ -17,13 +17,6 @@ export const getOtpHandler = async (state: any, formData: FormData) => {
   password && newData.append('password', password);
 
   const phone_number = 919820859667;
-  const raw = {
-    method: 'POST',
-    headers: myOTPheaders,
-    body: newData,
-    redirect: 'follow',
-  };
-  console.log(raw);
 
   try {
     const response = await fetch(API_BASE_URL + `/estore/token`, {
@@ -33,7 +26,6 @@ export const getOtpHandler = async (state: any, formData: FormData) => {
       redirect: 'follow',
     });
     const responseData = await response.json();
-    console.log(responseData);
 
     if (!response.ok) {
       return { message: `OTP verification failed` };

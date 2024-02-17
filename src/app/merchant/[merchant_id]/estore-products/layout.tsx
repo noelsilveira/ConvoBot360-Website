@@ -26,14 +26,13 @@ const ProductsPageLayout = ({
     <>
       <div className='bg-white'>
         <div className='py-2 sm:pb-16 sm:pt-6'>
-          {/* <Breadcrumbs items={breadcrumbs} /> */}
           <div>
             <h2 className='sr-only'>Products</h2>
 
             <EStoreProductsLayout params={params}>
               {/* Products lists */}
               {children}
-              {/* <EProductList params={params} /> */}
+
               {/* <Pagination /> */}
             </EStoreProductsLayout>
           </div>
