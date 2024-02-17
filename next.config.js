@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    serverActions: {
+      allowedOrigins: [
+        'http://localhost',
+        'https://4g6t0dcg-3000.inc1.devtunnels.ms',
+      ],
+    },
+  },
 
   // Configure the images domain for caching, image optimization and other useful caveats for SEO and faster page loads
   images: {
