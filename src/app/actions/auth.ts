@@ -13,8 +13,10 @@ export type TokenType = {
 
 export const setHeaderInCookie = async (data: TokenType) => {
   const today = new Date();
-  const milliseconds = data.expiry * 1000;
-  const expiry_date = new Date(today.getTime() + milliseconds);
+  const now = new Date();
+  const expiry_milliseconds = data.expiry * 150;
+  const expiry_date = today.setTime(today.getTime() + expiry_milliseconds);
+  const expiry = expiry_date.toString();
 
   cookies().set({
     name: TOKEN_NAME,
@@ -25,7 +27,15 @@ export const setHeaderInCookie = async (data: TokenType) => {
   });
   cookies().set({
     name: 'expiry',
-    value: expiry_date.toDateString(),
+    value: expiry,
+    // value: data.expiry.toString(),
+    httpOnly: true,
+    secure: true,
+    path: '/',
+  });
+  cookies().set({
+    name: 'expiry_created',
+    value: now.getTime().toString(),
     // value: data.expiry.toString(),
     httpOnly: true,
     secure: true,

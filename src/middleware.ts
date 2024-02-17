@@ -4,21 +4,19 @@ import { TOKEN_NAME } from '@/constants/urls';
 import { CryptoAPIRoute } from './app/api/crypto/route';
 
 export async function middleware(request: NextRequest) {
-  CryptoAPIRoute(request);
+  // CryptoAPIRoute(request);
 
   let res;
   if (!request.cookies.has(TOKEN_NAME)) {
     res = deleteToken();
     NextResponse.redirect(new URL('/', request.url));
   }
-  const expiry = request.cookies.get('expiry');
-  const expiry_date = Number(expiry?.value); // in seconds
+  const expiry = Number(request.cookies.get('expiry')?.value);
+  const expiry_created = Number(request.cookies.get('expiry_created')?.value);
 
-  let date = new Date().toString();
-  const current_date = new Date(date).getTime(); // in Seconds
-
-  if (current_date > expiry_date) {
-    res = deleteToken();
+  if (expiry > expiry_created) {
+    // TODO
+    // res = deleteToken();
   }
 
   return res;

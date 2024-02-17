@@ -153,7 +153,7 @@ export const getEStoreProductsListWithSort = async ({
 
   try {
     const res = await fetch(
-      API_BASE_URL + `/estore/catalog/${page || 1}/${limit || 20}`,
+      API_BASE_URL + `/estore/catalog/${page || 1}/${limit || 50}`,
       {
         method: 'POST',
         redirect: 'follow',
@@ -168,7 +168,7 @@ export const getEStoreProductsListWithSort = async ({
     );
 
     const productObject = await res.json();
-    console.log('Test product object: ', productObject);
+
     return productObject.detail;
   } catch (error) {
     console.error(error);

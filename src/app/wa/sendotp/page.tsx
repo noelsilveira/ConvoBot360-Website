@@ -17,11 +17,6 @@ const EStoreLandingOTPPage = async ({
   params,
   searchParams,
 }: EStoreLandingOTPParamsType) => {
-  console.log({ params, searchParams });
-  //   const access_token = cookies().get(TOKEN_NAME);
-  //   if (access_token) {
-  //     redirect(`/merchant/${static_merchant_id}/estore-products/`);
-  //   }
   return (
     <>
       <OTPSetClient {...searchParams} />

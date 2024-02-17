@@ -90,3 +90,22 @@ export function convertToSortObject(input: string): { [key: string]: string } {
   }
   return {};
 }
+
+export const cleanJsonString = (jsonString: string): string => {
+  // Remove backslashes
+  let cleanedString = jsonString.replace(/\\/g, '');
+
+  // Remove quotes around keys
+  // cleanedString = cleanedString.replace(/"(\w+)"\s*:/g, '$1:');
+
+  // Remove quotes around values
+  // cleanedString = cleanedString.replace(/"([^"]*)"/g, '$1');
+
+  // Remove quotes before {
+  cleanedString = cleanedString.replace(/"{/g, '{');
+
+  // Remove quotes after }
+  cleanedString = cleanedString.replace(/}"/g, '}');
+
+  return cleanedString;
+};

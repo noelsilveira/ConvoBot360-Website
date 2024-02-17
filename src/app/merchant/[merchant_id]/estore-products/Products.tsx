@@ -1,6 +1,5 @@
 import { ProductListingParamsType, ProductsType } from '@/types/products';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import ProductListImage from './ProductListImage';
 import ProductAddToCartButtonWithModal from './ProductAddToCartButtonWithModal';

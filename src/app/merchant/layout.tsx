@@ -10,7 +10,9 @@ const inter = Inter({ subsets: ['latin'] });
 const MerchantLayout = ({
   children,
   params,
-}: ProductListingParamsType & { children: React.ReactNode }) => {
+}: Pick<ProductListingParamsType, 'params'> & {
+  children: React.ReactNode;
+}) => {
   return (
     <>
       <div>

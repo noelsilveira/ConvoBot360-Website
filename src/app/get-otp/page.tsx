@@ -46,7 +46,7 @@ const GetOtpPage = async () => {
             Didn&apos;t receive code?{' '}
             <a
               href='#'
-              className='font-semibold leading-6 text-brand-600 hover:text-brand-500'
+              className='font-semibold leading-6 text-blue-600 hover:text-blue-500'
             >
               Resend code
             </a>

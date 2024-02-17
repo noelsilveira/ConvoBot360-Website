@@ -46,17 +46,6 @@ export const getSessionHeaderWithNoJSON = async () => {
   return myHeaders;
 };
 
-// export const setBranchId = async (branch_id: string) => {
-//   cookies().set({
-//     name: 'branch_id',
-//     value: branch_id,
-//     httpOnly: true,
-//     priority: 'high',
-//     secure: true,
-//     path: '/',
-//   });
-// };
-
 export const setFixedTokenFromAPI = async (
   token_name: string,
   token_value: string

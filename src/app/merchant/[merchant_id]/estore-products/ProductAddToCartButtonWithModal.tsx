@@ -5,13 +5,18 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import { ProductOptionsType, ProductsType } from '@/types/products';
 import { RadioGroup } from '@headlessui/react';
 import { TbMinus, TbPlus, TbX } from 'react-icons/tb';
-import { addCartHandler } from '../product/product-detail/[product_id]/fetch-action';
+import {
+  addCartHandler,
+  addToCartModalAction,
+} from '../product/product-detail/[product_id]/fetch-action';
 import { branch_id } from '@/constants/products';
 import { cn } from '@/lib/utils';
 import { useFormStatus } from 'react-dom';
 import { useRouter } from 'next/navigation';
+import WhatsappProductListInModal, {
+  WhatsappProductVariantListInModal,
+} from './WhatsappProductListModal';
 
-type Operation = 'increase' | 'decrease';
 const ProductAddToCartButtonWithModal = ({
   product,
 }: {
@@ -46,96 +51,42 @@ const ProductAddToCartButtonWithModal = ({
     <Wrapper product={product}>
       <form
         action={async (formData: FormData) => {
-          const response = await addCartHandler(formData);
+          const response = await addToCartModalAction(formData);
           if (response?.order_id) {
             const params = new URLSearchParams(
               JSON.stringify(response.order_id)
             );
-            window.history.pushState(
-              null,
-              '',
-              `/checkout/cart?${params.toString()}`
-            );
+            router.push('/checkout/cart');
           }
         }}
-        className='flex flex-col items-start justify-center gap-2'
+        className='relative flex flex-col items-start justify-center'
       >
-        <div className='flex w-full items-start justify-between'>
-          <div className='mb-4 flex flex-col gap-1'>
-            <h2 className='text-xl font-semibold capitalize'>
-              {product.title}
-            </h2>
-            <p className='text-sm font-medium text-gallery-500'>
-              {product.currency} {product.price}
-            </p>
-            {/* <p className='text-sm text-gallery-500'>{product.category}</p> */}
-          </div>
-
-          <QuantityModifierButtons
-            quantity={quantity}
-            setQuantity={setQuantity}
-          />
+        <div className='w-full border-b border-gallery-50'>
+          <WhatsappProductListInModal product={product} />
         </div>
-
-        <div>
-          <RadioGroup
-            value={activeOption}
-            onChange={setActiveOption}
-            name='option_id'
-            defaultValue={activeOption}
-            as='div'
-            className='flex flex-col gap-2'
+        <div className='py-1'>
+          <label
+            htmlFor='variants'
+            className='text-xs font-medium uppercase text-gallery-400'
           >
-            {product.options?.length > 0 && (
-              <>
-                <div className='flex gap-4'>
-                  <RadioGroup.Label className={'text-sm text-gray-500'}>
-                    Choose option
-                  </RadioGroup.Label>
-
-                  <button
-                    onClick={() => setActiveOption(undefined)}
-                    type='button'
-                    className={cn(
-                      'inline-flex cursor-pointer items-center justify-center rounded-full border border-gallery-100 bg-gallery-100 px-2 py-1 text-xs font-semibold text-gallery-600 duration-150 ease-out hover:bg-gallery-200',
-                      activeOption ? 'visible' : 'invisible'
-                    )}
-                  >
-                    clear <TbX />
-                  </button>
-                </div>
-                <div className='flex flex-wrap items-center gap-2'>
-                  {product.options?.map((variant, index) => (
-                    <RadioGroup.Option
-                      key={'variant-option-' + variant.id + index}
-                      value={variant.id}
-                    >
-                      {({ active, checked }) => (
-                        <span
-                          className={cn(
-                            'cursor-pointer rounded-full border px-2 py-1 text-xs font-medium capitalize duration-150 ease-out hover:border-gallery-600',
-                            checked && activeOption
-                              ? 'bg-gallery-950 text-gallery-50'
-                              : 'bg-white text-gallery-500'
-                          )}
-                        >
-                          {variant.name}
-                        </span>
-                      )}
-                    </RadioGroup.Option>
-                  ))}
-                </div>
-              </>
-            )}
-          </RadioGroup>
+            Choose Options
+          </label>
         </div>
-        {/*  */}
-        <div className='mt-6 flex flex-col gap-2'>
-          <input type='hidden' value={branch_id} name='branch_id' />
-          <input type='hidden' value={product.id} name='product_id' />
-          {/* <input type='hidden' value={activeOption} name='option_id' /> */}
+        <div className='no-scrollbar relative flex max-h-[50svh] w-full flex-col items-start justify-center gap-2 overflow-y-scroll py-4 first:mt-4'>
+          {product.options?.map((variant, index) => (
+            <WhatsappProductVariantListInModal
+              key={'variant-item-' + variant.id + index}
+              product={product}
+              variant={variant}
+            />
+          ))}
+        </div>
 
-          <div className='mb-4 flex flex-col gap-1'>
+        <div className='mt-6 flex flex-col gap-2'>
+          <input type='hidden' defaultValue={branch_id} name='branch_id' />
+          <input type='hidden' defaultValue={product.id} name='product_id' />
+
+          <div className='mb-4 hidden flex-col gap-1'>
             <label htmlFor='total' className='text-sm text-gray-500'>
               Total
             </label>
@@ -145,6 +96,7 @@ const ProductAddToCartButtonWithModal = ({
           </div>
         </div>
         {/* Submit button */}
+
         <ProductVariantSubmitButton />
       </form>
     </Wrapper>
@@ -153,49 +105,6 @@ const ProductAddToCartButtonWithModal = ({
 
 export default ProductAddToCartButtonWithModal;
 
-type QuantityModifierButtonsProps =
-  React.InputHTMLAttributes<HTMLInputElement> & {
-    quantity: number;
-    setQuantity: (value: number) => void;
-  };
-
-const QuantityModifierButtons = ({
-  quantity,
-  setQuantity,
-}: QuantityModifierButtonsProps) => {
-  const handleUpdateQuantity = (operation: Operation) => {
-    if (operation === 'increase') {
-      setQuantity(quantity + 1);
-    } else {
-      if (quantity > 0) {
-        setQuantity(quantity - 1);
-      }
-    }
-  };
-  return (
-    <div className='flex items-center gap-1 font-medium text-gallery-950'>
-      <button
-        type='button'
-        onClick={() => handleUpdateQuantity('decrease')}
-        className='rounded-lg bg-gallery-100 p-2'
-      >
-        <TbMinus />
-      </button>
-      <input
-        value={quantity}
-        name='quantity'
-        className='w-6 text-center font-medium'
-      />
-      <button
-        type='button'
-        onClick={() => handleUpdateQuantity('increase')}
-        className='rounded-lg bg-gallery-100 p-2'
-      >
-        <TbPlus />
-      </button>
-    </div>
-  );
-};
 const Wrapper = ({
   children,
   product,
@@ -211,7 +120,6 @@ const Wrapper = ({
       <button
         onClick={() => setOpen(true)}
         type='button'
-        // disabled={!product.availability ? false : true}
         className={cn(
           'text-galley-900 cursor-pointer rounded-lg bg-gallery-100 p-2 text-lg duration-150 ease-out hover:bg-gallery-200',
           product.availability ? 'opacity-100' : 'cursor-not-allowed opacity-40'
@@ -264,24 +172,16 @@ const Wrapper = ({
 
 const ProductVariantSubmitButton = () => {
   const [open, setOpen] = useState(false);
-  const cancelButtonRef = useRef(null);
   const { pending } = useFormStatus();
-  const router = useRouter();
 
   return (
-    <div className=' w-full grid-cols-1 gap-3 sm:grid sm:grid-cols-2'>
-      {/* <button
-        type='button'
-        className='inline-flex w-full justify-center rounded-xl bg-gallery-100 px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50 sm:mt-0'
-        onClick={() => {setOpen(false)}}
-      >
-        View details
-      </button> */}
+    <div className='w-full grid-cols-1 gap-3 sm:grid sm:grid-cols-1'>
       <button
         aria-disabled={pending}
+        disabled={pending}
         type='submit'
         className={cn(
-          'mt-3 inline-flex w-full justify-center rounded-xl bg-blue-700 px-3 py-2.5 text-base font-semibold text-white shadow-sm duration-150 ease-out hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:mt-0',
+          'mt-3 inline-flex w-full justify-center rounded-xl bg-blue-700 px-3 py-3 text-base font-semibold text-white shadow-sm duration-150 ease-out hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:mt-0',
           pending ? 'opacity-50' : 'opacity-100'
         )}
         onClick={() => setOpen(false)}

@@ -10,7 +10,9 @@ const inter = Inter({ subsets: ['latin'] });
 const MerchantLayout = ({
   children,
   params,
-}: ProductListingParamsType & { children: React.ReactNode }) => {
+}: Pick<ProductListingParamsType, 'params'> & {
+  children: React.ReactNode;
+}) => {
   return (
     <>
       <div>
@@ -20,7 +22,7 @@ const MerchantLayout = ({
         {/* Top navigation */}
         <MerchantHeader params={params} />
         <main className={cn(`${inter}`)}>{children}</main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

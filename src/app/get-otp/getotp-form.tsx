@@ -44,7 +44,7 @@ const GetOtpForm = () => {
               )}
               aria-disabled={pending}
             >
-              <input type='hidden' id='otp' name='otp' value={otp} />
+              <input type='hidden' id='otp' name='otp' defaultValue={otp} />
               <OTPInput
                 value={otp}
                 onChange={handleChange}
@@ -54,7 +54,7 @@ const GetOtpForm = () => {
                 shouldAutoFocus
                 skipDefaultStyles
                 inputType='number'
-                inputStyle='flex h-12 w-12 md:h-16 md:w-16 flex-col items-center justify-center rounded-xl appearance-none border border-gray-200 bg-white px-4 text-center text-lg font-semibold text-black outline-none ring-brand-500 focus:bg-gray-50 focus:ring-1'
+                inputStyle='flex accent-blue-600 h-12 w-12 md:h-16 md:w-16 flex-col items-center justify-center rounded-xl appearance-none border border-gray-200 bg-white px-4 text-center text-lg font-semibold text-black outline-none ring-blue-500 focus:bg-gray-50 focus:ring-1'
                 renderInput={(props) => (
                   <input
                     pattern='[0-9]*'
@@ -85,7 +85,7 @@ const SubmitButton = () => {
       type='submit'
       aria-disabled={pending}
       className={cn(
-        'flex w-full justify-center rounded-xl bg-brand-600 px-8 py-4 text-sm font-semibold leading-6 text-white shadow-sm duration-150 ease-out hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600',
+        'flex w-full justify-center rounded-xl bg-blue-600 px-8 py-4 text-base font-semibold leading-6 text-white shadow-sm duration-150 ease-out hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600',
         pending ? 'cursor-not-allowed opacity-60' : 'animate-none'
       )}
     >

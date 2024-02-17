@@ -7,14 +7,18 @@ import {
   setSessionHeader,
 } from '@/app/auth/set-headers';
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
+import { cleanJsonString, removeSingleQuotes } from '@/lib/format';
 
 export type AddToCartObjectType = {
   branch_id: FormDataEntryValue | null;
-  products: {
-    product_id: FormDataEntryValue | null;
-    quantity: FormDataEntryValue | null;
-    option_id: FormDataEntryValue | null;
-  }[];
+  products:
+    | {
+        product_id: FormDataEntryValue | null;
+        quantity: FormDataEntryValue | null;
+        option_id: FormDataEntryValue | null;
+      }[]
+    | FormDataEntryValue[];
 };
 export type AddToCartProductResponseType = {
   product_retailer_id: string;
@@ -41,18 +45,18 @@ export type AddToCartResponseType = {
   detail: {
     timestamp: string;
     order_id: string;
-    products: AddToCartProductResponseType;
+    products: AddToCartProductResponseType[];
+    net_total: number;
+    taxes: number;
+    service_charges: number;
+    delivery_charges: number;
+    discounts: number;
+    gross_total: number;
+    currency: string;
+    delivery_location: null | string;
+    order_mode: string;
+    order_status: string;
   };
-  net_total: number;
-  taxes: number;
-  service_charges: number;
-  delivery_charges: number;
-  discounts: number;
-  gross_total: number;
-  currency: string;
-  delivery_location: null | string;
-  order_mode: string;
-  order_status: string;
 };
 
 export const generatePayload = async (formData: FormData) => {
@@ -80,7 +84,16 @@ export const addCartHandler = async (formData: FormData) => {
     // const return_value = await getOrderId(payload);
     if (cartResponse?.status_code === 200) {
       const cartDetails = cartResponse.detail;
-      console.log('Success CART: ', cartDetails);
+
+      cookies().set({
+        name: 'order_id',
+        value: cartDetails.order_id,
+        httpOnly: true,
+        priority: 'high',
+        secure: true,
+        path: '/',
+      });
+
       return cartDetails;
     }
   } catch (error) {
@@ -88,8 +101,9 @@ export const addCartHandler = async (formData: FormData) => {
   }
 };
 
-export const generateOrderIDLink = async (order_id: string) => {
-  const myHeaders = await getSessionHeaderWithNoJSON();
+// extraction to make redirect work
+export const tryCatchExtractedForOrderId = async (order_id: string) => {
+  const myHeaders = await setSessionHeader();
 
   try {
     const response = await fetch(
@@ -104,12 +118,22 @@ export const generateOrderIDLink = async (order_id: string) => {
 
     if (response_with_whatsapp_link?.status_code === 200) {
       const whatsapp_link = response_with_whatsapp_link.detail;
-      redirect(`/`);
+      // whatsapp_link ? redirect(whatsapp_link) : redirect(`/checkout/cart`);
+      return whatsapp_link;
     } else {
       throw new Error('Failed to create your order');
     }
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const generateOrderIDLink = async (order_id: string) => {
+  const responseLink = await tryCatchExtractedForOrderId(order_id);
+  if (responseLink) {
+    redirect(responseLink);
+  } else {
+    redirect('/checkout/cart');
   }
 };
 
@@ -132,7 +156,9 @@ const getOrderId = async (payload: Object) => {
   }
 };
 
-export const getCartResponse = async (payload: AddToCartObjectType) => {
+export const getCartResponse = async (
+  payload: AddToCartObjectType | string
+) => {
   const myHeaders = await setSessionHeader();
 
   const raw = JSON.stringify(payload);
@@ -145,8 +171,43 @@ export const getCartResponse = async (payload: AddToCartObjectType) => {
       redirect: 'follow',
     });
     const resultObject: AddToCartResponseType = await res.json();
+    console.log('getCartResponse: ', resultObject);
     return resultObject;
   } catch (error) {
     console.error('e', error);
+  }
+};
+
+// addToCartModalAction
+export const addToCartModalAction = async (formData: FormData) => {
+  const products = formData.getAll('items');
+  const payload = {
+    branch_id: formData.get('branch_id'),
+    products: products,
+  };
+  const stringPayload = JSON.stringify(payload);
+  const cleanedPayload = cleanJsonString(stringPayload);
+  const payloadObject = JSON.parse(cleanedPayload);
+  // console.log(payloadObject);
+
+  try {
+    const cartResponse = await getCartResponse(payloadObject);
+    // const return_value = await getOrderId(payload);
+    if (cartResponse?.status_code === 200) {
+      const cartDetails = cartResponse.detail;
+
+      cookies().set({
+        name: 'order_id',
+        value: cartDetails.order_id,
+        httpOnly: true,
+        priority: 'high',
+        secure: true,
+        path: '/',
+      });
+
+      return cartDetails;
+    } else throw new Error('Error creating your order!');
+  } catch (error) {
+    throw new Error('Error getting cart response', error as ErrorOptions);
   }
 };
