@@ -9,6 +9,7 @@ const nextConfig = {
       ],
       allowedOrigins: [
         'http://localhost',
+        'localhost:3000',
         'https://4g6t0dcg-3000.inc1.devtunnels.ms',
       ],
     },
