@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { TOKEN_NAME } from '@/constants/urls';
-import { CryptoAPIRoute } from './app/api/crypto/route';
 
 export async function middleware(request: NextRequest) {
   // CryptoAPIRoute(request);
