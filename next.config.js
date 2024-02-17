@@ -3,6 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     serverActions: {
+      allowedForwardedHosts: [
+        'http://localhost',
+        'https://4g6t0dcg-3000.inc1.devtunnels.ms',
+      ],
       allowedOrigins: [
         'http://localhost',
         'https://4g6t0dcg-3000.inc1.devtunnels.ms',
