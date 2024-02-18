@@ -4,21 +4,30 @@ import React from 'react';
 import { addCartHandler } from './fetch-action';
 import { useFormState } from 'react-dom';
 import { usePathname, useRouter } from 'next/navigation';
+import ProductAddToCartButtonWithModal from '../../../estore-products/ProductAddToCartButtonWithModal';
+import { ProductDetailProps } from '@/constants/products';
+import { ProductsType } from '@/types/products';
 
 // import { branch_id } from '@/constants/products'
 
 const AddToCartForm = ({
   branch_id,
   product_id,
+  product,
 }: {
   branch_id: string;
+  product: ProductsType;
   product_id: string;
 }) => {
-  const pathname = usePathname();
-
   return (
     <>
-      <form action={addCartHandler}>
+      <ProductAddToCartButtonWithModal
+        branch_id={branch_id}
+        size='large'
+        product={product}
+      />
+
+      {/* <form action={addCartHandler}>
         <input type='hidden' value={branch_id} name='branch_id' />
         <input type='hidden' value={product_id} name='product_id' />
         <div className='mt-4 sm:mt-0 sm:pr-9'>
@@ -28,7 +37,7 @@ const AddToCartForm = ({
           <select
             id={`quantity`}
             name={`quantity`}
-            className='max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
+            className='max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'
           >
             <option value={1}>1</option>
             <option value={2}>2</option>
@@ -48,7 +57,7 @@ const AddToCartForm = ({
           <select
             id={`option_id`}
             name={`option_id`}
-            className='max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm'
+            className='max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm'
           >
             <option value={`69b9cb54-8720-487f-8158-9375ac72ac6b`}>
               Sample variant
@@ -56,8 +65,8 @@ const AddToCartForm = ({
           </select>
         </div>
 
-        <AddToCartButton />
-      </form>
+      </form> */}
+      {/* <AddToCartButton /> */}
     </>
   );
 };
@@ -71,7 +80,7 @@ const AddToCartButton = () => {
       // onClick={() => {
       //     addToCartHandler();
       // }}
-      className='mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-brand-500 px-8 py-3 text-base font-medium text-white duration-200 ease-out hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2'
+      className='mt-8 flex w-full items-center justify-center rounded-xl border border-transparent bg-blue-600 px-8 py-3 text-base font-semibold text-white duration-200 ease-out hover:bg-blue-700 focus:outline-none'
     >
       Add to cart
     </button>

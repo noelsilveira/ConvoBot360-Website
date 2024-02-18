@@ -15,7 +15,7 @@ const MerchantLayout = ({
 }) => {
   return (
     <>
-      <div>
+      <div className='scroll-smooth'>
         {/* Mobile menu */}
         <MobileMenu />
 

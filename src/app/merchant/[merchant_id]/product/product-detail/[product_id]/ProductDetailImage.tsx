@@ -17,7 +17,7 @@ const ProductDetailImage = ({ product }: { product: ProductsType }) => {
       src={backupImage == null ? noImage : backupImage}
       alt={product.title}
       className={cn(
-        'h-full max-h-[60vh] w-full rounded-lg object-cover lg:col-span-2 lg:row-span-2 lg:block'
+        'h-full max-h-[30vh] w-full rounded-3xl object-cover lg:col-span-2 lg:row-span-2 lg:block'
       )}
     />
   );

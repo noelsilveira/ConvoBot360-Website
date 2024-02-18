@@ -3,13 +3,9 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { ProductOptionsType, ProductsType } from '@/types/products';
-import { RadioGroup } from '@headlessui/react';
-import { TbMinus, TbPlus, TbX } from 'react-icons/tb';
-import {
-  addCartHandler,
-  addToCartModalAction,
-} from '../product/product-detail/[product_id]/fetch-action';
-import { branch_id } from '@/constants/products';
+import { TbPlus } from 'react-icons/tb';
+import { addToCartModalAction } from '../product/product-detail/[product_id]/fetch-action';
+import { ProductDetailProps, branch_id } from '@/constants/products';
 import { cn } from '@/lib/utils';
 import { useFormStatus } from 'react-dom';
 import { useRouter } from 'next/navigation';
@@ -19,8 +15,12 @@ import WhatsappProductListInModal, {
 
 const ProductAddToCartButtonWithModal = ({
   product,
+  size = 'small',
+  branch_id: large_branch_id,
 }: {
   product: ProductsType;
+  branch_id?: string;
+  size?: 'small' | 'large';
 }) => {
   const [quantity, setQuantity] = useState(1);
   const router = useRouter();
@@ -48,7 +48,7 @@ const ProductAddToCartButtonWithModal = ({
   }, [activeOption, quantity]);
 
   return (
-    <Wrapper product={product}>
+    <Wrapper product={product} size={size}>
       <form
         action={async (formData: FormData) => {
           const response = await addToCartModalAction(formData);
@@ -61,7 +61,7 @@ const ProductAddToCartButtonWithModal = ({
         }}
         className='relative flex flex-col items-start justify-center'
       >
-        <div className='w-full border-b border-gallery-50'>
+        <div className='w-full'>
           <WhatsappProductListInModal product={product} />
         </div>
         {product.options?.length > 0 && (
@@ -74,7 +74,7 @@ const ProductAddToCartButtonWithModal = ({
             </label>
           </div>
         )}
-        <div className='no-scrollbar relative flex max-h-[50svh] w-full flex-col items-start justify-center gap-2 overflow-y-scroll py-4 first:mt-4'>
+        <div className='no-scrollbar relative flex max-h-[60svh] w-full flex-col items-start justify-center gap-2 overflow-y-scroll py-4'>
           {product.options?.map((variant, index) => (
             <WhatsappProductVariantListInModal
               key={'variant-item-' + variant.id + index}
@@ -85,7 +85,15 @@ const ProductAddToCartButtonWithModal = ({
         </div>
 
         <div className='mt-6 flex flex-col gap-2'>
-          <input type='hidden' defaultValue={branch_id} name='branch_id' />
+          {size === 'large' ? (
+            <input
+              type='hidden'
+              defaultValue={large_branch_id}
+              name='branch_id'
+            />
+          ) : (
+            <input type='hidden' defaultValue={branch_id} name='branch_id' />
+          )}
           <input type='hidden' defaultValue={product.id} name='product_id' />
 
           <div className='mb-4 hidden flex-col gap-1'>
@@ -110,26 +118,41 @@ export default ProductAddToCartButtonWithModal;
 const Wrapper = ({
   children,
   product,
+  size = 'small',
 }: {
   children: React.ReactNode;
   product: ProductsType;
+  size?: 'small' | 'large';
 }) => {
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
 
   return (
     <>
-      <button
-        onClick={() => setOpen(true)}
-        type='button'
-        className={cn(
-          'text-galley-900 cursor-pointer rounded-lg bg-gallery-100 p-2 text-lg duration-150 ease-out hover:bg-gallery-200',
-          product.availability ? 'opacity-100' : 'cursor-not-allowed opacity-40'
-        )}
-      >
-        <TbPlus className='h-5 w-5' />
-        {/* <TbShoppingBagPlus className='h-5 w-5' /> */}
-      </button>
+      {size === 'large' ? (
+        <button
+          type='submit'
+          onClick={() => setOpen(true)}
+          className='mt-8 flex w-full items-center justify-center rounded-xl border border-transparent bg-blue-600 px-8 py-3 text-base font-semibold text-white duration-200 ease-out hover:bg-blue-700 focus:outline-none'
+        >
+          Add to cart
+        </button>
+      ) : (
+        <button
+          onClick={() => setOpen(true)}
+          type='button'
+          className={cn(
+            'text-galley-900 cursor-pointer rounded-lg bg-gallery-100 p-2 text-lg duration-150 ease-out hover:bg-gallery-200',
+            product.availability
+              ? 'opacity-100'
+              : 'cursor-not-allowed opacity-40'
+          )}
+        >
+          <TbPlus className='h-5 w-5' />
+          {/* <TbShoppingBagPlus className='h-5 w-5' /> */}
+        </button>
+      )}
+
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as='div'

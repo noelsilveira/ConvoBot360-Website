@@ -181,6 +181,7 @@ export const getCartResponse = async (
 // addToCartModalAction
 export const addToCartModalAction = async (formData: FormData) => {
   const products = formData.getAll('items');
+  console.log('Testing single: ', products);
   const payload = {
     branch_id: formData.get('branch_id'),
     products: products,

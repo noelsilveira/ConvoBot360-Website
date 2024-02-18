@@ -6,7 +6,7 @@ import { useFormStatus } from 'react-dom';
 export const ContinueInWhatsappButton = () => {
   const { pending } = useFormStatus();
   return (
-    <div className='mt-6'>
+    <div className='mt-6' id='order-summary'>
       <button
         type='submit'
         aria-disabled={pending}
@@ -16,7 +16,7 @@ export const ContinueInWhatsappButton = () => {
           pending ? 'opacity-40' : 'opacity-100'
         )}
       >
-        {pending ? 'Submitting cart...' : 'Continue in WhatsApp'}
+        {pending ? 'Redirecting...' : 'Continue in WhatsApp'}
       </button>
     </div>
   );

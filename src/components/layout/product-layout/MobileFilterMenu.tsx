@@ -3,19 +3,19 @@
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React, { Fragment } from 'react';
-import { filters, subCategories } from '@/constants/filters';
-
 import CategoryLink from '@/app/merchant/[merchant_id]/estore-products/CategoryLink';
 import { CategoryType } from '@/types/products';
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { getCategories } from '@/app/(deprecated)/products-listing/fetcher';
 import { useFiltersNavigationStore } from '@/store/navigationStore';
 import useSWR from 'swr';
+import { useParams, useRouter } from 'next/navigation';
 
 const MobileFilterMenu = () => {
   const { mobileFiltersOpen, setMobileFiltersOpen } =
     useFiltersNavigationStore();
+  const router = useRouter();
+  const { category: activeCategory } = useParams();
 
   const {
     data: categories,
@@ -52,9 +52,9 @@ const MobileFilterMenu = () => {
             leaveFrom='translate-x-0'
             leaveTo='translate-x-full'
           >
-            <Dialog.Panel className='relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl'>
+            <Dialog.Panel className='relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-2 pb-12 shadow-xl'>
               <div className='flex items-center justify-between px-4'>
-                <h2 className='text-lg font-medium text-gray-900'>Filters</h2>
+                <h2 className='text-base font-medium text-gray-900'>Filters</h2>
                 <button
                   type='button'
                   className='-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400'
@@ -66,18 +66,18 @@ const MobileFilterMenu = () => {
               </div>
 
               {/* Filters */}
-              <form className='mt-4 border-t border-gray-200'>
+              <form className='mt-2'>
                 <h3 className='sr-only'>Categories</h3>
 
                 <Disclosure
                   as='div'
                   defaultOpen={true}
-                  className='border-t border-gray-200 px-4 py-6'
+                  className='border-t border-gallery-200 px-4 py-6'
                 >
                   {({ open }: { open: boolean }) => (
                     <>
                       <h3 className='-mx-2 -my-3 flow-root'>
-                        <Disclosure.Button className='flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500'>
+                        <Disclosure.Button className='flex w-full items-center justify-between bg-white px-2 py-2 text-gray-400 hover:text-gray-500'>
                           <span className='font-medium text-gray-900'>
                             Categories
                           </span>
@@ -101,6 +101,25 @@ const MobileFilterMenu = () => {
                           {isLoading && (
                             <p className='text-sm'>Loading categories...</p>
                           )}
+                          <div className='flex items-center px-4'>
+                            <button
+                              type='button'
+                              onClick={() => {
+                                setMobileFiltersOpen(false);
+                                router.push(
+                                  '/merchant/36049357/estore-products/'
+                                );
+                              }}
+                              className={cn(
+                                'text-sm text-gray-500',
+                                activeCategory == ''
+                                  ? 'text-black underline'
+                                  : ''
+                              )}
+                            >
+                              All Categories
+                            </button>
+                          </div>
                           {categories &&
                             categories.map((category, index) => (
                               <div

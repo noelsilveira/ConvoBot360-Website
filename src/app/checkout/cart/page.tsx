@@ -8,6 +8,8 @@ import {
   AddToCartResponseType,
   generateOrderIDLink,
 } from '@/app/merchant/[merchant_id]/product/product-detail/[product_id]/fetch-action';
+import BackButton from '@/app/merchant/[merchant_id]/product/product-detail/[product_id]/BackButton';
+import Link from 'next/link';
 
 const CartPage = async () => {
   const cartDetailResponse: AddToCartResponseType['detail'] =
@@ -15,10 +17,21 @@ const CartPage = async () => {
   return (
     <>
       <div className='relative bg-white'>
-        <div className='mx-auto max-w-2xl px-4 pb-24 pt-4 sm:px-6 md:pt-8 lg:max-w-7xl lg:px-8'>
-          <h1 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
-            Shopping Cart
-          </h1>
+        <div className='mt-2'>
+          <BackButton />
+        </div>
+        <div className='mx-auto max-w-2xl px-4 pb-24 pt-2 sm:px-6 md:pt-8 lg:max-w-7xl lg:px-8'>
+          <div className='flex items-baseline justify-between'>
+            <h1 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
+              Shopping Cart
+            </h1>
+            <Link
+              href={'#order-summary'}
+              className='text-sm font-medium tracking-tight text-blue-700'
+            >
+              View summary
+            </Link>
+          </div>
           <form
             action={async () => {
               'use server';
