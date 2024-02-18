@@ -64,14 +64,16 @@ const ProductAddToCartButtonWithModal = ({
         <div className='w-full border-b border-gallery-50'>
           <WhatsappProductListInModal product={product} />
         </div>
-        <div className='py-1'>
-          <label
-            htmlFor='variants'
-            className='text-xs font-medium uppercase text-gallery-400'
-          >
-            Choose Options
-          </label>
-        </div>
+        {product.options?.length > 0 && (
+          <div className='py-1'>
+            <label
+              htmlFor='variants'
+              className='text-xs font-medium uppercase text-gallery-400'
+            >
+              Choose Options
+            </label>
+          </div>
+        )}
         <div className='no-scrollbar relative flex max-h-[50svh] w-full flex-col items-start justify-center gap-2 overflow-y-scroll py-4 first:mt-4'>
           {product.options?.map((variant, index) => (
             <WhatsappProductVariantListInModal

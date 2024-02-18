@@ -17,6 +17,7 @@ const EStoreLandingOTPPage = async ({
   params,
   searchParams,
 }: EStoreLandingOTPParamsType) => {
+  console.log(searchParams);
   return (
     <>
       <OTPSetClient {...searchParams} />
