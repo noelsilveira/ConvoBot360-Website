@@ -1,5 +1,3 @@
-import { TokenType } from '@/app/actions/auth';
-
 // export const API_BASE_URL = 'https://api-uat-ap-south-1-eks.sendbip.com/v1';
 export const API_BASE_URL = 'https://api-test.convobot360.com/v1';
 
@@ -15,3 +13,5 @@ export const WHATSAPP_LOGIN_URL =
 export const LANDING_URL = `https://estore.convobot360.com${WHATSAPP_LOGIN_URL}`;
 
 export const FALLBACK_IMAGE = 'https://cdn.convobot360.com/images/fallback.png';
+
+export const LOGO_BASE_URL = 'https://cdn.convobot360.com/logo/';

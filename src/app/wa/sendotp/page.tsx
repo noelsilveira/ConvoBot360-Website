@@ -1,26 +1,16 @@
 import Image from 'next/image';
-import React from 'react';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-import { TOKEN_NAME, static_merchant_id } from '@/constants/urls';
-import GetOtpForm from '@/app/get-otp/getotp-form';
-import {
-  EStoreLandingOTPParamsType,
-  setOTPParamsToCookie,
-} from './otp-actions';
+import React, { Suspense } from 'react';
 import OTPSetClient from './OTPSetClient';
-import TestEncrypt from './TestEncrypt';
 
 export type StatusType = boolean | '';
 
-const EStoreLandingOTPPage = async ({
-  params,
-  searchParams,
-}: EStoreLandingOTPParamsType) => {
-  console.log(searchParams);
+const EStoreLandingOTPPage = async () => {
   return (
     <>
-      <OTPSetClient {...searchParams} />
+      <Suspense fallback={<div>Verifying...</div>}>
+        <OTPSetClient />
+      </Suspense>
+
       {/* <TestEncrypt /> */}
       <div className='flex min-h-svh flex-1 flex-col justify-start px-6 py-12 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-sm'>

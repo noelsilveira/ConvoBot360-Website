@@ -1,27 +1,31 @@
-import { create } from 'zustand';
+import { AddSessionPayloadType } from '@/app/wa/sendotp/otp-actions';
+import { StateCreator, create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
-type BranchStoreType = {
-  branch_id: string;
-  phone: string;
-  image: string;
-  setBranchId: (value: string) => void;
-  setPhone: (value: string) => void;
-  setImage: (value: string) => void;
+type BranchStoreType = AddSessionPayloadType & {
+  setBranchData: (value: AddSessionPayloadType) => void;
+};
+
+const getInitialBranchID = () => {
+  const branch_id = sessionStorage.getItem('branch-store') || false;
+  return branch_id;
 };
 
 export const useBranchStore = create<BranchStoreType>()(
   persist(
     (set, get) => ({
       branch_id: '',
-      phone: '',
-      image: '',
-      setBranchId: (value) => set((state) => ({ branch_id: value })),
-      setPhone: (value) => set((state) => ({ phone: value })),
-      setImage: (value) => set((state) => ({ image: value })),
+      customer_no: '',
+      logo_url: '',
+      setBranchData: async (value) =>
+        set((state) => ({
+          branch_id: value.branch_id,
+          customer_no: value.customer_no,
+          logo_url: value.logo_url,
+        })),
     }),
     {
-      name: 'branch_id',
+      name: 'branch_store',
       storage: createJSONStorage(() => sessionStorage),
     }
   )

@@ -2,27 +2,44 @@
 
 import React, { useEffect } from 'react';
 import {
-  EStoreLandingOTPParamsType,
+  AddSessionPayloadType,
+  addSessionToAPI,
   setOTPParamsToCookie,
 } from './otp-actions';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useBranchStore } from '@/store/branchStore';
+import { LOGO_BASE_URL } from '@/constants/urls';
 
-const OTPSetClient = (
-  searchParams: EStoreLandingOTPParamsType['searchParams']
-) => {
+const OTPSetClient = () => {
   const router = useRouter();
-  const { setBranchId, setPhone, setImage } = useBranchStore();
-  useEffect(() => {
-    const updateViews = async () => {
-      const tokens = await setOTPParamsToCookie(searchParams);
-    };
-    setBranchId(searchParams.b);
-    setPhone(searchParams.c);
-    setImage(searchParams.i);
-    updateViews();
+  const { setBranchData } = useBranchStore();
+  const branchParams = useSearchParams();
 
-    router.push('/get-otp');
+  const b = branchParams.get('b');
+  const c = branchParams.get('c');
+  const i = branchParams.get('i');
+
+  const sessionPayload: AddSessionPayloadType = {
+    branch_id: b,
+    customer_no: c,
+    logo_url: `${LOGO_BASE_URL}${i}`,
+  };
+
+  useEffect(() => {
+    const addSession = async () => {
+      const sessionResponse = await addSessionToAPI(sessionPayload);
+      if (sessionResponse) {
+        setBranchData(sessionResponse.metadata);
+        const tokens = await setOTPParamsToCookie(sessionResponse);
+        console.log('Server action executed success', tokens);
+        router.push('/get-otp');
+      } else {
+        console.error('Invalid credentials!');
+        router.push('/error');
+      }
+    };
+
+    addSession();
   }, []);
   return <></>;
 };
