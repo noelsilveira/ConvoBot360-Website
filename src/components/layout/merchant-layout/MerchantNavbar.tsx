@@ -1,19 +1,14 @@
 import CartIconButton from '@/components/checkout/CartIconButton';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 import CategoriesNavigation from './CatagoriesNavigation';
 import FlyoutMenu from './FlyoutMenu';
-import MenuButton from './MenuButton';
-import SearchProduct from '@/components/product/SearchProduct';
 import { ProductListingParamsType } from '@/types/products';
+import { cookies } from 'next/headers';
 
 const MerchantNavbar = ({ params }: ProductListingParamsType) => {
-  // const handleButtonClick = () => {
-  //   toast.custom((t) => (
-  //     <CustomToaster t={t}>Yayyy! Product added to bag</CustomToaster>
-  //   ));
-  // };
+  const logo_url = cookies().get('logo_url')?.value;
+  const cb360Logo = '/cb360-logo.svg';
 
   return (
     <header className='relative z-10 border-b border-gray-200 bg-white'>
@@ -33,8 +28,8 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
                   height={40}
                   width={80}
                   className='h-8 w-auto sm:h-8'
-                  src='/cb360-logo.svg'
-                  alt='CB360 logo'
+                  src={logo_url ? logo_url : cb360Logo}
+                  alt='Merchant logo'
                 />
               </Link>
             </div>

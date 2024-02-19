@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import GetOtpForm from './getotp-form';
 import React from 'react';
-import OTPInput from './OTPInput';
 import { Toaster } from 'react-hot-toast';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';

@@ -5,7 +5,7 @@ import { OrderType } from '@/types/order';
 import {
   getSessionHeaderWithNoJSON,
   setSessionHeader,
-} from '@/app/auth/set-headers';
+} from '@/app/actions/set-headers';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { cleanJsonString, removeSingleQuotes } from '@/lib/format';

@@ -1,4 +1,4 @@
-import { AddSessionPayloadType } from '@/app/wa/sendotp/otp-actions';
+import { AddSessionPayloadType } from '@/types/auth';
 import { StateCreator, create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 

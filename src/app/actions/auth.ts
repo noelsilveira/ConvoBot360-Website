@@ -2,8 +2,7 @@
 
 import { API_BASE_URL, TOKEN_NAME } from '@/constants/urls';
 import { cookies } from 'next/headers';
-
-// import { Checking } from '@/components/layout/TopBar';
+import { setHeaderInCookie } from './set-headers';
 
 export type TokenType = {
   access_token: string;
@@ -11,45 +10,11 @@ export type TokenType = {
   token_type: string;
 };
 
-export const setHeaderInCookie = async (data: TokenType) => {
-  const today = new Date();
-  const now = new Date();
-  const expiry_milliseconds = data.expiry * 150;
-  const expiry_date = today.setTime(today.getTime() + expiry_milliseconds);
-  const expiry = expiry_date.toString();
-
-  cookies().set({
-    name: TOKEN_NAME,
-    value: data.access_token,
-    httpOnly: true,
-    secure: true,
-    path: '/',
-  });
-  cookies().set({
-    name: 'expiry',
-    value: expiry,
-    // value: data.expiry.toString(),
-    httpOnly: true,
-    secure: true,
-    path: '/',
-  });
-  cookies().set({
-    name: 'expiry_created',
-    value: now.getTime().toString(),
-    // value: data.expiry.toString(),
-    httpOnly: true,
-    secure: true,
-    path: '/',
-  });
-  cookies().set({
-    name: 'token_type',
-    value: data.token_type,
-    httpOnly: true,
-    secure: true,
-    path: '/',
-  });
-};
-
+/**
+ * Server Action to handle sign in using FormData values
+ * from the form action and set cookies in the http cookies server side
+ * Calls the @function setHeaderInCookie
+ */
 export async function handleSignInForm(formData: FormData) {
   const response = await fetch(`${API_BASE_URL}/estore/token`, {
     method: 'POST',
@@ -68,6 +33,10 @@ export async function handleSignInForm(formData: FormData) {
   await setHeaderInCookie(data);
 }
 
+/**
+ * Server Action to handle logout by deleting all the cookies
+ * Calls the @function accessTokenChecker
+ */
 export async function handleLogout() {
   cookies().delete(TOKEN_NAME);
   cookies().delete('expiry');
@@ -76,6 +45,9 @@ export async function handleLogout() {
   return !logoutStatus;
 }
 
+/**
+ * Server Action to check the access_token from the http cookies
+ */
 export async function accessTokenChecker() {
   const access_token = cookies().get(TOKEN_NAME);
   if (
@@ -89,6 +61,9 @@ export async function accessTokenChecker() {
   return true;
 }
 
+/**
+ * Server Action to add seconds to date @unused
+ */
 export async function addSeconds(date: Date, seconds: number) {
   date.setSeconds(date.getSeconds() + seconds);
   return date;

@@ -1,15 +1,14 @@
 import React, { Suspense } from 'react';
-import { getCartItems } from './fetch-cart';
-import WhatsappProductListCard, {
-  WhatsappProductListCardType,
-} from './WhatsppProductListCard';
-import OrderSummary from './OrderSummary';
-import {
-  AddToCartResponseType,
-  generateOrderIDLink,
-} from '@/app/merchant/[merchant_id]/product/product-detail/[product_id]/fetch-action';
+import { getCartItems } from '../../actions/fetch-cart';
+
+import { generateOrderIDLink } from '@/app/actions/product-actions';
 import BackButton from '@/app/merchant/[merchant_id]/product/product-detail/[product_id]/BackButton';
 import Link from 'next/link';
+import { AddToCartResponseType } from '@/types/products';
+import OrderSummary from '@/components/checkout/OrderSummary';
+import WhatsappProductListCard, {
+  WhatsappProductListCardType,
+} from '@/components/checkout/WhatsppProductListCard';
 
 const CartPage = async () => {
   const cartDetailResponse: AddToCartResponseType['detail'] =

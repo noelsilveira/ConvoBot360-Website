@@ -1,4 +1,4 @@
-import { setSessionHeader } from '@/app/auth/set-headers';
+import { setSessionHeader } from '@/app/actions/set-headers';
 import { branch_id } from '@/constants/products';
 import { API_BASE_URL } from '@/constants/urls';
 

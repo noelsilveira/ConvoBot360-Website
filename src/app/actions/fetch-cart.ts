@@ -1,5 +1,5 @@
 'use server';
-import { setSessionHeader } from '@/app/auth/set-headers';
+import { setSessionHeader } from '@/app/actions/set-headers';
 
 import { API_BASE_URL } from '@/constants/urls';
 import { revalidatePath, revalidateTag } from 'next/cache';

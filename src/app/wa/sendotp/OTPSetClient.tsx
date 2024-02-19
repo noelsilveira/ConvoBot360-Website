@@ -2,18 +2,21 @@
 
 import React, { useEffect } from 'react';
 import {
-  AddSessionPayloadType,
   addSessionToAPI,
   setOTPParamsToCookie,
-} from './otp-actions';
-import { useRouter, useSearchParams } from 'next/navigation';
+} from '@/app/actions/otp-actions';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useBranchStore } from '@/store/branchStore';
 import { LOGO_BASE_URL } from '@/constants/urls';
+import { AddSessionPayloadType } from '@/types/auth';
+import { getSessionFromAPI } from '@/app/actions/get-session';
+import { authTokenForToSendOTP } from '@/app/actions/auth-token';
 
 const OTPSetClient = () => {
   const router = useRouter();
   const { setBranchData } = useBranchStore();
   const branchParams = useSearchParams();
+  const { session_id } = useParams();
 
   const b = branchParams.get('b');
   const c = branchParams.get('c');
@@ -26,12 +29,19 @@ const OTPSetClient = () => {
   };
 
   useEffect(() => {
-    const addSession = async () => {
-      const sessionResponse = await addSessionToAPI(sessionPayload);
+    const getSession = async () => {
+      // const sessionResponse = await addSessionToAPI(sessionPayload);
+
+      !session_id && router.push('/');
+
+      // get the OTp access token using .env credentials
+
+      const sessionResponse = await getSessionFromAPI(session_id as string);
+
       if (sessionResponse) {
         setBranchData(sessionResponse.metadata);
-        const tokens = await setOTPParamsToCookie(sessionResponse);
-        console.log('Server action executed success', tokens);
+        await setOTPParamsToCookie(sessionResponse);
+
         router.push('/get-otp');
       } else {
         console.error('Invalid credentials!');
@@ -39,7 +49,7 @@ const OTPSetClient = () => {
       }
     };
 
-    addSession();
+    getSession();
   }, []);
   return <></>;
 };

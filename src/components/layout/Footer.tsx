@@ -1,5 +1,5 @@
 import { footerNavigation } from '@/constants/navigation';
-import { WHATSAPP_LOGIN_URL } from '@/constants/urls';
+import { WHATSAPP_LANDING_URL } from '@/constants/urls';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -73,7 +73,7 @@ const Footer = () => {
                 ))}
                 <li>
                   <Link
-                    href={WHATSAPP_LOGIN_URL}
+                    href={WHATSAPP_LANDING_URL}
                     className='text-sm leading-6 text-gray-600 hover:text-gray-900'
                   >
                     WhatsApp Login

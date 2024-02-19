@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { ProductOptionsType, ProductsType } from '@/types/products';
 import { TbPlus } from 'react-icons/tb';
-import { addToCartModalAction } from '../product/product-detail/[product_id]/fetch-action';
+import { addToCartModalAction } from '../../../actions/product-actions';
 import { ProductDetailProps, branch_id } from '@/constants/products';
 import { cn } from '@/lib/utils';
 import { useFormStatus } from 'react-dom';
@@ -74,7 +74,7 @@ const ProductAddToCartButtonWithModal = ({
             </label>
           </div>
         )}
-        <div className='no-scrollbar relative flex max-h-[60svh] w-full flex-col items-start justify-center gap-2 overflow-y-scroll py-4'>
+        <div className='no-scrollbar flex max-h-[50svh] w-full flex-col items-start justify-center gap-2 overflow-y-auto overscroll-contain py-4'>
           {product.options?.map((variant, index) => (
             <WhatsappProductVariantListInModal
               key={'variant-item-' + variant.id + index}

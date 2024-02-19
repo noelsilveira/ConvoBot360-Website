@@ -3,10 +3,10 @@
 import { useFormState, useFormStatus } from 'react-dom';
 
 import React, { useState } from 'react';
-import { getOtpHandler } from './fetch-action';
 import OTPInput from 'react-otp-input';
 import { cn } from '@/lib/utils';
 import toast, { Toaster } from 'react-hot-toast';
+import { getOtpHandler } from '../actions/otp-actions';
 
 const initialSate = {
   message: '',

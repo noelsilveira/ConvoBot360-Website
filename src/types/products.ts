@@ -75,3 +75,53 @@ export type ProductListingParamsType = {
   };
   searchParams?: SearchParamsType;
 };
+
+export type AddToCartObjectType = {
+  branch_id: FormDataEntryValue | null;
+  products:
+    | {
+        product_id: FormDataEntryValue | null;
+        quantity: FormDataEntryValue | null;
+        option_id: FormDataEntryValue | null;
+      }[]
+    | FormDataEntryValue[];
+};
+
+export type AddToCartProductResponseType = {
+  product_retailer_id: string;
+  product_name: string;
+  quantity: number;
+  item_price: number;
+  option_id: string;
+  option_name: string;
+  option_price: number;
+  currency: string;
+  add: [
+    {
+      type: string;
+      description: string;
+      percent: number;
+      amount: number;
+    },
+  ];
+  deduct: null | number;
+};
+
+export type AddToCartResponseType = {
+  status_code: number;
+  detail: {
+    timestamp: string;
+    order_id: string;
+    products: AddToCartProductResponseType[];
+    net_total: number;
+    taxes: number;
+    service_charges: number;
+    delivery_charges: number;
+    discounts: number;
+    gross_total: number;
+    currency: string;
+    delivery_location: null | string;
+    order_mode: string;
+    order_status: string;
+  };
+};

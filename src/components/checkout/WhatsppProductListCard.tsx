@@ -3,11 +3,9 @@ import { FALLBACK_IMAGE } from '@/constants/urls';
 import Image from 'next/image';
 import React, { useEffect, useState, useTransition } from 'react';
 import { TbMinus, TbPlus } from 'react-icons/tb';
-import { updateCart } from './fetch-cart';
-import { AddToCartResponseType } from '@/app/merchant/[merchant_id]/product/product-detail/[product_id]/fetch-action';
-import { useFormStatus } from 'react-dom';
+import { updateCart } from '../../app/actions/fetch-cart';
 import { cn } from '@/lib/utils';
-import { ProductOptionsType } from '@/types/products';
+import { AddToCartResponseType, ProductOptionsType } from '@/types/products';
 import { useRouter } from 'next/navigation';
 
 export type WhatsappProductListCardType = {

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { Suspense } from 'react';
-import OTPSetClient from './OTPSetClient';
+import OTPSetClient from '../OTPSetClient';
 
 export type StatusType = boolean | '';
 

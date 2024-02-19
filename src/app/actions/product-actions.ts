@@ -2,62 +2,11 @@
 
 import { API_BASE_URL } from '@/constants/urls';
 import { OrderType } from '@/types/order';
-import {
-  getSessionHeaderWithNoJSON,
-  setSessionHeader,
-} from '@/app/auth/set-headers';
+import { setSessionHeader } from '@/app/actions/set-headers';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-import { cleanJsonString, removeSingleQuotes } from '@/lib/format';
-
-export type AddToCartObjectType = {
-  branch_id: FormDataEntryValue | null;
-  products:
-    | {
-        product_id: FormDataEntryValue | null;
-        quantity: FormDataEntryValue | null;
-        option_id: FormDataEntryValue | null;
-      }[]
-    | FormDataEntryValue[];
-};
-export type AddToCartProductResponseType = {
-  product_retailer_id: string;
-  product_name: string;
-  quantity: number;
-  item_price: number;
-  option_id: string;
-  option_name: string;
-  option_price: number;
-  currency: string;
-  add: [
-    {
-      type: string;
-      description: string;
-      percent: number;
-      amount: number;
-    },
-  ];
-  deduct: null | number;
-};
-
-export type AddToCartResponseType = {
-  status_code: number;
-  detail: {
-    timestamp: string;
-    order_id: string;
-    products: AddToCartProductResponseType[];
-    net_total: number;
-    taxes: number;
-    service_charges: number;
-    delivery_charges: number;
-    discounts: number;
-    gross_total: number;
-    currency: string;
-    delivery_location: null | string;
-    order_mode: string;
-    order_status: string;
-  };
-};
+import { cleanJsonString } from '@/lib/format';
+import { AddToCartObjectType, AddToCartResponseType } from '@/types/products';
 
 export const generatePayload = async (formData: FormData) => {
   const payload = {
@@ -189,11 +138,10 @@ export const addToCartModalAction = async (formData: FormData) => {
   const stringPayload = JSON.stringify(payload);
   const cleanedPayload = cleanJsonString(stringPayload);
   const payloadObject = JSON.parse(cleanedPayload);
-  // console.log(payloadObject);
 
   try {
     const cartResponse = await getCartResponse(payloadObject);
-    // const return_value = await getOrderId(payload);
+
     if (cartResponse?.status_code === 200) {
       const cartDetails = cartResponse.detail;
 

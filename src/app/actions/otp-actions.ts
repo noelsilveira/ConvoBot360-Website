@@ -1,35 +1,54 @@
 'use server';
 
-import { setOTPHeaders } from '@/app/auth/set-headers';
 import { API_BASE_URL } from '@/constants/urls';
+import { setHeaderInCookie, setOTPHeaders } from './set-headers';
 import { cookies } from 'next/headers';
+import {
+  AddSessionPayloadResponseType,
+  AddSessionPayloadType,
+} from '@/types/auth';
+/**
+ *
+ * Process the OTP from the OTP form in get-otp page and returns the verification status of the OTP in the process sets the access-token in the HTTP headers
+ * @endpoint `${API_BASE_URL}/estore/token`
+ * @param state
+ * @param formData
+ * @returns `{ message: "OTP verification status" }`
+ */
+export const getOtpHandler = async (state: any, formData: FormData) => {
+  const myOTPheaders = await setOTPHeaders();
 
-export type EStoreLandingOTPParamsType = {
-  // Previous version
-  c: string | null;
-  b: string | null;
-  i: string | null;
+  // const username = '919820859667';
+  const username = cookies().get('customer_no');
+  const password = formData.get('otp');
+  const newData = new FormData();
+
+  if (!username) {
+    return Response.json({ status: 404, message: 'No user data found' });
+  } else {
+    newData.append('username', username.value);
+    password && newData.append('password', password);
+  }
+
+  try {
+    const response = await fetch(API_BASE_URL + `/estore/token`, {
+      method: 'POST',
+      headers: myOTPheaders,
+      body: newData,
+      redirect: 'follow',
+    });
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      return { message: `OTP verification failed` };
+    } else {
+      await setHeaderInCookie(responseData);
+      return { message: `OTP verification successful` };
+    }
+  } catch (error) {
+    console.log('Server error!', error);
+  }
 };
-
-export type AddSessionPayloadType = {
-  customer_no: string | null;
-  branch_id: string | null;
-  logo_url: string | null;
-};
-
-export type AddSessionPayloadResponseType = {
-  status_code: number;
-  detail: {
-    session_id: string;
-    metadata: AddSessionPayloadType;
-    created_by: string;
-    created_at: string;
-  };
-  headers: null | string;
-};
-
-const BRANCH_ID_NAME = 'branch_id';
-const PHONE_NAME = 'phone';
 
 export const setOTPParamsToCookie = async (
   data: AddSessionPayloadResponseType['detail']
@@ -103,7 +122,6 @@ export const addSessionToAPI = async (data: AddSessionPayloadType) => {
       return sessionData.detail;
     } else {
       throw new Error('Unable to get session, check OTP headers');
-      return;
     }
   } catch (error) {
     throw new Error('Session server error!', error as Error);

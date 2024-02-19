@@ -1,5 +1,5 @@
 'use client';
-import { WhatsappProductListCardType } from '@/app/checkout/cart/WhatsppProductListCard';
+import { WhatsappProductListCardType } from '@/components/checkout/WhatsppProductListCard';
 import { ProductOptionsType, ProductsType } from '@/types/products';
 import React, { useEffect, useState } from 'react';
 import { TbMinus, TbPlus } from 'react-icons/tb';

@@ -5,7 +5,7 @@ import { ProductListingParamsType } from '@/types/products';
 import { SearchParamsType } from '../../merchant/[merchant_id]/estore-products/[category]/page';
 import { branch_id } from '@/constants/products';
 import { convertToSortObject } from '@/lib/format';
-import { setSessionHeader } from '@/app/auth/set-headers';
+import { setSessionHeader } from '@/app/actions/set-headers';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
