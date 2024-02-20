@@ -15,7 +15,6 @@ const Products = ({
         {/* <Breadcrumbs items={breadcrumbs} /> */}
         <div>
           <div className='mx-0 grid grid-cols-2 border-l border-t border-gray-200 md:-mx-px md:grid-cols-3 lg:grid-cols-4'>
-            {/* {isLoading && <p>Loading products...</p>} */}
             {products &&
               products.map((product, index) => (
                 // Single product item view
@@ -33,7 +32,10 @@ const Products = ({
                   </Link>
 
                   <div className='flex items-start justify-between pb-0 pt-2 sm:pb-2'>
-                    <div className='flex w-full flex-col text-start'>
+                    <Link
+                      href={`/merchant/${params.merchant_id}/product/product-detail/${product.id}`}
+                      className='flex w-full flex-col text-start'
+                    >
                       <h3 className='line-clamp-1 text-sm font-medium capitalize text-gray-950'>
                         <span>{product.title}</span>
                       </h3>
@@ -46,7 +48,7 @@ const Products = ({
                           {product.category}
                         </p>
                       )}
-                    </div>
+                    </Link>
 
                     <div className='flex flex-1 flex-col items-end justify-end'>
                       <ProductAddToCartButtonWithModal product={product} />

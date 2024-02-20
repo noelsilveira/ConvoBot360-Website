@@ -130,11 +130,13 @@ export const getCartResponse = async (
 // addToCartModalAction
 export const addToCartModalAction = async (formData: FormData) => {
   const products = formData.getAll('items');
-  console.log('Testing single: ', products);
+  console.log('Adding these products/options to payload...: ', products);
   const payload = {
     branch_id: formData.get('branch_id'),
     products: products,
   };
+  console.log('Adding payload to cart...: ', payload);
+
   const stringPayload = JSON.stringify(payload);
   const cleanedPayload = cleanJsonString(stringPayload);
   const payloadObject = JSON.parse(cleanedPayload);

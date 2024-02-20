@@ -84,6 +84,7 @@ const CartItemsList = async () => {
                 currency: product.currency,
                 price: product.item_price,
                 quantity: product.quantity,
+                option_name: product.option_name,
               };
 
               return (

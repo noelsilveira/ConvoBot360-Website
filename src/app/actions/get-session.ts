@@ -22,6 +22,16 @@ export const getSessionFromAPI = async (session_id: string) => {
 
     const responseData: AddSessionPayloadResponseType = await response.json();
     //   if(responseData.status_code ===200) for now it's returning 404 #FIXME
+
+    const noSession = responseData.detail as unknown;
+    if (noSession === 'Session not found.') {
+      console.error(
+        'If this error is showing then need to change the static session_id in URL params',
+        responseData.detail,
+        session_id
+      );
+    }
+
     return responseData.detail;
   } catch (error) {
     console.error(error);

@@ -30,12 +30,10 @@ const OTPSetClient = () => {
 
   useEffect(() => {
     const getSession = async () => {
-      // const sessionResponse = await addSessionToAPI(sessionPayload);
-
       !session_id && router.push('/');
+      await authTokenForToSendOTP();
 
-      // get the OTp access token using .env credentials
-
+      // get the OTP access token using .env credentials
       const sessionResponse = await getSessionFromAPI(session_id as string);
 
       if (sessionResponse) {

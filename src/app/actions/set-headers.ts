@@ -39,7 +39,7 @@ export const setHeaderInCookie = async (data: TokenType) => {
  */
 export const setOTPHeaders = async () => {
   let otpToken = cookies().get('OTP_ACCESS_TOKEN');
-  if (!otpToken) {
+  if (!otpToken?.value) {
     // await setFixedTokenFromAPI('OTP_ACCESS_TOKEN', static_otp_token);
     await authTokenForToSendOTP();
     otpToken = cookies().get('OTP_ACCESS_TOKEN');

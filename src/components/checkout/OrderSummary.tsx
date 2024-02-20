@@ -45,7 +45,7 @@ const OrderSummary = async () => {
         </div>
         <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
           <dt className='flex text-sm text-gray-600'>
-            <span>Tax estimate</span>
+            <span>Taxes</span>
             <a
               href='#!'
               className='ml-2 flex-shrink-0 text-gray-400 hover:text-gray-500'

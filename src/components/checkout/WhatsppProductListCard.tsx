@@ -15,6 +15,7 @@ export type WhatsappProductListCardType = {
   currency: string;
   price: number;
   quantity: number;
+  option_name?: string;
 };
 
 const WhatsappProductListCard = ({
@@ -39,6 +40,11 @@ const WhatsappProductListCard = ({
           <h2 className='line-clamp-1 text-lg font-semibold capitalize'>
             {product.title}
           </h2>
+          {product.option_name && (
+            <h3 className='text-base font-medium capitalize text-gallery-500'>
+              {product.option_name}
+            </h3>
+          )}
           <p className='text-sm font-medium text-gallery-500'>
             {product.currency} {product.price}
           </p>

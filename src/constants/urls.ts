@@ -10,7 +10,7 @@ export const static_merchant_id = '36049357';
 export const WHATSAPP_LOGIN_URL =
   '/wa/sendotp?c=919820859667&b=b3cac885-ba05-4d0c-8a61-ac77da18a84d&i=cb360-logo.png';
 
-export const STATIC_SESSION_ID = 'ce720cb7-4f62-4bc9-8b77-b5758ebec398';
+export const STATIC_SESSION_ID = 'a8398d65-4308-47a4-8018-8102eab75fbf';
 
 export const WHATSAPP_LANDING_URL = `/wa/sendotp/${STATIC_SESSION_ID}`;
 

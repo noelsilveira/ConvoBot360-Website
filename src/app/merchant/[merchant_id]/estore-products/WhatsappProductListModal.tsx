@@ -114,12 +114,14 @@ export const QuantityModifierButtons = ({
           <TbMinus />
         </button>
       )}
-      <input
-        type='hidden'
-        name='items'
-        onChange={() => handleItemObjectChange()}
-        value={JSON.stringify(itemObject)}
-      />
+      {quantity > 0 && (
+        <input
+          type='hidden'
+          name='items'
+          onChange={() => handleItemObjectChange()}
+          value={JSON.stringify(itemObject)}
+        />
+      )}
 
       {quantity > 0 && (
         <input

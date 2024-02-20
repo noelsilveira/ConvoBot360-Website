@@ -37,8 +37,16 @@ export const authTokenForToSendOTP = async () => {
     const response = await fetch(`${API_BASE_URL}/users/token`, requestOptions);
     const tokenObject: AuthTokenOTPResponseType = await response.json();
 
+    console.log(
+      'OTP token credential verification success. Storing response in cookies.',
+      tokenObject
+    );
+
     await setAuthTokenOTPInCookies(tokenObject);
 
+    console.log(
+      "OTP access token set in cookies success. You'll be able to access to server rendered pages using cookies().get('token_name')"
+    );
     return tokenObject;
   } catch (error) {
     throw new Error('Server error!', error as Error);
