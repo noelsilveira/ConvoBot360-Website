@@ -4,10 +4,11 @@ import CategoriesSidebar from './CategoriesSidebar';
 import FilterCategoriesButton from './FilterCategoriesButton';
 import FilterListWrapper from './FilterListWrapper';
 import MobileFilterMenu from '@/components/layout/product-layout/MobileFilterMenu';
-import { ProductListingParamsType } from '@/app/(deprecated)/products-listing/page';
 import SortFilterMenu from '@/components/layout/product-layout/SortFilterMenu';
 import { Squares2X2Icon } from '@heroicons/react/24/outline';
 import SearchProduct from '@/components/product/SearchProduct';
+import { ProductListingParamsType } from '@/types/products';
+import CategoryNameInProductList from '@/components/product/estore/category/CategoryNameInProductList';
 
 const EStoreProductsLayout = ({
   children,
@@ -22,6 +23,7 @@ const EStoreProductsLayout = ({
         <div className='mt-1 flex flex-1 items-center justify-end md:mt-0 md:hidden'>
           <SearchProduct />
         </div>
+        {/* Search, Sort, filters, other functions */}
         <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-2'>
           {/* Search */}
           <div className='hidden flex-1 items-center justify-end md:flex'>
@@ -29,6 +31,7 @@ const EStoreProductsLayout = ({
           </div>
           <div className='flex items-center px-4'>
             {/* Sort filter menu */}
+            <CategoryNameInProductList />
             <SortFilterMenu sortBy={params.sortBy || `"price":"asc"`} />
 
             <button

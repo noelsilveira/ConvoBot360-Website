@@ -1,24 +1,21 @@
-import { branch_id, policies } from '@/constants/products';
-
 import { API_BASE_URL } from '@/constants/urls';
-import AddToCartForm from './AddToCart';
-import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
-import Image from 'next/image';
 import Link from 'next/link';
-import Perks from '@/components/product/Perks';
+
 import { ProductsType } from '@/types/products';
 import React from 'react';
-import Reviews from '@/components/product/Reviews';
-import { cn } from '@/lib/utils';
-import ProductDetailImage from './ProductDetailImage';
-import { TbChevronCompactLeft, TbChevronLeft } from 'react-icons/tb';
-import BackButton from './BackButton';
+import BackButton from '@/components/product/detail/BackButton';
+import ProductDetailImage from '@/components/product/detail/ProductDetailImage';
+import AddToCartForm from '@/components/product/detail/AddToCart';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 const ProductDetailPage = async ({
   params,
 }: {
   params: { product_id: string; merchant_id: string };
 }) => {
+  const branch_id = cookies().get('branch_id');
+
   const res = await fetch(
     `${API_BASE_URL}/estore/product-details/${params.product_id}`,
     {
@@ -30,31 +27,11 @@ const ProductDetailPage = async ({
     }
   );
   const product: ProductsType = await res.json();
-  // console.log('detail: ', product);
-  const baseMerchantPath = `/merchant/${params.merchant_id}`;
-
-  const breadcrumbs = [
-    {
-      label: 'Merchant',
-      path: baseMerchantPath,
-    },
-    {
-      label: 'Products',
-      path: `${baseMerchantPath}/estore-products`,
-    },
-    {
-      label: `${product.title}`,
-      path: `${baseMerchantPath}/product/product-detail/${product.id}`,
-      slug: '/product-detail/product-id-or-name',
-    },
-  ];
 
   return (
     <>
-      {/* <MainLayout title={`Buy ${product.name} | CB360 - Ultimate shopping`}> */}
       <div className='bg-white'>
         <div className='pb-8 pt-2 sm:pb-6'>
-          {/* <Breadcrumbs items={breadcrumbs} /> */}
           <BackButton />
           <div className='mx-auto mt-2 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8'>
             <div className='lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8'>
@@ -97,11 +74,13 @@ const ProductDetailPage = async ({
                     </h2>
                   </div>
                 </div>
-                <AddToCartForm
-                  product={product}
-                  branch_id={branch_id}
-                  product_id={params.product_id}
-                />
+                {branch_id?.value && (
+                  <AddToCartForm
+                    product={product}
+                    branch_id={branch_id.value}
+                    product_id={params.product_id}
+                  />
+                )}
 
                 {/* Product details */}
                 <div className='mt-8'>

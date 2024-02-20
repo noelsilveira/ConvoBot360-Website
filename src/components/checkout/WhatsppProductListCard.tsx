@@ -3,10 +3,10 @@ import { FALLBACK_IMAGE } from '@/constants/urls';
 import Image from 'next/image';
 import React, { useEffect, useState, useTransition } from 'react';
 import { TbMinus, TbPlus } from 'react-icons/tb';
-import { updateCart } from '../../app/actions/fetch-cart';
 import { cn } from '@/lib/utils';
 import { AddToCartResponseType, ProductOptionsType } from '@/types/products';
 import { useRouter } from 'next/navigation';
+import { updateCart } from '@/app/actions/fetch-cart';
 
 export type WhatsappProductListCardType = {
   product_retailer_id: string;

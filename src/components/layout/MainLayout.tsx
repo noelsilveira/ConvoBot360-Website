@@ -19,36 +19,15 @@ const MainLayout = ({
 }: MainLayoutProps) => {
   return (
     <>
-      {/* <Head>
-        <title>{title}</title>
-        <meta name='description' content='E-commerce for the future' />
-        <meta
-          property='og:title'
-          content='CB360 - Your dream e-commerce store is here'
-        />
-        <meta property='og:image' content='cb360-logomark.svg' />
+      {/* Mobile menu */}
+      <MobileMenu />
 
-        <meta name='theme-color' content='#fd9c0a'></meta>
-        <link
-          rel='icon'
-          href='/logomark.svg'
-          type='image/svg'
-          sizes='16x16 32x32'
-        />
-      </Head> */}
-      {/* <Toaster position='bottom-center' /> */}
-
-      <div>
-        {/* Mobile menu */}
-        <MobileMenu />
-
-        {/* Top navigation */}
-        <Header />
-        <main className={cn(`${inter} ${className}`)} {...rest}>
-          {children}
-        </main>
-        <Footer />
-      </div>
+      {/* Top navigation */}
+      <Header />
+      <main className={cn(`${inter} ${className}`)} {...rest}>
+        {children}
+      </main>
+      <Footer />
     </>
   );
 };

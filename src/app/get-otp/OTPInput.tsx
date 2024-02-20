@@ -10,7 +10,7 @@ const OTPInput = () => {
   };
   const handlePaste: React.ClipboardEventHandler = (event) => {
     const data = event.clipboardData.getData('text');
-    console.log(data);
+    // console.log(data);
   };
   return (
     <div className='mx-auto flex w-full flex-row items-center'>

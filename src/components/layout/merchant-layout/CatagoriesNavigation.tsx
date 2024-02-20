@@ -10,7 +10,7 @@ import {
 import Link from 'next/link';
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { getCategories } from '@/app/(deprecated)/products-listing/fetcher';
+import { getCategories } from '@/app/actions/product-fetcher';
 import { useFiltersNavigationStore } from '@/store/navigationStore';
 import useSWR from 'swr';
 

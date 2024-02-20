@@ -1,12 +1,9 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { ProductListingParamsType } from '../../../../(deprecated)/products-listing/page';
-import Products from '../Products';
-import { ProductsType } from '@/types/products';
+import { ProductListingParamsType, ProductsType } from '@/types/products';
 import React from 'react';
-import { SearchParamsType } from './page';
-import { getEStoreProductsListWithSort } from '../../../../(deprecated)/products-listing/fetcher';
+import { SearchParamsType } from '../../../../app/merchant/[merchant_id]/estore-products/[category]/page';
 import { urlToStringParser } from '@/lib/format';
+import { getEStoreProductsListWithSort } from '@/app/actions/product-fetcher';
+import Products from '@/components/product/estore/Products';
 
 type CategoriesParams = ProductListingParamsType & {
   params: { category?: string };

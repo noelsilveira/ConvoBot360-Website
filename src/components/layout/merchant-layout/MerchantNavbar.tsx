@@ -8,6 +8,7 @@ import { cookies } from 'next/headers';
 
 const MerchantNavbar = ({ params }: ProductListingParamsType) => {
   const logo_url = cookies().get('logo_url')?.value;
+  const cart_count = cookies().get('cart_count')?.value;
   const cb360Logo = '/cb360-logo.svg';
 
   return (
@@ -55,7 +56,9 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
               </div> */}
 
               {/* Cart */}
-              <CartIconButton />
+              <CartIconButton
+                cart_count={cart_count ? Number(cart_count) : 0}
+              />
             </div>
           </div>
         </div>

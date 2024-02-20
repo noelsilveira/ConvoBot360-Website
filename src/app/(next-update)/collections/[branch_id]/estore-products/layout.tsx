@@ -1,9 +1,6 @@
-import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
 import EStoreProductsLayout from './EStoreProductsLayout';
-import { ProductListingParamsType } from '../../../(deprecated)/products-listing/page';
 import React from 'react';
-import SearchProduct from '@/components/product/SearchProduct';
-import { urlToStringParser } from '@/lib/format';
+import { ProductListingParamsType } from '@/types/products';
 
 const ProductsPageLayout = ({
   children,

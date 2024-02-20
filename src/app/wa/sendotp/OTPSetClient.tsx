@@ -22,7 +22,7 @@ const OTPSetClient = () => {
   const c = branchParams.get('c');
   const i = branchParams.get('i');
 
-  const sessionPayload: AddSessionPayloadType = {
+  const sessionPayload: Partial<AddSessionPayloadType> = {
     branch_id: b,
     customer_no: c,
     logo_url: `${LOGO_BASE_URL}${i}`,

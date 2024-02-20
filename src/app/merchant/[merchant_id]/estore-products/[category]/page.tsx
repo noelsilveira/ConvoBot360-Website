@@ -1,4 +1,4 @@
-import ECategoryProductList from './ECategoryProductList';
+import ECategoryProductList from '../../../../../components/product/estore/category/ECategoryProductList';
 import { ProductListingParamsType } from '@/types/products';
 import React from 'react';
 

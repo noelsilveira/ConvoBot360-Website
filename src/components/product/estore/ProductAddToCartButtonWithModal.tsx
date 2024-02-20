@@ -2,7 +2,6 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { ProductDetailProps, branch_id } from '@/constants/products';
 import { ProductOptionsType, ProductsType } from '@/types/products';
 import WhatsappProductListInModal, {
   WhatsappProductVariantListInModal,
@@ -10,15 +9,15 @@ import WhatsappProductListInModal, {
 
 import { ProductQuantityStore } from '@/store/productQuantityStore';
 import { TbPlus } from 'react-icons/tb';
-import { addToCartModalAction } from '../../../actions/product-actions';
 import { cn } from '@/lib/utils';
 import { useFormStatus } from 'react-dom';
 import { useRouter } from 'next/navigation';
+import { addToCartModalAction } from '@/app/actions/product-actions';
 
 const ProductAddToCartButtonWithModal = ({
   product,
   size = 'small',
-  branch_id: large_branch_id,
+  branch_id,
 }: {
   product: ProductsType;
   branch_id?: string;
@@ -90,11 +89,7 @@ const ProductAddToCartButtonWithModal = ({
 
         <div className='mt-6 flex flex-col gap-2'>
           {size === 'large' ? (
-            <input
-              type='hidden'
-              defaultValue={large_branch_id}
-              name='branch_id'
-            />
+            <input type='hidden' defaultValue={branch_id} name='branch_id' />
           ) : (
             <input type='hidden' defaultValue={branch_id} name='branch_id' />
           )}

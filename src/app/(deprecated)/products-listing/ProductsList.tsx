@@ -7,7 +7,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ProductStore } from '@/store/productsStore';
 import { ProductsType } from '@/types/products';
-import { getProducts } from './fetcher';
 import { ProductListingParamsType } from './page';
 
 const ProductsList = ({

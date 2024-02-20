@@ -6,13 +6,14 @@ import {
 
 import Products from './Products';
 import React from 'react';
-import { getEStoreProductsListWithSort } from '../../../(deprecated)/products-listing/fetcher';
 import InfiniteScrollProducts from './InfiniteScrollProducts';
+import { getEStoreProductsListWithSort } from '@/app/actions/product-fetcher';
 
 const EProductList = async ({
   params,
   searchParams,
-}: ProductListingParamsType) => {
+  branch_id,
+}: ProductListingParamsType & { branch_id?: string }) => {
   const products: ProductsType[] | ProductSearchTooShortType[] | string =
     await getEStoreProductsListWithSort({
       queryParams: { params },
@@ -20,7 +21,7 @@ const EProductList = async ({
     });
 
   const filteredProducts = products as ProductsType[];
-  console.log('Search results filtered: ', filteredProducts);
+
   const noItemsMessage = JSON.stringify(filteredProducts);
 
   return (
@@ -29,7 +30,11 @@ const EProductList = async ({
 
       {filteredProducts.length > 0 && noItemsMessage !== '"No Items Found"' ? (
         <>
-          <Products params={params} products={filteredProducts} />
+          <Products
+            branch_id={branch_id}
+            params={params}
+            products={filteredProducts}
+          />
           <InfiniteScrollProducts
             searchParams={searchParams}
             initialProducts={filteredProducts}

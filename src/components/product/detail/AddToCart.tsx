@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import ProductAddToCartButtonWithModal from '../../../estore-products/ProductAddToCartButtonWithModal';
+import ProductAddToCartButtonWithModal from '../estore/ProductAddToCartButtonWithModal';
 import { ProductsType } from '@/types/products';
 
 const AddToCartForm = ({

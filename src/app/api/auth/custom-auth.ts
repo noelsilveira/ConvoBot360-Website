@@ -58,7 +58,7 @@ const signInAndSetToken = async (req: NextApiRequest, res: NextApiResponse) => {
   if (isAccessTokenExpired) {
     try {
       const data: CookieObjectType = await getNewAccessToken();
-      console.log('Data: ', data);
+      // console.log('Data: ', data);
       const cookieObject = {
         expiry: data.expiry,
         access_token: data.access_token,

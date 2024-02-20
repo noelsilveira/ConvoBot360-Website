@@ -9,6 +9,7 @@ const Products = ({
   products,
   params,
 }: ProductListingParamsType & { products: ProductsType[] }) => {
+  console.log('Products in Products component: ', products.length);
   return (
     <div className='bg-white'>
       <div>

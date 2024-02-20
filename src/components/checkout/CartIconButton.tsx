@@ -1,16 +1,18 @@
 'use client';
-import { useCartStore } from '@/store/cartStore';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdOutlineShoppingCart } from 'react-icons/md';
-import { HiOutlineShoppingBag } from 'react-icons/hi2';
 
-const CartIconButton = () => {
-  const { countCart } = useCartStore();
+const CartIconButton = ({ cart_count }: { cart_count: number }) => {
+  // const { countCart, } = useCartStore();
+  const [cartCount, setCartCount] = useState(cart_count);
 
+  // useEffect(() => {
+  //   useCartStore.persist.rehydrate();
+  // }, []);
   useEffect(() => {
-    useCartStore.persist.rehydrate();
-  }, []);
+    setCartCount(cart_count);
+  }, [cart_count]);
 
   return (
     <div className='ml-0 flow-root lg:ml-4'>
@@ -22,11 +24,15 @@ const CartIconButton = () => {
           className='h-6 w-6 flex-shrink-0 text-gallery-500 duration-300 ease-out group-hover:text-gray-500'
           aria-hidden='true'
         />
+        <span className='absolute right-1 top-2 ml-2 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 p-1 text-[0.6rem] font-semibold text-white group-hover:text-gray-100'>
+          {cartCount}
+          <span className='sr-only'>items in cart, view bag</span>
+        </span>
         {/* <HiOutlineShoppingBag
           className='h-6 w-6 flex-shrink-0 text-gray-400 duration-300 ease-out group-hover:text-gray-500'
           aria-hidden='true'
         /> */}
-        <CartLabel item={countCart()} />
+        {/* <CartLabel item={countCart()} /> */}
       </Link>
     </div>
   );

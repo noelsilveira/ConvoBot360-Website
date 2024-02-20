@@ -2,9 +2,9 @@
 
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import React from 'react';
-import { getCartItems } from '../../app/actions/fetch-cart';
 import { ContinueInWhatsappButton } from './ContinueInWhatsappButton';
 import { AddToCartResponseType } from '@/types/products';
+import { getCartItems } from '@/app/actions/fetch-cart';
 
 const OrderSummary = async () => {
   const cartDetailResponse: AddToCartResponseType['detail'] =

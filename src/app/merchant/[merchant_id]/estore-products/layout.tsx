@@ -1,14 +1,13 @@
-import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
-import EStoreProductsLayout from './EStoreProductsLayout';
-import { ProductListingParamsType } from '../../../(deprecated)/products-listing/page';
+import EStoreProductsLayout from '@/components/product/estore/EStoreProductsLayout';
+import { ProductListingParamsType } from '@/types/products';
 import React from 'react';
-import SearchProduct from '@/components/product/SearchProduct';
-import { urlToStringParser } from '@/lib/format';
 
 const ProductsPageLayout = ({
   children,
   params,
-}: ProductListingParamsType & { children: React.ReactNode }) => {
+}: Pick<ProductListingParamsType, 'params'> & {
+  children: React.ReactNode;
+}) => {
   const baseMerchantPath = `/merchant/${params.merchant_id}`;
 
   const breadcrumbs = [

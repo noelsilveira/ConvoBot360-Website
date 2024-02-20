@@ -2,12 +2,9 @@
 
 import { API_BASE_URL } from '@/constants/urls';
 import { ProductListingParamsType } from '@/types/products';
-import { SearchParamsType } from '../../merchant/[merchant_id]/estore-products/[category]/page';
-import { branch_id } from '@/constants/products';
 import { convertToSortObject } from '@/lib/format';
 import { setSessionHeader } from '@/app/actions/set-headers';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 export type FilterParamType = {
   keywords: string;
@@ -19,6 +16,7 @@ export const getProducts = async ({
   filterParam: FilterParamType | {};
 }) => {
   const my_headers = await setSessionHeader();
+  const branch_id = cookies().get('branch_id');
   var raw = JSON.stringify({
     branch_id: branch_id,
     filters: filterParam,
@@ -45,28 +43,41 @@ export const getProducts = async ({
 };
 
 export const getCategories = async () => {
-  const headers = await setSessionHeader();
+  const myHeaders = await setSessionHeader();
+  const branch_id = cookies().get('branch_id');
+  // console.log('Branch id in get categories', branch_id?.value);
 
-  const res = await fetch(API_BASE_URL + `/estore/categories/${branch_id}`, {
-    method: 'POST',
-    redirect: 'follow',
-    headers,
-    next: {
-      revalidate: 100,
-      tags: ['categories'],
-    },
-  });
-  const categories = await res.json();
+  try {
+    const res = await fetch(
+      API_BASE_URL + `/estore/categories/${branch_id?.value}`,
+      {
+        method: 'POST',
+        headers: myHeaders,
+        redirect: 'follow',
+        next: {
+          revalidate: 100,
+          tags: ['categories'],
+        },
+      }
+    );
+    const categories = await res.json();
+    // console.log('Categories Response: ', categories);
+    if (!categories || categories.detail === 'No Categories Found') {
+      console.error(categories.detail);
+      throw new Error('Unable to fetch categories', categories);
+    }
 
-  return categories;
+    return categories;
+  } catch (error) {
+    throw new Error('Server error in fetching categories', error as Error);
+  }
 };
 
 export const getFilterProducts = async (
   { filterParam }: { filterParam: FilterParamType | {} }
   // filter: string|null
 ) => {
-  'use client';
-
+  const branch_id = cookies().get('branch_id');
   const my_headers = await setSessionHeader();
   var raw = JSON.stringify({
     branch_id: branch_id,
@@ -96,6 +107,8 @@ export const getEStoreProducts = async (
   const filterParam = { category: filter };
 
   const my_headers = await setSessionHeader();
+  const branch_id = cookies().get('branch_id');
+
   let raw = JSON.stringify({
     branch_id: branch_id,
     filters: filterParam,
@@ -169,8 +182,17 @@ export const getEStoreProductsListWithSort = async ({
 
     const productObject = await res.json();
 
+    if (!productObject) {
+      // console.log('No products or server error', productObject);
+    }
+    // console.log(
+    //   'Product response from getEStoreProductsListWithSort(): ',
+    //   productObject
+    // );
+
     return productObject.detail;
   } catch (error) {
     console.error(error);
+    throw new Error('Server error in products fetching', error as Error);
   }
 };

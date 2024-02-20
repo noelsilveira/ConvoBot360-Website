@@ -16,7 +16,7 @@ async function signIn(req: NextApiRequest, res: NextApiResponse) {
   formData.append('username', username);
   formData.append('password', password);
 
-  console.log('FD: ', formData);
+  // console.log('FD: ', formData);
 
   const response = await fetch(
     'https://api-uat-ap-south-1-eks.sendbip.com/v1/estore/token',

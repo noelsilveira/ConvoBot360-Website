@@ -5,7 +5,7 @@ import { ProductStore, categoryStore } from '@/store/productsStore';
 import { CategoryType } from '@/types/products';
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { getProducts } from '@/app/(deprecated)/products-listing/fetcher';
+import { getProducts } from '@/app/actions/product-fetcher';
 
 const FilterButton = ({ category }: { category: CategoryType }) => {
   const { setProducts } = ProductStore();

@@ -2,11 +2,10 @@
 
 import { FunnelIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 
-import { CategoryType } from '@/types/products';
+import { CategoryType, ProductListingParamsType } from '@/types/products';
 import FilterButton from './FilterButton';
 import FilterListWrapper from './FilterListWrapper';
 import MobileFilterMenu from './MobileFilterMenu';
-import { ProductListingParamsType } from '@/app/(deprecated)/products-listing/page';
 import React from 'react';
 import SortFilterMenu from './SortFilterMenu';
 import { useFiltersNavigationStore } from '@/store/navigationStore';

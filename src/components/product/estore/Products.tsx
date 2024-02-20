@@ -4,11 +4,16 @@ import Link from 'next/link';
 import ProductListImage from './ProductListImage';
 import ProductAddToCartButtonWithModal from './ProductAddToCartButtonWithModal';
 import React from 'react';
+import { cookies } from 'next/headers';
 
 const Products = ({
   products,
   params,
-}: ProductListingParamsType & { products: ProductsType[] }) => {
+  branch_id,
+}: ProductListingParamsType & {
+  products: ProductsType[];
+  branch_id?: string;
+}) => {
   return (
     <div className='bg-white'>
       <div>
@@ -51,7 +56,10 @@ const Products = ({
                     </Link>
 
                     <div className='flex flex-1 flex-col items-end justify-end'>
-                      <ProductAddToCartButtonWithModal product={product} />
+                      <ProductAddToCartButtonWithModal
+                        branch_id={branch_id}
+                        product={product}
+                      />
                     </div>
                   </div>
                 </div>

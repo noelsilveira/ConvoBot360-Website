@@ -80,7 +80,7 @@ export const QuantityModifierButtons = ({
   product: ProductsType;
   variant?: ProductOptionsType;
 }) => {
-  const { setProductQuantity } = ProductQuantityStore()
+  const { setProductQuantity } = ProductQuantityStore();
 
   const handleUpdateQuantity = (operation: Operation) => {
     if (operation === 'increase') {
@@ -102,7 +102,7 @@ export const QuantityModifierButtons = ({
   });
 
   useEffect(() => {
-    setProductQuantity(quantity)
+    setProductQuantity(quantity);
     setItemObject({ ...itemObject, quantity: quantity });
   }, [quantity]);
 

@@ -2,7 +2,7 @@ import { AddSessionPayloadType } from '@/types/auth';
 import { StateCreator, create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
-type BranchStoreType = AddSessionPayloadType & {
+type BranchStoreType = Partial<AddSessionPayloadType> & {
   setBranchData: (value: AddSessionPayloadType) => void;
 };
 

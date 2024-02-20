@@ -54,7 +54,7 @@ export const setOTPParamsToCookie = async (
   data: AddSessionPayloadResponseType['detail']
 ) => {
   try {
-    if (data.session_id) {
+    data.session_id &&
       cookies().set({
         name: 'session_id',
         value: data.session_id,
@@ -62,12 +62,8 @@ export const setOTPParamsToCookie = async (
         secure: true,
         path: '/',
       });
-    }
-    if (
-      data.metadata.branch_id &&
-      data.metadata.customer_no &&
-      data.metadata.logo_url
-    ) {
+
+    data.metadata.branch_id &&
       cookies().set({
         name: 'branch_id',
         value: data.metadata.branch_id,
@@ -75,6 +71,7 @@ export const setOTPParamsToCookie = async (
         secure: true,
         path: '/',
       });
+    data.metadata.customer_no &&
       cookies().set({
         name: 'customer_no',
         value: data.metadata.customer_no,
@@ -82,6 +79,7 @@ export const setOTPParamsToCookie = async (
         secure: true,
         path: '/',
       });
+    data.metadata.logo_url &&
       cookies().set({
         name: 'logo_url',
         value: data.metadata.logo_url,
@@ -89,7 +87,26 @@ export const setOTPParamsToCookie = async (
         secure: true,
         path: '/',
       });
-    }
+
+    data.metadata.cart_count ||
+      (data.metadata.cart_count === 0 &&
+        cookies().set({
+          name: 'cart_count',
+          value: data.metadata.cart_count.toString(),
+          httpOnly: true,
+          secure: true,
+          path: '/',
+        }));
+
+    data.metadata.merchant_no &&
+      cookies().set({
+        name: 'merchant_no',
+        value: data.metadata.merchant_no,
+        httpOnly: true,
+        secure: true,
+        path: '/',
+      });
+
     return {
       status: 200,
       message: 'Successfully set all cookies',

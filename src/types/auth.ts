@@ -7,8 +7,12 @@ export type EStoreLandingOTPParamsType = {
 
 export type AddSessionPayloadType = {
   customer_no: string | null;
+  merchant_no: string | null;
   branch_id: string | null;
   logo_url: string | null;
+  access_token: string | null;
+  expiry: number;
+  cart_count: 0;
 };
 
 export type AddSessionPayloadResponseType = {

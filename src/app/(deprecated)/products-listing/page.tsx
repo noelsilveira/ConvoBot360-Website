@@ -5,8 +5,8 @@ import ProductsListLayout from '@/components/layout/product-layout/ProductsListL
 import { ProductsType } from '@/types/products';
 import React from 'react';
 import TrendingProducts from '@/components/sections/products-listing/TrendingProducts';
-import { getProducts } from './fetcher';
 import { SortOptions } from '@/components/product/SortProducts';
+import { getProducts } from '@/app/actions/product-fetcher';
 
 export type ProductListingParamsType = {
   params: {

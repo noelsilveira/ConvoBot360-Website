@@ -1,6 +1,6 @@
 import { ProductsType } from '@/types/products';
 import { create } from 'zustand';
-import { getProducts } from '@/app/(deprecated)/products-listing/fetcher';
+import { getProducts } from '@/app/actions/product-fetcher';
 
 type ProductStoreType = {
   products: ProductsType[];

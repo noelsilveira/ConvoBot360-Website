@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import '@/styles/global.css';
-import ReactQueryProvider from '@/components/product/ReactQueryProvider';
 
 export const metadata: Metadata = {
   title: 'CB360 | Home - Your one stop e-commerce solution for the future',
@@ -20,9 +19,7 @@ export default function RootLayout({
       <head>
         <meta name='theme-color' content='#fd9c0a'></meta>
       </head>
-      <body className='antialiased'>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
-      </body>
+      <body className='antialiased'>{children}</body>
     </html>
   );
 }

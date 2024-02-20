@@ -1,12 +1,12 @@
 'use client';
 
-import { getEStoreProductsListWithSort } from '@/app/(deprecated)/products-listing/fetcher';
+import { getEStoreProductsListWithSort } from '@/app/actions/product-fetcher';
 import { ProductsType } from '@/types/products';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { SearchParamsType } from './[category]/page';
 import Products from './Products';
+import { SearchParamsType } from '@/app/merchant/[merchant_id]/estore-products/[category]/page';
 
 const InfiniteScrollProducts = ({
   initialProducts,

@@ -3,10 +3,10 @@
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React, { Fragment } from 'react';
-import CategoryLink from '@/app/merchant/[merchant_id]/estore-products/CategoryLink';
+import CategoryLink from '@/components/product/estore/CategoryLink';
 import { CategoryType } from '@/types/products';
 import { cn } from '@/lib/utils';
-import { getCategories } from '@/app/(deprecated)/products-listing/fetcher';
+import { getCategories } from '@/app/actions/product-fetcher';
 import { useFiltersNavigationStore } from '@/store/navigationStore';
 import useSWR from 'swr';
 import { useParams, useRouter } from 'next/navigation';
