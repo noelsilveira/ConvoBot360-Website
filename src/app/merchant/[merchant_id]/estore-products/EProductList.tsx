@@ -7,6 +7,7 @@ import {
 import Products from './Products';
 import React from 'react';
 import { getEStoreProductsListWithSort } from '../../../(deprecated)/products-listing/fetcher';
+import InfiniteScrollProducts from './InfiniteScrollProducts';
 
 const EProductList = async ({
   params,
@@ -25,7 +26,13 @@ const EProductList = async ({
       <SearchProductsError products={products} />
 
       {filteredProducts.length > 1 ? (
-        <Products params={params} products={filteredProducts} />
+        <>
+          <Products params={params} products={filteredProducts} />
+          <InfiniteScrollProducts
+            searchParams={searchParams}
+            initialProducts={filteredProducts}
+          />
+        </>
       ) : (
         <></>
       )}
