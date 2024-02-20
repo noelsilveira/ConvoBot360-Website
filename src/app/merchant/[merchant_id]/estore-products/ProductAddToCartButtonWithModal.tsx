@@ -59,7 +59,7 @@ const ProductAddToCartButtonWithModal = ({
             router.push('/checkout/cart');
           }
         }}
-        className='relative flex flex-col items-start justify-center'
+        className='flex flex-col'
       >
         <div className='w-full'>
           <WhatsappProductListInModal product={product} />
@@ -70,18 +70,20 @@ const ProductAddToCartButtonWithModal = ({
               htmlFor='variants'
               className='text-xs font-medium uppercase text-gallery-400'
             >
-              Choose Options
+              Choose Options ({product.options.length} options)
             </label>
           </div>
         )}
-        <div className='no-scrollbar flex max-h-[50svh] w-full flex-col items-start justify-center gap-2 overflow-y-auto overscroll-contain py-4'>
-          {product.options?.map((variant, index) => (
-            <WhatsappProductVariantListInModal
-              key={'variant-item-' + variant.id + index}
-              product={product}
-              variant={variant}
-            />
-          ))}
+        <div className='no-scrollbar max-h-[50svh] overflow-y-auto'>
+          <div className='flex w-full flex-col items-center justify-center gap-2'>
+            {product.options?.map((variant, index) => (
+              <WhatsappProductVariantListInModal
+                key={'variant-item-' + variant.id + index}
+                product={product}
+                variant={variant}
+              />
+            ))}
+          </div>
         </div>
 
         <div className='mt-6 flex flex-col gap-2'>
@@ -183,7 +185,7 @@ const Wrapper = ({
                 leaveFrom='opacity-100 translate-y-0 sm:scale-100'
                 leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
               >
-                <Dialog.Panel className='relative min-h-40 w-full transform overflow-hidden rounded-3xl bg-white px-6 py-6 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
+                <Dialog.Panel className='relative w-full transform rounded-3xl bg-white px-6 py-6 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6'>
                   {children}
                 </Dialog.Panel>
               </Transition.Child>

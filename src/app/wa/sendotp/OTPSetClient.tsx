@@ -34,7 +34,10 @@ const OTPSetClient = () => {
       await authTokenForToSendOTP();
 
       // get the OTP access token using .env credentials
-      const sessionResponse = await getSessionFromAPI(session_id as string);
+      // console.log(session_id);
+      const sessionResponse = await getSessionFromAPI(
+        JSON.parse(JSON.stringify(session_id))
+      );
 
       if (sessionResponse) {
         setBranchData(sessionResponse.metadata);

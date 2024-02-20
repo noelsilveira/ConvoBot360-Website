@@ -5,6 +5,7 @@ import { API_BASE_URL } from '@/constants/urls';
 import { AddSessionPayloadResponseType } from '@/types/auth';
 
 export const getSessionFromAPI = async (session_id: string) => {
+  console.log('Session from client url: ', session_id);
   const myHeaders = await setOTPHeaders();
   const raw = '';
   const requestOptions: RequestInit | undefined = {
@@ -22,6 +23,7 @@ export const getSessionFromAPI = async (session_id: string) => {
 
     const responseData: AddSessionPayloadResponseType = await response.json();
     //   if(responseData.status_code ===200) for now it's returning 404 #FIXME
+    console.log('Session response: ', responseData);
 
     const noSession = responseData.detail as unknown;
     if (noSession === 'Session not found.') {

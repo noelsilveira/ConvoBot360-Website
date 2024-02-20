@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import GetOtpForm from './getotp-form';
 import React from 'react';
-import { Toaster } from 'react-hot-toast';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { TOKEN_NAME, static_merchant_id } from '@/constants/urls';
