@@ -5,10 +5,12 @@ import CategoriesNavigation from './CatagoriesNavigation';
 import FlyoutMenu from './FlyoutMenu';
 import { ProductListingParamsType } from '@/types/products';
 import { cookies } from 'next/headers';
+import { decodeUrlToString } from '@/lib/format';
 
 const MerchantNavbar = ({ params }: ProductListingParamsType) => {
   const logo_url = cookies().get('logo_url')?.value;
   const cart_count = cookies().get('cart_count')?.value;
+  const parsed_logo_url = logo_url && decodeUrlToString(logo_url);
   const cb360Logo = '/cb360-logo.svg';
 
   return (
@@ -29,7 +31,7 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
                   height={40}
                   width={80}
                   className='h-8 w-auto sm:h-8'
-                  src={logo_url ? logo_url : cb360Logo}
+                  src={parsed_logo_url ? parsed_logo_url : cb360Logo}
                   alt='Merchant logo'
                 />
               </Link>

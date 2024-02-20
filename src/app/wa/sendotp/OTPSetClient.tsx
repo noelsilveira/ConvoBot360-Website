@@ -11,6 +11,7 @@ import { LOGO_BASE_URL } from '@/constants/urls';
 import { AddSessionPayloadType } from '@/types/auth';
 import { getSessionFromAPI } from '@/app/actions/get-session';
 import { authTokenForToSendOTP } from '@/app/actions/auth-token';
+import { urlToStringParser } from '@/lib/format';
 
 const OTPSetClient = () => {
   const router = useRouter();
@@ -21,11 +22,13 @@ const OTPSetClient = () => {
   const b = branchParams.get('b');
   const c = branchParams.get('c');
   const i = branchParams.get('i');
+  const parsed_logo_url = urlToStringParser(i as string);
 
+  // this is not used
   const sessionPayload: Partial<AddSessionPayloadType> = {
     branch_id: b,
     customer_no: c,
-    logo_url: `${LOGO_BASE_URL}${i}`,
+    logo_url: parsed_logo_url,
   };
 
   useEffect(() => {

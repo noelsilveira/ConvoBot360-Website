@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import OTPInput from 'react-otp-input';
 import { cn } from '@/lib/utils';
 import toast, { Toaster } from 'react-hot-toast';
-import { getOtpHandler } from '../actions/otp-actions';
+import { getOtpHandler } from '../../actions/otp-actions';
 
 const initialSate = {
   message: '',

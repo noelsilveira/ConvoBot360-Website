@@ -109,3 +109,8 @@ export const cleanJsonString = (jsonString: string): string => {
 
   return cleanedString;
 };
+
+export function decodeUrlToString(url: string) {
+  const decoded_url = decodeURI(url);
+  return decoded_url;
+}

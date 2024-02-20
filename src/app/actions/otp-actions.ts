@@ -7,6 +7,7 @@ import {
   AddSessionPayloadResponseType,
   AddSessionPayloadType,
 } from '@/types/auth';
+import { decodeUrlToString, urlToStringParser } from '@/lib/format';
 /**
  *
  * Process the OTP from the OTP form in get-otp page and returns the verification status of the OTP in the process sets the access-token in the HTTP headers
@@ -54,6 +55,7 @@ export const setOTPParamsToCookie = async (
   data: AddSessionPayloadResponseType['detail']
 ) => {
   try {
+    // session id
     data.session_id &&
       cookies().set({
         name: 'session_id',
@@ -62,7 +64,17 @@ export const setOTPParamsToCookie = async (
         secure: true,
         path: '/',
       });
+    // Access token
+    data.metadata.access_token &&
+      cookies().set({
+        name: 'access_token',
+        value: data.metadata.access_token,
+        httpOnly: true,
+        secure: true,
+        path: '/',
+      });
 
+    // branch id
     data.metadata.branch_id &&
       cookies().set({
         name: 'branch_id',
@@ -71,6 +83,8 @@ export const setOTPParamsToCookie = async (
         secure: true,
         path: '/',
       });
+
+    // customer number
     data.metadata.customer_no &&
       cookies().set({
         name: 'customer_no',
@@ -79,6 +93,8 @@ export const setOTPParamsToCookie = async (
         secure: true,
         path: '/',
       });
+
+    // logo url
     data.metadata.logo_url &&
       cookies().set({
         name: 'logo_url',
@@ -88,6 +104,7 @@ export const setOTPParamsToCookie = async (
         path: '/',
       });
 
+    // cart count
     data.metadata.cart_count ||
       (data.metadata.cart_count === 0 &&
         cookies().set({
@@ -98,6 +115,7 @@ export const setOTPParamsToCookie = async (
           path: '/',
         }));
 
+    // merchant no
     data.metadata.merchant_no &&
       cookies().set({
         name: 'merchant_no',

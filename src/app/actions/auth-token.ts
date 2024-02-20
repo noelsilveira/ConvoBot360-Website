@@ -33,6 +33,11 @@ export const authTokenForToSendOTP = async () => {
     redirect: 'follow',
   };
 
+  const otp_access_token = cookies().get('OTP_ACCESS_TOKEN');
+  if (otp_access_token?.value) {
+    return otp_access_token;
+  }
+
   try {
     const response = await fetch(`${API_BASE_URL}/users/token`, requestOptions);
     const tokenObject: AuthTokenOTPResponseType = await response.json();

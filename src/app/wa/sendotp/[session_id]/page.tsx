@@ -29,10 +29,14 @@ const EStoreLandingOTPPage = async () => {
               <div className='mx-auto flex w-full max-w-2xl flex-col justify-start space-y-16'>
                 <div className='flex flex-col items-center justify-start space-y-2 text-center'>
                   <div className='text-3xl font-semibold'>
-                    <p>OTP Verification</p>
+                    <p>Verification</p>
                   </div>
-                  <div className='flex flex-row text-sm font-medium text-gray-400'>
-                    <p>We have sent a code to your phone 91xxxxxxxx67</p>
+                  <div className='flex max-w-xs flex-col gap-y-6 text-center text-sm font-medium text-gray-400'>
+                    <p>
+                      Please wait while we verify and set up the e-store for
+                      you.
+                    </p>
+                    <p>This won&apos;t take long</p>
                   </div>
                 </div>
               </div>
