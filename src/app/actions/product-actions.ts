@@ -7,6 +7,7 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { cleanJsonString } from '@/lib/format';
 import { AddToCartObjectType, AddToCartResponseType } from '@/types/products';
+import { getSessionFromAPI, updateCartFromSessionAPI } from './get-session';
 
 export const generatePayload = async (formData: FormData) => {
   const payload = {
@@ -155,6 +156,7 @@ export const addToCartModalAction = async (formData: FormData) => {
         secure: true,
         path: '/',
       });
+      await updateCartFromSessionAPI();
 
       return cartDetails;
     } else throw new Error('Error creating your order!');

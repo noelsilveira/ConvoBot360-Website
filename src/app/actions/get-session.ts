@@ -3,6 +3,9 @@
 import { setOTPHeaders } from './set-headers';
 import { API_BASE_URL } from '@/constants/urls';
 import { AddSessionPayloadResponseType } from '@/types/auth';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { setOTPParamsToCookie } from './otp-actions';
 
 export const getSessionFromAPI = async (session_id: string) => {
   console.log('Session from client url: ', session_id);
@@ -13,6 +16,9 @@ export const getSessionFromAPI = async (session_id: string) => {
     headers: myHeaders,
     body: raw,
     redirect: 'follow',
+    next: {
+      tags: ['session'],
+    },
   };
 
   try {
@@ -24,6 +30,9 @@ export const getSessionFromAPI = async (session_id: string) => {
     const responseData: AddSessionPayloadResponseType = await response.json();
     //   if(responseData.status_code ===200) for now it's returning 404 #FIXME
     console.log('Session response: ', responseData);
+    if (responseData) {
+      await setOTPParamsToCookie(responseData.detail);
+    }
 
     const noSession = responseData.detail as unknown;
     if (noSession === 'Session not found.') {
@@ -38,5 +47,29 @@ export const getSessionFromAPI = async (session_id: string) => {
   } catch (error) {
     console.error(error);
     throw new Error('Server error!', error as Error);
+  }
+};
+
+export const updateCartFromSessionAPI = async () => {
+  const session_id = cookies().get('session_id');
+  if (!session_id?.value) {
+    console.log('No session id found');
+    redirect('/');
+  }
+  try {
+    const sessionResponse = await getSessionFromAPI(session_id.value);
+    sessionResponse.metadata.cart_count &&
+      cookies().set({
+        name: 'cart_count',
+        value: sessionResponse.metadata.cart_count,
+        httpOnly: true,
+        priority: 'high',
+        secure: true,
+        path: '/',
+      });
+    return sessionResponse;
+  } catch (error) {
+    console.error('Unable to update cart count');
+    throw new Error('Unable to update cart or Server down', error as Error);
   }
 };

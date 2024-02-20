@@ -1,18 +1,25 @@
 'use client';
+import { updateCartFromSessionAPI } from '@/app/actions/get-session';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 
 const CartIconButton = ({ cart_count }: { cart_count: number }) => {
+  const path = usePathname();
   // const { countCart, } = useCartStore();
   const [cartCount, setCartCount] = useState(cart_count);
 
+  async function updateCartCount() {
+    const response = await updateCartFromSessionAPI();
+    setCartCount(response.metadata.cart_count);
+  }
   // useEffect(() => {
   //   useCartStore.persist.rehydrate();
   // }, []);
   useEffect(() => {
-    setCartCount(cart_count);
-  }, [cart_count]);
+    updateCartCount();
+  }, [path]);
 
   return (
     <div className='ml-0 flow-root lg:ml-4'>

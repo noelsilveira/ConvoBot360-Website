@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { TOKEN_NAME } from '@/constants/urls';
+import { cookies } from 'next/headers';
+import { getSessionFromAPI } from './app/actions/get-session';
+import { setOTPParamsToCookie } from './app/actions/otp-actions';
+import { redirect } from 'next/navigation';
 
 export async function middleware(request: NextRequest) {
   // CryptoAPIRoute(request);
