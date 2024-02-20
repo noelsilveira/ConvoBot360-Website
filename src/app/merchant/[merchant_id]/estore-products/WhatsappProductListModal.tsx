@@ -1,8 +1,11 @@
 'use client';
-import { WhatsappProductListCardType } from '@/components/checkout/WhatsppProductListCard';
+
 import { ProductOptionsType, ProductsType } from '@/types/products';
 import React, { useEffect, useState } from 'react';
 import { TbMinus, TbPlus } from 'react-icons/tb';
+
+import { ProductQuantityStore } from '@/store/productQuantityStore';
+import { WhatsappProductListCardType } from '@/components/checkout/WhatsppProductListCard';
 
 const WhatsappProductListInModal = ({ product }: { product: ProductsType }) => {
   const [itemQuantity, setItemQuantity] = useState(0);
@@ -77,6 +80,8 @@ export const QuantityModifierButtons = ({
   product: ProductsType;
   variant?: ProductOptionsType;
 }) => {
+  const { setProductQuantity } = ProductQuantityStore()
+
   const handleUpdateQuantity = (operation: Operation) => {
     if (operation === 'increase') {
       setQuantity(quantity + 1);
@@ -97,6 +102,7 @@ export const QuantityModifierButtons = ({
   });
 
   useEffect(() => {
+    setProductQuantity(quantity)
     setItemObject({ ...itemObject, quantity: quantity });
   }, [quantity]);
 

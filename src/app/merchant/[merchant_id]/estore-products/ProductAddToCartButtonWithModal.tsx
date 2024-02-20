@@ -2,16 +2,18 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { ProductOptionsType, ProductsType } from '@/types/products';
-import { TbPlus } from 'react-icons/tb';
-import { addToCartModalAction } from '../../../actions/product-actions';
 import { ProductDetailProps, branch_id } from '@/constants/products';
-import { cn } from '@/lib/utils';
-import { useFormStatus } from 'react-dom';
-import { useRouter } from 'next/navigation';
+import { ProductOptionsType, ProductsType } from '@/types/products';
 import WhatsappProductListInModal, {
   WhatsappProductVariantListInModal,
 } from './WhatsappProductListModal';
+
+import { ProductQuantityStore } from '@/store/productQuantityStore';
+import { TbPlus } from 'react-icons/tb';
+import { addToCartModalAction } from '../../../actions/product-actions';
+import { cn } from '@/lib/utils';
+import { useFormStatus } from 'react-dom';
+import { useRouter } from 'next/navigation';
 
 const ProductAddToCartButtonWithModal = ({
   product,
@@ -200,21 +202,37 @@ const Wrapper = ({
 const ProductVariantSubmitButton = () => {
   const [open, setOpen] = useState(false);
   const { pending } = useFormStatus();
+  const { productQuantity } = ProductQuantityStore()
+
 
   return (
     <div className='w-full grid-cols-1 gap-3 sm:grid sm:grid-cols-1'>
-      <button
-        aria-disabled={pending}
-        disabled={pending}
-        type='submit'
-        className={cn(
-          'mt-3 inline-flex w-full justify-center rounded-xl bg-blue-700 px-3 py-3 text-base font-semibold text-white shadow-sm duration-150 ease-out hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:mt-0',
-          pending ? 'opacity-50' : 'opacity-100'
-        )}
-        onClick={() => setOpen(false)}
-      >
-        {pending ? 'Adding...' : 'Add to cart'}
-      </button>
+      {productQuantity > 0 ?
+        <button
+          aria-disabled={pending}
+          disabled={pending}
+          type='submit'
+          className={cn(
+            'mt-3 inline-flex w-full justify-center rounded-xl bg-blue-700 px-3 py-3 text-base font-semibold text-white shadow-sm duration-150 ease-out hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:mt-0',
+            pending ? 'opacity-50' : 'opacity-100'
+          )}
+          onClick={() => setOpen(false)}
+        >
+          {pending ? 'Adding...' : 'Add to cart'}
+        </button>
+        :
+        <button
+          aria-disabled={pending}
+          disabled={true}
+          type='button'
+          className=
+          'mt-3 inline-flex w-full justify-center rounded-xl bg-blue-700 px-3 py-3 text-base font-semibold text-white shadow-sm duration-150 ease-out hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 sm:mt-0 opacity-50'
+
+          onClick={() => setOpen(false)}
+        >
+          Increase quantity
+        </button>
+      }
     </div>
   );
 };
