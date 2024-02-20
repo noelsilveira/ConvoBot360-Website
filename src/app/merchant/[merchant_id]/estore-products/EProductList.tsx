@@ -20,12 +20,14 @@ const EProductList = async ({
     });
 
   const filteredProducts = products as ProductsType[];
+  console.log('Search results filtered: ', filteredProducts);
+  const noItemsMessage = JSON.stringify(filteredProducts);
 
   return (
     <>
       <SearchProductsError products={products} />
 
-      {filteredProducts.length > 1 ? (
+      {filteredProducts.length > 0 && noItemsMessage !== '"No Items Found"' ? (
         <>
           <Products params={params} products={filteredProducts} />
           <InfiniteScrollProducts
@@ -48,16 +50,20 @@ const SearchProductsError = ({
 }: {
   products: ProductsType[] | ProductSearchTooShortType[] | string;
 }) => {
-  const noItemsMessage = 'No Items Found';
+  const productResponse = JSON.stringify(products);
+  const noItemsMessage = '"No Items Found"';
 
   const tooShortObject = products.at(0) as ProductSearchTooShortType;
 
   return (
     <>
-      {products === noItemsMessage && (
+      {productResponse === noItemsMessage && (
         <div className='flex flex-col items-center justify-center py-6'>
           <p className='text-center text-sm text-gallery-500'>
-            {noItemsMessage}
+            No items found!
+          </p>
+          <p className='mt-4 text-center text-sm text-gallery-500'>
+            Try searching some other product
           </p>
         </div>
       )}

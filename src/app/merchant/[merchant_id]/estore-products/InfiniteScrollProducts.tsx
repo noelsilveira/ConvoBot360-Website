@@ -2,7 +2,7 @@
 
 import { getEStoreProductsListWithSort } from '@/app/(deprecated)/products-listing/fetcher';
 import { ProductsType } from '@/types/products';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { SearchParamsType } from './[category]/page';
