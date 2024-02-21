@@ -20,3 +20,5 @@ export const LANDING_URL = `https://estore.convobot360.com/${STATIC_SESSION_ID}`
 export const FALLBACK_IMAGE = 'https://cdn.convobot360.com/images/fallback.png';
 
 export const LOGO_BASE_URL = 'https://cdn.convobot360.com/logo/';
+
+export const ITEMS_INFINITE_LIMIT = 300;

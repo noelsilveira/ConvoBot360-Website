@@ -25,7 +25,7 @@ const ProductsPageLayout = ({
     <>
       <div className='bg-white'>
         <div className='py-2 sm:pb-16 sm:pt-6'>
-          <div>
+          <div id='e-store-heading'>
             <h2 className='sr-only'>Products</h2>
 
             <EStoreProductsLayout params={params}>

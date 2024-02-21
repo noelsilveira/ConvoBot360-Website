@@ -155,6 +155,15 @@ export const getEStoreProductsListWithSort = async ({
 
   const sortObject = sortBy ? convertToSortObject(sortBy as string) : {};
 
+  let testObject = {
+    page,
+    limit,
+    categoryParam,
+    sortBy,
+  };
+
+  console.log(testObject);
+
   const my_headers = await setSessionHeader();
   const bid = cookies().get('branch_id');
 
@@ -173,7 +182,7 @@ export const getEStoreProductsListWithSort = async ({
         body: raw,
         headers: my_headers,
         next: {
-          revalidate: 30, //cache data for 40 second
+          revalidate: 5, //cache data for 40 second
           tags: ['estore-products'],
         },
         // shallow: true
@@ -182,13 +191,10 @@ export const getEStoreProductsListWithSort = async ({
 
     const productObject = await res.json();
 
-    if (!productObject) {
-      // console.log('No products or server error', productObject);
+    if (!productObject || productObject.detail == 'No Items Found') {
+      console.log(productObject.detail);
+      return productObject.detail;
     }
-    // console.log(
-    //   'Product response from getEStoreProductsListWithSort(): ',
-    //   productObject
-    // );
 
     return productObject.detail;
   } catch (error) {

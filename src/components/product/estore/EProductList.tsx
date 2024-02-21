@@ -22,13 +22,17 @@ const EProductList = async ({
 
   const filteredProducts = products as ProductsType[];
 
-  const noItemsMessage = JSON.stringify(filteredProducts);
+  const noItemsMessage = filteredProducts.length
+    ? String(filteredProducts)
+    : 'No Items Found';
 
   return (
     <>
       <SearchProductsError products={products} />
+      {!filteredProducts}
 
-      {filteredProducts.length > 0 && noItemsMessage !== '"No Items Found"' ? (
+      {(filteredProducts && filteredProducts?.length < 0) ||
+      noItemsMessage !== 'No Items Found' ? (
         <>
           <Products
             branch_id={branch_id}
@@ -41,7 +45,7 @@ const EProductList = async ({
           />
         </>
       ) : (
-        <></>
+        <p></p>
       )}
     </>
   );

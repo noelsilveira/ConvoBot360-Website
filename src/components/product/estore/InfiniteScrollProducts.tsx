@@ -2,11 +2,12 @@
 
 import { getEStoreProductsListWithSort } from '@/app/actions/product-fetcher';
 import { ProductsType } from '@/types/products';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Products from './Products';
 import { SearchParamsType } from '@/app/merchant/[merchant_id]/estore-products/[category]/page';
+import Link from 'next/link';
 
 const InfiniteScrollProducts = ({
   initialProducts,
@@ -16,36 +17,57 @@ const InfiniteScrollProducts = ({
   searchParams: SearchParamsType | undefined;
 }) => {
   const [products, setProducts] = useState(initialProducts);
+  const [noProductsMessage, setNoProductsMessage] = useState('');
   const [page, setPage] = useState(1);
   const { ref, inView, entry } = useInView();
   const params = useParams();
 
   async function loadMoreProducts() {
     const next = page + 1;
-    const products = await getEStoreProductsListWithSort({
-      page: next,
-      searchParams,
-    });
-    if (products?.length) {
-      setPage(next);
-      setProducts((prev: ProductsType[] | undefined) => [
-        ...(prev?.length ? prev : []),
-        ...products,
-      ]);
+    if (next > 1) {
+      const productsResponse = await getEStoreProductsListWithSort({
+        page: next,
+        searchParams: searchParams,
+      });
+
+      if (
+        productsResponse?.length &&
+        String(productsResponse) !== 'No Items Found'
+      ) {
+        setPage(next);
+        setProducts((prev: ProductsType[] | undefined) => [
+          ...(prev?.length ? prev : []),
+          ...productsResponse,
+        ]);
+      }
     }
   }
+  const msgChecker = noProductsMessage == 'No Items Found';
+  const lengthChecker = products.length;
 
   useEffect(() => {
     if (inView) {
       loadMoreProducts();
     }
-  }, [inView]);
+    setNoProductsMessage(String(products));
+  }, [inView, searchParams]);
 
   return (
     <>
-      <Products params={params} products={products} />
+      {!msgChecker && lengthChecker && (
+        <Products params={params} products={products} />
+      )}
+      {msgChecker && (
+        <div className='flex w-full items-center justify-center space-x-2 py-16'>
+          <span className='text-center text-base font-medium text-gallery-500'>
+            No more products
+          </span>
+          <Link href={'#e-store-heading'}>Go to top</Link>
+        </div>
+      )}
       {/* Loading spinner */}
-      {products.length < 1000 ? (
+
+      {!msgChecker ? (
         <div
           ref={ref}
           aria-label='Loading...'
