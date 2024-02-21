@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { Suspense } from 'react';
 import OTPSetClient from '../OTPSetClient';
+import VerificationLoading from '@/components/ui/VerificationLoading';
 
 export type StatusType = boolean | '';
 
@@ -28,22 +29,15 @@ const EStoreLandingOTPPage = async () => {
             <div className='relative mx-auto w-full max-w-2xl rounded-2xl bg-white px-6 pb-9 pt-4'>
               <div className='mx-auto flex w-full max-w-2xl flex-col justify-start space-y-16'>
                 <div className='flex flex-col items-center justify-start space-y-2 text-center'>
-                  <div className='text-3xl font-semibold'>
+                  {/* <div className='text-3xl font-semibold'>
                     <p>Verification</p>
-                  </div>
+                  </div> */}
                   <div className='flex max-w-xs flex-col gap-y-6 text-center text-sm font-medium text-gray-400'>
-                    <p>
-                      Please wait while we verify and set up the e-store for
-                      you.
-                    </p>
-                    <p>This won&apos;t take long</p>
+                    <VerificationLoading />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='animate-pulse text-center text-sm text-gray-400'>
-            <p>Verification in process...</p>
           </div>
         </div>
       </div>
