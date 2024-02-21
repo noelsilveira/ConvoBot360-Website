@@ -58,9 +58,9 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
               </div> */}
 
               {/* Cart */}
-              <CartIconButton
-                cart_count={cart_count ? Number(cart_count) : 0}
-              />
+              {Number(cart_count) > 0 && (
+                <CartIconButton cart_count={Number(cart_count)} />
+              )}
             </div>
           </div>
         </div>
