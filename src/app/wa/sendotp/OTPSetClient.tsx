@@ -46,7 +46,7 @@ const OTPSetClient = () => {
         setBranchData(sessionResponse.metadata);
         await setOTPParamsToCookie(sessionResponse);
 
-        router.push('/get-otp');
+        router.push('/merchant/36049357/estore-products');
       } else {
         console.error('Invalid credentials!');
         router.push('/error');

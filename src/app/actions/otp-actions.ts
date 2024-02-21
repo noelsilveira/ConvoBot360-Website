@@ -115,6 +115,16 @@ export const setOTPParamsToCookie = async (
           path: '/',
         }));
 
+    // order_id
+    data.metadata.order_id &&
+      cookies().set({
+        name: 'order_id',
+        value: data.metadata.order_id,
+        httpOnly: true,
+        secure: true,
+        path: '/',
+      });
+
     // merchant no
     data.metadata.merchant_no &&
       cookies().set({

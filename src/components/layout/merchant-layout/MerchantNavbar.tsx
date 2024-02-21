@@ -25,7 +25,7 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
             {/* <MenuButton /> */}
             {/* Logo */}
             <div className='ml-4 flex lg:ml-0'>
-              <Link href='/'>
+              <Link href='/merchant/36049357/estore-products/'>
                 <span className='sr-only'>CB360</span>
                 <Image
                   height={40}

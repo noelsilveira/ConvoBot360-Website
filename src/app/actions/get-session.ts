@@ -42,6 +42,7 @@ export const getSessionFromAPI = async (session_id: string) => {
         session_id
       );
     }
+    console.log(responseData.detail);
 
     return responseData.detail;
   } catch (error) {
@@ -58,6 +59,7 @@ export const updateCartFromSessionAPI = async () => {
   }
   try {
     const sessionResponse = await getSessionFromAPI(session_id.value);
+    console.log('Cart count response: ', sessionResponse);
     sessionResponse.metadata.cart_count &&
       cookies().set({
         name: 'cart_count',
@@ -67,6 +69,9 @@ export const updateCartFromSessionAPI = async () => {
         secure: true,
         path: '/',
       });
+    if (!sessionResponse.metadata) {
+      return null;
+    }
     return sessionResponse;
   } catch (error) {
     console.error('Unable to update cart count');

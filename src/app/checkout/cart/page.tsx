@@ -8,10 +8,13 @@ import WhatsappProductListCard, {
   WhatsappProductListCardType,
 } from '@/components/checkout/WhatsppProductListCard';
 import { getCartItems } from '@/app/actions/fetch-cart';
+import { cookies } from 'next/headers';
 
 const CartPage = async () => {
   const cartDetailResponse: AddToCartResponseType['detail'] =
     await getCartItems();
+  const order_id = cookies().get('order_id')?.value;
+
   return (
     <>
       <div className='relative bg-white'>
@@ -47,8 +50,13 @@ const CartPage = async () => {
               <h2 id='cart-heading' className='sr-only'>
                 Items in your shopping cart
               </h2>
-
-              <CartItemsList />
+              {order_id ? (
+                <CartItemsList />
+              ) : (
+                <p className='text-center text-sm text-gallery-400'>
+                  No items to show in cart
+                </p>
+              )}
             </section>
 
             {/* Order summary */}
