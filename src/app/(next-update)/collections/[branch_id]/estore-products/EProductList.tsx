@@ -1,6 +1,7 @@
 import {
   ProductListingParamsType,
   ProductSearchTooShortType,
+  ProductsListResponseType,
   ProductsType,
 } from '@/types/products';
 
@@ -13,22 +14,22 @@ const EProductList = async ({
   params,
   searchParams,
 }: ProductListingParamsType) => {
-  const products: ProductsType[] | ProductSearchTooShortType[] | string =
+  const productsResponse: ProductsListResponseType =
     await getEStoreProductsListWithSort({
       queryParams: { params },
       searchParams: searchParams,
     });
 
-  const filteredProducts = products as ProductsType[];
+  const filteredProducts = productsResponse;
 
   return (
     <>
       {/* Error component */}
 
-      <EStoreSearchProductsError products={products} />
+      <EStoreSearchProductsError products={filteredProducts.detail} />
 
-      {filteredProducts.length > 1 ? (
-        <Products params={params} products={filteredProducts} />
+      {filteredProducts.total_products > 1 ? (
+        <Products params={params} productsResponse={filteredProducts} />
       ) : (
         <></>
       )}

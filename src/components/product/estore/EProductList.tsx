@@ -1,6 +1,7 @@
 import {
   ProductListingParamsType,
   ProductSearchTooShortType,
+  ProductsListResponseType,
   ProductsType,
 } from '@/types/products';
 
@@ -14,30 +15,29 @@ const EProductList = async ({
   searchParams,
   branch_id,
 }: ProductListingParamsType & { branch_id?: string }) => {
-  const products: ProductsType[] | ProductSearchTooShortType[] | string =
+  const productsResponse: ProductsListResponseType =
     await getEStoreProductsListWithSort({
       queryParams: { params },
       searchParams: searchParams,
     });
 
-  const filteredProducts = products as ProductsType[];
+  const products = productsResponse.detail;
+  const filteredProducts = productsResponse;
 
-  const noItemsMessage = filteredProducts.length
+  const noItemsMessage = filteredProducts.detail.length
     ? String(filteredProducts)
     : 'No Items Found';
 
   return (
     <>
-      <SearchProductsError products={products} />
-      {!filteredProducts}
-
-      {(filteredProducts && filteredProducts?.length < 0) ||
+      {filteredProducts &&
+      filteredProducts.total_products > 0 &&
       noItemsMessage !== 'No Items Found' ? (
         <>
           <Products
             branch_id={branch_id}
             params={params}
-            products={filteredProducts}
+            productsResponse={filteredProducts}
           />
           <InfiniteScrollProducts
             searchParams={searchParams}
@@ -45,7 +45,7 @@ const EProductList = async ({
           />
         </>
       ) : (
-        <p></p>
+        <SearchProductsError products={products} />
       )}
     </>
   );
@@ -59,14 +59,18 @@ const SearchProductsError = ({
 }: {
   products: ProductsType[] | ProductSearchTooShortType[] | string;
 }) => {
-  const productResponse = JSON.stringify(products);
-  const noItemsMessage = '"No Items Found"';
-
-  const tooShortObject = products.at(0) as ProductSearchTooShortType;
+  function tooShortObject() {
+    const msg = products.at(0) as ProductSearchTooShortType;
+    if (msg?.type === 'string_too_short') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   return (
     <>
-      {productResponse === noItemsMessage && (
+      {products.length == 0 && (
         <div className='flex flex-col items-center justify-center py-6'>
           <p className='text-center text-sm text-gallery-500'>
             No items found!
@@ -76,10 +80,10 @@ const SearchProductsError = ({
           </p>
         </div>
       )}
-      {tooShortObject.type === 'string_too_short' && (
+      {tooShortObject() && (
         <div className='flex flex-col items-center justify-center py-6'>
           <p className='text-center text-sm text-gallery-500'>
-            {tooShortObject.msg}
+            Search should have at least 3 characters
           </p>
         </div>
       )}

@@ -1,16 +1,40 @@
 import React from 'react';
 
+const static_array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const ProductsLoading = () => {
   return (
     <>
       <section className='text-neutral-700'>
         <div className='w-full'>
-          <div className='grid animate-pulse grid-cols-2 border-l border-t border-neutral-100 sm:mx-0 md:grid-cols-3 lg:grid-cols-4'>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, i) => (
-              <LoadingProductCard
-                key={'product-loading-card-' + (item * 22) / 7 + i}
-              />
+          {/* List view loading animation */}
+
+          <div className='flex min-h-svh w-full animate-pulse flex-col px-4 py-2 md:hidden'>
+            {static_array.map((item, i) => (
+              <div
+                key={'product-loading-list-card-' + (item * 22) / 7 + i}
+                className='flex w-full items-start justify-start gap-3 bg-white py-6'
+              >
+                <div className='flex h-16 w-16 flex-shrink-0 rounded-2xl bg-gallery-200'></div>
+                <div className='flex w-full flex-col gap-2'>
+                  <div className='h-6 w-full rounded-lg bg-gallery-200'></div>
+                  <div className='h-4 w-1/3 rounded-lg bg-gallery-100'></div>
+                </div>
+                <div className='flex flex-col'>
+                  <div className='h-10 w-10 rounded-lg bg-gallery-100'></div>
+                </div>
+              </div>
             ))}
+          </div>
+
+          {/* Grid view loading animation */}
+          <div className='hidden sm:block'>
+            <div className='grid animate-pulse grid-cols-2 border-l border-t border-neutral-100 sm:mx-0 md:grid-cols-3 lg:grid-cols-4'>
+              {static_array.map((item, i) => (
+                <LoadingProductCard
+                  key={'product-loading-card-' + (item * 22) / 7 + i}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>

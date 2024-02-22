@@ -1,4 +1,8 @@
-import { ProductListingParamsType, ProductsType } from '@/types/products';
+import {
+  ProductListingParamsType,
+  ProductsListResponseType,
+  ProductsType,
+} from '@/types/products';
 
 import Link from 'next/link';
 import ProductListImage from './ProductListImage';
@@ -6,10 +10,16 @@ import ProductAddToCartButtonWithModal from './ProductAddToCartButtonWithModal';
 import React from 'react';
 
 const Products = ({
-  products,
+  productsResponse,
   params,
-}: ProductListingParamsType & { products: ProductsType[] }) => {
-  console.log('Products in Products component: ', products.length);
+}: ProductListingParamsType & {
+  productsResponse: ProductsListResponseType;
+}) => {
+  const products = productsResponse.detail;
+  console.log(
+    'Products in Products component: ',
+    productsResponse.detail.length
+  );
   return (
     <div className='bg-white'>
       <div>

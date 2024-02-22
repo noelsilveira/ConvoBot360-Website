@@ -19,12 +19,12 @@ const EStoreProductsLayout = ({
       <MobileFilterMenu />
 
       <main className='mx-auto mt-0 max-w-7xl px-0 sm:px-6 lg:px-8'>
-        <div className='mt-1 flex flex-1 items-center justify-end md:mt-0 md:hidden'>
+        <div className='mt-1 flex flex-1 items-center justify-end sm:hidden md:mt-0'>
           <SearchProduct />
         </div>
         <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-2'>
           {/* Search */}
-          <div className='hidden flex-1 items-center justify-end md:flex'>
+          <div className='hidden flex-1 items-center justify-end sm:flex'>
             <SearchProduct />
           </div>
           <div className='flex items-center px-4'>

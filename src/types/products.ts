@@ -20,7 +20,15 @@ export type ProductsType = {
   fb_product_category: any;
   category: any;
   options: ProductOptionsType[];
+  optionsGroups: ProductOptionsGroupsType[] | [];
   is_active: boolean;
+};
+
+export type ProductsListResponseType = {
+  total_products: number;
+  current_page: number;
+  last_page: number;
+  detail: ProductsType[];
 };
 
 export type Translation = {
@@ -53,6 +61,19 @@ export type ProductOptionsType = {
       en: string;
     };
   };
+};
+
+export type ProductOptionsGroupsType = {
+  id: string;
+  title: string;
+  minSelectable: number;
+  maxSelectable: number;
+  options:
+    | {
+        index: string;
+        optionId: string;
+      }[]
+    | [];
 };
 
 export type ProductSearchTooShortType = {

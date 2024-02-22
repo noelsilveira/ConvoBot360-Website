@@ -1,7 +1,7 @@
 'use client';
 
 import { getEStoreProductsListWithSort } from '@/app/actions/product-fetcher';
-import { ProductsType } from '@/types/products';
+import { ProductsListResponseType, ProductsType } from '@/types/products';
 import { useParams, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -13,61 +13,70 @@ const InfiniteScrollProducts = ({
   initialProducts,
   searchParams,
 }: {
-  initialProducts: ProductsType[];
+  initialProducts: ProductsListResponseType;
   searchParams: SearchParamsType | undefined;
 }) => {
   const [products, setProducts] = useState(initialProducts);
   const [noProductsMessage, setNoProductsMessage] = useState('');
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(initialProducts.current_page);
   const { ref, inView, entry } = useInView();
   const params = useParams();
 
   async function loadMoreProducts() {
     const next = page + 1;
-    if (next > 1) {
+    const last = products.last_page;
+    const curr = products.current_page;
+    if (next > 1 && next < last) {
       const productsResponse = await getEStoreProductsListWithSort({
         page: next,
         searchParams: searchParams,
       });
 
       if (
-        productsResponse?.length &&
+        productsResponse?.detail.length &&
         String(productsResponse) !== 'No Items Found'
       ) {
         setPage(next);
-        setProducts((prev: ProductsType[] | undefined) => [
-          ...(prev?.length ? prev : []),
-          ...productsResponse,
-        ]);
+        setProducts((prev: ProductsListResponseType | undefined) => ({
+          ...prev,
+          total_products: productsResponse.total_products,
+          current_page: productsResponse.current_page,
+          last_page: productsResponse.last_page,
+          detail: prev
+            ? [...prev!.detail, ...productsResponse.detail]
+            : productsResponse.detail,
+        }));
       }
     }
   }
-  const msgChecker = noProductsMessage == 'No Items Found';
-  const lengthChecker = products.length;
+
+  useEffect(() => {
+    setNoProductsMessage(String(products));
+  }, [products]);
 
   useEffect(() => {
     if (inView) {
       loadMoreProducts();
     }
-    setNoProductsMessage(String(products));
   }, [inView, searchParams]);
 
   return (
     <>
-      {!msgChecker && lengthChecker && (
-        <Products params={params} products={products} />
+      {products.current_page < products.last_page && (
+        <Products params={params} productsResponse={products} />
       )}
-      {msgChecker && (
-        <div className='flex w-full items-center justify-center space-x-2 py-16'>
-          <span className='text-center text-base font-medium text-gallery-500'>
+      {products.current_page === products.last_page && (
+        <div className='flex w-full flex-col items-center justify-center space-y-2 py-16'>
+          <span className='text-center text-base font-medium text-gallery-300'>
             No more products
           </span>
-          <Link href={'#e-store-heading'}>Go to top</Link>
+          <Link href={'#e-store-heading'} className='text-sm text-gallery-400'>
+            Go to top
+          </Link>
         </div>
       )}
       {/* Loading spinner */}
-
-      {!msgChecker ? (
+      {products.current_page < products.last_page && (
         <div
           ref={ref}
           aria-label='Loading...'
@@ -153,12 +162,6 @@ const InfiniteScrollProducts = ({
           </svg>
           <span className='text-center text-base font-medium text-gallery-500'>
             Loading products...
-          </span>
-        </div>
-      ) : (
-        <div className='flex w-full items-center justify-center space-x-2 py-16'>
-          <span className='text-center text-base font-medium text-gallery-500'>
-            No more products
           </span>
         </div>
       )}

@@ -1,7 +1,10 @@
 'use server';
 
 import { API_BASE_URL } from '@/constants/urls';
-import { ProductListingParamsType } from '@/types/products';
+import {
+  ProductListingParamsType,
+  ProductsListResponseType,
+} from '@/types/products';
 import { convertToSortObject } from '@/lib/format';
 import { setSessionHeader } from '@/app/actions/set-headers';
 import { cookies } from 'next/headers';
@@ -155,15 +158,6 @@ export const getEStoreProductsListWithSort = async ({
 
   const sortObject = sortBy ? convertToSortObject(sortBy as string) : {};
 
-  let testObject = {
-    page,
-    limit,
-    categoryParam,
-    sortBy,
-  };
-
-  console.log(testObject);
-
   const my_headers = await setSessionHeader();
   const bid = cookies().get('branch_id');
 
@@ -189,14 +183,16 @@ export const getEStoreProductsListWithSort = async ({
       }
     );
 
-    const productObject = await res.json();
+    const productObject: ProductsListResponseType = await res.json();
 
-    if (!productObject || productObject.detail == 'No Items Found') {
-      console.log(productObject.detail);
-      return productObject.detail;
+    if (
+      !productObject ||
+      (productObject.detail as unknown) == 'No Items Found'
+    ) {
+      return productObject;
     }
 
-    return productObject.detail;
+    return productObject;
   } catch (error) {
     console.error(error);
     throw new Error('Server error in products fetching', error as Error);

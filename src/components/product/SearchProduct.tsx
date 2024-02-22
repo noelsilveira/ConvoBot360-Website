@@ -29,7 +29,7 @@ const SearchProduct = () => {
   }, [query]);
 
   return (
-    <div className='w-full max-w-md'>
+    <div className='w-full sm:max-w-md'>
       <div className='px-4 sm:px-0'>
         <label
           htmlFor='search'
