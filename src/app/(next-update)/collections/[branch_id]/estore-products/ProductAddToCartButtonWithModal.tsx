@@ -56,7 +56,7 @@ const ProductAddToCartButtonWithModal = ({
             const params = new URLSearchParams(
               JSON.stringify(response.order_id)
             );
-            router.push('/checkout/cart');
+            router.refresh();
           }
         }}
         className='relative flex flex-col items-start justify-center'
