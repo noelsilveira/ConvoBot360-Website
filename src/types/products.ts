@@ -63,6 +63,18 @@ export type ProductOptionsType = {
   };
 };
 
+export type ProductOptionsInGroupOptionsType = {
+  optionId: string;
+  name: string;
+  price: number;
+  translation: {
+    name: {
+      ar: string;
+      en: string;
+    };
+  };
+};
+
 export type ProductOptionsGroupsType = {
   id: string;
   title: string;
@@ -72,6 +84,14 @@ export type ProductOptionsGroupsType = {
     | {
         index: string;
         optionId: string;
+        name: string;
+        price: number;
+        translation: {
+          name: {
+            ar: string;
+            en: string;
+          };
+        };
       }[]
     | [];
 };

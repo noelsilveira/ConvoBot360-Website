@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { cleanJsonString } from '@/lib/format';
 import { AddToCartObjectType, AddToCartResponseType } from '@/types/products';
-import { getSessionFromAPI, updateCartFromSessionAPI } from './get-session';
+import { getSessionFromAPI } from './get-session';
 
 export const generatePayload = async (formData: FormData) => {
   const payload = {
@@ -40,6 +40,7 @@ export const addCartHandler = async (formData: FormData) => {
         value: cartDetails.order_id,
         httpOnly: true,
         priority: 'high',
+        maxAge: 1440,
         secure: true,
         path: '/',
       });
@@ -152,11 +153,11 @@ export const addToCartModalAction = async (formData: FormData) => {
         name: 'order_id',
         value: cartDetails.order_id,
         httpOnly: true,
+        maxAge: 1440,
         priority: 'high',
         secure: true,
         path: '/',
       });
-      await updateCartFromSessionAPI();
 
       return cartDetails;
     } else throw new Error('Error creating your order!');

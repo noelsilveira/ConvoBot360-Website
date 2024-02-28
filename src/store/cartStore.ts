@@ -1,83 +1,33 @@
-import { ProductDetailProps, ProductProps } from '@/constants/products';
-import { createJSONStorage, persist } from 'zustand/middleware';
-
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
-type CartItemProps = ProductDetailProps & {
-  count: number;
+// type CartProduct = {
+//     product_id: string;
+//     quantity: number;
+//     option_id?: string;
+//   };
+type CartStoreType = {
+  cart_count: number;
+  updateCartCount: (cart_count: number) => void;
 };
 
-type CartStore = {
-  cart: CartItemProps[];
-  countCart: () => number;
-  addCartItem: (product: ProductDetailProps) => void;
-  removeCartItem: (product_id: ProductDetailProps['id']) => void;
-  removeAllCartItems: () => void;
+const getInitialCartCount = () => {
+  const cart_count = sessionStorage.getItem('cart-count') || false;
+  return cart_count;
 };
 
-export const useCartStore = create<CartStore>()(
+export const useCartStore = create<CartStoreType>()(
   persist(
     (set, get) => ({
-      cart: [],
-      countCart: () => {
-        const { cart } = get();
-        if (cart.length) {
-          return cart
-            .map((item) => item.count)
-            .reduce((prev, curr) => prev + curr);
-        }
-        return 0;
-      },
-      addCartItem: (product: ProductDetailProps) => {
-        const { cart } = get();
-        const updatedCart = updateCart(product, cart);
-        set({ cart: updatedCart });
-      },
-      removeCartItem: (product_id: ProductDetailProps['id']) => {
-        const { cart } = get();
-        const updatedCart = removeCart(product_id, cart);
-        set({ cart: updatedCart });
-      },
-      removeAllCartItems: () => set({ cart: [] }),
+      cart_count: 0,
+      updateCartCount: (cartCount) =>
+        set((state) => ({
+          cart_count: cartCount,
+        })),
     }),
     {
-      name: 'cart',
+      name: 'cart-count',
       storage: createJSONStorage(() => sessionStorage),
-      skipHydration: true,
     }
   )
 );
-
-function updateCart(
-  product: ProductDetailProps,
-  cart: CartItemProps[]
-): CartItemProps[] {
-  const cartItem = { ...product, count: 1 } as CartItemProps;
-
-  const productOnCart = cart.map((item) => item.id).includes(product.id);
-
-  if (!productOnCart) cart.push(cartItem);
-  else {
-    return cart.map((item) => {
-      if (item.id === product.id)
-        return { ...item, count: item.count + 1 } as CartItemProps;
-      return item;
-    });
-  }
-
-  return cart;
-}
-
-function removeCart(
-  product_id: string,
-  cart: CartItemProps[]
-): CartItemProps[] {
-  return cart
-    .map((item) => {
-      if (item.id === product_id) return { ...item, count: item.count - 1 };
-      return item;
-    })
-    .filter((item) => {
-      return item.count;
-    });
-}

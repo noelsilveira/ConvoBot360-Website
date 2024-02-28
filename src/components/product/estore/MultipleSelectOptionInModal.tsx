@@ -1,61 +1,39 @@
-'use client';
-
+import { cn } from '@/lib/utils';
+import { MultiSelectQuantityStore } from '@/store/multiProductQuantityStore';
 import {
   ProductOptionsInGroupOptionsType,
   ProductsType,
 } from '@/types/products';
 import React, { useEffect, useState } from 'react';
-import { TbMinus, TbPlus } from 'react-icons/tb';
+import { TbCheck, TbMinus, TbPlus } from 'react-icons/tb';
 
-const WhatsappProductListInModal = ({ product }: { product: ProductsType }) => {
-  const [itemQuantity, setItemQuantity] = useState(1);
-  return (
-    <div className='flex w-full items-center justify-between'>
-      <div className='mb-4 flex flex-col gap-1'>
-        <h2 className='line-clamp-1 text-xl font-semibold capitalize'>
-          {product.title}
-        </h2>
-        <p className='text-sm font-medium text-gallery-500'>
-          {product.currency} {product.price}
-        </p>
-        {/* <p className='text-sm text-gallery-500'>{product.category}</p> */}
-      </div>
-      <div className='mb-2'>
-        <QuantityModifierButtons
-          product={product}
-          quantity={itemQuantity}
-          setQuantity={setItemQuantity}
-        />
-      </div>
-    </div>
-  );
-};
-
-export default WhatsappProductListInModal;
-
-export const WhatsappProductVariantListInModal = ({
+const MultipleSelectOptionInModal = ({
   variant,
   product,
+  maxSelectable,
 }: {
   variant: ProductOptionsInGroupOptionsType;
   product: ProductsType;
+  maxSelectable: number;
 }) => {
   const [itemQuantity, setItemQuantity] = useState(0);
 
   return (
     <div className='flex w-full items-center justify-between border-b border-gallery-50'>
       <div className='mb-4 flex flex-col gap-1'>
-        <h2 className='line-clamp-1 text-lg font-semibold capitalize text-gallery-900'>
+        <h2 className='line-clamp-1 text-base font-medium capitalize text-gallery-800'>
           {variant.name}
         </h2>
         <p className='text-sm font-medium text-gallery-500'>
-          {product.currency} {variant.price}
+          + {product.currency} {variant.price}
         </p>
         {/* <p className='text-sm text-gallery-500'>{product.category}</p> */}
       </div>
+
       <QuantityModifierButtons
         product={product}
         variant={variant}
+        maxSelectable={maxSelectable}
         quantity={itemQuantity}
         setQuantity={setItemQuantity}
       />
@@ -63,29 +41,41 @@ export const WhatsappProductVariantListInModal = ({
   );
 };
 
+export default MultipleSelectOptionInModal;
+
 type Operation = 'increase' | 'decrease';
 
-export type QuantityModifierButtonsProps =
+type QuantityModifierButtonsProps =
   React.InputHTMLAttributes<HTMLInputElement> & {
     quantity: number;
     setQuantity: (value: number) => void;
   };
 
-export const QuantityModifierButtons = ({
+const QuantityModifierButtons = ({
   quantity,
   setQuantity,
   product,
   variant,
+  maxSelectable,
 }: QuantityModifierButtonsProps & {
   product: ProductsType;
+  maxSelectable: number;
   variant?: ProductOptionsInGroupOptionsType;
 }) => {
+  const {
+    multiProductQuantity,
+    increaseOptionQuantity,
+    decreaseOptionQuantity,
+  } = MultiSelectQuantityStore();
+
   const handleUpdateQuantity = (operation: Operation) => {
     if (operation === 'increase') {
       setQuantity(quantity + 1);
+      increaseOptionQuantity();
     } else {
       if (quantity > 0) {
         setQuantity(quantity - 1);
+        decreaseOptionQuantity();
       }
     }
   };
@@ -109,15 +99,6 @@ export const QuantityModifierButtons = ({
   return (
     <div className='flex items-center gap-1 font-medium text-gallery-950'>
       {quantity > 0 && (
-        <button
-          type='button'
-          onClick={() => handleUpdateQuantity('decrease')}
-          className='rounded-lg bg-gallery-100 p-2'
-        >
-          <TbMinus />
-        </button>
-      )}
-      {quantity > 0 && (
         <input
           type='hidden'
           name='items'
@@ -126,22 +107,30 @@ export const QuantityModifierButtons = ({
         />
       )}
 
-      {quantity > 0 && (
-        <input
-          value={quantity}
-          onChange={handleChangeOnInput}
-          name='quantity'
-          type='number'
-          className='w-6 text-center font-medium'
-        />
+      {quantity === 0 && (
+        <button
+          type='button'
+          disabled={maxSelectable === multiProductQuantity}
+          onClick={() => handleUpdateQuantity('increase')}
+          className={cn(
+            'rounded-lg bg-gallery-100 p-1.5',
+            maxSelectable === multiProductQuantity
+              ? 'cursor-not-allowed opacity-40'
+              : 'cursor-pointer'
+          )}
+        >
+          <TbPlus />
+        </button>
       )}
-      <button
-        type='button'
-        onClick={() => handleUpdateQuantity('increase')}
-        className='rounded-lg bg-gallery-100 p-2'
-      >
-        <TbPlus />
-      </button>
+      {quantity === 1 && (
+        <button
+          type='button'
+          onClick={() => handleUpdateQuantity('decrease')}
+          className='rounded-lg bg-blue-200 p-1.5 text-blue-700'
+        >
+          <TbCheck />
+        </button>
+      )}
     </div>
   );
 };

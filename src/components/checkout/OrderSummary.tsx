@@ -6,9 +6,13 @@ import { ContinueInWhatsappButton } from './ContinueInWhatsappButton';
 import { AddToCartResponseType } from '@/types/products';
 import { getCartItems } from '@/app/actions/fetch-cart';
 
-const OrderSummary = async () => {
-  const cartDetailResponse: AddToCartResponseType['detail'] =
-    await getCartItems();
+const OrderSummary = async ({
+  details,
+}: {
+  details: AddToCartResponseType['detail'];
+}) => {
+  // const details: AddToCartResponseType['detail'] =
+  //   await getCartItems();
 
   return (
     <section
@@ -23,7 +27,7 @@ const OrderSummary = async () => {
         <div className='flex items-center justify-between'>
           <dt className='text-sm text-gray-600'>Net Total</dt>
           <dd className='text-sm font-medium text-gray-900'>
-            {cartDetailResponse.currency} {cartDetailResponse.net_total}
+            {details.currency} {details.net_total}
           </dd>
         </div>
         <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
@@ -40,7 +44,7 @@ const OrderSummary = async () => {
             </a>
           </dt>
           <dd className='text-sm font-medium text-gray-900'>
-            {cartDetailResponse.currency} {cartDetailResponse.service_charges}
+            {details.currency} {details.service_charges}
           </dd>
         </div>
         <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
@@ -57,7 +61,7 @@ const OrderSummary = async () => {
             </a>
           </dt>
           <dd className='text-sm font-medium text-gray-900'>
-            {cartDetailResponse.currency} {cartDetailResponse.taxes}
+            {details.currency} {details.taxes}
           </dd>
         </div>
         <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
@@ -65,13 +69,13 @@ const OrderSummary = async () => {
             <span>Discounts</span>
           </dt>
           <dd className='text-sm font-medium text-gray-900'>
-            {cartDetailResponse.currency} {cartDetailResponse.discounts}
+            {details.currency} {details.discounts}
           </dd>
         </div>
         <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
           <dt className='text-base font-medium text-gray-900'>Order total</dt>
           <dd className='text-base font-medium text-gray-900'>
-            {cartDetailResponse.currency} {cartDetailResponse.gross_total}
+            {details.currency} {details.gross_total}
           </dd>
         </div>
       </dl>

@@ -8,8 +8,9 @@ import { cookies } from 'next/headers';
 export const getCartItems = async () => {
   const myHeaders = await setSessionHeader();
   const order_id = cookies().get('order_id')?.value;
+
   if (!order_id) {
-    throw new Error('No order ID found!');
+    return null;
   }
 
   try {
@@ -19,7 +20,7 @@ export const getCartItems = async () => {
         method: 'POST',
         headers: myHeaders,
         redirect: 'follow',
-        next: { tags: ['cart-items'], revalidate: 0 },
+        next: { tags: ['cart_items'], revalidate: 5 },
       }
     );
 
@@ -27,10 +28,13 @@ export const getCartItems = async () => {
       const cartResponse = await response.json();
 
       if (cartResponse?.status_code === 200) {
-        const cartDetails = cartResponse.detail;
+        const cartDetails = cartResponse;
 
         return cartDetails;
-      } else console.error('Failed to fetch cart data');
+      } else {
+        console.error('Failed to fetch cart data');
+        return cartResponse as string;
+      }
     }
   } catch (error) {
     console.error(error);
@@ -52,7 +56,7 @@ export const updateCart = async ({
   const branch_id = cookies().get('branch_id')?.value;
 
   if (!branch_id) {
-    throw new Error('No Branch ID found!');
+    return null;
   }
 
   const raw = JSON.stringify({
@@ -67,18 +71,23 @@ export const updateCart = async ({
       headers: myHeaders,
       body: raw,
       redirect: 'follow',
-      next: { tags: ['update-cart-items'], revalidate: 0 },
+      next: { tags: ['update_cart_items'], revalidate: 0 },
     });
 
     if (response.ok) {
       // revalidateTag('cart-items');
       revalidatePath('/checkout/cart');
+      revalidateTag('cart_items');
       const cartResponse = await response.json();
 
       if (cartResponse?.status_code === 200) {
         const cartDetails = cartResponse.detail;
 
         return cartDetails;
+      }
+      if (cartResponse?.status_code === 404) {
+        cookies().delete('order_id');
+        return null;
       } else console.error('Failed to fetch cart data');
     }
   } catch (error) {

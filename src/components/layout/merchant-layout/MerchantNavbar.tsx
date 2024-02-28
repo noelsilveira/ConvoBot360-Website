@@ -6,10 +6,11 @@ import FlyoutMenu from './FlyoutMenu';
 import { ProductListingParamsType } from '@/types/products';
 import { cookies } from 'next/headers';
 import { decodeUrlToString } from '@/lib/format';
+import { Suspense } from 'react';
 
 const MerchantNavbar = ({ params }: ProductListingParamsType) => {
   const logo_url = cookies().get('logo_url')?.value;
-  const cart_count = cookies().get('cart_count')?.value;
+
   const parsed_logo_url = logo_url && decodeUrlToString(logo_url);
   const cb360Logo = '/cb360-logo.svg';
 
@@ -17,7 +18,7 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
     <header className='relative z-10 border-b border-gray-200 bg-white'>
       <nav
         aria-label='Top'
-        className='z-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'
+        className='sticky top-0 z-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'
       >
         <div>
           <div className='flex h-16 items-center justify-start'>
@@ -58,9 +59,8 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
               </div> */}
 
               {/* Cart */}
-              {Number(cart_count) > 0 && (
-                <CartIconButton cart_count={Number(cart_count)} />
-              )}
+
+              <CartIconButton />
             </div>
           </div>
         </div>

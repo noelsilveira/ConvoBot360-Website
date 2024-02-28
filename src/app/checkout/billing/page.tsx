@@ -17,7 +17,7 @@ const BillingPage = () => {
             <ContactInformation />
 
             {/* Order summary */}
-            <OrderSummary />
+            {/* <OrderSummary /> */}
           </form>
         </div>
       </main>

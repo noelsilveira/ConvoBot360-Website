@@ -91,6 +91,7 @@ export const addCartHandler = async (formData: FormData) => {
         httpOnly: true,
         priority: 'high',
         secure: true,
+        maxAge: 1440,
         path: '/',
       });
 
@@ -200,6 +201,7 @@ export const addToCartModalAction = async (formData: FormData) => {
         name: 'order_id',
         value: cartDetails.order_id,
         httpOnly: true,
+        maxAge: 1440,
         priority: 'high',
         secure: true,
         path: '/',

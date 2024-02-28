@@ -7,6 +7,9 @@ import { cn } from '@/lib/utils';
 import { AddToCartResponseType, ProductOptionsType } from '@/types/products';
 import { useRouter } from 'next/navigation';
 import { updateCart } from '@/app/actions/fetch-cart';
+import { useCartStore } from '@/store/cartStore';
+import { revalidateTag } from 'next/cache';
+import Spinner from './Spinner';
 
 export type WhatsappProductListCardType = {
   product_retailer_id: string;
@@ -23,7 +26,6 @@ const WhatsappProductListCard = ({
 }: {
   product: WhatsappProductListCardType;
 }) => {
-  const [itemQuantity, setItemQuantity] = useState(product.quantity | 1);
   return (
     <div className='flex w-full items-start justify-start gap-3'>
       <div className='h-20 w-20 overflow-hidden rounded-xl bg-gallery-100'>
@@ -53,8 +55,8 @@ const WhatsappProductListCard = ({
         <QuantityModifierButtons
           product={product}
           option_id={product.option_id}
-          quantity={itemQuantity}
-          setQuantity={setItemQuantity}
+          quantity={product.quantity}
+          // setQuantity={setItemQuantity}
         />
       </div>
     </div>
@@ -64,13 +66,13 @@ const WhatsappProductListCard = ({
 type QuantityModifierButtonsProps =
   React.InputHTMLAttributes<HTMLInputElement> & {
     quantity: number;
-    setQuantity: (value: number) => void;
+    // setQuantity: (value: number) => void;
   };
 type Operation = 'increase' | 'decrease';
 
 const QuantityModifierButtons = ({
   quantity,
-  setQuantity,
+  // setQuantity,
   product,
   option_id,
 }: QuantityModifierButtonsProps & {
@@ -84,23 +86,8 @@ const QuantityModifierButtons = ({
     quantity: quantity,
     option_id: option_id,
   });
+  const { updateCartCount, cart_count } = useCartStore();
 
-  useEffect(() => {
-    if (isPending) return;
-
-    // THIS CODE WILL RUN AFTER THE SERVER ACTION
-  }, [isPending]);
-  // updated
-  const backup_handleUpdateQuantity = (operation: Operation) => {
-    if (operation === 'increase') {
-      setQuantity(quantity + 1);
-    } else {
-      if (quantity > 0) {
-        setQuantity(quantity - 1);
-      }
-    }
-  };
-  // backup
   const handleUpdateQuantity = async (operation: Operation) => {
     if (operation === 'increase') {
       const increaseQuantityResponse: AddToCartResponseType['detail'] =
@@ -110,37 +97,26 @@ const QuantityModifierButtons = ({
           option_id: product.option_id,
         });
       if (increaseQuantityResponse.order_id) {
+        updateCartCount(increaseQuantityResponse?.products?.length);
         router.refresh();
-        setQuantity(quantity + 1);
       }
-    } else {
-      if (quantity > 0) {
-        const decreaseQuantityResponse: AddToCartResponseType['detail'] =
-          await updateCart({
-            product_id: product.product_retailer_id,
-            quantity: -1,
-            option_id: product.option_id,
-          });
-        if (decreaseQuantityResponse.order_id) {
-          router.refresh();
-          setQuantity(quantity - 1);
-        }
+    }
+    if (operation === 'decrease' && quantity > 0) {
+      const decreaseQuantityResponse: AddToCartResponseType['detail'] =
+        await updateCart({
+          product_id: product.product_retailer_id,
+          quantity: -1,
+          option_id: product.option_id,
+        });
+
+      !decreaseQuantityResponse && updateCartCount(0);
+      if (decreaseQuantityResponse?.order_id) {
+        updateCartCount(decreaseQuantityResponse?.products?.length);
+        router.refresh();
       }
     }
   };
 
-  const handleChangeOnInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = Number(e.target.value);
-    setQuantity(newValue);
-  };
-
-  useEffect(() => {
-    setItemObject({ ...itemObject, quantity: quantity });
-  }, [quantity]);
-
-  const handleItemObjectChange = () => {
-    setItemObject({ ...itemObject, quantity: quantity });
-  };
   return (
     <div
       className={cn(
@@ -148,40 +124,52 @@ const QuantityModifierButtons = ({
         isPending ? 'opacity-30' : 'opacity-100'
       )}
     >
-      <button
-        type='button'
-        aria-disabled={isPending}
-        disabled={isPending}
-        onClick={async () => {
-          await handleUpdateQuantity('decrease');
-        }}
-        className={cn('rounded-lg bg-gallery-100 p-2')}
-      >
-        <TbMinus />
-      </button>
+      {isPending ? (
+        <div className='flex h-8 w-20 items-center justify-center text-center'>
+          <Spinner className='h-5 w-5 animate-spin' />
+        </div>
+      ) : (
+        <>
+          {quantity > 0 && (
+            <button
+              type='button'
+              aria-disabled={isPending}
+              disabled={isPending}
+              onClick={async () => {
+                startTransition(() => {
+                  handleUpdateQuantity('decrease');
+                });
+              }}
+              className={cn('rounded-lg bg-gallery-100 p-2')}
+            >
+              <TbMinus />
+            </button>
+          )}
 
-      {quantity > 0 && (
-        <input
-          value={quantity}
-          onChange={handleChangeOnInput}
-          name='quantity'
-          type='number'
-          className='w-6 text-center font-medium'
-        />
+          {quantity > 0 && (
+            <input
+              value={quantity}
+              readOnly
+              name='quantity'
+              type='number'
+              className='w-6 text-center font-medium'
+            />
+          )}
+          <button
+            type='button'
+            aria-disabled={isPending}
+            disabled={isPending}
+            onClick={async () =>
+              startTransition(() => {
+                handleUpdateQuantity('increase');
+              })
+            }
+            className={cn('rounded-lg bg-gallery-100 p-2')}
+          >
+            <TbPlus />
+          </button>
+        </>
       )}
-      <button
-        type='button'
-        aria-disabled={isPending}
-        disabled={isPending}
-        onClick={async () =>
-          startTransition(() => {
-            handleUpdateQuantity('increase');
-          })
-        }
-        className={cn('rounded-lg bg-gallery-100 p-2')}
-      >
-        <TbPlus />
-      </button>
     </div>
   );
 };

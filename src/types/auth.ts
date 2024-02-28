@@ -13,7 +13,6 @@ export type AddSessionPayloadType = {
   access_token: string | null;
   expiry: number;
   order_id?: string;
-  cart_count: 0;
 };
 
 export type AddSessionPayloadResponseType = {

@@ -61,6 +61,7 @@ export const setOTPParamsToCookie = async (
         name: 'session_id',
         value: data.session_id,
         httpOnly: true,
+        maxAge: data.metadata.expiry,
         secure: true,
         path: '/',
       });
@@ -70,6 +71,7 @@ export const setOTPParamsToCookie = async (
         name: 'access_token',
         value: data.metadata.access_token,
         httpOnly: true,
+        maxAge: data.metadata.expiry,
         secure: true,
         path: '/',
       });
@@ -80,6 +82,7 @@ export const setOTPParamsToCookie = async (
         name: 'branch_id',
         value: data.metadata.branch_id,
         httpOnly: true,
+        maxAge: data.metadata.expiry,
         secure: true,
         path: '/',
       });
@@ -91,6 +94,7 @@ export const setOTPParamsToCookie = async (
         value: data.metadata.customer_no,
         httpOnly: true,
         secure: true,
+        maxAge: data.metadata.expiry,
         path: '/',
       });
 
@@ -101,19 +105,9 @@ export const setOTPParamsToCookie = async (
         value: data.metadata.logo_url,
         httpOnly: true,
         secure: true,
+        maxAge: data.metadata.expiry,
         path: '/',
       });
-
-    // cart count
-    data.metadata.cart_count ||
-      (data.metadata.cart_count === 0 &&
-        cookies().set({
-          name: 'cart_count',
-          value: data.metadata.cart_count.toString(),
-          httpOnly: true,
-          secure: true,
-          path: '/',
-        }));
 
     // order_id
     data.metadata.order_id &&
@@ -122,6 +116,7 @@ export const setOTPParamsToCookie = async (
         value: data.metadata.order_id,
         httpOnly: true,
         secure: true,
+        maxAge: data.metadata.expiry,
         path: '/',
       });
 
@@ -131,6 +126,7 @@ export const setOTPParamsToCookie = async (
         name: 'merchant_no',
         value: data.metadata.merchant_no,
         httpOnly: true,
+        maxAge: data.metadata.expiry,
         secure: true,
         path: '/',
       });

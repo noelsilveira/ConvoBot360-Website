@@ -8,7 +8,7 @@ import { redirect } from 'next/navigation';
 import { setOTPParamsToCookie } from './otp-actions';
 
 export const getSessionFromAPI = async (session_id: string) => {
-  console.log('Session from client url: ', session_id);
+  // console.log('Session from client url: ', session_id);
   const myHeaders = await setOTPHeaders();
   const raw = '';
   const requestOptions: RequestInit | undefined = {
@@ -29,7 +29,7 @@ export const getSessionFromAPI = async (session_id: string) => {
 
     const responseData: AddSessionPayloadResponseType = await response.json();
     //   if(responseData.status_code ===200) for now it's returning 404 #FIXME
-    console.log('Session response: ', responseData);
+    // console.log('Session response: ', responseData);
     if (responseData) {
       await setOTPParamsToCookie(responseData.detail);
     }
@@ -51,30 +51,30 @@ export const getSessionFromAPI = async (session_id: string) => {
   }
 };
 
-export const updateCartFromSessionAPI = async () => {
-  const session_id = cookies().get('session_id');
-  if (!session_id?.value) {
-    console.log('No session id found');
-    redirect('/');
-  }
-  try {
-    const sessionResponse = await getSessionFromAPI(session_id.value);
-    console.log('Cart count response: ', sessionResponse);
-    sessionResponse.metadata.cart_count &&
-      cookies().set({
-        name: 'cart_count',
-        value: sessionResponse.metadata.cart_count,
-        httpOnly: true,
-        priority: 'high',
-        secure: true,
-        path: '/',
-      });
-    if (!sessionResponse.metadata) {
-      return null;
-    }
-    return sessionResponse;
-  } catch (error) {
-    console.error('Unable to update cart count');
-    throw new Error('Unable to update cart or Server down', error as Error);
-  }
-};
+// export const updateCartFromSessionAPI = async () => {
+//   const session_id = cookies().get('session_id');
+//   if (!session_id?.value) {
+//     console.log('No session id found');
+//     redirect('/');
+//   }
+//   try {
+//     const sessionResponse = await getSessionFromAPI(session_id.value);
+//     console.log('Cart count response: ', sessionResponse);
+//     sessionResponse.metadata.cart_count &&
+//       cookies().set({
+//         name: 'cart_count',
+//         value: sessionResponse.metadata.cart_count,
+//         httpOnly: true,
+//         priority: 'high',
+//         secure: true,
+//         path: '/',
+//       });
+//     if (!sessionResponse.metadata) {
+//       return null;
+//     }
+//     return sessionResponse;
+//   } catch (error) {
+//     console.error('Unable to update cart count');
+//     throw new Error('Unable to update cart or Server down', error as Error);
+//   }
+// };

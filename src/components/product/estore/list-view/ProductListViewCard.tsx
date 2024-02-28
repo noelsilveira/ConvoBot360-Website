@@ -24,7 +24,6 @@ const ProductListViewCard = ({
   product: ProductsType;
   branch_id?: string;
 }) => {
-  //   const [itemQuantity, setItemQuantity] = useState(product.quantity | 1);
   const showImage = false;
   const params = useParams();
   return (

@@ -8,7 +8,7 @@ import { ProductListingParamsType } from '@/types/products';
 
 const MerchantHeader = ({ params }: ProductListingParamsType) => {
   return (
-    <header className='relative'>
+    <header className='sticky top-0 z-10 bg-white'>
       {/* Top navigation */}
       {/* <TopBar /> */}
 
