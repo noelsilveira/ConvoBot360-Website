@@ -5,9 +5,10 @@ import {
   ProductListingParamsType,
   ProductsListResponseType,
 } from '@/types/products';
-import { convertToSortObject } from '@/lib/format';
+import { convertToSortObject, urlToStringParser } from '@/lib/format';
 import { setSessionHeader } from '@/app/actions/set-headers';
 import { cookies } from 'next/headers';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 export type FilterParamType = {
   keywords: string;
@@ -153,7 +154,14 @@ export const getEStoreProductsListWithSort = async ({
   searchParams?: ProductListingParamsType['searchParams'];
 }) => {
   const search = searchParams?.search;
-  const categoryParam = { category: categoryParams, keywords: search };
+  const parsed_category = queryParams?.params.category
+    ? urlToStringParser(queryParams?.params.category as string)
+    : undefined;
+  const categoryParam = {
+    category: parsed_category,
+    keywords: search,
+  };
+
   const sortBy = searchParams?.sortBy;
 
   const sortObject = sortBy ? convertToSortObject(sortBy as string) : {};
@@ -176,8 +184,8 @@ export const getEStoreProductsListWithSort = async ({
         body: raw,
         headers: my_headers,
         next: {
-          revalidate: 5, //cache data for 40 second
-          tags: ['estore-products'],
+          revalidate: 0, //cache data for 40 second
+          tags: ['estore_products'],
         },
         // shallow: true
       }

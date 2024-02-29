@@ -1,5 +1,7 @@
 'use client';
 
+import { MultiSelectQuantityStore } from '@/store/multiProductQuantityStore';
+import { SingleSelectQuantityStore } from '@/store/productQuantityStore';
 import {
   ProductOptionsInGroupOptionsType,
   ProductsType,
@@ -9,12 +11,22 @@ import { TbMinus, TbPlus } from 'react-icons/tb';
 
 const WhatsappProductListInModal = ({ product }: { product: ProductsType }) => {
   const [itemQuantity, setItemQuantity] = useState(1);
+  const { multiProductQuantity, resetAll } = MultiSelectQuantityStore();
+  const { productQuantity, reset } = SingleSelectQuantityStore();
+
+  useEffect(() => {
+    reset();
+    resetAll();
+  }, [product]);
+
   return (
     <div className='flex w-full items-center justify-between'>
       <div className='mb-4 flex flex-col gap-1'>
         <h2 className='line-clamp-1 text-xl font-semibold capitalize'>
           {product.title}
         </h2>
+        {/* testing */}
+        <span>{multiProductQuantity + '-' + productQuantity}</span>
         <p className='text-sm font-medium text-gallery-500'>
           {product.currency} {product.price}
         </p>

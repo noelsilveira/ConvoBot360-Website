@@ -97,6 +97,7 @@ const ProductAddToCartButtonWithModal = ({
                           <SingleSelectOptionInModal
                             key={'variant-item-' + variant.optionId + sIndex}
                             product={product}
+                            option_group={option_group.id}
                             variant={variant}
                             maxSelectable={1}
                           />

@@ -7,7 +7,6 @@ import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { cleanJsonString } from '@/lib/format';
 import { AddToCartObjectType, AddToCartResponseType } from '@/types/products';
-import { getSessionFromAPI } from './get-session';
 
 export const generatePayload = async (formData: FormData) => {
   const payload = {

@@ -7,20 +7,24 @@ import { ProductListingParamsType } from '@/types/products';
 import { cookies } from 'next/headers';
 import { decodeUrlToString } from '@/lib/format';
 import { Suspense } from 'react';
+import SearchProduct from '@/components/product/SearchProduct';
+import CategoryNameInProductList from '@/components/product/estore/category/CategoryNameInProductList';
+import SortFilterMenu from '../product-layout/SortFilterMenu';
+import FilterCategoriesButton from '@/components/product/estore/FilterCategoriesButton';
+import { TbFilter, TbFilterFilled } from 'react-icons/tb';
+import SearchAndFilterHeader from './SearchAndFilterHeader';
 
 const MerchantNavbar = ({ params }: ProductListingParamsType) => {
   const logo_url = cookies().get('logo_url')?.value;
+  console.log(params);
 
   const parsed_logo_url = logo_url && decodeUrlToString(logo_url);
   const cb360Logo = '/cb360-logo.svg';
 
   return (
     <header className='relative z-10 border-b border-gray-200 bg-white'>
-      <nav
-        aria-label='Top'
-        className='sticky top-0 z-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'
-      >
-        <div>
+      <nav aria-label='Top' className='sticky top-0 z-40 mx-auto max-w-7xl'>
+        <div className='px-4 sm:px-6 lg:px-8'>
           <div className='flex h-16 items-center justify-start'>
             {/* Menu Button */}
             {/* <MenuButton /> */}
@@ -64,6 +68,7 @@ const MerchantNavbar = ({ params }: ProductListingParamsType) => {
             </div>
           </div>
         </div>
+        <SearchAndFilterHeader />
       </nav>
     </header>
   );

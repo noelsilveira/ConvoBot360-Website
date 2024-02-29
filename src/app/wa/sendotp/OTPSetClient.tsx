@@ -41,7 +41,7 @@ const OTPSetClient = () => {
         await setOTPParamsToCookie(sessionResponse);
         updateCartCount(0);
 
-        router.push('/merchant/36049357/estore-products');
+        router.push('/merchant/360493578/estore-products');
       } else {
         console.error('Invalid credentials!');
         router.push('/error');

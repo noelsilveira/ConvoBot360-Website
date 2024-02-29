@@ -8,7 +8,6 @@ import { AddToCartResponseType, ProductOptionsType } from '@/types/products';
 import { useRouter } from 'next/navigation';
 import { updateCart } from '@/app/actions/fetch-cart';
 import { useCartStore } from '@/store/cartStore';
-import { revalidateTag } from 'next/cache';
 import Spinner from './Spinner';
 
 export type WhatsappProductListCardType = {

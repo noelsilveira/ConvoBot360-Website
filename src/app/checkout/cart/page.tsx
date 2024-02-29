@@ -13,8 +13,8 @@ import { cookies } from 'next/headers';
 const CartPage = async () => {
   const response: AddToCartResponseType = await getCartItems();
   const order_id = cookies().get('order_id')?.value;
-  console.log(response);
   const cartDetailResponse = response && response.detail;
+  // console.log(cartDetailResponse);
 
   return (
     <>

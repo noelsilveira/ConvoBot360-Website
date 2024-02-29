@@ -29,8 +29,13 @@ const deleteToken = async () => {
   const response = NextResponse.next();
   response.cookies.delete(TOKEN_NAME);
   response.cookies.delete('OTP_TOKEN');
-  response.cookies.delete('expiry');
-  response.cookies.delete('token_type');
+  response.cookies.delete('order_id');
+  response.cookies.delete('session_id');
+  response.cookies.delete('merchant_no');
+  response.cookies.delete('customer_no');
+  response.cookies.delete('logo_url');
+  // response.cookies.delete('expiry');
+  // response.cookies.delete('token_type');
 
   return response;
 };

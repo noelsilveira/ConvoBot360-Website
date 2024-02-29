@@ -20,17 +20,17 @@ const EStoreProductsLayout = ({
       <MobileFilterMenu />
 
       <main className='mx-auto mt-0 max-w-7xl px-0 sm:px-6 lg:px-8'>
-        <div className='mt-1 flex flex-1 items-center justify-end md:mt-0 md:hidden'>
+        {/* <div className='mt-1 flex flex-1 items-center justify-end md:mt-0 md:hidden'>
           <SearchProduct />
-        </div>
+        </div> */}
         {/* Search, Sort, filters, other functions */}
         <div className='flex items-baseline justify-end border-gray-200 pb-0 pt-2'>
           {/* Search */}
           <div className='hidden flex-1 items-center justify-end md:flex'>
             <SearchProduct />
           </div>
-          <div className='flex items-center px-4'>
-            {/* Sort filter menu */}
+          {/* Sort filter menu */}
+          {/* <div className='flex items-center px-4'>
             <CategoryNameInProductList />
             <SortFilterMenu sortBy={params.sortBy || `"price":"asc"`} />
 
@@ -41,10 +41,10 @@ const EStoreProductsLayout = ({
               <span className='sr-only'>View grid</span>
               <Squares2X2Icon className='h-4 w-4' aria-hidden='true' />
             </button>
-            {/* Filter categories mobile button */}
             <FilterCategoriesButton />
-          </div>
+          </div> */}
         </div>
+        {/* Filter categories mobile button */}
 
         <section aria-labelledby='products-heading' className='py-4 lg:pb-8'>
           <h2 id='products-heading' className='sr-only'>

@@ -77,7 +77,7 @@ const SortFilterMenu = ({ sortBy }: SortListProps) => {
   return (
     <Menu as='div' className='relative inline-block text-left'>
       <div>
-        <Menu.Button className='group inline-flex items-center justify-center text-xs font-medium text-gallery-600 hover:text-gallery-700'>
+        <Menu.Button className='group inline-flex items-center justify-center text-sm font-medium tracking-tight text-gallery-700 hover:text-gallery-800'>
           <span>Sort</span>
           <ChevronDownIcon
             className='-mr-1 ml-1 h-4 w-4 flex-shrink-0 text-gray-400 group-hover:text-gray-500'

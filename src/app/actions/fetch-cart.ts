@@ -20,7 +20,7 @@ export const getCartItems = async () => {
         method: 'POST',
         headers: myHeaders,
         redirect: 'follow',
-        next: { tags: ['cart_items'], revalidate: 5 },
+        next: { tags: ['cart_items'], revalidate: 0 },
       }
     );
 
@@ -75,7 +75,6 @@ export const updateCart = async ({
     });
 
     if (response.ok) {
-      // revalidateTag('cart-items');
       revalidatePath('/checkout/cart');
       revalidateTag('cart_items');
       const cartResponse = await response.json();
