@@ -27,15 +27,15 @@ const SingleTestimonialSection = () => {
             className='h-12 w-12 rounded-full bg-gray-50 object-cover object-top'
             width={40}
             height={40}
-            src={'/assets/clients/DDK-owner.jpeg'}
-            alt='DDK Owner'
+            src={'/assets/clients/aruba-dhaduk.png'}
+            alt='Aruba Nadeem Dhaduk'
           />
           <div className='text-sm leading-6'>
             <div className='font-semibold text-gray-900'>
-              Nadeem Usman Dhaduk
+              Aruba Nadeem Dhaduk
             </div>
             <div className='mt-0.5 text-gray-600'>
-              Founder, Desi Dastar Khawn Restaurant
+              Owner, Desi Dastar Khawn Restaurant
             </div>
           </div>
         </figcaption>
