@@ -6,8 +6,6 @@ const team = [
   {
     name: 'Noel Silveira',
     role: 'Founder / CEO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBlb3BsZSUyMG1hbiUyMGZvdW5kZXJ8ZW58MHx8MHx8fDA%3D',
     bio: [
       'Noel is a seasoned Strategist with a proven track record in the Telecommunications, Banking, Payment Aggregators and FinTech startup sectors. Having held senior positions as Head of Sales and Business Development in prestigious companies, Noel consistently transforms profiles into compelling success stories.',
       ' At CB360, he brings the marketing know-how from the world’s biggest brands to local businesses, ensuring their sustainable growth and continued success.',
@@ -16,22 +14,8 @@ const team = [
     linkedinUrl: '#!',
   },
   {
-    name: 'Siddhesh Ajarekar',
-    role: 'Co-Founder / CTO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1557862921-37829c790f19?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHRlY2glMjBtYW4lMjBmb3VuZGVyfGVufDB8fDB8fHww',
-    bio: [
-      'Siddesh is an IT professional with a robust background in IT architecture, automation, IT security, Cloud computing. His experience spans various industries, showcasing a successful track record of overseeing and implementing innovative IT solutions.',
-      'Siddesh’s  expertise in digital transformation makes the tech cutting edge services which nobody can offer instantly',
-    ],
-    xUrl: '#!',
-    linkedinUrl: '#!',
-  },
-  {
     name: 'Hussein Obeed',
     role: 'Partner',
-    imageUrl:
-      'https://images.unsplash.com/photo-1613181013804-1dcba09e6a9d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJ1c2luZXNzJTIwbWFufGVufDB8fDB8fHww',
     bio: [
       'Hussein is a highly accomplished businessman with a solid foundation in Information Technology. As a seasoned entrepreneur, he has achieved remarkable success by leveraging his IT expertise to navigate the business landscape effectively.',
       "Hussein's strategic vision and business acumen have propelled him to success in various ventures, establishing him as a prominent figure in the business community in Saudi Arabia",
@@ -65,11 +49,6 @@ const AboutTeamSection = () => {
             key={person.name}
             className='flex flex-col gap-10 gap-y-8 pt-12 sm:flex-row'
           >
-            <img
-              className='aspect-[4/5] w-64 flex-none rounded-2xl object-cover'
-              src={person.imageUrl}
-              alt={person.name}
-            />
             <div className='max-w-xl flex-auto'>
               <h3 className='text-lg font-semibold leading-8 tracking-tight text-gray-900'>
                 {person.name}
