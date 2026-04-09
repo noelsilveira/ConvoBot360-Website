@@ -9,7 +9,9 @@ export const metadata = {
 export default function Document() {
   return (
     <Html lang='en' className='scroll-smooth'>
-      <Head />
+      <Head>
+          <meta name="facebook-domain-verification" content="srpo622iol3nw3slt29bo1kxbpqy0h" />
+        </Head>
       <body className='antialiased'>
         <Main />
         <NextScript />
