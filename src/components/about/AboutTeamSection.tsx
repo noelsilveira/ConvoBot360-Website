@@ -23,6 +23,16 @@ const team = [
     xUrl: '#!',
     linkedinUrl: '#!',
   },
+  {
+    name: 'Faisal',
+    role: 'Partner',
+    bio: [
+      'Faisal is a well-known and respected businessman in Bahrain, recognized for his extensive expertise across multiple industries. As a partner, he brings strong domain knowledge in telecommunications, along with deep experience in the trade of mobile devices and accessories.',
+      'In addition, Faisal has established a solid presence in the construction sector, demonstrating versatility and a sharp business acumen. His ability to navigate diverse markets and drive growth has positioned him as a prominent and trusted figure in the Bahraini business community.',
+    ],
+    xUrl: '#!',
+    linkedinUrl: '#!',
+  },
   // More people...
 ];
 
