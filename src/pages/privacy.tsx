@@ -3,446 +3,537 @@ import React from 'react';
 
 const PrivacyPage = () => {
   return (
-    <MainLayout title='Privacy | CB360 - E-commerce solution for the mass'>
+    <MainLayout title='Privacy Policy | CB360'>
       <div className='mx-auto mt-16 max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8'>
         <article className='prose mx-auto lg:prose-xl prose-p:text-base prose-ol:text-base prose-ul:text-base'>
-          {/* Heading */}
+          {/* Title */}
           <h1 className='text-center'>Privacy Policy</h1>
-          <p>
-            At CB-360, accessible from <a href='#!'>www.cb360.com</a>, one of
-            our main priorities is the privacy of our visitors.
-          </p>
-          <p>
-            This Privacy Policy document contains types of information that is
-            collected and recorded by cb360.com and how we use it. If you have
-            additional questions or require more information about our Privacy
-            Policy, do not hesitate to contact us.
-          </p>
-          <p>
-            This Privacy Policy applies only to our online activities and is
-            valid for visitors to our website with regards to the information
-            that they shared and/or collect in cb360.com. This policy is not
-            applicable to any information collected offline or via channels
-            other than this website.
+          <p className='text-center text-sm text-gray-500'>
+            Effective Date: April 2026 &middot; Version: 1.0
           </p>
 
-          {/* Consent */}
-          <h2>Consent</h2>
           <p>
-            By using our website, you hereby consent to our Privacy Policy and
-            agree to its terms.
-          </p>
-          {/* Information we collect  */}
-          <h2>Information we collect </h2>
-          <p>
-            The personal information that you are asked to provide, and the
-            reasons why you are asked to provide it, will be made clear to you
-            at the point we ask you to provide your personal information.
-          </p>
-          <p>
-            If you contact us directly, we may receive additional information
-            about you such as your name, email address, phone number, the
-            contents of the message and/or attachments you may send us, and any
-            other information you may choose to provide.
-          </p>
-          <p>
-            When you register for an Account, we may ask for your contact
-            information, including items such as name, company name, address,
-            email address, and telephone number.
-          </p>
-          {/* How we use your information */}
-          <h2>How we use your information </h2>
-          <div>
-            We use the information we collect in various ways, including to:
-            <ul>
-              <li>Provide, operate, and maintain our website</li>
-              <li>Improve, personalize, and expand our website </li>
-              <li>Understand and analyze how you use our website</li>
-              <li>
-                Develop new products, services, features, and functionality{' '}
-              </li>
-              <li>
-                Communicate with you, either directly or through one of our
-                partners, including for customer service, to provide you with
-                updates and other information relating to the website, and for
-                marketing and promotional purposes{' '}
-              </li>
-              <li>Send you emails</li>
-              <li>Find and prevent fraud</li>
-            </ul>
-          </div>
-          {/* Log Files */}
-          <h3>Log Files </h3>
-          <p>
-            cb360.com follows a standard procedure of using log files. These
-            files log visitors when they visit websites.
-          </p>
-          <p>
-            All hosting companies do this and a part of hosting services&apos;
-            analytics. The information collected by log files include internet
-            protocol (IP) addresses, browser type, Internet Service Provider
-            (ISP), date and time stamp, referring/exit pages, and possibly the
-            number of clicks. These are not linked to any information that is
-            personally identifiable. The purpose of the information is for
-            analyzing trends, administering the site, tracking users&apos;
-            movement on the website, and gathering demographic information.
+            This Privacy Policy explains how Silver Sparrow Trading W.L.L.,
+            operating the CB360 | ConvoBot360 platform (
+            <a href='https://get.convobot360.com'>https://get.convobot360.com</a>
+            ), collects, uses, stores, and protects personal data in accordance
+            with Bahrain Law No. 30 of 2018 (Personal Data Protection Law,
+            &quot;PDPL&quot;) and its implementing regulations. By using the CB360
+            Platform, you acknowledge and accept this Privacy Policy.
           </p>
 
-          {/* Device data */}
-          <h3>Device data</h3>
+          {/* 1. Who We Are */}
+          <h2>1. Who We Are</h2>
           <p>
-            We may also collect data about the device you’re using to access our
-            website and our browser extension. This data may include the device
-            type, operating system, unique device identifiers, device settings,
-            and geo-location data. What we collect can depend on the individual
-            settings of your device and software. We recommend checking the
-            policies of your device manufacturer or software provider to learn
-            what information they make available to us.
+            The data controller responsible for your personal data is:
+          </p>
+          <p>
+            <strong>CB360 | ConvoBot360</strong>
+            <br />
+            Powered by Silver Sparrow Trading W.L.L.
+            <br />
+            Address: Shop 116, Bldg 18, Road 4101, Block 0341, Juffair, Kingdom
+            of Bahrain
+            <br />
+            CR: CR No. 170940-1
+            <br />
+            Email:{' '}
+            <a href='mailto:info@convobot360.com'>info@convobot360.com</a>
+            <br />
+            Telephone: +973 66907907
+            <br />
+            Website:{' '}
+            <a href='https://get.convobot360.com'>https://get.convobot360.com</a>
+          </p>
+          <p>
+            CB360 is an authorised Meta Business Solution Provider, providing
+            WhatsApp Business API services to business clients
+            (&quot;Clients&quot;) and their customers (&quot;End Users&quot;)
+            across the Kingdom of Bahrain and the wider Gulf region.
           </p>
 
-          {/* Personal information */}
-          <h3>Personal information</h3>
-          <p>
-            When you purchase our browser extension, we may ask for personal
-            information, such as your:
-          </p>
-          <ul>
-            <li>Email address</li>
-            <li>First and last name</li>
-            <li>Company name and VAT number</li>
-            <li>Country</li>
-            <li>
-              Work address, state, province, zip/postal code, city and country
-            </li>
-            <li>Payment information</li>
-          </ul>
-
-          {/* Collection and use of information */}
-          <h3>Collection and use of information</h3>
-          <p>
-            We may collect, hold, use and disclose information for the following
-            purposes and personal information will not be further processed in a
-            manner that is incompatible with these purposes:
-          </p>
+          {/* 2. Scope of This Policy */}
+          <h2>2. Scope of This Policy</h2>
+          <p>This Privacy Policy applies to:</p>
           <ul>
             <li>
-              to enable you to customise or personalise your experience of our
-              website and in our browser extensions;
+              Visitors to get.convobot360.com and its subdomains.
             </li>
             <li>
-              to enable you to access and use our website, our browser
-              extensions and associated social media platforms;
-            </li>
-            <li>to contact and communicate with you;</li>
-            <li>for internal record keeping and administrative purposes;</li>
-            <li>
-              for analytics, market research and business development, including
-              to operate and improve our website, associated applications and
-              associated social media platforms; and
+              Business clients who register for and use the CB360 Platform.
             </li>
             <li>
-              to comply with our legal obligations and resolve any disputes that
-              we may have.
-            </li>
-          </ul>
-
-          {/* Cookies and Web Beacons */}
-          <h2>Cookies and Web Beacons</h2>
-          <p>
-            Like any other website, <a href='#!'>cb360.com</a> uses
-            <b> &apos;cookies&apos;</b>. These cookies are used to store
-            information including visitors&apos; preferences, and the pages on
-            the website that the visitor accessed or visited. The information is
-            used to optimize the users&apos; experience by customizing our web
-            page content based on visitors&apos; browser type and/or other
-            information.
-          </p>
-          <p>
-            For more general information on cookies, please read &quot;What Are
-            Cookies&quot; from Cookie Consent .
-          </p>
-          <p>
-            Google DoubleClick DART Cookie Google is one of a third-party vendor
-            on our site. It also uses cookies, known as DART cookies, to serve
-            ads to our site visitors based upon their visit to www.website.com
-            and other sites on the internet.
-          </p>
-          <p>
-            However, visitors may choose to decline the use of DART cookies by
-            visiting the Google ad and content network Privacy Policy at the
-            following URL – https://policies.google.com/technologies/ads
-          </p>
-
-          {/* Disclosure of personal information to third parties */}
-          <h2>Disclosure of personal information to third parties</h2>
-          <p>We may disclose personal information to:</p>
-          <ul>
-            <li>
-              third party service providers for the purpose of enabling them to
-              provide their services, including (without limitation) IT service
-              providers, data storage, hosting and server providers, ad
-              networks, analytics, error loggers, debt collectors, maintenance
-              or problem-solving providers, marketing or advertising providers,
-              professional advisors and payment systems operators;
-            </li>
-            <li>
-              credit reporting agencies, courts, tribunals and regulatory
-              authorities, in the event you fail to pay for goods or services we
-              have provided to you; and
-            </li>
-            <li>third parties to collect and process data.</li>
-          </ul>
-
-          {/* Our Advertising Partners */}
-          <h2>Our Advertising Partners </h2>
-          <p>
-            Some of advertisers on our site may use cookies and web beacons. Our
-            advertising partners are listed below.
-          </p>
-          <ul>
-            <li>
-              Each of our advertising partners has their own Privacy Policy for
-              their policies on user data.
-            </li>
-            <li>
-              For easier access, we hyperlinked to their Privacy Policies below.
-              Google https://policies.google.com/technologies/ads
-            </li>
-            <li></li>
-          </ul>
-
-          {/* Advertising Partners Privacy Policies */}
-          <h2>Advertising Partners Privacy Policies </h2>
-          <div>
-            You may consult this list to find the Privacy Policy for each of the
-            advertising partners of cb360.com.
-            <ul>
-              <li>
-                Third-party ad servers or ad networks uses technologies like
-                cookies, JavaScript, or Web Beacons that are used in their
-                respective advertisements and links that appear on cb360.com,
-                which are sent directly to users&apos; browser.
-              </li>
-              <li>
-                They automatically receive your IP address when this occurs.
-              </li>
-              <li>
-                These technologies are used to measure the effectiveness of
-                their advertising campaigns and/or to personalize the
-                advertising content that you see on websites that you visit.
-              </li>
-              <li>
-                Note that cb360.com has no access to or control over these
-                cookies that are used by third-party advertisers.
-              </li>
-            </ul>
-          </div>
-
-          {/* Third Party Privacy Policies */}
-          <h2>Third Party Privacy Policies</h2>
-          <p>
-            cb360.com&apos;s Privacy Policy does not apply to other advertisers
-            or websites. Thus, we are advising you to consult the respective
-            Privacy Policies of these third-party ad servers for more detailed
-            information.
-          </p>
-          <ul>
-            <li>
-              It may include their practices and instructions about how to
-              opt-out of certain options.
-            </li>
-            <li>
-              You can choose to disable cookies through your individual browser
-              options.
+              End users who interact with CB360-powered WhatsApp Business
+              accounts operated by our clients.
             </li>
           </ul>
           <p>
-            To know more detailed information about cookie management with
-            specific web browsers, it can be found at the browsers&apos;
-            respective websites. CCPA Privacy Rights (Do Not Sell My Personal
-            Information) Under the CCPA, among other rights, California
-            consumers have the right to: Request that a business that collects a
-            consumer&apos;s personal data disclose the categories and specific
-            pieces of personal data that a business has collected about
-            consumers.
-          </p>
-          <p>
-            Request that a business delete any personal data about the consumer
-            that a business has collected. Request that a business that sells a
-            consumer&apos;s personal data, not sell the consumer&apos;s personal
-            data.
-          </p>
-          <p>
-            If you make a request, we have one month to respond to you. If you
-            would like to exercise any of these rights, please contact us.{' '}
+            Where CB360 acts as a data processor on behalf of a business client
+            (i.e., processing end-user data through the WhatsApp Business API),
+            the client is the data controller and their own privacy policy
+            governs how end-user data is used. CB360 processes such data strictly
+            in accordance with the client&apos;s instructions and these
+            principles.
           </p>
 
-          {/* GDPR Data Protection Rights */}
-          <h2>GDPR Data Protection Rights</h2>
+          {/* 3. Personal Data We Collect */}
+          <h2>3. Personal Data We Collect</h2>
+
+          <h3>3.1 Data You Provide to Us (Business Clients)</h3>
           <p>
-            We would like to make sure you are fully aware of all of your data
-            protection rights. Every user is entitled to the following:{' '}
+            When you register for or use the CB360 Platform, we collect:
           </p>
-          <ol>
+          <ul>
+            <li>Full name, job title, and business role.</li>
             <li>
-              The right to access – You have the right to request copies of your
-              personal data. We may charge you a small fee for this service.{' '}
+              Company or business name, commercial registration number, and
+              registered address.
+            </li>
+            <li>Email address and telephone number.</li>
+            <li>
+              Billing information (name, address, payment method details —
+              payment card data is processed by our payment provider and not
+              stored by CB360).
             </li>
             <li>
-              The right to rectification – You have the right to request that we
-              correct any information you believe is inaccurate. You also have
-              the right to request that we complete the information you believe
-              is incomplete.{' '}
+              WhatsApp Business Account (WABA) details and Meta Business Manager
+              information.
+            </li>
+            <li>Support communications and correspondence with CB360.</li>
+          </ul>
+
+          <h3>3.2 Data Collected Automatically (Platform Usage)</h3>
+          <p>
+            When you use the CB360 Platform, we automatically collect:
+          </p>
+          <ul>
+            <li>IP address and device/browser information.</li>
+            <li>
+              Log data including access timestamps, pages visited, and features
+              used.
+            </li>
+            <li>Session identifiers and authentication tokens.</li>
+            <li>Platform performance metrics and error logs.</li>
+          </ul>
+
+          <h3>3.3 WhatsApp End-User Data (Processed on Behalf of Clients)</h3>
+          <p>
+            Where CB360 processes WhatsApp messaging data on behalf of its
+            business clients, this may include:
+          </p>
+          <ul>
+            <li>WhatsApp phone numbers and display names of end users.</li>
+            <li>
+              Message content within business-initiated and customer-initiated
+              conversation threads.
             </li>
             <li>
-              he right to erasure – You have the right to request that we erase
-              your personal data, under certain conditions.{' '}
+              Media files (images, documents, audio) shared within
+              conversations.
             </li>
             <li>
-              The right to restrict processing – You have the right to request
-              that we restrict the processing of your personal data, under
-              certain conditions.{' '}
+              Order, payment, and catalogue interaction data where relevant to
+              the client&apos;s service.
+            </li>
+          </ul>
+          <p>
+            CB360 processes this data as a data processor acting on the
+            client&apos;s behalf. CB360 does not use end-user WhatsApp data for
+            its own commercial purposes, advertising, or profiling.
+          </p>
+
+          <h3>3.4 Cookies &amp; Tracking</h3>
+          <p>
+            The CB360 website uses cookies and similar technologies to:
+          </p>
+          <ul>
+            <li>Maintain session state and authentication.</li>
+            <li>
+              Analyse website usage and improve platform performance.
+            </li>
+            <li>Remember your preferences.</li>
+          </ul>
+          <p>
+            You may configure your browser to refuse cookies, though some
+            Platform features may not function correctly without them. A full
+            Cookie Policy is available on our website.
+          </p>
+
+          {/* 4. Legal Basis for Processing */}
+          <h2>4. Legal Basis for Processing</h2>
+          <p>
+            CB360 processes personal data on the following legal grounds under
+            the Bahrain PDPL:
+          </p>
+          <ul>
+            <li>
+              <strong>Contractual Necessity:</strong> Processing required to
+              provide the CB360 Platform services under your subscription
+              agreement.
             </li>
             <li>
-              The right to object to processing – You have the right to object
-              to our processing of your personal data, under certain conditions.{' '}
+              <strong>Legitimate Interests:</strong> Processing for fraud
+              prevention, platform security, service improvement, and direct
+              marketing to existing clients where not overridden by your
+              interests.
             </li>
             <li>
-              The right to data portability – You have the right to request that
-              we transfer the data that we have collected to another
-              organization, or directly to you, under certain conditions.{' '}
+              <strong>Legal Obligation:</strong> Processing required to comply
+              with applicable Bahraini law, regulatory requirements, or court
+              orders.
             </li>
-          </ol>
+            <li>
+              <strong>Consent:</strong> Where required by law, we will obtain
+              your explicit consent before processing, including for certain
+              marketing communications. You may withdraw consent at any time.
+            </li>
+          </ul>
 
+          {/* 5. How We Use Your Personal Data */}
+          <h2>5. How We Use Your Personal Data</h2>
           <p>
-            If you make a request, we have one month to respond to you. If you
-            would like to exercise any of these rights, please contact us.
-            Children&apos;s Information Another part of our priority is adding
-            protection for children while using the internet.
+            CB360 uses the personal data we collect for the following purposes:
           </p>
-          <p>
-            We encourage parents and guardians to observe, participate in,
-            and/or monitor and guide their online activity.
-          </p>
-          <p>
-            cb360.com does not knowingly collect any Personal Identifiable
-            Information from children under the age of 13. If you think that
-            your child provided this kind of information on our website, we
-            strongly encourage you to contact us immediately and we will do our
-            best efforts to promptly remove such information from our records.
-          </p>
+          <ul>
+            <li>
+              To create, manage, and administer your CB360 account and
+              subscription.
+            </li>
+            <li>
+              To provision and manage your WhatsApp Business Account (WABA) with
+              Meta.
+            </li>
+            <li>
+              To process billing and payments for your subscription.
+            </li>
+            <li>
+              To provide technical support, respond to enquiries, and resolve
+              issues.
+            </li>
+            <li>
+              To send service notifications, system alerts, and updates relevant
+              to your account.
+            </li>
+            <li>
+              To send commercial communications about CB360 services, features,
+              and offers (business clients may opt out at any time).
+            </li>
+            <li>
+              To monitor and enforce compliance with these Terms &amp; Conditions
+              and Meta&apos;s policies.
+            </li>
+            <li>
+              To improve the Platform through aggregated usage analytics.
+            </li>
+            <li>
+              To comply with applicable legal and regulatory obligations.
+            </li>
+            <li>
+              To protect the security and integrity of the Platform and our
+              systems.
+            </li>
+          </ul>
 
-          {/* Payments */}
-          <h2>Payments</h2>
+          {/* 6. Sharing Your Personal Data */}
+          <h2>6. Sharing Your Personal Data</h2>
           <p>
-            We use GlobalPayments for payment, analytics, and other business
-            services. GlobalPayments collects identifying information about the
-            devices that connect to its services. GlobalPayments uses this
-            information to operate and improve the services it provides to us,
-            including for fraud detection. You can learn more about
-            GlobalPayments and read its privacy policy at{' '}
-            <a href='#!'> https://globalpayments.com/privacy.</a>
-          </p>
-          <p>
-            We will not store or collect your payment card details. That
-            information is securely saved by GlobalPayments only. GlobalPayments
-            adheres to the standards set by PCI-DSS as managed by the PCI
-            Security Standards Council, which is a joint effort of brands like
-            Visa, Mastercard, American Express and Discover. PCI-DSS
-            requirements help ensure the secure handling of payment information.
-          </p>
-
-          {/* Email marketing */}
-          <h2>Email marketing</h2>
-          <p>
-            We use Bento for our email marketing. Through Bento, we may use your
-            Personal Data to contact you with newsletters, marketing or
-            promotional materials and other information that may be of interest
-            to you. You may opt-out of receiving any, or all, of these
-            communications from us by following the unsubscribe link or
-            instructions provided in any email we send or by contacting us.
-          </p>
-          <p>
-            For more information on the privacy practices of Bento, please visit
-            their Privacy policy:{' '}
-            <a href='#!'>https://bentonow.com/legal/privacy</a>
-          </p>
-
-          {/* International transfers of personal information */}
-          <h2>International transfers of personal information</h2>
-          <p>
-            The personal information we collect is stored and processed in
-            United States, Belgium, Germany and Netherlands, or where we or our
-            partners, affiliates and third-party providers maintain facilities.
-            By providing us with your personal information, you consent to the
-            disclosure to these overseas third parties.
-          </p>
-          <p>
-            We will ensure that any transfer of personal information from
-            countries in the European Economic Area (EEA) to countries outside
-            the EEA will be protected by appropriate safeguards, for example by
-            using standard data protection clauses approved by the European
-            Commission, or the use of binding corporate rules or other legally
-            accepted means.
-          </p>
-          <p>
-            Where we transfer personal information from a non-EEA country to
-            another country, you acknowledge that third parties in other
-            jurisdictions may not be subject to similar data protection laws to
-            the ones in our jurisdiction. There are risks if any such third
-            party engages in any act or practice that would contravene the data
-            privacy laws in our jurisdiction and this might mean that you will
-            not be able to seek redress under our jurisdiction’s privacy laws.
+            CB360 does not sell your personal data. We share personal data only
+            with:
           </p>
 
-          {/* Business transfers */}
-          <h2>Business transfers</h2>
+          <h3>6.1 Meta Platforms, Inc.</h3>
           <p>
-            If we or our assets are acquired, or in the unlikely event that we
-            go out of business or enter bankruptcy, we would include data among
-            the assets transferred to any parties who acquire us. You
-            acknowledge that such transfers may occur, and that any parties who
-            acquire us may continue to use your personal information according
-            to this policy.
+            As an authorised WhatsApp Business Solution Provider, CB360 shares
+            certain business and WABA account data with Meta to provision and
+            maintain WhatsApp Business API access. Meta&apos;s own Privacy Policy
+            governs Meta&apos;s use of this data.
           </p>
 
-          {/* Limits of our policy */}
-          <h2>Limits of our policy</h2>
+          <h3>6.2 Service Providers &amp; Sub-Processors</h3>
           <p>
-            Our website may link to external sites that are not operated by us.
-            Please be aware that we have no control over the content and
-            policies of those sites, and cannot accept responsibility or
-            liability for their respective privacy practices.
+            CB360 engages trusted third-party service providers who process data
+            on our behalf, including:
+          </p>
+          <ul>
+            <li>Cloud infrastructure and hosting providers.</li>
+            <li>Payment processing providers.</li>
+            <li>Email and communications service providers.</li>
+            <li>Analytics and monitoring tools.</li>
+          </ul>
+          <p>
+            All sub-processors are bound by data processing agreements that
+            require PDPL-equivalent protections.
           </p>
 
-          {/* Changes to this policy */}
-          <h2>Changes to this policy</h2>
+          <h3>6.3 Legal &amp; Regulatory Authorities</h3>
           <p>
-            At our discretion, we may change our privacy policy to reflect
-            current acceptable practices. We will take reasonable steps to let
-            users know about changes via our website. Your continued use of this
-            site after any changes to this policy will be regarded as acceptance
-            of our practices around privacy and personal information.
-          </p>
-          <p>
-            If we make a significant change to this privacy policy, for example
-            changing a lawful basis on which we process your personal
-            information, we will ask you to re-consent to the amended privacy
-            policy.
+            CB360 may disclose personal data to competent authorities, courts, or
+            regulators in Bahrain or other jurisdictions where required by law,
+            court order, or for the prevention or detection of fraud and criminal
+            activity.
           </p>
 
-          {/* CB 360 Data Controller */}
-          <h2>CB 360 Data Controller</h2>
-          <div>
-            <address>
-              CB 360 - Part of Remote Dev (Arab company registration number:
-              71882901)
-            </address>
-            <p>
-              <a href='mailto:support@cb360.com'>support@cb360.com</a>
-            </p>
-            <p>This policy is effective as of 14 January 2024.</p>
-          </div>
+          <h3>6.4 Business Transfers</h3>
+          <p>
+            In the event of a merger, acquisition, or sale of substantially all
+            of CB360&apos;s assets, personal data may be transferred to the
+            acquiring entity, subject to the same privacy protections described
+            in this Policy. You will be notified of any such transfer.
+          </p>
+
+          {/* 7. International Data Transfers */}
+          <h2>7. International Data Transfers</h2>
+          <p>
+            CB360 operates primarily within the Kingdom of Bahrain and the GCC
+            region. Some of our service providers may process data outside
+            Bahrain. Where personal data is transferred outside Bahrain, CB360
+            ensures that appropriate safeguards are in place in compliance with
+            the PDPL, including contractual data protection clauses with
+            receiving parties.
+          </p>
+          <p>
+            WhatsApp Business API data is hosted by Meta on Meta&apos;s global
+            infrastructure. Your use of the Platform acknowledges this
+            cross-border data flow under Meta&apos;s Cloud API terms.
+          </p>
+
+          {/* 8. Data Retention */}
+          <h2>8. Data Retention</h2>
+          <p>
+            CB360 retains personal data only for as long as necessary to fulfil
+            the purposes described in this Policy or as required by applicable
+            law:
+          </p>
+          <ul>
+            <li>
+              <strong>Client account data:</strong> Retained for the duration of
+              your subscription and for 5 years after termination, to meet
+              financial, legal, and audit record-keeping requirements under
+              Bahraini law.
+            </li>
+            <li>
+              <strong>
+                WhatsApp messaging data (processed on behalf of clients):
+              </strong>{' '}
+              Retained for the period agreed with the client or as required by
+              law, and deleted within 30 days of account termination unless a
+              longer period is legally required.
+            </li>
+            <li>
+              <strong>Website usage logs:</strong> Retained for up to 12 months
+              for security and performance purposes.
+            </li>
+            <li>
+              <strong>Billing and payment records:</strong> Retained for 7 years
+              in accordance with Bahraini commercial law requirements.
+            </li>
+          </ul>
+          <p>
+            When data is no longer required, CB360 deletes or anonymises it
+            securely.
+          </p>
+
+          {/* 9. Your Rights Under the Bahrain PDPL */}
+          <h2>9. Your Rights Under the Bahrain PDPL</h2>
+          <p>
+            As a data subject under Bahrain Law No. 30 of 2018, you have the
+            following rights:
+          </p>
+          <ul>
+            <li>
+              <strong>Right of Access:</strong> You may request a copy of the
+              personal data CB360 holds about you.
+            </li>
+            <li>
+              <strong>Right of Rectification:</strong> You may request correction
+              of inaccurate or incomplete personal data.
+            </li>
+            <li>
+              <strong>Right of Erasure:</strong> You may request deletion of your
+              personal data where it is no longer necessary for the purpose for
+              which it was collected, subject to CB360&apos;s legal obligations.
+            </li>
+            <li>
+              <strong>Right to Object:</strong> You may object to processing of
+              your personal data for direct marketing purposes at any time.
+            </li>
+            <li>
+              <strong>Right to Restrict Processing:</strong> You may request that
+              CB360 restrict processing of your data in certain circumstances.
+            </li>
+            <li>
+              <strong>Right to Data Portability:</strong> Where technically
+              feasible and legally applicable, you may request your data in a
+              structured, machine-readable format.
+            </li>
+            <li>
+              <strong>Right to Withdraw Consent:</strong> Where processing is
+              based on consent, you may withdraw consent at any time without
+              affecting the lawfulness of prior processing.
+            </li>
+          </ul>
+          <p>
+            To exercise any of these rights, please submit a written request to{' '}
+            <a href='mailto:info@convobot360.com'>info@convobot360.com</a>.
+            CB360 will respond within the timeframe required by the PDPL
+            (generally 30 days). We may require identity verification before
+            processing your request.
+          </p>
+
+          {/* 10. Data Security */}
+          <h2>10. Data Security</h2>
+          <p>
+            CB360 implements appropriate technical and organisational security
+            measures to protect personal data against unauthorised access,
+            disclosure, alteration, or destruction, including:
+          </p>
+          <ul>
+            <li>
+              Encrypted data transmission (TLS/HTTPS) for all Platform
+              communications.
+            </li>
+            <li>
+              Access controls and role-based permissions limiting data access to
+              authorised personnel.
+            </li>
+            <li>
+              Regular security assessments and vulnerability monitoring.
+            </li>
+            <li>
+              Incident response procedures including breach detection and
+              notification protocols.
+            </li>
+            <li>Secure deletion and data disposal procedures.</li>
+          </ul>
+          <p>
+            No method of transmission over the Internet or electronic storage is
+            100% secure. While CB360 employs industry-standard protections, we
+            cannot guarantee absolute security. In the event of a data breach
+            affecting your personal data, CB360 will notify you as described in
+            our Terms &amp; Conditions.
+          </p>
+
+          {/* 11. Children's Privacy */}
+          <h2>11. Children&apos;s Privacy</h2>
+          <p>
+            The CB360 Platform is a business-to-business service intended for use
+            by adults operating as or within registered businesses. CB360 does
+            not knowingly collect personal data from individuals under the age of
+            18. If you believe we have inadvertently collected data from a minor,
+            please contact us immediately and we will delete such data without
+            undue delay.
+          </p>
+
+          {/* 12. WhatsApp-Specific Privacy Notice */}
+          <h2>12. WhatsApp-Specific Privacy Notice</h2>
+          <p>
+            As a Meta WhatsApp Business Solution Provider, CB360 facilitates
+            business messaging between our clients and their customers via the
+            WhatsApp Business API. Users who interact with a CB360-powered
+            WhatsApp Business account should note:
+          </p>
+          <ul>
+            <li>
+              CB360 accesses message content and associated metadata on behalf of
+              the business client operating that WhatsApp account.
+            </li>
+            <li>
+              The business client is the data controller for all messages
+              exchanged with their end customers.
+            </li>
+            <li>
+              End users wishing to understand how their data is used should refer
+              to the privacy policy of the specific business they are messaging.
+            </li>
+            <li>
+              CB360 does not use end-user WhatsApp data for profiling,
+              advertising, or any purpose beyond delivering the contracted
+              service to the business client.
+            </li>
+            <li>
+              Meta independently processes certain data under Meta&apos;s Privacy
+              Policy and WhatsApp&apos;s Privacy Policy, which are independent of
+              CB360.
+            </li>
+          </ul>
+
+          {/* 13. Links to Third-Party Services */}
+          <h2>13. Links to Third-Party Services</h2>
+          <p>
+            The CB360 Platform may contain links to third-party websites or
+            services (including Meta, payment providers, and integration
+            partners). CB360 is not responsible for the privacy practices of
+            third parties. We encourage you to review the privacy policies of any
+            third-party services you use in connection with CB360.
+          </p>
+
+          {/* 14. Changes to This Privacy Policy */}
+          <h2>14. Changes to This Privacy Policy</h2>
+          <p>
+            CB360 may update this Privacy Policy from time to time to reflect
+            changes in our practices, legal requirements, or the services we
+            offer. Material changes will be communicated to registered clients by
+            email at least 14 days before taking effect. The current version will
+            always be available at{' '}
+            <a href='https://get.convobot360.com/privacy'>
+              get.convobot360.com/privacy
+            </a>
+            . Your continued use of the Platform after the effective date
+            constitutes your acceptance of the updated Policy.
+          </p>
+
+          {/* 15. How to Contact Us & Make a Complaint */}
+          <h2>15. How to Contact Us &amp; Make a Complaint</h2>
+          <p>
+            For any privacy-related enquiries, data subject requests, or
+            complaints, please contact:
+          </p>
+          <p>
+            <strong>
+              CB360 | ConvoBot360 — Data Protection Contact
+            </strong>
+            <br />
+            Powered by Silver Sparrow Trading W.L.L.
+            <br />
+            Address: Shop 116, Bldg 18, Road 4101, Block 0341, Juffair, Kingdom
+            of Bahrain
+            <br />
+            Email:{' '}
+            <a href='mailto:info@convobot360.com'>info@convobot360.com</a>
+            <br />
+            Telephone: +973 66907907
+          </p>
+          <p>
+            If you are not satisfied with CB360&apos;s response to your privacy
+            complaint, you have the right to lodge a complaint with the Bahrain
+            Personal Data Protection Authority (PDPA):
+          </p>
+          <p>
+            <strong>
+              Personal Data Protection Authority (PDPA) — Kingdom of Bahrain
+            </strong>
+            <br />
+            Website:{' '}
+            <a href='https://pdpa.gov.bh'>pdpa.gov.bh</a>
+            <br />
+            Email:{' '}
+            <a href='mailto:info@pdpa.gov.bh'>info@pdpa.gov.bh</a>
+          </p>
+
+          <hr />
+
+          <p className='text-sm text-gray-500'>
+            CB360 is an authorised Meta Business Solution Provider for the
+            WhatsApp Business API. Silver Sparrow Trading W.L.L. is not
+            affiliated with, endorsed by, or an agent of Meta Platforms, Inc. or
+            WhatsApp LLC. &quot;WhatsApp&quot; is a registered trademark of
+            WhatsApp LLC.
+          </p>
+          <p className='text-sm text-gray-500'>
+            &copy; 2026 Silver Sparrow Trading W.L.L. trading as CB360 |
+            ConvoBot360. All rights reserved. &middot; Privacy Policy v1.0
+            &middot; April 2026
+          </p>
         </article>
       </div>
     </MainLayout>
