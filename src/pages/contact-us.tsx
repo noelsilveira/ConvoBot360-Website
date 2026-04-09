@@ -77,7 +77,11 @@ const ContactPage = () => {
                       aria-hidden='true'
                     />
                   </dt>
-                  <dd>{contactDetails.company}</dd>
+                  <dd>
+                    <div>{contactDetails.company}</div>
+                    <div className='text-sm text-gray-500'>{contactDetails.poweredBy}</div>
+                    <div className='text-sm text-gray-500'>{contactDetails.crNo}</div>
+                  </dd>
                 </div>
                 <Link
                   href={mapLocation}
@@ -97,23 +101,6 @@ const ContactPage = () => {
                 </Link>
                 <div className='flex gap-x-4'>
                   <dt className='flex-none'>
-                    <span className='sr-only'>Telephone</span>
-                    <TbPhone
-                      className='h-7 w-6 text-brand-400'
-                      aria-hidden='true'
-                    />
-                  </dt>
-                  <dd>
-                    <a
-                      className='hover:text-gray-900'
-                      href={`tel: ${contactDetails.phone}`}
-                    >
-                      {contactDetails.phone}
-                    </a>
-                  </dd>
-                </div>
-                <div className='flex gap-x-4'>
-                  <dt className='flex-none'>
                     <span className='sr-only'>Email</span>
                     <TbMail
                       className='h-7 w-6 text-brand-400'
@@ -129,6 +116,23 @@ const ContactPage = () => {
                     >
                       {infoEmail}
                     </Link>
+                  </dd>
+                </div>
+                <div className='flex gap-x-4'>
+                  <dt className='flex-none'>
+                    <span className='sr-only'>Telephone</span>
+                    <TbPhone
+                      className='h-7 w-6 text-brand-400'
+                      aria-hidden='true'
+                    />
+                  </dt>
+                  <dd>
+                    <a
+                      className='hover:text-gray-900'
+                      href={`tel: ${contactDetails.phone}`}
+                    >
+                      {contactDetails.phone}
+                    </a>
                   </dd>
                 </div>
               </dl>
