@@ -14,12 +14,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'tailwindui.com',
-        pathname: '**',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-        pathname: '**',
+        pathname: '/**',
       },
     ],
   },
