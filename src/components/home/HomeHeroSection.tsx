@@ -1,7 +1,7 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import React from 'react';
-import { TbArrowUpRight, TbBrandMeta, TbRobotFace } from 'react-icons/tb';
+import { TbArrowUpRight, TbRobotFace } from 'react-icons/tb';
 import {
   BackgroundGradient,
   SVGBackgroundPattern,
@@ -44,13 +44,7 @@ const HomeHeroSection = () => {
       </svg> */}
       <div className='mx-auto max-w-7xl px-6 py-4 pb-8 sm:py-8 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-10'>
         <div className='mx-auto max-w-2xl lg:mx-0 lg:flex-auto'>
-          <Image
-            src={'/assets/brand/meta-partner.svg'}
-            alt='Meta Business Partner'
-            width={200}
-            height={50}
-            className='h-20 object-contain object-left lg:h-28'
-          />
+          {/* Meta Business Partner logo — re-enable after BSP verification */}
           <div className='flex'>
             <div className='relative flex items-center gap-x-4 rounded-full bg-brand-50/50 px-4 py-1 text-xs leading-6 text-gray-600 ring-1 ring-gray-900/10 backdrop-blur-md hover:ring-gray-900/20 lg:text-sm'>
               <span className='inline-flex items-center justify-center gap-2 font-medium text-gallery-700'>
