@@ -107,10 +107,8 @@ const HomeHeroSection = () => {
             <Image
               width={400}
               height={1000}
-              quality={100}
               priority
-              placeholder='blur'
-              blurDataURL='/assets/animations/screen-video-02.gif'
+              unoptimized
               alt='app-screen'
               src={'/assets/animations/screen-video-02.gif'}
             />
