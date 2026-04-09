@@ -11,4 +11,5 @@ export const contactDetails = {
   crNo: 'CR.No: 170940-1',
   address: 'Shop 116, Bldg 18, Road 4101, Block 0341, Juffair, Kingdom of Bahrain',
   phone: '+973 66907907',
+  phone2: '+973 39367444',
 };

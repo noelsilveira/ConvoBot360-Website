@@ -133,6 +133,13 @@ const ContactPage = () => {
                     >
                       {contactDetails.phone}
                     </a>
+                    {' / '}
+                    <a
+                      className='hover:text-gray-900'
+                      href={`tel: ${contactDetails.phone2}`}
+                    >
+                      {contactDetails.phone2}
+                    </a>
                   </dd>
                 </div>
               </dl>
