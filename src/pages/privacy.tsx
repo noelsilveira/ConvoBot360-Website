@@ -15,7 +15,7 @@ const PrivacyPage = () => {
           <p>
             This Privacy Policy explains how Silver Sparrow Trading W.L.L.,
             operating the CB360 | ConvoBot360 platform (
-            <a href='https://get.convobot360.com'>https://get.convobot360.com</a>
+            <a href='https://convobot360.com'>https://convobot360.com</a>
             ), collects, uses, stores, and protects personal data in accordance
             with Bahrain Law No. 30 of 2018 (Personal Data Protection Law,
             &quot;PDPL&quot;) and its implementing regulations. By using the CB360
@@ -43,7 +43,7 @@ const PrivacyPage = () => {
             Telephone: +973 66907907
             <br />
             Website:{' '}
-            <a href='https://get.convobot360.com'>https://get.convobot360.com</a>
+            <a href='https://convobot360.com'>https://convobot360.com</a>
           </p>
           <p>
             CB360 is an authorised Meta Business Solution Provider, providing
@@ -57,7 +57,7 @@ const PrivacyPage = () => {
           <p>This Privacy Policy applies to:</p>
           <ul>
             <li>
-              Visitors to get.convobot360.com and its subdomains.
+              Visitors to convobot360.com and its subdomains.
             </li>
             <li>
               Business clients who register for and use the CB360 Platform.
@@ -475,8 +475,8 @@ const PrivacyPage = () => {
             offer. Material changes will be communicated to registered clients by
             email at least 14 days before taking effect. The current version will
             always be available at{' '}
-            <a href='https://get.convobot360.com/privacy'>
-              get.convobot360.com/privacy
+            <a href='https://convobot360.com/privacy'>
+              convobot360.com/privacy
             </a>
             . Your continued use of the Platform after the effective date
             constitutes your acceptance of the updated Policy.

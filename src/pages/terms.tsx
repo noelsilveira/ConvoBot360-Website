@@ -52,7 +52,7 @@ const TermsPage = () => {
               </li>
               <li>
                 &quot;Platform&quot; means the CB360 software, dashboards, APIs,
-                tools, and services accessible at get.convobot360.com and its
+                tools, and services accessible at convobot360.com and its
                 subdomains.
               </li>
               <li>
@@ -756,11 +756,11 @@ const TermsPage = () => {
               <br />
               Website:{' '}
               <a
-                href='https://get.convobot360.com'
+                href='https://convobot360.com'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                https://get.convobot360.com
+                https://convobot360.com
               </a>
             </address>
             <p className='text-sm text-gray-500'>
