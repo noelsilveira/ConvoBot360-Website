@@ -69,16 +69,16 @@ const MobileMenu = () => {
 
               <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
                 <div className='flow-root'>
-                  <Link
-                    href='/login'
+                  <a
+                    href='https://connect.convobot360.com/'
                     className='-m-2 block p-2 font-medium text-gray-900'
                   >
                     Sign in
-                  </Link>
+                  </a>
                 </div>
                 <div className='flow-root'>
                   <a
-                    href='#'
+                    href='https://connect.convobot360.com/'
                     className='-m-2 block p-2 font-medium text-gray-900'
                   >
                     Create account

@@ -241,8 +241,8 @@ export const footerNavigation = {
   account: [
     { name: 'Manage Account', href: '/merchant/about' },
     { name: 'Merchant Login', href: '/merchant/17525751' },
-    { name: 'Partner with us', href: '/sign-up' },
-    { name: 'Join us', href: '/sign-up' },
+    { name: 'Partner with us', href: 'https://connect.convobot360.com/' },
+    { name: 'Join us', href: 'https://connect.convobot360.com/' },
     // { name: 'Returns & Exchanges', href: '#!' },
     // { name: 'Redeem a Gift Card', href: '#!' },
   ],

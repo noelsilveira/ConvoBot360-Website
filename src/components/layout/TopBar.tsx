@@ -115,19 +115,19 @@ const TopBar = () => {
         </p> */}
 
         <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
-          <Link
-            href='/sign-up'
+          <a
+            href='https://connect.convobot360.com/'
             className='text-sm font-medium text-white hover:text-gray-100'
           >
             Create an account
-          </Link>
+          </a>
           <span className='h-6 w-px bg-gray-100' aria-hidden='true' />
-          <Link
-            href='/login'
+          <a
+            href='https://connect.convobot360.com/'
             className='text-sm font-medium text-white hover:text-gray-100'
           >
             Sign in
-          </Link>
+          </a>
         </div>
       </div>
     </div>
